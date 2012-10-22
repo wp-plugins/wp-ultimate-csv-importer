@@ -33,7 +33,7 @@ Please visit http://www.smackcoders.com/category/free-wordpress-plugins.html for
  Wp Ultimate CSV Importer is very easy to install like any other wordpress plugin. No need to edit or modify anything here.
 
 1.    Unzip the file 'wp-ultimate-csv-importer.zip'.
-2.    Upload the ' wp-ultimate-csv-importer ' directory to '/wp-content/plugins/' directory using ftp client or upload and install wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel .
+2.    Upload the ' wp-ultimate-csv-importer ' directory to '/wp-content/plugins/' directory using ftp client or upload and install wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel and give write permission to imported_csv folder in /wp-content/plugins/wp-ultimate-csv-importer/ directory.
 3.    Activate the plugin through the 'Plugins' menu in WordPress.
 4.    After activating, you will see an option for 'Wp Ultimate CSV Importer' in the admin menu (left navigation) and you will import the csv files to import the data's.
 
