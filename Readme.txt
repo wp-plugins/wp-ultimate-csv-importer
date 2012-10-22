@@ -62,15 +62,13 @@ Initial release of plugin v1.0.0
 
 1. How to install the plugin?
    Like other plugins wp-ultimate-csv-importer is easy to install. Upload the wp-ultimate-csv-importer.zip file through plugin install page through wp admin. Everything will work fine with it.
-
 2. How to use the plugin?
-
    After plugin activation you can see the ' Wp Ultimate CSV Importer ' menu in admin backend.
-
-1. Browse csv file to import the data's.
-2. You can mapping the headers to import the data's.
-3. If you checked the import as draft,it will import as draft then you can publish the data's later.
-4. The data's are imported based on the post type you selected.
+	a. Browse csv file to import the data's.
+	b. Select the post type or post / page to import as.
+	b. Map each header to the relevant fields using the drop downs to import.
+	c. If import as draft option is checked, post will be in draft mode.
+	
 
 Configuring our plugin is as simple as that.
 
