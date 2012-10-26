@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=fenzi
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4
 Tested up to: 3.4.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,9 +33,9 @@ Please visit http://www.smackcoders.com/category/free-wordpress-plugins.html for
  Wp Ultimate CSV Importer is very easy to install like any other wordpress plugin. No need to edit or modify anything here.
 
 1.  Unzip the file 'wp-ultimate-csv-importer.zip'.
-2.  Upload the ' wp-ultimate-csv-importer ' directory to '/wp-content/plugins/' directory using ftp client or upload and install 		
-	wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel 
-3. 	Make /wp-content/plugins/wp-ultimate-csv-importer as writable (chmod 777) to import csv.
+2.  Upload the ' wp-ultimate-csv-importer ' directory to '/wp-content/plugins/' directory using ftp client or upload and install	
+wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel 
+3.  Make /wp-content/plugins/wp-ultimate-csv-importer as writable (chmod 777) to import csv.
 4.  Activate the plugin through the 'Plugins' menu in WordPress.
 5.  After activating, you will see an option for 'Wp Ultimate CSV Importer' in the admin menu (left navigation) and you will import the csv files to import the data's.
 
@@ -48,14 +48,16 @@ Please visit http://www.smackcoders.com/category/free-wordpress-plugins.html for
 
 == Changelog ==
 
-1.0.0
+1.0.0		Initial release version. Tested and found works well without any issues.
 
-Initial release version. Tested and found works well without any issues.
+1.0.1		Added features to import multiple tags and categories with different delimiters.
 
 
 == Upgrade Notice ==
 
-Initial release of plugin v1.0.0
+v1.0.0		Initial release of plugin. 
+
+v1.0.1		Added features to import multiple tags and categories with different delimiters.
 
 
 == Frequently Asked Questions ==
@@ -73,6 +75,10 @@ Initial release of plugin v1.0.0
 	b. Map each header to the relevant fields using the drop downs to import.
 	c. If import as draft option is checked, post will be in draft mode.
 	
+3. How to define the multiple tags and categories?
+
+    In CSV, tags should be seperated by "," to import mutiple tags and categories should be seperated by "|" to import multiple categories.
+
 
 Configuring our plugin is as simple as that.
 
