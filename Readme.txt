@@ -45,19 +45,17 @@ wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel
 1. Admin settings for Wp Ultimate CSV Importer Plugin .
 2. Admin settings for Import Data and Header Mapping configutration to import data's from a csv file.
 
-
 == Changelog ==
+1.0.0	Initial release version. Tested and found works well without any issues.
 
-1.0.0		Initial release version. Tested and found works well without any issues.
-
-1.0.1		Added features to import multiple tags and categories with different delimiters.
+1.0.1	Added features to import multiple tags and categories with different delimiters.
 
 
 == Upgrade Notice ==
 
-v1.0.0		Initial release of plugin. 
+v1.0.0	Initial release of plugin. 
 
-v1.0.1		Added features to import multiple tags and categories with different delimiters.
+v1.0.1	Added features to import multiple tags and categories with different delimiters.
 
 
 == Frequently Asked Questions ==
@@ -69,7 +67,6 @@ v1.0.1		Added features to import multiple tags and categories with different del
 2. How to use the plugin?
 
    After plugin activation you can see the ' Wp Ultimate CSV Importer ' menu in admin backend.
-   
 	a. Browse csv file to import the data's.
 	b. Select the post type or post / page to import as.
 	b. Map each header to the relevant fields using the drop downs to import.
@@ -77,11 +74,9 @@ v1.0.1		Added features to import multiple tags and categories with different del
 	
 3. How to define the multiple tags and categories?
 
-    In CSV, tags should be seperated by "," to import mutiple tags and categories should be seperated by "|" to import multiple categories.
-
+   In CSV, tags should be seperated by "," to import mutiple tags and categories should be seperated by "|" to import multiple categories.
 
 Configuring our plugin is as simple as that.
-
 
 Please use support section in wordpress itself for any further queries and feature request.
 
