@@ -3,7 +3,7 @@
 *Plugin Name: Wp Ultimate CSV Importer
 *Plugin URI: http://www.smackcoders.com/category/free-wordpress-plugins.html
 *Description: A plugin that helps to import the data's from a CSV file.
-*Version: 1.0.0
+*Version: 1.0.1
 *Author: smackcoders.com
 *Author URI: http://www.smackcoders.com
 *
@@ -36,7 +36,8 @@ $headers = array();
 global $defaults;
 global $wpdb;
 global $keys;
-
+global $delim;
+$delim = $_POST['delim'];
 // Get the custom fields
 $limit = (int) apply_filters( 'postmeta_form_limit', 30 );
 $keys = $wpdb->get_col( "
@@ -52,8 +53,8 @@ $defaults = array(
         'post_content'    => null,
         'post_excerpt'    => null,
         'post_date'       => null,
-        'post_tags'       => null,
-        'post_categories' => null,
+        'post_tag'        => null,
+        'category'	  => null,
         'post_author'     => null,
         'post_parent'     => 0,
     );
@@ -98,18 +99,18 @@ function description(){
 }
 
 // CSV File Reader
-function csv_file_data($file)
+function csv_file_data($file,$delim)
 {
 	global $data_rows;
 	global $headers;
+	global $delim;
         $resource = fopen($file, 'r');
-        while ($keys = fgetcsv($resource)) {
+        while ($keys = fgetcsv($resource,'',"$delim",'"')) {
             if ($c == 0) {
                 $headers = $keys;
             } else {
                 array_push($data_rows, $keys);
             }
-
             $c ++;
         }
         fclose($resource);
@@ -144,14 +145,15 @@ function upload_csv_file()
 	global $defaults;
 	global $keys;
 	global $custom_array;
+	global $delim;
 	$custom_array = array();
 	if(isset($_POST['Import']))
 	{
-		csv_file_data($_FILES['csv_import']['tmp_name']);
+		csv_file_data($_FILES['csv_import']['tmp_name'],$delim);
 		move_file();
 		?>
 	<div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; margin-top:15px;padding: 5px;text-align:center"> Please check out <a href="http://smackcoders.com/category/free-wordpress-plugins.html" target="_blank">www.smackcoders.com</a> for the latest news and details of other great plugins and tools. </div><br/>
-
+		<?php if ( count($headers)>1 &&  count($data_rows)>1 ){?>
 		<div style="float:left;min-width:45%">
 		<form class="add:the-list: validate" method="post">
 			<h3>Import Data Configuration</h3>
@@ -176,10 +178,11 @@ function upload_csv_file()
 			<?php $cnt =count($defaults)+2; $cnt1 =count($headers); ?>
 			<input type="hidden" id="h1" name="h1" value="<?php echo $cnt; ?>"/>
 			<input type="hidden" id="h2" name="h2" value="<?php echo $cnt1; ?>"/>
-			<table>
+			<input type="hidden" id="delim" name="delim" value="<?php echo $_POST['delim']; ?>" />
+			<table style="font-size:12px;">
 			 <?php
 			  $count = 0;
-			  foreach($headers as $key=>$value){
+			  foreach($headers as $key=>$value){ 
 			 ?>
 			 <tr>
 			    <td>
@@ -212,11 +215,26 @@ function upload_csv_file()
 			<?php $result = description(); print_r($result); ?>
 		</div>
 	<?php
+		}
+		else { ?>
+		<div style="font-size:16px;margin-left:20px;">Your CSV file cannot be processed. It may contains wrong delimiter or please choose the correct delimiter.
+		</div><br/>
+		<div style="margin-left:20px;">
+		<form class="add:the-list: validate" method="post" action="">
+			<input type="submit" class="button" name="Import Again" value="Import Again"/>
+		</form>
+		</div>
+		<div style="margin-left:20px;margin-top:30px;">
+			<b>Note :-</b>
+			<p>1. Your CSV should contain "," or ";" as delimiters.</p>
+			<p>2. In CSV, tags should be seperated by "," to import mutiple tags and categories should be seperated by "|" to import multiple categories.</p>
+		</div>
+	<?php	}
 	}
 	else if(isset($_POST['post_csv']))
 	{
 		$dir = getcwd ().'/../wp-content/plugins/wp-ultimate-csv-importer/imported_csv/';
-		csv_file_data($dir.$_POST['filename']);
+		csv_file_data($dir.$_POST['filename'],$delim);
 		foreach($_POST as $postkey=>$postvalue){
 			if($postvalue != '-- Select --'){
 				$ret_array[$postkey]=$postvalue;
@@ -241,17 +259,24 @@ function upload_csv_file()
 				$custom_array[$v] =$new_post[$v];
 			     }
 			   }
-			  /* if(array_key_exists('textbox'.$inc,$new_post)){
-				$custom_array['textbox'.$inc] =$new_post['textbox'.$inc];
-			   }*/
 			}
 			foreach($new_post as $ckey => $cval){
+			   if($ckey!='category' && $ckey!='post_tag'){
 				if(array_key_exists($ckey,$custom_array)){
 					$darray[$ckey]=$new_post[$ckey];
 				}
 				else{
 					$data_array[$ckey]=$new_post[$ckey];
 				}
+			   }
+			   else{
+				if($ckey == 'post_tag'){
+					$tags[$ckey]=$new_post[$ckey];
+				}
+				if($ckey == 'category'){
+					$categories[$ckey]=$new_post[$ckey];
+				}
+			   }
 			}
 			$data_array['post_status']='publish';
 			if(isset($_POST['csv_importer_import_as_draft'])){
@@ -264,6 +289,20 @@ function upload_csv_file()
 					add_post_meta($post_id, $custom_key, $custom_value);
 				}
 			}
+
+			// Create/Add tags to post
+			if(!empty($tags)){
+				foreach($tags as $tag_key => $tag_value){
+					wp_set_post_tags( $post_id, $tag_value );
+				}
+			}  // End of code to add tags
+
+			// Create/Add category to post
+			if(!empty($categories)){
+				$split_line = explode('|',$categories['category']);
+				wp_set_object_terms($post_id, $split_line, 'category');
+
+			}  // End of code to add category
 		}
 	?>
 		<div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; padding: 5px;text-align:center"><b> Successfully Imported ! </b></div>
@@ -291,7 +330,13 @@ function upload_csv_file()
 
 			<!-- File input -->
 			<p><label for="csv_import">Upload file:</label><br/>
-			    <input name="csv_import" id="csv_import" type="file" value="" aria-required="true" /></p>
+			    <input name="csv_import" id="csv_import" type="file" value="" aria-required="true" /></p><br/>
+			<p><label>Delimiter</label>&nbsp;&nbsp;&nbsp;
+			    <select name="delim" id="delim">
+				<option value=",">,</option>
+				<option value=";">;</option>
+			    </select>
+			</p>
 			<p class="submit"><input type="submit" class="button" name="Import" value="Import" /></p>
 			</form>
 		     </div>
