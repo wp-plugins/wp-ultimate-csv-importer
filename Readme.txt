@@ -35,7 +35,7 @@ Please visit http://www.smackcoders.com/category/free-wordpress-plugins.html for
 1.  Unzip the file 'wp-ultimate-csv-importer.zip'.
 2.  Upload the ' wp-ultimate-csv-importer ' directory to '/wp-content/plugins/' directory using ftp client or upload and install	
 wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel 
-3.  Make /wp-content/plugins/wp-ultimate-csv-importer as writable (chmod 777) to import csv.
+3.  Make /wp-content/plugins/wp-ultimate-csv-importer/imported_csv as writable (chmod 777) to import csv.
 4.  Activate the plugin through the 'Plugins' menu in WordPress.
 5.  After activating, you will see an option for 'Wp Ultimate CSV Importer' in the admin menu (left navigation) and you will import the csv files to import the data's.
 
