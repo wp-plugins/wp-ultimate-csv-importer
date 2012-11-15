@@ -3,7 +3,7 @@
 *Plugin Name: Wp Ultimate CSV Importer
 *Plugin URI: http://www.smackcoders.com/category/free-wordpress-plugins.html
 *Description: A plugin that helps to import the data's from a CSV file.
-*Version: 1.0.1
+*Version: 1.0.2
 *Author: smackcoders.com
 *Author URI: http://www.smackcoders.com
 *
@@ -101,6 +101,7 @@ function description(){
 // CSV File Reader
 function csv_file_data($file,$delim)
 {
+	ini_set("auto_detect_line_endings", true); // added by fredrick at version 1.0.2
 	global $data_rows;
 	global $headers;
 	global $delim;
@@ -114,6 +115,7 @@ function csv_file_data($file,$delim)
             $c ++;
         }
         fclose($resource);
+	ini_set("auto_detect_line_endings", false); // added by fredrick at version 1.0.2
 }
 
 // Move file
@@ -155,7 +157,7 @@ function upload_csv_file()
 	<div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; margin-top:15px;padding: 5px;text-align:center"> Please check out <a href="http://smackcoders.com/category/free-wordpress-plugins.html" target="_blank">www.smackcoders.com</a> for the latest news and details of other great plugins and tools. </div><br/>
 		<?php if ( count($headers)>1 &&  count($data_rows)>1 ){?>
 		<div style="float:left;min-width:45%">
-		<form class="add:the-list: validate" method="post">
+		<form class="add:the-list: validate" method="post" onsubmit="return import_csv();">
 			<h3>Import Data Configuration</h3>
 			<div style="margin-top:30px;>
 			<input name="_csv_importer_import_as_draft" type="hidden" value="publish" />
@@ -189,7 +191,7 @@ function upload_csv_file()
 				<label><?php print($value);?></label>
 			    </td>
 			    <td>
-			    <select  name="mapping<?php print($count);?>" id="mapping<?php print($count);?>" class ='uiButton' onchange="addcustomfield();">
+			    <select  name="mapping<?php print($count);?>" id="mapping<?php print($count);?>" class ='uiButton' onchange="addcustomfield(this.value,<?php echo $count; ?>);">
 				<option id="select" name="select">-- Select --</option>
 			    <?php 
 				  foreach($defaults as $key1=>$value1){
