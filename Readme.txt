@@ -1,12 +1,12 @@
 === Wp Ultimate CSV Importer Plugin ===
 Contributors: Smackcoders
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=fenzik@gmail.com&lc=JP&item_name=WordPress%20Plugins&item_number=wp%2dplugins&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
+Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4
 Tested up to: 3.4.2
 Stable tag: 1.0.2
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Author: Smackcoders
+Author URI: http://profiles.wordpress.org/smackcoders/
 
 A plugin that helps to import any csv file as post, page or custom post data's by matching csv headers to wp fields.
 
@@ -18,12 +18,12 @@ Wp Ultimate CSV Importer Plugin helps you to import any csv file as post, page o
 1. Admin can import the data's from any csv file. 
 2. Can define the type of post and post status while importing.
 3. Provides header mapping feature to import the data's as your need.
-4. Users can map coloumn headers to exixting fields or assign as custom fileds.
-5. Import unlimited datas as post.
+4. Users can map column headers to existing fields or assign as custom fields.
+5. Import unlimited data as post.
 6. Make imported post as published or make it as draft.
 
 
-Support and Feature requests.
+Support and Feature request.
 ----------------------------
 Please visit http://www.smackcoders.com/category/free-wordpress-plugins.html for guides and tutorials. Please mail us to wpsupport@smackcoders.com for any timely support or feature request. Support at wordpress is not possible for now.
 
@@ -43,7 +43,7 @@ wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel
 == Screenshots ==
 
 1. Admin settings for Wp Ultimate CSV Importer Plugin .
-2. Admin settings for Import Data and Header Mapping configutration to import data's from a csv file.
+2. Admin settings for Import Data and Header Mapping configuration to import data's from a csv file.
 
 
 == Changelog ==
@@ -82,7 +82,7 @@ v1.0.2		This version have important bug fixes and newly added features. Must upg
 	
 3. How to define the multiple tags and categories?
 
-    In CSV, tags should be seperated by "," to import mutiple tags and categories should be seperated by "|" to import multiple categories.
+    In CSV, tags should be separated by "," to import multiple tags and categories should be separated by "|" to import multiple categories.
 
 
 Configuring our plugin is as simple as that.
