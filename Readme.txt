@@ -7,6 +7,7 @@ Tested up to: 3.4.2
 Stable tag: 1.0.2
 Author: Smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
+License: GPLv2 or later
 
 A plugin that helps to import any csv file as post, page or custom post data's by matching csv headers to wp fields.
 
