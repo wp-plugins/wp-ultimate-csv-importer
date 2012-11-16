@@ -4,7 +4,8 @@ Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4
 Tested up to: 3.4.2
-Stable tag: 1.0.2
+Stable tag: 1.1.0
+Version: 1.1.0
 Author: Smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
@@ -22,6 +23,14 @@ Wp Ultimate CSV Importer Plugin helps you to import any csv file as post, page o
 4. Users can map column headers to existing fields or assign as custom fields.
 5. Import unlimited data as post.
 6. Make imported post as published or make it as draft.
+7. Added featured image import functionality.
+
+Note: Your theme should support featured image function. If not, please add the following code to header.php or where it needed.
+		add_theme_support( 'post-thumbnails' );
+
+You can follow the instructions as given here 
+	[http://codex.wordpress.org/Function_Reference/the_post_thumbnail](http://codex.wordpress.org/Function_Reference/the_post_thumbnail)
+    [http://codex.wordpress.org/Post_Thumbnails](http://codex.wordpress.org/Post_Thumbnails)	[http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5](http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5)
 
 
 Support and Feature request.
@@ -50,21 +59,25 @@ wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel
 
 == Changelog ==
 
-1.0.0		Initial release version. Tested and found works well without any issues.
+=1.0.0=		Initial release version. Tested and found works well without any issues.
 
-1.0.1		Added features to import multiple tags and categories with different delimiters.
+=1.0.1=		Added features to import multiple tags and categories with different delimiters.
 
-1.0.2		- Bug fixed to recognize the trimmed trailing space in the CSV file 
+=1.0.2=		- Bug fixed to recognize the trimmed trailing space in the CSV file 
 	        - Added validation for the duplicate field mapping.
+
+=1.1.0=		Added featured image import feature along with post/page/custom post.
 
 
 == Upgrade Notice ==
 
-v1.0.0		Initial release of plugin. 
+=v 1.0.0=		Initial release of plugin. 
 
-v1.0.1		Added features to import multiple tags and categories with different delimiters.
+=v 1.0.1=		Added features to import multiple tags and categories with different delimiters.
 
-v1.0.2		This version have important bug fixes and newly added features. Must upgrade immediately.
+=v 1.0.2=		This version have important bug fixes and newly added features. Must be upgrade immediately.
+
+=v 1.1.0=      A major new feature added in this version. Update needed.
 
 
 == Frequently Asked Questions ==
@@ -85,7 +98,9 @@ v1.0.2		This version have important bug fixes and newly added features. Must upg
 3. How to define the multiple tags and categories?
 
     In CSV, tags should be separated by "," to import multiple tags and categories should be separated by "|" to import multiple categories.
-
+	
+4. How to choose featured image to import?
+	Match the coloumn contains url paths to images to Attachment field from the drop down.
 
 Configuring our plugin is as simple as that.
 
@@ -93,3 +108,4 @@ For quick response and reply please create issues in our [support](http://code.s
 
 
 
+	
