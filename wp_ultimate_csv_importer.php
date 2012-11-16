@@ -3,7 +3,7 @@
 *Plugin Name: Wp Ultimate CSV Importer
 *Plugin URI: http://www.smackcoders.com/category/free-wordpress-plugins.html
 *Description: A plugin that helps to import the data's from a CSV file.
-*Version: 1.1.0
+*Version: 1.0.1
 *Author: smackcoders.com
 *Author URI: http://www.smackcoders.com
 *
@@ -48,7 +48,7 @@ $keys = $wpdb->get_col( "
         ORDER BY meta_key
         LIMIT $limit" );
 // Default header array
-// Code modified at version 1.1.0 by fredrick
+// Code modified at version 1.0.3 by fredrick
 $defaults = array(
         'post_title'      => null,
         'post_content'    => null,
@@ -281,7 +281,7 @@ function upload_csv_file()
 				if($ckey == 'category'){
 					$categories[$ckey]=$new_post[$ckey];
 				}
-				if($ckey == 'attachment'){ // Code added at version 1.1.0 by fredrick
+				if($ckey == 'attachment'){ // Code added at version 1.0.3 by fredrick
 					$file_url=$filetype[$ckey]=$new_post[$ckey];
 					$file_type = explode('.',$filetype[$ckey]);
 					$count = count($file_type);
@@ -347,7 +347,7 @@ function upload_csv_file()
 
 			}  // End of code to add category
 
-			// Code added to import featured image at version 1.1.0 by fredrick
+			// Code added to import featured image at version 1.0.3 by fredrick
 			if(!empty($file)){
 				$file_name=$dirname.'/'.$img_title.'.'.$type;
 				$attach_id = wp_insert_attachment($file, $file_name, $post_id);
