@@ -88,7 +88,7 @@ v1.0.2		This version have important bug fixes and newly added features. Must upg
 
 Configuring our plugin is as simple as that.
 
+For quick response and reply please create issues in our [support](http://code.smackcoders.com/wptiger/issues) instead of wordpress support forum.
 
-Please use support section in wordpress itself for any further queries and feature request.
 
 
