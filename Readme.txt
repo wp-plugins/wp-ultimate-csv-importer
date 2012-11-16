@@ -59,25 +59,33 @@ wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel
 
 == Changelog ==
 
-=1.0.0=		Initial release version. Tested and found works well without any issues.
-
-=1.0.1=		Added features to import multiple tags and categories with different delimiters.
+=1.1.0=		Added featured image import feature along with post/page/custom post.
 
 =1.0.2=		- Bug fixed to recognize the trimmed trailing space in the CSV file 
 	        - Added validation for the duplicate field mapping.
 
-=1.1.0=		Added featured image import feature along with post/page/custom post.
+=1.0.1=		Added features to import multiple tags and categories with different delimiters.
+
+=1.0.0=		Initial release version. Tested and found works well without any issues.
+
+
 
 
 == Upgrade Notice ==
 
-=v 1.0.0=		Initial release of plugin. 
-
-=v 1.0.1=		Added features to import multiple tags and categories with different delimiters.
+=v 1.1.0=      A major new feature added in this version. Update needed.
 
 =v 1.0.2=		This version have important bug fixes and newly added features. Must be upgrade immediately.
 
-=v 1.1.0=      A major new feature added in this version. Update needed.
+=v 1.0.1=		Added features to import multiple tags and categories with different delimiters.
+
+=v 1.0.0=		Initial release of plugin. 
+
+
+
+
+
+
 
 
 == Frequently Asked Questions ==
