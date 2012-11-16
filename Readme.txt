@@ -26,7 +26,8 @@ Wp Ultimate CSV Importer Plugin helps you to import any csv file as post, page o
 
 Support and Feature request.
 ----------------------------
-Please visit http://www.smackcoders.com/category/free-wordpress-plugins.html for guides and tutorials. Please mail us to wpsupport@smackcoders.com for any timely support or feature request. Support at wordpress is not possible for now.
+Please visit http://www.smackcoders.com/category/free-wordpress-plugins/google-seo-author-snippet-plugin.html for guides and tutorials. 
+For quick response and reply please create issues in our [support](http://code.smackcoders.com/wp-csv-importer/issues) instead of wordpress support forum. Support at wordpress is not possible for now. 
 
 
 == Installation ==
@@ -88,7 +89,7 @@ v1.0.2		This version have important bug fixes and newly added features. Must upg
 
 Configuring our plugin is as simple as that.
 
-For quick response and reply please create issues in our [support](http://code.smackcoders.com/wptiger/issues) instead of wordpress support forum.
+For quick response and reply please create issues in our [support](http://code.smackcoders.com/wp-csv-importer/issues) instead of wordpress support forum.
 
 
 
