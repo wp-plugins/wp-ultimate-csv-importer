@@ -25,6 +25,8 @@ Wp Ultimate CSV Importer Plugin helps you to import any csv file as post, page o
 6. Make imported post as published or make it as draft.
 7. Added featured image import functionality.
 
+Important Note:  To import your posts for scheduled publishing in future, have a date coloumn in your csv with the date of post to be published on. If the date is a future date, then the post will be automatically scheduled for publishing on particular date as mentioned in csv.
+
 Note: Your theme should support featured image function. If not, please add the following code to header.php or where it needed.
 		add_theme_support( 'post-thumbnails' );
 
