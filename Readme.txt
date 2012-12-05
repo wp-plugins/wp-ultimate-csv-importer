@@ -37,8 +37,10 @@ You can follow the instructions as given here
 
 Support and Feature request.
 ----------------------------
-Please visit http://www.smackcoders.com/category/free-wordpress-plugins/google-seo-author-snippet-plugin.html for guides and tutorials. 
-For quick response and reply please create issues in our [support](http://code.smackcoders.com/wp-csv-importer/issues) instead of wordpress support forum. Support at wordpress is not possible for now. 
+
+Please create issues only in our tracker http://code.smackcoders.com/wp-csv-importer/issues instead of wordpress support forum. 
+
+For guides and tutorials, visit http://www.smackcoders.com/category/free-wordpress-plugins/google-seo-author-snippet-plugin.html . 
 
 
 == Installation ==
