@@ -3,7 +3,7 @@
 *Plugin Name: Wp Ultimate CSV Importer
 *Plugin URI: http://www.smackcoders.com/category/free-wordpress-plugins.html
 *Description: A plugin that helps to import the data's from a CSV file.
-*Version: 1.1.0
+*Version: 1.1.1
 *Author: smackcoders.com
 *Author URI: http://www.smackcoders.com
 *
@@ -27,6 +27,7 @@
 ***********************************************************************************************
 */
 
+@ini_set( 'display_errors', false );
 
 // Global variable declaration
 global $data_rows;
@@ -48,16 +49,16 @@ $keys = $wpdb->get_col( "
         ORDER BY meta_key
         LIMIT $limit" );
 // Default header array
-// Code modified at version 1.1.0 by fredrick
+// Code modified at version 1.1.1 by fredrick
 $defaults = array(
         'post_title'      => null,
         'post_content'    => null,
         'post_excerpt'    => null,
         'post_date'       => null,
         'post_tag'        => null,
-        'category'	  => null,
+        'post_category'	  => null,
         'post_author'     => null,
-	'attachment'	  => null,
+	'featured_image'  => null,
         'post_parent'     => 0,
     );
 foreach($keys as $val){
@@ -95,7 +96,7 @@ function description(){
 </p>
 <p>Configuring our plugin is as simple as that. If you have any questions, issues and request on new features, plaese visit <a href='http://www.smackcoders.com/category/free-wordpress-plugins.html' target='_blank'>Smackcoders.com Blog </a></p>
 
-	<div align='center' style='margin-top:40px;'> 'While the scripts on this site are free, donations are greatly appreciated. '<br/><br/><a href='https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=fenzik@gmail.com&lc=JP&item_name=WordPress%20Plugins&item_number=wp%2dplugins&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted' target='_blank'><img src='".site_url()."/wp-content/plugins/wp-ultimate-csv-importer/images/paypal_donate_button.png' /></a><br/><br/><a href='http://www.smackcoders.com/' target='_blank'><img src='http://www.smackcoders.com/wp-content/uploads/2012/09/Smack_poweredby_200.png'></a>
+	<div align='center' style='margin-top:40px;'> 'While the scripts on this site are free, donations are greatly appreciated. '<br/><br/><a href='http://www.smackcoders.com/donate.html' target='_blank'><img src='".site_url()."/wp-content/plugins/wp-ultimate-csv-importer/images/paypal_donate_button.png' /></a><br/><br/><a href='http://www.smackcoders.com/' target='_blank'><img src='http://www.smackcoders.com/wp-content/uploads/2012/09/Smack_poweredby_200.png'></a>
 	</div><br/>";
 	return $string;
 }
@@ -170,7 +171,7 @@ function upload_csv_file()
 				<?php
 				$post_types=get_post_types();
 				      foreach($post_types as $key => $value){
-					if(($value!='attachment') && ($value!='revision') && ($value!='nav_menu_item')){ ?>
+					if(($value!='featured_image') && ($value!='revision') && ($value!='nav_menu_item')){ ?>
 					<option id="<?php echo($value);?>" name="<?php echo($value);?>"> <?php echo($value);?> </option>
 				<?php   }
 				      }
@@ -266,7 +267,7 @@ function upload_csv_file()
 			   }
 			}
 			foreach($new_post as $ckey => $cval){
-			   if($ckey!='category' && $ckey!='post_tag' && $ckey!='attachment'){ // Code modified at version 1.0.2 by fredrick
+			   if($ckey!='post_category' && $ckey!='post_tag' && $ckey!='featured_image'){ // Code modified at version 1.0.2 by fredrick
 				if(array_key_exists($ckey,$custom_array)){
 					$darray[$ckey]=$new_post[$ckey];
 				}
@@ -278,10 +279,10 @@ function upload_csv_file()
 				if($ckey == 'post_tag'){
 					$tags[$ckey]=$new_post[$ckey];
 				}
-				if($ckey == 'category'){
+				if($ckey == 'post_category'){
 					$categories[$ckey]=$new_post[$ckey];
 				}
-				if($ckey == 'attachment'){ // Code added at version 1.1.0 by fredrick
+				if($ckey == 'featured_image'){ // Code added at version 1.1.0 by fredrick
 					$file_url=$filetype[$ckey]=$new_post[$ckey];
 					$file_type = explode('.',$filetype[$ckey]);
 					$count = count($file_type);
@@ -342,7 +343,7 @@ function upload_csv_file()
 
 			// Create/Add category to post
 			if(!empty($categories)){
-				$split_line = explode('|',$categories['category']);
+				$split_line = explode('|',$categories['post_category']);
 				wp_set_object_terms($post_id, $split_line, 'category');
 
 			}  // End of code to add category
@@ -366,11 +367,13 @@ function upload_csv_file()
 		    </form>
 		</div>
 	<?php 
+// Code modified at version 1.1.1
 	// Remove CSV file
-		if(file_exists($dir.$filename)){
-			$filename = $_POST['filename'];
-			chmod("$dir"."$filename", 755);
-			fileDelete($dir,$filename); 
+$csvdir = getcwd ().'/../wp-content/plugins/wp-ultimate-csv-importer/imported_csv/';
+$CSVfile = $_POST['filename'];
+		if(file_exists($csvdir.$CSVfile)){
+			chmod("$csvdir"."$CSVfile", 755);
+			fileDelete($csvdir,$CSVfile); 
 		}
 	}
 	else

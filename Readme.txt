@@ -4,8 +4,8 @@ Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4
 Tested up to: 3.4.2
-Stable tag: 1.1.0
-Version: 1.1.0
+Stable tag: 1.1.1
+Version: 1.1.1
 Author: Smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
@@ -63,6 +63,8 @@ wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel
 
 == Changelog ==
 
+=1.1.1=		Renamed the mapping field attachment as featured_image and category as post_category.
+
 =1.1.0=		Added featured image import feature along with post/page/custom post.
 
 =1.0.2=		- Bug fixed to recognize the trimmed trailing space in the CSV file 
@@ -77,7 +79,9 @@ wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel
 
 == Upgrade Notice ==
 
-=v 1.1.0=      A major new feature added in this version. Update needed.
+=v 1.1.1=		Minor correction and fix applied.
+
+=v 1.1.0= 		A major new feature added in this version. Update needed.
 
 =v 1.0.2=		This version have important bug fixes and newly added features. Must be upgrade immediately.
 
