@@ -3,7 +3,7 @@
 *Plugin Name: Wp Ultimate CSV Importer
 *Plugin URI: http://www.smackcoders.com/category/free-wordpress-plugins.html
 *Description: A plugin that helps to import the data's from a CSV file.
-*Version: 1.1.1
+*Version: 2.0.0
 *Author: smackcoders.com
 *Author URI: http://www.smackcoders.com
 *
@@ -27,7 +27,12 @@
 ***********************************************************************************************
 */
 
-@ini_set( 'display_errors', false );
+$upload_dir = wp_upload_dir();
+$importdir  = $upload_dir['basedir']."/imported_csv/";
+if(!is_dir($importdir))
+{
+        wp_mkdir_p($importdir);
+}
 
 // Global variable declaration
 global $data_rows;
@@ -38,7 +43,8 @@ global $defaults;
 global $wpdb;
 global $keys;
 global $delim;
-$delim = $_POST['delim'];
+# Code added by goku 
+$delim = empty($_POST['delim']) ? '' : $_POST['delim'];
 // Get the custom fields
 $limit = (int) apply_filters( 'postmeta_form_limit', 30 );
 $keys = $wpdb->get_col( "
@@ -70,8 +76,18 @@ function wp_ultimate_csv_importer() {
 	       'upload_csv_file', 'upload_csv_file');
 }  
 
+# Code added by goku  -- Starts here --
+
+function LoadWpScript()
+{
+        wp_register_script('wp_ultimate_scripts', site_url()."/wp-content/plugins/wp-ultimate-csv-importer/wp_ultimate_csv_importer.js", array("jquery"));
+        wp_enqueue_script('wp_ultimate_scripts');
+}
+add_action('admin_enqueue_scripts', 'LoadWpScript');
+
+#       -- Code ends here --
+
 add_action("admin_menu", "wp_ultimate_csv_importer");  
-wp_enqueue_script("upload_csv_file", site_url()."/wp-content/plugins/wp-ultimate-csv-importer/wp_ultimate_csv_importer.js", array("jquery"));
 
 // Plugin description details
 function description(){
@@ -108,6 +124,8 @@ function csv_file_data($file,$delim)
 	global $data_rows;
 	global $headers;
 	global $delim;
+	# Code added by goku
+        $c = 0;
         $resource = fopen($file, 'r');
         while ($keys = fgetcsv($resource,'',"$delim",'"')) {
             if ($c == 0) {
@@ -124,7 +142,9 @@ function csv_file_data($file,$delim)
 // Move file
 function move_file()
 {
-$uploads_dir = getcwd ().'/../wp-content/plugins/wp-ultimate-csv-importer/imported_csv';
+    # Code added by goku
+    $upload_dir = wp_upload_dir();
+    $uploads_dir  = $upload_dir['basedir']."/imported_csv/";
     if ($_FILES["csv_import"]["error"] == 0) {
         $tmp_name = $_FILES["csv_import"]["tmp_name"];
         $name = $_FILES["csv_import"]["name"];
@@ -151,6 +171,9 @@ function upload_csv_file()
 	global $keys;
 	global $custom_array;
 	global $delim;
+	# Code added by goku
+        $upload_dir = wp_upload_dir();
+        $importdir  = $upload_dir['basedir']."/imported_csv/";
 	$custom_array = array();
 	if(isset($_POST['Import']))
 	{
@@ -239,7 +262,9 @@ function upload_csv_file()
 	}
 	else if(isset($_POST['post_csv']))
 	{
-		$dir = getcwd ().'/../wp-content/plugins/wp-ultimate-csv-importer/imported_csv/';
+		# Code added by goku
+        	$upload_dir = wp_upload_dir();
+	        $dir  = $upload_dir['basedir']."/imported_csv/";
 		csv_file_data($dir.$_POST['filename'],$delim);
 		foreach($_POST as $postkey=>$postvalue){
 			if($postvalue != '-- Select --'){
@@ -367,10 +392,11 @@ function upload_csv_file()
 		    </form>
 		</div>
 	<?php 
-// Code modified at version 1.1.1
+// Code modified at version 1.1.2
 	// Remove CSV file
-$csvdir = getcwd ().'/../wp-content/plugins/wp-ultimate-csv-importer/imported_csv/';
-$CSVfile = $_POST['filename'];
+        	$upload_dir = wp_upload_dir();
+	        $csvdir  = $upload_dir['basedir']."/imported_csv/";
+		$CSVfile = $_POST['filename'];
 		if(file_exists($csvdir.$CSVfile)){
 			chmod("$csvdir"."$CSVfile", 755);
 			fileDelete($csvdir,$CSVfile); 

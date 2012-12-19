@@ -4,8 +4,8 @@ Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4
 Tested up to: 3.4.2
-Stable tag: 1.1.1
-Version: 1.1.1
+Stable tag: 2.0.0
+Version: 2.0.0
 Author: Smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
@@ -43,16 +43,18 @@ Please create issues only in our tracker http://code.smackcoders.com/wp-csv-impo
 For guides and tutorials, visit http://www.smackcoders.com/category/free-wordpress-plugins/google-seo-author-snippet-plugin.html . 
 
 
+
 == Installation ==
+
 
  Wp Ultimate CSV Importer is very easy to install like any other wordpress plugin. No need to edit or modify anything here.
 
 1.  Unzip the file 'wp-ultimate-csv-importer.zip'.
 2.  Upload the ' wp-ultimate-csv-importer ' directory to '/wp-content/plugins/' directory using ftp client or upload and install	
 wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel 
-3.  Make /wp-content/plugins/wp-ultimate-csv-importer as writable (chmod 777) to import csv.
-4.  Activate the plugin through the 'Plugins' menu in WordPress.
-5.  After activating, you will see an option for 'Wp Ultimate CSV Importer' in the admin menu (left navigation) and you will import the csv files to import the data's.
+3.  Activate the plugin through the 'Plugins' menu in WordPress.
+4.  After activating, you will see an option for 'Wp Ultimate CSV Importer' in the admin menu (left navigation) and you will import the csv files to import the data's.
+
 
 
 == Screenshots ==
@@ -61,37 +63,38 @@ wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel
 2. Admin settings for Import Data and Header Mapping configuration to import data's from a csv file.
 
 
+
 == Changelog ==
 
-=1.1.1=		Renamed the mapping field attachment as featured_image and category as post_category.
+= 2.0.0 =		WPDEBUG errors fixed. CSV import folder changed to Wp native uploads folder.
 
-=1.1.0=		Added featured image import feature along with post/page/custom post.
+= 1.1.1 =		Renamed the mapping field attachment as featured_image and category as post_category.
 
-=1.0.2=		- Bug fixed to recognize the trimmed trailing space in the CSV file 
-	        - Added validation for the duplicate field mapping.
+= 1.1.0 =		Added featured image import feature along with post/page/custom post.
 
-=1.0.1=		Added features to import multiple tags and categories with different delimiters.
+= 1.0.2 =		- Bug fixed to recognize the trimmed trailing space in the CSV file 
+	       		- Added validation for the duplicate field mapping.
 
-=1.0.0=		Initial release version. Tested and found works well without any issues.
+= 1.0.1 =		Added features to import multiple tags and categories with different delimiters.
+
+= 1.0.0 =		Initial release version. Tested and found works well without any issues.
 
 
 
 
 == Upgrade Notice ==
 
-=v 1.1.1=		Minor correction and fix applied.
+=v 2.0.0=		Major Bug fixed and should upgrade. WPDEBUG errors fixed. CSV import folder changed to Wp native uploads folder.
 
-=v 1.1.0= 		A major new feature added in this version. Update needed.
+=v 1.1.1 =		Minor correction and fix applied.
 
-=v 1.0.2=		This version have important bug fixes and newly added features. Must be upgrade immediately.
+=v 1.1.0 = 		A major new feature added in this version. Update needed.
 
-=v 1.0.1=		Added features to import multiple tags and categories with different delimiters.
+=v 1.0.2 =		This version have important bug fixes and newly added features. Must be upgrade immediately.
 
-=v 1.0.0=		Initial release of plugin. 
+=v 1.0.1 =		Added features to import multiple tags and categories with different delimiters.
 
-
-
-
+=v 1.0.0 =		Initial release of plugin. 
 
 
 
@@ -124,4 +127,4 @@ For quick response and reply please create issues in our [support](http://code.s
 
 
 
-	
+
