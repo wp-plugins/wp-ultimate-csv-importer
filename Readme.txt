@@ -101,27 +101,57 @@ wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel
 
 == Frequently Asked Questions ==
 
-1. How to install the plugin?
+1. Why Wp Ultimate CSV Importer?
 
-   Like other plugins wp-ultimate-csv-importer is easy to install. Upload the wp-ultimate-csv-importer.zip file through plugin install page through wp admin. Everything will work fine with it.
+	To import bulk data to post/page/custom post types. This plugin supports. Upcoming versions will support ecommerce import, social publishing and many.
+
+2. How to install the plugin?
+
+	Like other plugins wp-ultimate-csv-importer is easy to install. Upload the wp-ultimate-csv-importer.zip file through plugin install page through wp admin. Everything will work fine with it.
    
-2. How to use the plugin?
+3. How to use the plugin?
 
-   After plugin activation you can see the ' Wp Ultimate CSV Importer ' menu in admin backend.
+	After plugin activation you can see the ' Wp Ultimate CSV Importer ' menu in admin backend.
    
 	a. Browse csv file to import the data's.
 	b. Select the post type or post / page to import as.
 	b. Map each header to the relevant fields using the drop downs to import.
 	c. If import as draft option is checked, post will be in draft mode.
 	
-3. How to define the multiple tags and categories?
+4. How to define the multiple tags and categories?
 
     In CSV, tags should be separated by "," to import multiple tags and categories should be separated by "|" to import multiple categories.
 	
-4. How to choose featured image to import?
-	Match the coloumn contains url paths to images to Attachment field from the drop down.
+5. How to choose featured image to import?
+	Match the coloumn contains url paths to images to Attachment field from the drop down. Configuring our plugin is as simple as that.
 
-Configuring our plugin is as simple as that.
+6. How to create/edit csv file?
+	Any csv editor like MS Excel will work well. Better to convert/create from any spred sheet details like excel.
+
+7. How should the csv file look like?
+	Please see attached sample csv file. 
+
+8. How to use seperators in csv file?
+	You can use , or ; as seperators. You can choose the delimiter at the time of import. 
+
+9. How to define multi category or tags?
+	To define a multi category or tags use pipeline(|) symbol as seperator.
+
+	Multi catagories - Use pipeline symbol as seperator to have Multi catagories. You can use category name directly not the ID. If no matching category is found, new category will be created for the same. Eg: Category 1|Category 2|Category 3|Category 3
+
+	To Create Multi Tags - same as category
+
+10. What fileds are mandatory?
+	post type, post_title, post_body are mandatory. All others are optional and defauts are applied in some cases.
+
+11. How to use date and time field?
+	Use the format "yyyy-mm-dd hh:mm:ss" for date and time.
+
+12. How to schedule posts? 
+	You can schedule posts automatically by giving a future date/time in date field for each post.
+
+13. How to assign author for each post?
+	The already created author ids can be used. For eg: 1 for admin, 2 for user 2. To assign aithours for each post you should mention relevant author id for each post in csv before import.
 
 For quick response and reply please create issues in our [support](http://code.smackcoders.com/wp-csv-importer/issues) instead of wordpress support forum.
 
