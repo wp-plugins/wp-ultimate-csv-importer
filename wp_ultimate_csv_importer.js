@@ -1,10 +1,8 @@
-
 // Function for add customfield
-
 function addcustomfield(myval,selected_id){
 	var a = document.getElementById('h1').value;
 	var aa = document.getElementById('h2').value;
-	var selected_value;// added at version 1.0.2 by fredrick
+	var selected_value;
 	for(var i=0;i<aa;i++){ 
 		var b = document.getElementById('mapping'+i).value;
 		if(b=='add_custom'+i){
@@ -14,7 +12,6 @@ function addcustomfield(myval,selected_id){
 			document.getElementById('textbox'+i).style.display="none";
 		}
 	}
-	// Code Added at version 1.0.2 by fredrick
  	var header_count = document.getElementById('h2').value;
 	for(var j=0;j<header_count;j++){
 		var selected_value = document.getElementById('mapping'+j);
@@ -30,10 +27,10 @@ function addcustomfield(myval,selected_id){
 }
 
 // Function for check file exist
-
 function file_exist(){
 
 	if(document.getElementById('csv_import').value==''){
+		alert('Please attach your csv');
 		return false;
 	}
 	else{
@@ -41,10 +38,7 @@ function file_exist(){
 	}
 }
 
-// Code added at version 1.0.2 by fredrick
-
 // Function for import csv
-
 function import_csv(){
 	var header_count = document.getElementById('h2').value;
 	var array = new Array();
@@ -67,7 +61,7 @@ function import_csv(){
    	 return true;
 	}
 	else{
-	 alert('"post_type" and "post_content" should be mapped.');
+	 alert('"post_title" and "post_content" should be mapped.');
 	 return false;
 	}
 }

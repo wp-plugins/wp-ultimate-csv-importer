@@ -1,9 +1,9 @@
 <?php
 /*
-*Plugin Name: Wp Ultimate CSV Importer
+*Plugin Name: WP Ultimate CSV Importer
 *Plugin URI: http://www.smackcoders.com/category/free-wordpress-plugins.html
 *Description: A plugin that helps to import the data's from a CSV file.
-*Version: 2.0.0
+*Version: 2.5.0
 *Author: smackcoders.com
 *Author URI: http://www.smackcoders.com
 *
@@ -23,10 +23,15 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 *
 * @link http://www.smackcoders.com/category/free-wordpress-plugins.html
-
 ***********************************************************************************************
 */
 
+#Credits to Fredrick Marks
+# php.ini overriding values for import a big csv file
+ini_set('max_execution_time', 700);
+ini_set('memory_limit', '128M');
+
+require( dirname(__FILE__) . '/../../../wp-load.php' );
 $upload_dir = wp_upload_dir();
 $importdir  = $upload_dir['basedir']."/imported_csv/";
 if(!is_dir($importdir))
@@ -43,6 +48,8 @@ global $defaults;
 global $wpdb;
 global $keys;
 global $delim;
+global $contentUrl;
+$contentUrl = WP_CONTENT_URL;
 # Code added by goku 
 $delim = empty($_POST['delim']) ? '' : $_POST['delim'];
 // Get the custom fields
@@ -54,13 +61,14 @@ $keys = $wpdb->get_col( "
         HAVING meta_key NOT LIKE '\_%'
         ORDER BY meta_key
         LIMIT $limit" );
+
 // Default header array
-// Code modified at version 1.1.1 by fredrick
 $defaults = array(
         'post_title'      => null,
         'post_content'    => null,
         'post_excerpt'    => null,
         'post_date'       => null,
+	'post_name'	  => null,
         'post_tag'        => null,
         'post_category'	  => null,
         'post_author'     => null,
@@ -71,27 +79,25 @@ foreach($keys as $val){
 	$defaults[$val]=$val;
 }
 // Admin menu settings
-function wp_ultimate_csv_importer() {  
-	add_menu_page('CSV importer settings', 'Wp Ultimate CSV Importer', 'manage_options',  
-	       'upload_csv_file', 'upload_csv_file');
+function wp_ultimate_csv_importer() { 
+	global $contentUrl;
+	add_menu_page('CSV importer settings', 'WP Ultimate CSV Importer', 'manage_options',  
+	       'upload_csv_file', 'upload_csv_file', $contentUrl."/plugins/wp-ultimate-csv-importer/images/icon.png");
 }  
-
-# Code added by goku  -- Starts here --
 
 function LoadWpScript()
 {
-        wp_register_script('wp_ultimate_scripts', site_url()."/wp-content/plugins/wp-ultimate-csv-importer/wp_ultimate_csv_importer.js", array("jquery"));
+	global $contentUrl;
+        wp_register_script('wp_ultimate_scripts', $contentUrl."/plugins/wp-ultimate-csv-importer/wp_ultimate_csv_importer.js", array("jquery"));
         wp_enqueue_script('wp_ultimate_scripts');
 }
 add_action('admin_enqueue_scripts', 'LoadWpScript');
-
-#       -- Code ends here --
-
 add_action("admin_menu", "wp_ultimate_csv_importer");  
 
 // Plugin description details
 function description(){
-	$string = "<p>Wp Ultimate CSV Importer Plugin helps you to manage the post,page and </br> custom post data's from a CSV file.</p> 
+	global $contentUrl;
+	$string = "<p>WP Ultimate CSV Importer Plugin helps you to manage the post,page and </br> custom post data's from a CSV file.</p> 
 <p>
 1. Admin can import the data's from any csv file.
 </p>
@@ -110,9 +116,12 @@ function description(){
 <p>
 6. Make imported post as published or make it as draft.
 </p>
-<p>Configuring our plugin is as simple as that. If you have any questions, issues and request on new features, plaese visit <a href='http://www.smackcoders.com/category/free-wordpress-plugins.html' target='_blank'>Smackcoders.com Blog </a></p>
+<p>
+7. Added featured image import functionality.
+</p>
+<p>Configuring our plugin is as simple as that. If you have any questions, issues and request on new features, plaese visit <a href='http://www.smackcoders.com/blog/category/free-wordpress-plugins' target='_blank'>Smackcoders.com blog </a></p>
 
-	<div align='center' style='margin-top:40px;'> 'While the scripts on this site are free, donations are greatly appreciated. '<br/><br/><a href='http://www.smackcoders.com/donate.html' target='_blank'><img src='".site_url()."/wp-content/plugins/wp-ultimate-csv-importer/images/paypal_donate_button.png' /></a><br/><br/><a href='http://www.smackcoders.com/' target='_blank'><img src='http://www.smackcoders.com/wp-content/uploads/2012/09/Smack_poweredby_200.png'></a>
+	<div align='center' style='margin-top:40px;'> 'While the scripts on this site are free, donations are greatly appreciated. '<br/><br/><a href='http://www.smackcoders.com/donate.html' target='_blank'><img src='".$contentUrl."/plugins/wp-ultimate-csv-importer/images/paypal_donate_button.png' /></a><br/><br/><a href='http://www.smackcoders.com/' target='_blank'><img src='http://www.smackcoders.com/wp-content/uploads/2012/09/Smack_poweredby_200.png'></a>
 	</div><br/>";
 	return $string;
 }
@@ -144,7 +153,7 @@ function move_file()
 {
     # Code added by goku
     $upload_dir = wp_upload_dir();
-    $uploads_dir  = $upload_dir['basedir']."/imported_csv/";
+    $uploads_dir  = $upload_dir['basedir']."/imported_csv";
     if ($_FILES["csv_import"]["error"] == 0) {
         $tmp_name = $_FILES["csv_import"]["tmp_name"];
         $name = $_FILES["csv_import"]["name"];
@@ -162,6 +171,20 @@ function fileDelete($filepath,$filename) {
 	return $success;	
 }
 
+// Scandinavian characters 
+function smack_marks_scandiConverter($text){ 
+    $returnvalue="";
+    for($i=0;$i<strlen($text);$i++){
+        $smacker=hexdec(rawurlencode(substr($text, $i, 1)));
+        if($smacker<32||$smacker>1114111){
+            $returnvalue.=substr($text, $i, 1);
+        }else{
+            $returnvalue.="&#".$smacker.";";
+        }
+    }
+    return $returnvalue;
+} 
+
 // Mapping the fields and upload data's
 function upload_csv_file()
 {
@@ -171,6 +194,7 @@ function upload_csv_file()
 	global $keys;
 	global $custom_array;
 	global $delim;
+	global $wpdb;
 	# Code added by goku
         $upload_dir = wp_upload_dir();
         $importdir  = $upload_dir['basedir']."/imported_csv/";
@@ -180,7 +204,9 @@ function upload_csv_file()
 		csv_file_data($_FILES['csv_import']['tmp_name'],$delim);
 		move_file();
 		?>
-	<div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; margin-top:15px;padding: 5px;text-align:center"> Please check out <a href="http://smackcoders.com/category/free-wordpress-plugins.html" target="_blank">www.smackcoders.com</a> for the latest news and details of other great plugins and tools. </div><br/>
+	<br/>
+	<marquee onmouseover="this.setAttribute('scrollamount', 0, 0);" onmouseout="this.setAttribute('scrollamount', 6, 0);" >Now the <a href="http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html" target="_blank">Pro Version</a> is Available. For more details,please visit <a href="http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html" target="_blank">here</a></marquee>
+	<div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; margin-top:15px;padding: 5px;text-align:center"> Please check out <a href="http://www.smackcoders.com/blog/category/free-wordpress-plugins" target="_blank">www.smackcoders.com</a> for the latest news and details of other great plugins and tools. </div><br/>
 		<?php if ( count($headers)>=1 &&  count($data_rows)>=1 ){?>
 		<div style="float:left;min-width:45%">
 		<form class="add:the-list: validate" method="post" onsubmit="return import_csv();">
@@ -194,7 +220,7 @@ function upload_csv_file()
 				<?php
 				$post_types=get_post_types();
 				      foreach($post_types as $key => $value){
-					if(($value!='featured_image') && ($value!='revision') && ($value!='nav_menu_item')){ ?>
+					if(($value!='featured_image') && ($value!='attachment') && ($value!='revision') && ($value!='nav_menu_item')){ ?>
 					<option id="<?php echo($value);?>" name="<?php echo($value);?>"> <?php echo($value);?> </option>
 				<?php   }
 				      }
@@ -224,7 +250,12 @@ function upload_csv_file()
 				  foreach($defaults as $key1=>$value1){
 			    ?>
 					<option value ="<?php print($key1);?>"><?php print($key1);?></option>
-			    <?php }
+			    <?php } $taxo = get_taxonomies();
+				  foreach($taxo as $taxokey => $taxovalue){ 
+					if($taxokey !='category' && $taxokey !='link_category' && $taxokey != 'post_tag' && $taxokey != 'nav_menu' && $taxokey != 'post_format'){ ?>
+					<option value ="<?php print($taxokey);?>"><?php print($taxovalue);?></option>
+			    <?php 	}
+				  }
 		   	    ?>
 				<option value="add_custom<?php print($count);?>">Add Custom Field</option>
 			    </select>
@@ -237,7 +268,7 @@ function upload_csv_file()
 			</table>
 			</div><br/> 
 			<input type='hidden' name='filename' id='filename' value="<?php echo($_FILES['csv_import']['name']);?>" />
-			<input type='submit' name= 'post_csv' id='post_csv' value='Import' />
+			<input type='submit' class='button-primary' name= 'post_csv' id='post_csv' value='Import' />
 		</form>
 		</div>
 		<div style="min-width:45%;">
@@ -250,7 +281,7 @@ function upload_csv_file()
 		</div><br/>
 		<div style="margin-left:20px;">
 		<form class="add:the-list: validate" method="post" action="">
-			<input type="submit" class="button" name="Import Again" value="Import Again"/>
+			<input type="submit" class="button-primary" name="Import Again" value="Import Again"/>
 		</form>
 		</div>
 		<div style="margin-left:20px;margin-top:30px;">
@@ -262,6 +293,8 @@ function upload_csv_file()
 	}
 	else if(isset($_POST['post_csv']))
 	{
+		$insertedRecords = 0;
+		$smack_taxo = array();
 		# Code added by goku
         	$upload_dir = wp_upload_dir();
 	        $dir  = $upload_dir['basedir']."/imported_csv/";
@@ -292,12 +325,25 @@ function upload_csv_file()
 			   }
 			}
 			foreach($new_post as $ckey => $cval){
-			   if($ckey!='post_category' && $ckey!='post_tag' && $ckey!='featured_image'){ // Code modified at version 1.0.2 by fredrick
+                            $taxo = get_taxonomies();
+                            foreach($taxo as $taxokey => $taxovalue){
+ 	                           if($taxokey !='category' && $taxokey !='link_category' && $taxokey != 'post_tag' && $taxokey != 'nav_menu' && $taxokey != 'post_format'){
+        	                           if($taxokey == $ckey){
+                	                           $smack_taxo[$ckey] = $new_post[$ckey];
+                                           }
+                                   }
+                            }
+			   if($ckey!='post_category' && $ckey!='post_tag' && $ckey!='featured_image' && $ckey!= $smack_taxo[$ckey]){ // Code modified at version 2.5.0 by Fredrick Marks
 				if(array_key_exists($ckey,$custom_array)){
 					$darray[$ckey]=$new_post[$ckey];
 				}
 				else{
-					$data_array[$ckey]=$new_post[$ckey];
+					if(array_key_exists($ckey,$smack_taxo)){
+
+					}
+					else{
+						$data_array[$ckey]=$new_post[$ckey];
+					}
 				}
 			   }
 			   else{
@@ -307,7 +353,7 @@ function upload_csv_file()
 				if($ckey == 'post_category'){
 					$categories[$ckey]=$new_post[$ckey];
 				}
-				if($ckey == 'featured_image'){ // Code added at version 1.1.0 by fredrick
+				if($ckey == 'featured_image'){ 
 					$file_url=$filetype[$ckey]=$new_post[$ckey];
 					$file_type = explode('.',$filetype[$ckey]);
 					$count = count($file_type);
@@ -334,16 +380,21 @@ function upload_csv_file()
 					$filepath = $full_path.'/'.$filename[$file_split-1];
 					$fileurl = $baseurl.'/'.$filename[$file_split-1];
 					if(is_dir($full_path)){
-						copy($file_url,$filepath);
+						$smack_fileCopy = copy($file_url,$filepath);
 					}
 					else{
 						wp_mkdir_p($full_path);
-						copy($file_url,$filepath);
+						$smack_fileCopy = copy($file_url,$filepath);
 					}
-					$file['guid']=$fileurl;
-					$file['post_title']=$img_title;
-					$file['post_content']='';
-					$file['post_status']='inherit';
+					if($smack_fileCopy){
+						$file['guid']=$fileurl;
+						$file['post_title']=$img_title;
+						$file['post_content']='';
+						$file['post_status']='inherit';
+					}
+					else{
+						$file = false;
+					}
 				}
 			   }
 			}
@@ -352,53 +403,77 @@ function upload_csv_file()
 				$data_array['post_status']='draft';
 			}
 			$data_array['post_type']=$_POST['csv_importer_cat'];
-			$post_id = wp_insert_post( $data_array );
-			if(!empty($custom_array)){
-				foreach($custom_array as $custom_key => $custom_value){
-					add_post_meta($post_id, $custom_key, $custom_value);
+
+			$data_array['post_title'] = smack_marks_scandiConverter($data_array['post_title']); 
+			$data_array['post_content'] = smack_marks_scandiConverter($data_array['post_content']);
+
+			// Duplicate Check code starts
+		        $permission = 'notok';
+		        $title = $data_array['post_title'];
+		        $gettype = $data_array['post_type'];
+		        $post_table = $wpdb->posts;
+		        $post_exist = $wpdb->get_results("select ID from $post_table where post_title = \"{$title}\" and post_type = \"{$gettype}\" and post_status in('publish','future','draft')");
+		        if(count($post_exist) == 0 && ($title != null || $title != '')){
+		                $permission = 'ok';
+		        }
+			// Duplicate Check code ends
+
+			if($permission == 'ok'){
+				$post_id = wp_insert_post( $data_array );
+				if($post_id){
+					$insertedRecords = $insertedRecords+1;
 				}
-			}
-
-			// Create/Add tags to post
-			if(!empty($tags)){
-				foreach($tags as $tag_key => $tag_value){
-					wp_set_post_tags( $post_id, $tag_value );
+				if(!empty($custom_array)){
+					foreach($custom_array as $custom_key => $custom_value){
+						add_post_meta($post_id, $custom_key, $custom_value);
+					}
 				}
-			}  // End of code to add tags
+	
+				// Create custom taxonomy to post
+                                if(!empty($smack_taxo)){//print_r($smack_taxo);
+                                        foreach($smack_taxo as $taxo_key => $taxo_value){
+						$split_line = explode('|',$taxo_value);
+                                                wp_set_object_terms( $post_id, $split_line, $taxo_key );
+                                        }
+                                }  // End of code to add custom taxonomy
 
-			// Create/Add category to post
-			if(!empty($categories)){
-				$split_line = explode('|',$categories['post_category']);
-				wp_set_object_terms($post_id, $split_line, 'category');
-
-			}  // End of code to add category
-
-			// Code added to import featured image at version 1.1.0 by fredrick
-			if(!empty($file)){
-				$file_name=$dirname.'/'.$img_title.'.'.$type;
-				$attach_id = wp_insert_attachment($file, $file_name, $post_id);
-				require_once(ABSPATH . 'wp-admin/includes/image.php');
-				$attach_data = wp_generate_attachment_metadata( $attach_id, $fileurl );
-				wp_update_attachment_metadata( $attach_id, $attach_data );
-				//add_post_meta($post_id, '_thumbnail_id', $attach_id, true);
-				set_post_thumbnail( $post_id, $attach_id );
+				// Create/Add tags to post
+				if(!empty($tags)){
+					foreach($tags as $tag_key => $tag_value){
+						wp_set_post_tags( $post_id, $tag_value );
+					}
+				}  // End of code to add tags
+	
+				// Create/Add category to post
+				if(!empty($categories)){
+					$split_line = explode('|',$categories['post_category']);
+					wp_set_object_terms($post_id, $split_line, 'category');
+	
+				}  // End of code to add category
+	
+				// Featured image by Fredrick Marks
+				if(!empty($file)){
+					$file_name=$dirname.'/'.$img_title.'.'.$type;
+					$attach_id = wp_insert_attachment($file, $file_name, $post_id);
+					require_once(ABSPATH . 'wp-admin/includes/image.php');
+					$attach_data = wp_generate_attachment_metadata( $attach_id, $fileurl );
+					wp_update_attachment_metadata( $attach_id, $attach_data );
+					set_post_thumbnail( $post_id, $attach_id );
+				}
 			}
 		}
 	?>
-		<div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; padding: 5px;text-align:center"><b> Successfully Imported ! </b></div>
+		<div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; padding: 5px;text-align:center"><b> <?php echo '('.$insertedRecords.')'; ?> records are successfully Imported ! </b></div>
 		<div style="margin-top:30px;margin-left:10px">
 		    <form class="add:the-list: validate" method="post" enctype="multipart/form-data">
-			<input type="submit" id="goto" name="goto" value="Continue" />
+			<input type="submit" class='button-primary' id="goto" name="goto" value="Continue" />
 		    </form>
 		</div>
 	<?php 
-// Code modified at version 1.1.2
-	// Remove CSV file
         	$upload_dir = wp_upload_dir();
 	        $csvdir  = $upload_dir['basedir']."/imported_csv/";
 		$CSVfile = $_POST['filename'];
 		if(file_exists($csvdir.$CSVfile)){
-			chmod("$csvdir"."$CSVfile", 755);
 			fileDelete($csvdir,$CSVfile); 
 		}
 	}
@@ -406,9 +481,10 @@ function upload_csv_file()
 	{
 	?>
 		<div class="wrap">
-		     <div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; margin-top:15px;padding: 5px;text-align:center"> Please check out <a href="http://smackcoders.com/category/free-wordpress-plugins.html" target="_blank">www.smackcoders.com</a> for the latest news and details of other great plugins and tools. </div><br/>
+		     <marquee onmouseover="this.setAttribute('scrollamount', 0, 0);" onmouseout="this.setAttribute('scrollamount', 6, 0);" >Now the <a href="http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html" target="_blank">Pro Version</a> is Available. For more details,please visit <a href="http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html" target="_blank">here</a></marquee>
+		     <div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; margin-top:15px;padding: 5px;text-align:center"> Please check out <a href="http://www.smackcoders.com/blog/category/free-wordpress-plugins" target="_blank">www.smackcoders.com</a> for the latest news and details of other great plugins and tools. </div><br/>
 		     <div style="min-width:45%;float:left;height:500px;">
-			<h2>Import CSV</h2>
+			<h2>Import CSV File</h2>
 			<form class="add:the-list: validate" method="post" enctype="multipart/form-data" onsubmit="return file_exist();">
 
 			<!-- File input -->
@@ -420,7 +496,8 @@ function upload_csv_file()
 				<option value=";">;</option>
 			    </select>
 			</p>
-			<p class="submit"><input type="submit" class="button" name="Import" value="Import" /></p>
+
+			<p class="submit"><input type="submit" class="button-primary" name="Import" value="Import" /></p>
 			</form>
 		     </div>
 		     <div style="min-width:45%;">
