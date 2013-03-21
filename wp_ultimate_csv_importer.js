@@ -5,6 +5,12 @@ function addcustomfield(myval,selected_id){
 	var selected_value;
 	for(var i=0;i<aa;i++){ 
 		var b = document.getElementById('mapping'+i).value;
+		if(b == 'post_date'){
+			document.getElementById('date'+i).style.display="";
+		}
+		else{
+			document.getElementById('date'+i).style.display="none";
+		}
 		if(b=='add_custom'+i){
 			document.getElementById('textbox'+i).style.display="";
 		}
@@ -20,6 +26,9 @@ function addcustomfield(myval,selected_id){
 			if(myval == value1 && myval != '-- Select --'){
 				var selected_dropdown = document.getElementById('mapping'+selected_id);
 				selected_dropdown.selectedIndex = '-- Select --';
+				if(myval == 'post_date'){
+					document.getElementById('date'+selected_id).style.display="none";
+				}
 				alert(myval+' is already selected!');
 			}
 		}

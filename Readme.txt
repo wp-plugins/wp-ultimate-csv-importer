@@ -4,8 +4,8 @@ Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4
 Tested up to: 3.5.1
-Stable tag: 2.5.0
-Version: 2.5.0
+Stable tag: 2.6.0
+Version: 2.6.0
 Author: Smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
@@ -36,14 +36,24 @@ You can follow the instructions as given here
 	[http://codex.wordpress.org/Function_Reference/the_post_thumbnail](http://codex.wordpress.org/Function_Reference/the_post_thumbnail)
     [http://codex.wordpress.org/Post_Thumbnails](http://codex.wordpress.org/Post_Thumbnails)	[http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5](http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5)
 
-The pro version of ultimate csv importer plugin have many more features like
+Posts and Pages Module - This module will import all your data into bulk posts or pages. There are 9 fields to map, in which post title and content are mandatory. All other fields are optional. You can also have published date field which can also have a future date that reflects as scheduled post. Optionally you can import as many fields you want as custom fields. You can name these fields as your wish while importing. Pages don't need category and tags. You can assign a feature image for each post or page through a list of image urls.
 
-    Bulk products import for WP-e-commerce  plugin in few clicks.
-    Bulk products import for eShop  plugin in few clicks.
-    Custom Taxonomy
-    Bulk Nested Categories import.
+Custom posts - Similar to post and pages you can import any custom post types that is configured in your WordPress. You can also assign feature image for each post created.
+	
+For more powerful features upgrade to pro version of ultimate csv importer plugin have many more features like
 
-Upgrade to pro for these powerful features.
+Category - You can import any number category you want. Category name fields are mandatory. Slug and description field is optional. Slugs are created automatically if not mapped.
+
+Nested category - This module is just like category module, provided you can import nested categories. You can import nested categories through name field like category1 | category2 | category3. If the category doesn't exist it will be created in a hierarchy as mention in name field.
+
+Tags - Import bulk tags using this module and assign to post, custom post or products.
+
+Users with roles - Import bulk users with their roles by role id. There 11 fields to map in which user login, email and role are mandatory fields. Roles are mentioned in CSV as ids. Please ensure roles are created in advance before import. Other wise default role is assigned for missing role ids.
+
+Custom taxonomy - Is your Wordpress is configured for custom taxonomy, you can import bulk custom taxonomies as like as nested categories.
+
+WP Commerce/ eshop - You can import products in bulk if these modules are installed in your Wordpress. 
+
 
 Support and Feature request.
 ----------------------------
@@ -70,6 +80,10 @@ Please click here for [Detailed Installation Instructions](http://www.smackcoder
 
 == Changelog ==
 
+= 2.6.0 =	Major Bug fixed
+		-- Added UTF-8 support.
+		-- Fixed Html tag conflicts.
+
 = 2.5.0 = 	Major issues fixed and updated to WordPress-3.5.1 compatibility.
 
 = 2.0.1 =	Update to WordPress-3.5 compatibility.
@@ -92,11 +106,12 @@ Please click here for [Detailed Installation Instructions](http://www.smackcoder
 
 == Upgrade Notice ==
 
+=v 2.6.0 =	Major Bug fixed and should upgrade.
+
 =v 2.5.0 =	Major issues fixed and updated to WordPress-3.5.1 compatibility.
 		-- Duplicate detection added.
 		-- Added more information in success message.
 		-- Import memory issues solved.
-		-- Fixed scandinavian character conflicts.
 
 =v 2.0.1 =	Update to WordPress-3.5 compatibility.
 

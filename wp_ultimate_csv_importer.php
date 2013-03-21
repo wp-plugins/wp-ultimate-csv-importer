@@ -1,13 +1,13 @@
 <?php
 /*
 *Plugin Name: WP Ultimate CSV Importer
-*Plugin URI: http://www.smackcoders.com/category/free-wordpress-plugins.html
+*Plugin URI: http://www.smackcoders.com/blog/how-to-guide-for-free-wordpress-ultimate-csv-importer-plugin.html
 *Description: A plugin that helps to import the data's from a CSV file.
-*Version: 2.5.0
+*Version: 2.6.0
 *Author: smackcoders.com
 *Author URI: http://www.smackcoders.com
 *
-* Copyright (C) 2012 Fredrick SujinDoss.M (email : fredrickm@smackcoders.com)
+* Copyright (C) 2012 Smackcoders (www.smackcoders.com)
 *
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -22,7 +22,7 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 *
-* @link http://www.smackcoders.com/category/free-wordpress-plugins.html
+* @link http://www.smackcoders.com/blog/category/free-wordpress-plugins
 ***********************************************************************************************
 */
 
@@ -32,12 +32,6 @@ ini_set('max_execution_time', 700);
 ini_set('memory_limit', '128M');
 
 require( dirname(__FILE__) . '/../../../wp-load.php' );
-$upload_dir = wp_upload_dir();
-$importdir  = $upload_dir['basedir']."/imported_csv/";
-if(!is_dir($importdir))
-{
-        wp_mkdir_p($importdir);
-}
 
 // Global variable declaration
 global $data_rows;
@@ -119,6 +113,7 @@ function description(){
 <p>
 7. Added featured image import functionality.
 </p>
+<p><b> Important Note:- </b></p><p><span style='color:red;'>1. Your csv should have the seperate column for post_date. <br/>2. It must be in the following format. ( yyyy-mm-dd hh:mm:ss ).</span></p>
 <p>Configuring our plugin is as simple as that. If you have any questions, issues and request on new features, plaese visit <a href='http://www.smackcoders.com/blog/category/free-wordpress-plugins' target='_blank'>Smackcoders.com blog </a></p>
 
 	<div align='center' style='margin-top:40px;'> 'While the scripts on this site are free, donations are greatly appreciated. '<br/><br/><a href='http://www.smackcoders.com/donate.html' target='_blank'><img src='".$contentUrl."/plugins/wp-ultimate-csv-importer/images/paypal_donate_button.png' /></a><br/><br/><a href='http://www.smackcoders.com/' target='_blank'><img src='http://www.smackcoders.com/wp-content/uploads/2012/09/Smack_poweredby_200.png'></a>
@@ -127,8 +122,28 @@ function description(){
 }
 
 // CSV File Reader
+# Code modified by Fredrick Marks
 function csv_file_data($file,$delim)
 {
+	$upload_dir = wp_upload_dir();
+	if(!is_dir($upload_dir['basedir'])){
+		$returnContent = " <div style='font-size:16px;margin-left:20px;margin-top:25px;'>Your WordPress doesn't have the uploads folder. Please create the uploads folders and set write permission for that.
+			</div><br/>
+			<div style='margin-left:20px;'>
+			<form class='add:the-list: validate' method='post' action=''>
+			<input type='submit' class='button-primary' name='Import Again' value='Import Again'/>
+			</form>
+			</div>
+			";
+		echo $returnContent;die;
+	}
+	else{
+		$importdir  = $upload_dir['basedir']."/ultimate_importer/";
+		if(!is_dir($importdir))
+		{
+			wp_mkdir_p($importdir);
+		}
+	}
 	ini_set("auto_detect_line_endings", true);
 	global $data_rows;
 	global $headers;
@@ -153,7 +168,7 @@ function move_file()
 {
     # Code added by goku
     $upload_dir = wp_upload_dir();
-    $uploads_dir  = $upload_dir['basedir']."/imported_csv";
+    $uploads_dir  = $upload_dir['basedir']."/ultimate_importer";
     if ($_FILES["csv_import"]["error"] == 0) {
         $tmp_name = $_FILES["csv_import"]["tmp_name"];
         $name = $_FILES["csv_import"]["name"];
@@ -171,20 +186,6 @@ function fileDelete($filepath,$filename) {
 	return $success;	
 }
 
-// Scandinavian characters 
-function smack_marks_scandiConverter($text){ 
-    $returnvalue="";
-    for($i=0;$i<strlen($text);$i++){
-        $smacker=hexdec(rawurlencode(substr($text, $i, 1)));
-        if($smacker<32||$smacker>1114111){
-            $returnvalue.=substr($text, $i, 1);
-        }else{
-            $returnvalue.="&#".$smacker.";";
-        }
-    }
-    return $returnvalue;
-} 
-
 // Mapping the fields and upload data's
 function upload_csv_file()
 {
@@ -197,7 +198,7 @@ function upload_csv_file()
 	global $wpdb;
 	# Code added by goku
         $upload_dir = wp_upload_dir();
-        $importdir  = $upload_dir['basedir']."/imported_csv/";
+        $importdir  = $upload_dir['basedir']."/ultimate_importer/";
 	$custom_array = array();
 	if(isset($_POST['Import']))
 	{
@@ -220,7 +221,7 @@ function upload_csv_file()
 				<?php
 				$post_types=get_post_types();
 				      foreach($post_types as $key => $value){
-					if(($value!='featured_image') && ($value!='attachment') && ($value!='revision') && ($value!='nav_menu_item')){ ?>
+					if(($value!='featured_image') && ($value!='attachment') && ($value!='wpsc-product') && ($value!='wpsc-product-file') && ($value!='revision') && ($value!='nav_menu_item')){ ?>
 					<option id="<?php echo($value);?>" name="<?php echo($value);?>"> <?php echo($value);?> </option>
 				<?php   }
 				      }
@@ -260,6 +261,7 @@ function upload_csv_file()
 				<option value="add_custom<?php print($count);?>">Add Custom Field</option>
 			    </select>
 			    <input type="text" id="textbox<?php print($count); ?>" name="textbox<?php print($count); ?>" style="display:none;"/>
+			    <span id="date<?php print($count); ?>" name="date<?php print($count); ?>" style="display:none;color:red;">Ensure your date is in (yyyy-mm-dd hh:mm:ss) format. </span>
 			  </td>
 			 </tr>
 			 <?php
@@ -294,10 +296,11 @@ function upload_csv_file()
 	else if(isset($_POST['post_csv']))
 	{
 		$insertedRecords = 0;
+		$duplicates = 0;
 		$smack_taxo = array();
 		# Code added by goku
         	$upload_dir = wp_upload_dir();
-	        $dir  = $upload_dir['basedir']."/imported_csv/";
+	        $dir  = $upload_dir['basedir']."/ultimate_importer/";
 		csv_file_data($dir.$_POST['filename'],$delim);
 		foreach($_POST as $postkey=>$postvalue){
 			if($postvalue != '-- Select --'){
@@ -404,9 +407,6 @@ function upload_csv_file()
 			}
 			$data_array['post_type']=$_POST['csv_importer_cat'];
 
-			$data_array['post_title'] = smack_marks_scandiConverter($data_array['post_title']); 
-			$data_array['post_content'] = smack_marks_scandiConverter($data_array['post_content']);
-
 			// Duplicate Check code starts
 		        $permission = 'notok';
 		        $title = $data_array['post_title'];
@@ -416,6 +416,9 @@ function upload_csv_file()
 		        if(count($post_exist) == 0 && ($title != null || $title != '')){
 		                $permission = 'ok';
 		        }
+			if(count($post_exist) > 0){
+				$duplicates = $duplicates+1;
+			}
 			// Duplicate Check code ends
 
 			if($permission == 'ok'){
@@ -462,8 +465,12 @@ function upload_csv_file()
 				}
 			}
 		}
+	if(($insertedRecords != 0) || ($duplicates != 0)){
 	?>
-		<div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; padding: 5px;text-align:center"><b> <?php echo '('.$insertedRecords.')'; ?> records are successfully Imported ! </b></div>
+		<div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; padding: 5px;text-align:center"><b> <?php echo '('.$insertedRecords.')'; ?> records are successfully Imported ! <?php echo '('.$duplicates.')'; ?> duplicate records found !</b></div>
+	<?php }else if(($insertedRecords == 0) && ($duplicates == 0)){ ?>
+                <div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; padding: 5px;text-align:center"><b> Check your CSV file and format. </b></div>
+	<?php } ?>
 		<div style="margin-top:30px;margin-left:10px">
 		    <form class="add:the-list: validate" method="post" enctype="multipart/form-data">
 			<input type="submit" class='button-primary' id="goto" name="goto" value="Continue" />
@@ -471,7 +478,7 @@ function upload_csv_file()
 		</div>
 	<?php 
         	$upload_dir = wp_upload_dir();
-	        $csvdir  = $upload_dir['basedir']."/imported_csv/";
+	        $csvdir  = $upload_dir['basedir']."/ultimate_importer/";
 		$CSVfile = $_POST['filename'];
 		if(file_exists($csvdir.$CSVfile)){
 			fileDelete($csvdir,$CSVfile); 
