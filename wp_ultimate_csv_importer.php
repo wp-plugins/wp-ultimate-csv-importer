@@ -3,7 +3,7 @@
 *Plugin Name: WP Ultimate CSV Importer
 *Plugin URI: http://www.smackcoders.com/blog/how-to-guide-for-free-wordpress-ultimate-csv-importer-plugin.html
 *Description: A plugin that helps to import the data's from a CSV file.
-*Version: 2.6.0
+*Version: 2.7.0
 *Author: smackcoders.com
 *Author URI: http://www.smackcoders.com
 *
@@ -68,9 +68,10 @@ $defaults = array(
         'post_author'     => null,
 	'featured_image'  => null,
         'post_parent'     => 0,
+	'post_status'	  => 0,
     );
 foreach($keys as $val){
-	$defaults[$val]=$val;
+	$defaults["CF: ".$val]=$val;
 }
 // Admin menu settings
 function wp_ultimate_csv_importer() { 
@@ -201,7 +202,8 @@ function upload_csv_file()
         $importdir  = $upload_dir['basedir']."/ultimate_importer/";
 	$custom_array = array();
 	if(isset($_POST['Import']))
-	{
+	{ 
+		$duplicatesDetection = $_POST['titleduplicatecheck'];
 		csv_file_data($_FILES['csv_import']['tmp_name'],$delim);
 		move_file();
 		?>
@@ -214,7 +216,6 @@ function upload_csv_file()
 			<h3>Import Data Configuration</h3>
 			<div style="margin-top:30px;>
 			<input name="_csv_importer_import_as_draft" type="hidden" value="publish" />
-			 <label><input name="csv_importer_import_as_draft" type="checkbox" <?php if ('draft' == $opt_draft) { echo 'checked="checked"'; } ?> value="draft" /> Import as drafts </label>&nbsp;&nbsp;
 			</p>
 			<label> Select Post Type </label>&nbsp;&nbsp;
 			<select name='csv_importer_cat'>
@@ -227,12 +228,31 @@ function upload_csv_file()
 				      }
 				?>
 			<select>
-			<br/></div><br/>
+			<br/>
+<br/>
+<?php $cnt1 = count($headers); ?>
+
+<label>Import with post status</label>&nbsp;&nbsp;
+<select name = 'importallwithps' id= 'importallwithps' onchange = 'importAllPostStatus(this.value, "<?php echo $cnt1?>")'>
+<option value = '0'>Status as in CSV</option>
+<option value = '1'>Publish</option>
+<option value = '2'>Sticky</option>
+<option value = '3'>Protected</option>
+<option value = '4'>Private</option>
+<option value = '5'>Draft</option>
+<option value = '6'>Pending</option>
+</select>
+</div><br/>
+<span style='color:red;'id = 'poststatusalert'>post_status field must mapped below as in CSV</span>
+<label style='display:none;' id = 'passwordlabel'>Posts Password</label>&nbsp;&nbsp;
+<input type='text' style='display:none' id = 'postsPassword' name = 'postsPassword'>
 			<h3>Mapping the Fields</h3>
 			<div id='display_area'>
-			<?php $cnt =count($defaults)+2; $cnt1 =count($headers); ?>
+			<?php $cnt =count($defaults)+2;  ?>
 			<input type="hidden" id="h1" name="h1" value="<?php echo $cnt; ?>"/>
 			<input type="hidden" id="h2" name="h2" value="<?php echo $cnt1; ?>"/>
+                        <input type="hidden" id="titleduplicatecheck" name = "titleduplicatecheck" value="<?php echo $_POST['titleduplicatecheck'] ?>" />
+			<input type="hidden" id="contentduplicatecheck" name="contentduplicatecheck" value="<?php echo $_POST['contentduplicatecheck'] ?>" />
 			<input type="hidden" id="delim" name="delim" value="<?php echo $_POST['delim']; ?>" />
 			<input type="hidden" id="header_array" name="header_array" value="<?php print_r($headers);?>" />
 			<table style="font-size:12px;">
@@ -250,8 +270,13 @@ function upload_csv_file()
 			    <?php 
 				  foreach($defaults as $key1=>$value1){
 			    ?>
-					<option value ="<?php print($key1);?>"><?php print($key1);?></option>
-			    <?php } $taxo = get_taxonomies();
+					<option value ="<?php print($key1);?>">
+				<?php if($key1 != 'post_name')
+				 print($key1);
+			         else
+				 print 'post_slug';?>
+					</option>
+				    <?php } $taxo = get_taxonomies();
 				  foreach($taxo as $taxokey => $taxovalue){ 
 					if($taxokey !='category' && $taxokey !='link_category' && $taxokey != 'post_tag' && $taxokey != 'nav_menu' && $taxokey != 'post_format'){ ?>
 					<option value ="<?php print($taxokey);?>"><?php print($taxovalue);?></option>
@@ -260,9 +285,19 @@ function upload_csv_file()
 		   	    ?>
 				<option value="add_custom<?php print($count);?>">Add Custom Field</option>
 			    </select>
-			    <input type="text" id="textbox<?php print($count); ?>" name="textbox<?php print($count); ?>" style="display:none;"/>
-			    <span id="date<?php print($count); ?>" name="date<?php print($count); ?>" style="display:none;color:red;">Ensure your date is in (yyyy-mm-dd hh:mm:ss) format. </span>
-			  </td>
+<!-- added to solve issue id 1072-->			    
+<input type="text" id="textbox<?php print($count); ?>" name="textbox<?php print($count); ?>" style="display:none;" value="<?php echo $value ?>" />
+<span style="display:none;color:red;margin-left:5px;" id="customspan<?php echo $count?>" >Name this Field</span>
+		<select id="date<?php print($count); ?>" name="date<?php print($count); ?>" style="display:none;">
+                          <option value="M/DD/YYYY">M/DD/YYYY</option>
+                                <option value="M/DD/YYYY HH:MM">M/DD/YYYY HH:MM</option>
+                                <option value="M/DD/YYYY HH:MM PM">M/DD/YYYY HH:MM PM</option>
+                                <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                                <option value="MM/DD/YYYY HH:MM">MM/DD/YYYY HH:MM</option>
+                                <option value="MM/DD/YYYY HH:MM PM">MM/DD/YYYY HH:MM PM</option>
+                                <option value="YYYY-MM-DD HH:MM:SS">YYYY-MM-DD HH:MM:SS</option>
+                        </select>  
+			</td>
 			 </tr>
 			 <?php
 			   $count++; } 
@@ -293,10 +328,16 @@ function upload_csv_file()
 		</div>
 	<?php	}
 	}
-	else if(isset($_POST['post_csv']))
-	{
+	else if(isset($_POST['post_csv'])){
+		# added for issue id 1072
+		for($d=0;$d<count($_POST);$d++){
+		if($_POST['mapping'.$d] == 'post_date'){
+		$dateformat = $_POST['date'.$d];		
+		}
+		}
 		$insertedRecords = 0;
 		$duplicates = 0;
+		$wrongpostauthor = 0;
 		$smack_taxo = array();
 		# Code added by goku
         	$upload_dir = wp_upload_dir();
@@ -401,28 +442,148 @@ function upload_csv_file()
 				}
 			   }
 			}
-			$data_array['post_status']='publish';
-			if(isset($_POST['csv_importer_import_as_draft'])){
-				$data_array['post_status']='draft';
+			#code added for issue 1087
+			$sticky = false;
+			if($_POST['importallwithps'] == 0){
+				unset($data_array['post_password']);
+				if(($data_array['post_status'] == 1)||($data_array['post_status'] == 'Publish'))
+					$data_array['post_status'] = 'publish';
+				elseif(($data_array['post_status'] == 4)||($data_array['post_status'] == 'Draft'))
+					$data_array['post_status'] = 'draft';
+				elseif(($data_array['post_status'] == '3')||($data_array['post_status'] == 'Private'))
+					$data_array['post_status'] = 'private';
+				elseif(($data_array['post_status'] == 5)||($data_array['post_status'] == 'Pending'))
+					$data_array['post_status'] = 'pending';
+				elseif(($data_array['post_status'] == 2)||($data_array['post_status'] == 'Sticky')){
+					$data_array['post_status'] = 'publish';
+					$sticky = true;
+					}
+				elseif(($data_array['post_status'] == ''))
+					$data_array['post_status'] = 'publish';
+				else {
+					if(strlen($data_array['post_status']) <= 10)
+						$data_array['post_password'] = $data_array['post_status'];
+					else
+						$data_array['post_password'] = substr($data_array['post_status'],0,10);
+					$data_array['post_status'] = 'publish';
+				}
+			}
+			else{
+				unset($data_array['post_password']);
+				if($_POST['importallwithps'] == 1)
+					$data_array['post_status'] = 'publish';
+				if($_POST['importallwithps'] == 2){
+					$data_array['post_status'] = 'publish';
+					$sticky = true;
+				}
+				if($_POST['importallwithps'] == 3){
+					$data_array['post_status'] = 'publish';
+					$data_array['post_password'] = $_POST['postsPassword'];
+				}
+				if($_POST['importallwithps'] == 4)
+					$data_array['post_status'] = 'private';
+				if($_POST['importallwithps'] == 5)
+					$data_array['post_status'] = 'draft';
+				if($_POST['importallwithps'] == 6){
+					$data_array['post_status'] = 'pending';
+				}
 			}
 			$data_array['post_type']=$_POST['csv_importer_cat'];
-
-			// Duplicate Check code starts
+			$permission = 'ok';
+			$chkinsert =1;
+			$chkedContent = 1;
+		// Duplicate Check code starts
+		if($_POST['titleduplicatecheck']){
 		        $permission = 'notok';
 		        $title = $data_array['post_title'];
 		        $gettype = $data_array['post_type'];
 		        $post_table = $wpdb->posts;
 		        $post_exist = $wpdb->get_results("select ID from $post_table where post_title = \"{$title}\" and post_type = \"{$gettype}\" and post_status in('publish','future','draft')");
 		        if(count($post_exist) == 0 && ($title != null || $title != '')){
-		                $permission = 'ok';
+				$chkinsert = 0;
+				$permission = 'ok';
 		        }
-			if(count($post_exist) > 0){
-				$duplicates = $duplicates+1;
 			}
-			// Duplicate Check code ends
+		if($_POST['contentduplicatecheck']){
+		$permission = 'ok';
+		$content = $data_array['post_content'];
+		$contentLength = strlen($content);
+		$post_table = $wpdb->posts;
+		$post_exist = $wpdb->get_results("select ID from $post_table where length(post_content) = \"{$contentLength}\"");
+		if(count($post_exist)==0){
+			$chkedContent = 0;
+		}
+		else{
+		$chkforeach = 0;
+		foreach($post_exist as $singlepost){
+			$postdata = $wpdb->get_results("select post_content from $post_table where id = \"{$singlepost->ID}\"");
+			$chkDbString = substr($postdata[0]->post_content,0,50);
+			$chkFormString = substr($content,0,50);
+			if($chkDbString == $chkFormString){
+			$permission = 'notok';
+			}
+	
+		}
+	}
+}
+if($permission == 'notok')
+$duplicates++;
+if(!(is_numeric($data_array['post_author']))){
+	$postuserid = $data_array['post_author'];
+	$postauthor = $wpdb->get_results("select id from wp_users where user_login = \"{$postuserid}\"");
+	if($postauthor == null){
+		$data_array['post_author'] = 1;
+		$data_array['post_status'] = 'draft';
+		$wrongpostauthor++;
+	}
+	else
+	$data_array['post_author'] = $postauthor[0]->id;
+}
+		// Duplicate Check code ends
 
 			if($permission == 'ok'){
+
+if($dateformat != 'YYYY-MM-DD HH:MM:SS'){
+	if($dateformat == 'MM/DD/YYYY HH:MM'){
+		$splitdate = explode(" ",$data_array['post_date']);
+		$date = $splitdate[0];
+		$time = $splitdate[1];
+		$formatdatearray = explode("/",$date);
+		$exactdate = $formatdatearray[2].'-'.$formatdatearray[0].'-'.$formatdatearray[1];
+		$data_array['post_date'] = $exactdate.' '.$time;
+		}
+	if($dateformat == 'M/DD/YYYY HH:MM'){
+                $splitdate = explode(" ",$data_array['post_date']);
+                $date = $splitdate[0];
+                $time = $splitdate[1];
+                $formatdatearray = explode("/",$date);
+                $exactdate = $formatdatearray[2].'-'.$formatdatearray[0].'-'.$formatdatearray[1];
+                $data_array['post_date'] = $exactdate.' '.$time;
+	}
+	if(($dateformat == 'M/DD/YYYY')||($dateformat == 'MM/DD/YYYY')){
+		$splitdate = explode(" ",$data_array['post_date']);
+		$date = $splitdate[0];
+		$formatdatearray = explode("/",$date);
+		$exactdate = $formatdatearray[2].'-'.$formatdatearray[0].'-'.$formatdatearray[1];
+		$data_array['post_date'] = $exactdate;
+	}
+	if(($dateformat == 'M/DD/YYYY HH:MM PM')||($dateformat == 'MM/DD/YYYY HH:MM PM')){
+                $splitdate = explode(" ",$data_array['post_date']);
+                $date = $splitdate[0];
+                $time = $splitdate[1];
+		$chkpm = $splitdate[2];
+		if($chkpm == 'PM'||$chkpm == 'pm'){
+			$time = strtotime($time .' + 12 hour');
+			$time = date('G:i:s',$time);
+		}
+                $formatdatearray = explode("/",$date);
+                $exactdate = $formatdatearray[2].'-'.$formatdatearray[0].'-'.$formatdatearray[1];
+                $data_array['post_date'] = $exactdate.' '.$time;
+	}
+}
 				$post_id = wp_insert_post( $data_array );
+				if($sticky)
+				stick_post($post_id);
 				if($post_id){
 					$insertedRecords = $insertedRecords+1;
 				}
@@ -433,7 +594,7 @@ function upload_csv_file()
 				}
 	
 				// Create custom taxonomy to post
-                                if(!empty($smack_taxo)){//print_r($smack_taxo);
+                                if(!empty($smack_taxo)){
                                         foreach($smack_taxo as $taxo_key => $taxo_value){
 						$split_line = explode('|',$taxo_value);
                                                 wp_set_object_terms( $post_id, $split_line, $taxo_key );
@@ -467,7 +628,13 @@ function upload_csv_file()
 		}
 	if(($insertedRecords != 0) || ($duplicates != 0)){
 	?>
-		<div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; padding: 5px;text-align:center"><b> <?php echo '('.$insertedRecords.')'; ?> records are successfully Imported ! <?php echo '('.$duplicates.')'; ?> duplicate records found !</b></div>
+		<div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; padding: 5px;text-align:center"><b> <?php echo '('.$insertedRecords.')'; ?> records are successfully Imported !<br> <?php echo '('.$duplicates.')'; ?> duplicate records found !
+<?php if($wrongpostauthor != 0){ ?><br>
+<?php echo $wrongpostauthor; ?> posts with no valid UserID/Name are assigned admin as author.
+<?php 
+//ask and fill the error msg 
+
+} ?></b></div>
 	<?php }else if(($insertedRecords == 0) && ($duplicates == 0)){ ?>
                 <div style="background-color: #FFFFE0;border-color: #E6DB55;border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;margin: 5px 15px 2px; padding: 5px;text-align:center"><b> Check your CSV file and format. </b></div>
 	<?php } ?>
@@ -497,6 +664,9 @@ function upload_csv_file()
 			<!-- File input -->
 			<p><label for="csv_import">Upload file:</label><br/>
 			    <input name="csv_import" id="csv_import" type="file" value="" aria-required="true" /></p><br/>
+			<p><input type="checkbox" name="titleduplicatecheck" value=1>  Enable Duplicate Post Title Detection<br>
+			<p><input type="checkbox" name="contentduplicatecheck" value = 1>  Enable Duplicate Post Content Detection <br>
+<!-- added above checkboxes for issueid 1057-->
 			<p><label>Delimiter</label>&nbsp;&nbsp;&nbsp;
 			    <select name="delim" id="delim">
 				<option value=",">,</option>

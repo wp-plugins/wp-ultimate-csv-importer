@@ -4,8 +4,8 @@ Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4
 Tested up to: 3.5.1
-Stable tag: 2.6.0
-Version: 2.6.0
+Stable tag: 2.7.0
+Version: 2.7.0
 Author: Smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
@@ -80,6 +80,36 @@ Please click here for [Detailed Installation Instructions](http://www.smackcoder
 
 == Changelog ==
 
+= 2.7.0 =  Post Status 
+		-- Added more post status options 
+		-- Publish, Sticky, Private, Draft and Pending Status for whole import
+		-- Protected status with a common password option added
+		-- "Status as in CSV" to assign status for individual psot thorugh CSV as ID or Field Tag
+		
+		Post Author 
+		-- User ID and User Name support for Post author feature added
+		-- In case of missing or false IDs post assigned to admin as draft
+		-- 
+		
+		Extra date formats support added.
+		-- 6 Standard date format added as dropdown to choose.
+		-- Date format conflict at import fixed.
+		
+		Custom field feature improved.
+		-- Listed custom fields with prefix as CF: Name for easy identification.
+		-- Add Custom Field Textbox autofilled with CSV header tag.
+        
+		Added Feature
+		-- Duplicate detection for post content and post title added as options.
+		-- User can choose either one or both to avoid duplicate issues.
+		
+		Post Slug
+		-- Renamed post_name as post_slug to avoid confusion
+		
+		Mapping Fields
+		-- Field tags are formatted to support auto mapping option (next milestone)
+
+
 = 2.6.0 =	Major Bug fixed
 		-- Added UTF-8 support.
 		-- Fixed Html tag conflicts.
@@ -106,9 +136,11 @@ Please click here for [Detailed Installation Instructions](http://www.smackcoder
 
 == Upgrade Notice ==
 
-=v 2.6.0 =	Major Bug fixed and should upgrade.
+=v 2.7.0 =	Major improvements and feature changes.
 
-=v 2.5.0 =	Major issues fixed and updated to WordPress-3.5.1 compatibility.
+=v 2.6.0 =	Bug fixed and should upgrade.
+
+=v 2.5.0 =	Issues fixed and updated to WordPress-3.5.1 compatibility.
 		-- Duplicate detection added.
 		-- Added more information in success message.
 		-- Import memory issues solved.
