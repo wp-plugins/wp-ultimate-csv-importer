@@ -25,6 +25,8 @@ WP Ultimate CSV Importer Plugin helps you to import any csv file as post, page o
 6. Make imported post as published or make it as draft.
 7. Added featured image import functionality.
 
+<p>http://www.youtube.com/watch?v=dXFBNY5t6E8</p>
+
 The pro version of this plugin is available now with lot more new features, functionalities, controls and usability. Please upgrade to pro version to enjoy the powerful features like importing nested categories, WP-e-commerce products, eShop products, custom taxonomies in bulk with simple clicks.
 
 Important Note:  To import your posts for scheduled publishing in future, have a date coloumn in your csv with the date of post to be published on. If the date is a future date, then the post will be automatically scheduled for publishing on particular date as mentioned in csv.
