@@ -27,21 +27,6 @@ WP Ultimate CSV Importer Plugin helps you to import any csv file as post, page o
 
 <p>http://www.youtube.com/watch?v=qQrnGX3lhOc</p>
 
-How to Format a CSV file for WP Ultimate CSV Importer Plugin?
-
-This video helps you to tweak/format your CSV file to make a fast, simple and easy import using WP Ultimate CSV importer plugin without missing all the 
-features. We have used MS Excel as CSV editor here. You can use other applications also. Take advantage of our importer format by slightly tweaking your csv.
-
-<p>http://www.youtube.com/watch?v=pnObJdiedus</p>
-
-For more details visit www.smackcoders.com
-
-How to creat a well formatted csv? - the other way to learn tweaking
-
-We have used text editor here to explain how to create a well formatted csv in seconds for importing. You can use this format to take advantage of our importer format by slightly tweaking your csv. This video helps you to tweak/format your CSV file to make a fast, simple and easy import using WP Ultimate CSV importer plugin without missing all the features.
-
-<p>http://www.youtube.com/watch?v=9W_my0rSybE</p>
-
 The pro version of this plugin is available now with lot more new features, functionalities, controls and usability. Please upgrade to pro version to enjoy the powerful features like importing nested categories, WP-e-commerce products, eShop products, custom taxonomies in bulk with simple clicks.
 
 Important Note:  To import your posts for scheduled publishing in future, have a date coloumn in your csv with the date of post to be published on. If the date is a future date, then the post will be automatically scheduled for publishing on particular date as mentioned in csv.
@@ -56,7 +41,7 @@ You can follow the instructions as given here
 	
 	
 
-	Posts and Pages Module - This module will import all your data into bulk posts or pages. There are 9 fields to map, in which post title and content are mandatory. All other fields are optional. You can also have published date field which can also have a future date that reflects as scheduled post. Optionally you can import as many fields you want as custom fields. You can name these fields as your wish while importing. Pages don't need category and tags. You can assign a feature image for each post or page through a list of image urls.
+Posts and Pages Module - This module will import all your data into bulk posts or pages. There are 9 fields to map, in which post title and content are mandatory. All other fields are optional. You can also have published date field which can also have a future date that reflects as scheduled post. Optionally you can import as many fields you want as custom fields. You can name these fields as your wish while importing. Pages don't need category and tags. You can assign a feature image for each post or page through a list of image urls.
 
 Custom posts - Similar to post and pages you can import any custom post types that is configured in your WordPress. You can also assign feature image for each post created.
 	
@@ -183,6 +168,20 @@ Please click here for [Detailed Installation Instructions](http://www.smackcoder
 
 
 == Frequently Asked Questions ==
+How to Format a CSV file for WP Ultimate CSV Importer Plugin?
+
+This video helps you to tweak/format your CSV file to make a fast, simple and easy import using WP Ultimate CSV importer plugin without missing all the 
+features. We have used MS Excel as CSV editor here. You can use other applications also. Take advantage of our importer format by slightly tweaking your csv.
+
+<p>http://www.youtube.com/watch?v=pnObJdiedus</p>
+
+For more details visit www.smackcoders.com
+
+How to creat a well formatted csv? - the other way to learn tweaking
+
+We have used text editor here to explain how to create a well formatted csv in seconds for importing. You can use this format to take advantage of our importer format by slightly tweaking your csv. This video helps you to tweak/format your CSV file to make a fast, simple and easy import using WP Ultimate CSV importer plugin without missing all the features.
+
+<p>http://www.youtube.com/watch?v=9W_my0rSybE</p>
 
 Please click here for [ Detailed Frequently Asked Questions](http://www.smackcoders.com/blog/category/free-wordpress-plugins/wordpress-ultimate-csv-importer-plugin/)
 
