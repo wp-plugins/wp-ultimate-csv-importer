@@ -4,8 +4,8 @@ Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4
 Tested up to: 3.5.1
-Stable tag: 2.7.0
-Version: 2.7.0
+Stable tag: 3.0.0
+Version: 3.0.0
 Author: Smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
@@ -37,9 +37,6 @@ Note: Your theme should support featured image function. If not, please add the 
 You can follow the instructions as given here 
 	[http://codex.wordpress.org/Function_Reference/the_post_thumbnail](http://codex.wordpress.org/Function_Reference/the_post_thumbnail)
     [http://codex.wordpress.org/Post_Thumbnails](http://codex.wordpress.org/Post_Thumbnails)	[http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5](http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5)
-
-	
-	
 
 Posts and Pages Module - This module will import all your data into bulk posts or pages. There are 9 fields to map, in which post title and content are mandatory. All other fields are optional. You can also have published date field which can also have a future date that reflects as scheduled post. Optionally you can import as many fields you want as custom fields. You can name these fields as your wish while importing. Pages don't need category and tags. You can assign a feature image for each post or page through a list of image urls.
 
@@ -84,6 +81,25 @@ Please click here for [Detailed Installation Instructions](http://www.smackcoder
 
 
 == Changelog ==
+= 3.0.0 = Lot of performance improvements
+		- Much improved workflow
+		- Custom Field mapping and import fixed
+		- Add custom field option improved.
+		- Date format handling improved
+		- Any Date format is supported now
+		- Future scheduling and status improved
+		- Overall Status option improved and issue fixed
+		- Password field fixed for Protected
+		- Status as in CSV option improved and fixed
+		- Can apply post status for individual post via csv itself
+		- Now password should be mentioned as {password}
+		- Featured image handling improved and fixed. More improvement are scheduled.
+		- Category in numericals are restricted and skipped to Uncategorized
+		- Duplicate check options improved for both title and content option.
+		- Post authors can be User ID or name 
+		- Post author issue fixed and improved
+		- Wrong user id or name are automatically assigned under admin
+		- Multi category and tags improved
 
 = 2.7.0 =  Post Status 
 		-- Added more post status options 
@@ -141,11 +157,13 @@ Please click here for [Detailed Installation Instructions](http://www.smackcoder
 
 == Upgrade Notice ==
 
-=v 2.7.0 =	Major improvements and feature changes.
+=v 3.0.0 = Must upgrade to have Major improvements, performance fixes and issue fixes
 
-=v 2.6.0 =	Bug fixed and should upgrade.
+=v 2.7.0 = Major improvements and feature changes.
 
-=v 2.5.0 =	Issues fixed and updated to WordPress-3.5.1 compatibility.
+=v 2.6.0 = Bug fixed and should upgrade.
+
+=v 2.5.0 = Issues fixed and updated to WordPress-3.5.1 compatibility.
 		-- Duplicate detection added.
 		-- Added more information in success message.
 		-- Import memory issues solved.
