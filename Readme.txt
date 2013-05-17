@@ -21,21 +21,23 @@ WP Ultimate CSV Importer Plugin helps you to import any csv file as post, page o
 
 This simple but ultimate plugin as you can import everything needed to create as any wp post types from admin as simple as csv file. Just few clicks to to map your csv data set to match the wordpress fields to import. Thats all, now your imports are turned as wordpress site content in matter of secconds. No more pain of creating post content one by one of converting your offline data. You can import all the essential data as wordpress post and skip unwanted things. Or you can import as many as custom fields without missing even a single data. Provided you should have a theme that supports custom fields. So you can now make use of your offline datas, inventory, price catalog, information datas, database and any other excel data sheet for online content distribution to your valuable visitor or cutomers. 
 
-1. Admin can import the data's from any csv file. Can import as post, page or cutom post. Compatible with Custom post type UI plugin support
-2. Can define the type of post and post status while importing.
-3. Powerful mapping feature enable importing the data's as perfect worpress post types.
-4. Users can map column headers to existing fields or create and assign as unlimited custom fields.
-5. Import unlimited data as any post type.
-6. Make imported post as published, private, pending, draft, sticky or even as password protected.
-7. Also can mention different post status for every individual post vis csv.
-8. Add featured image url to every post.
-9. Assign authors to every post.
-10.Add title, content, excerpt and slug to posts
-11.Assign multiple tags and categories to post
-12.Non existing tags and catagories are created automatically
-13.Can assign date of publishing either a previous date or futures date for scheduled publishing.
-14.Skip Duplicate titles or content or both to avoid duplicates at time of import itself
-15.Only option we missed is post format, will be added in next major update.
+1.	Admin can import the data's from any csv file. 
+2.	Can import as post, page or cutom post. 
+3.	Compatible with Custom post type UI plugin support
+4.	Can define the type of post and post status while importing.
+5.	Powerful mapping feature enable importing the data's as perfect Wordpress post types.
+6.	Users can map column headers to existing fields or create and assign as unlimited custom fields.
+7.	Import unlimited data as any post type.
+8.	Make imported post as published, private, pending, draft, sticky or even as password protected.
+9.	Define different post status for every individual post via CSV.
+10.	Add featured image url to every post.
+11.	Assign authors to every post.
+12.	Add title, content, excerpt and slug to posts
+13.	Assign multiple tags and categories to post
+14.	Non existing tags and categories are created automatically
+15.	Assign date of publishing either a previous date or futures date for scheduled publishing.
+16.	Skip Duplicate titles or content or both to avoid duplicates at time of import itself
+17.	Only option we missed is post format, will be added in next major update.
 
 <p>http://www.youtube.com/watch?v=qQrnGX3lhOc</p>
 
