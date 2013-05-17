@@ -15,6 +15,8 @@ A plugin that turns your offline data as wordpress post, page or custom post dat
 
 == Description ==
 
+--------      Version 3.0.0 is out now. So many major improvement changes, more flexible import option and added powerful features.     -----------
+
 WP Ultimate CSV Importer Plugin helps you to import any csv file as post, page or even as custom post type. Convert your offline database maintained for years into your valuable website content. Also do periodical content changes, maintenance, content update, prices, offers, coupons and inventory etc.
 
 This simple but ultimate plugin as you can import everything needed to create as any wp post types from admin as simple as csv file. Just few clicks to to map your csv data set to match the wordpress fields to import. Thats all, now your imports are turned as wordpress site content in matter of secconds. No more pain of creating post content one by one of converting your offline data. You can import all the essential data as wordpress post and skip unwanted things. Or you can import as many as custom fields without missing even a single data. Provided you should have a theme that supports custom fields. So you can now make use of your offline datas, inventory, price catalog, information datas, database and any other excel data sheet for online content distribution to your valuable visitor or cutomers. 
