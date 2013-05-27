@@ -41,7 +41,7 @@ This simple but ultimate plugin as you can import everything needed to create as
 17.	Only option we missed is post format, will be added in next major update.
 
 
-<p>http://www.youtube.com/watch?v=qQrnGX3lhOc</p>
+<p>http://www.youtube.com/embed/OwKdt_NlT2U?list=PL2k3Ck1bFtbQqFhOK7g08kxENI4qQkmC-</p>
 
 
 Important Notes:  
@@ -75,7 +75,7 @@ For guides and tutorials, visit http://forge.smackcoders.com/projects/wp-ultimat
 == Installation ==
 
 
-Please click here for [Detailed Installation Instructions](http://www.smackcoders.com/blog/category/free-wordpress-plugins/wordpress-ultimate-csv-importer-plugin/)
+Please click here for [Detailed Installation Instructions](http://www.smackcoders.com/blog/how-to-guide-for-free-wordpress-ultimate-csv-importer-plugin.html)
 Or view our hoe to guide video guide in our [Youtube Channel](www.youtube.com/user/smackcoders)
 
 
