@@ -1,39 +1,52 @@
 === WP Ultimate CSV Importer Plugin ===
-Contributors: Smackcoders
+Contributors: smackcoders
 Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4
 Tested up to: 3.5.1
 Stable tag: 3.0.0
 Version: 3.0.0
-Author: Smackcoders
+Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
 
-A plugin that helps to import any csv file as post, page or custom post data's by matching csv headers to wp fields.
+A plugin that turns your offline data as wordpress post, page or custom post data's by simple mapping feature as csv file import.
 
 
 == Description ==
 
-WP Ultimate CSV Importer Plugin helps you to import any csv file as post, page or even as custom post data's by matching its headers to relevant fields or custom fields.
+       Version 3.0.0 is out now. So many major improvement changes, 
+	   more flexible import options and added powerful features.    
 
-1. Admin can import the data's from any csv file. 
-2. Can define the type of post and post status while importing.
-3. Provides header mapping feature to import the data's as your need.
-4. Users can map column headers to existing fields or assign as custom fields.
-5. Import unlimited data as post.
-6. Make imported post as published or make it as draft.
-7. Added featured image import functionality.
+WP Ultimate CSV Importer Plugin helps you to import any CSV file as post, page or even as custom post type. Convert your offline database maintained for years into your valuable website content. Also do periodical content changes, maintenance, content update, prices, offers, coupons and inventory etc.
 
-<p>http://www.youtube.com/watch?v=qQrnGX3lhOc</p>
+This simple but ultimate plugin as you can import everything needed to create as any WP post types from admin as simple as CSV file. Just in few clicks to map your CSV data set to match the Wordpress fields to import. That’s all, now your imports are turned as Wordpress site content in matter of seconds. No more pain of creating post content one by one of converting your offline data. You can import all the essential data as Wordpress post and skip unwanted things. Or you can import as many as custom fields without missing even a single data. Provided you should have a theme that supports custom fields. So you can now make use of your offline data, inventory, price catalog, information data, database and any other excel data sheet for online content distribution to your valuable visitor or customers. 
 
-The pro version of this plugin is available now with lot more new features, functionalities, controls and usability. Please upgrade to pro version to enjoy the powerful features like importing nested categories, WP-e-commerce products, eShop products, custom taxonomies in bulk with simple clicks.
+1.	Admin can import the data's from any CSV file. 
+2.	Can import as post, page or custom post. 
+3.	Compatible with Custom post type UI plugin support
+4.	Can define the type of post and post status while importing.
+5.	Powerful mapping feature enable importing the data's as perfect Wordpress post types.
+6.	Users can map column headers to existing fields or create and assign as unlimited custom fields.
+7.	Import unlimited data as any post type.
+8.	Make imported post as published, private, pending, draft, sticky or even as password protected.
+9.	Define different post status for every individual post via CSV.
+10.	Add featured image Url to every post.
+11.	Assign authors to every post.
+12.	Add title, content, excerpt and slug to posts
+13.	Assign multiple tags and categories to post
+14.	Non existing tags and categories are created automatically
+15.	Assign date of publishing either a previous date or futures date for scheduled publishing.
+16.	Skip Duplicate titles or content or both to avoid duplicates at time of import itself
+17.	Only option we missed is post format, will be added in next major update.
 
-Important Note:  To import your posts for scheduled publishing in future, have a date coloumn in your csv with the date of post to be published on. If the date is a future date, then the post will be automatically scheduled for publishing on particular date as mentioned in csv.
 
-Note: Your theme should support featured image function. If not, please add the following code to header.php or where it needed.
-		add_theme_support( 'post-thumbnails' );
+<p>http://www.youtube.com/embed/OwKdt_NlT2U?list=PL2k3Ck1bFtbQqFhOK7g08kxENI4qQkmC-</p>
 
+
+Important Notes:  
+You can schedule your post for future publishing automatically by mentioning futuredate and time in date field of partcular post in your csv file.
+Your theme should support featured image function. If not, please add the following code to header.php or where you need to diplay. 	add_theme_support( 'post-thumbnails' );
 You can follow the instructions as given here 
 	[http://codex.wordpress.org/Function_Reference/the_post_thumbnail](http://codex.wordpress.org/Function_Reference/the_post_thumbnail)
     [http://codex.wordpress.org/Post_Thumbnails](http://codex.wordpress.org/Post_Thumbnails)	[http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5](http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5)
@@ -42,26 +55,19 @@ Posts and Pages Module - This module will import all your data into bulk posts o
 
 Custom posts - Similar to post and pages you can import any custom post types that is configured in your WordPress. You can also assign feature image for each post created.
 	
-For more powerful features upgrade to pro version of ultimate csv importer plugin have many more features like
+The pro version of this plugin is available now with lot more new features, functionalities, controls and improved usability. Please upgrade to pro version to enjoy the powerful features like importing nested categories, WP-e-commerce products, eShop products, custom taxonomies in bulk with simple clicks.For more powerful features upgrade to pro version of ultimate csv importer plugin have many more features like
 
-Category - You can import any number category you want. Category name fields are mandatory. Slug and description field is optional. Slugs are created automatically if not mapped.
-
-Nested category - This module is just like category module, provided you can import nested categories. You can import nested categories through name field like category1 | category2 | category3. If the category doesn't exist it will be created in a hierarchy as mention in name field.
-
-Tags - Import bulk tags using this module and assign to post, custom post or products.
-
-Users with roles - Import bulk users with their roles by role id. There 11 fields to map in which user login, email and role are mandatory fields. Roles are mentioned in CSV as ids. Please ensure roles are created in advance before import. Other wise default role is assigned for missing role ids.
-
-Custom taxonomy - Is your Wordpress is configured for custom taxonomy, you can import bulk custom taxonomies as like as nested categories.
-
-WP Commerce/ eshop - You can import products in bulk if these modules are installed in your Wordpress. 
+One click Import of Nested category with complex hierarchies to any no. of levels with proper description and seo slugs
+One click Import of bulk tags with proper description and seo slugs
+One click Import of Users with roles
+One click Import of Custom taxonomies with proper description and seo slugs
+Import, update and maintain your WP Commerce / eshop inventory, prices, periodical and short term offers, coupons, bonus etc.
 
 
 Support and Feature request.
 ----------------------------
 
 Please create issues only in our tracker http://forge.smackcoders.com/projects/wp-ultimate-csv-importer-free/issues instead of WordPress support forum. 
-
 For guides and tutorials, visit http://forge.smackcoders.com/projects/wp-ultimate-csv-importer-free . 
 
 
@@ -69,8 +75,8 @@ For guides and tutorials, visit http://forge.smackcoders.com/projects/wp-ultimat
 == Installation ==
 
 
-Please click here for [Detailed Installation Instructions](http://www.smackcoders.com/blog/category/free-wordpress-plugins/wordpress-ultimate-csv-importer-plugin/)
-
+Please click here for [Detailed Installation Instructions](http://www.smackcoders.com/blog/how-to-guide-for-free-wordpress-ultimate-csv-importer-plugin.html)
+Or view our hoe to guide video guide in our [Youtube Channel](www.youtube.com/user/smackcoders)
 
 
 == Screenshots ==
