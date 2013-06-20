@@ -1,12 +1,12 @@
 === WP Ultimate CSV Importer Plugin ===
-Contributors: smackcoders
+Contributors: Smackcoders
 Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4
 Tested up to: 3.5.1
-Stable tag: 3.0.0
-Version: 3.0.0
-Author: smackcoders
+Stable tag: 3.1.0
+Version: 3.1.0
+Author: Smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
 
@@ -15,7 +15,7 @@ A plugin that turns your offline data as wordpress post, page or custom post dat
 
 == Description ==
 
-       Version 3.0.0 is out now. So many major improvement changes, 
+       Version 3.1.0 is out now. So many major improvement changes, 
 	   more flexible import options and added powerful features.    
 
 WP Ultimate CSV Importer Plugin helps you to import any CSV file as post, page or even as custom post type. Convert your offline database maintained for years into your valuable website content. Also do periodical content changes, maintenance, content update, prices, offers, coupons and inventory etc.
@@ -87,6 +87,11 @@ Or view our hoe to guide video guide in our [Youtube Channel](www.youtube.com/us
 
 
 == Changelog ==
+
+=v 3.1.0 = Much Improved Featured Image feature
+        -- Image url for featured image issues fixed
+		-- PHP 5.4 upgrade fix
+		
 = 3.0.0 = Lot of performance improvements
 		- Much improved workflow
 		- Custom Field mapping and import fixed
@@ -151,8 +156,8 @@ Or view our hoe to guide video guide in our [Youtube Channel](www.youtube.com/us
 
 = 1.1.0 =	Added featured image import feature along with post/page/custom post.
 
-= 1.0.2 =	- Bug fixed to recognize the trimmed trailing space in the CSV file 
-            	- Added validation for the duplicate field mapping.
+= 1.0.2 = Bug fixed to recognize the trimmed trailing space in the CSV file 
+		- Added validation for the duplicate field mapping.
 
 = 1.0.1 =	Added features to import multiple tags and categories with different delimiters.
 
@@ -162,6 +167,8 @@ Or view our hoe to guide video guide in our [Youtube Channel](www.youtube.com/us
 
 
 == Upgrade Notice ==
+
+=v 3.1.0 = Now Much Improved Featured Image and url handling
 
 =v 3.0.0 = Must upgrade to have Major improvements, performance fixes and issue fixes
 

@@ -295,9 +295,20 @@ class SmackImpCE extends SmackWpHandler {
 							$img_name = explode ( '/', $file_url );
 							$imgurl_split = count ( $img_name );
 							$img_name = explode ( '.', $img_name [$imgurl_split - 1] );
-							$img_title = $img_name = $img_name [0];
+                                                        if(count($img_name) > 2){
+                                                                for($r=0;$r<(count($img_name)-1);$r++){
+                                                                        if($r==0)
+                                                                                $img_title = $img_name[$r];
+                                                                        else
+                                                                                $img_title .= '.'.$img_name[$r];
+                                                                }
+                                                                $img_name = $img_title;
+                                                        }
+                                                        else{
+                                                        $img_title = $img_name = $img_name [0];
+                                                        }
 							$dir = wp_upload_dir ();
-							$dirname = 'featured_image';
+                                                        $dirname = date('Y').'/'.date('m');
 							$full_path = $dir ['basedir'] . '/' . $dirname;
 							$baseurl = $dir ['baseurl'] . '/' . $dirname;
 							$filename = explode ( '/', $file_url );
@@ -305,12 +316,27 @@ class SmackImpCE extends SmackWpHandler {
 							$filepath = $full_path . '/' . $plain_filename;
 							$fileurl = $baseurl . '/' . $filename [$file_split - 1];
 							if(is_dir($full_path)){
-								$smack_fileCopy = copy($file_url,$filepath);
+								$smack_fileCopy = @copy($file_url,$filepath);
 							}
 							else{
 								wp_mkdir_p($full_path);
-								$smack_fileCopy = copy($file_url,$filepath);
+								$smack_fileCopy = @copy($file_url,$filepath);
 							}
+                                                        $img = wp_get_image_editor( $filepath );
+                                                        if ( ! is_wp_error( $img ) ) {
+
+                                                            $sizes_array =     array(
+                                                                // #1 - resizes to 1024x768 pixel, square-cropped image
+                                                                array ('width' => 1024, 'height' => 768, 'crop' => false),
+                                                                // #2 - resizes to 100px max width/height, non-cropped image
+                                                                array ('width' => 150, 'height' => 150, 'crop' => false),
+                                                                // #3 - resizes to 100 pixel max height, non-cropped image
+                                                                array ('width' => 330, 'height' => 220, 'crop' => false),
+                                                                // #3 - resizes to 624x468 pixel max width, non-cropped image
+                                                                array ('width' => 624, 'height' => 468, 'crop' => false)
+                                                            );
+                                                            $resize = $img->multi_resize( $sizes_array );
+                                                        }
 							if ($smack_fileCopy) {
 								$file ['guid'] = $fileurl;
 								$file ['post_title'] = $img_title;
