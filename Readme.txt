@@ -2,11 +2,11 @@
 Contributors: Smackcoders
 Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
-Requires at least: 3.4
-Tested up to: 3.5.1
+Requires at least: 3.4.0
+Tested up to: 3.5.0
 Stable tag: 3.1.0
 Version: 3.1.0
-Author: Smackcoders
+Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
 
