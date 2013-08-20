@@ -2,11 +2,11 @@
 Contributors: Smackcoders
 Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
-Requires at least: 3.4
-Tested up to: 3.5.1
-Stable tag: 3.1.0
-Version: 3.1.0
-Author: Smackcoders
+Requires at least: 3.4.0
+Tested up to: 3.6
+Stable tag: 3.2.0
+Version: 3.2.0
+Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
 
@@ -88,7 +88,10 @@ Or view our hoe to guide video guide in our [Youtube Channel](www.youtube.com/us
 
 == Changelog ==
 
-=v 3.1.0 = Much Improved Featured Image feature
+= 3.2.0 = WordPress 3.6 compatibility added, Much Improved UI.
+	-- Featured image issues fixed for WordPress-3.6.
+
+= 3.1.0 = Much Improved Featured Image feature
         -- Image url for featured image issues fixed
 		-- PHP 5.4 upgrade fix
 		
@@ -167,6 +170,9 @@ Or view our hoe to guide video guide in our [Youtube Channel](www.youtube.com/us
 
 
 == Upgrade Notice ==
+
+=v 3.2.0 = WordPress 3.6 compatibility added, Much Improved UI.
+		-- Featured image issues fixed for WordPress-3.6.
 
 =v 3.1.0 = Now Much Improved Featured Image and url handling
 

@@ -46,7 +46,7 @@ class SmackImpCE extends SmackWpHandler {
 	public $headers = array ();
 	
 	// @var boolean for post flag
-	public $postFlag = false;
+	public $postFlag = true;
 	
 	// @var int duplicate post count
 	public $dupPostCount = 0;
@@ -54,6 +54,9 @@ class SmackImpCE extends SmackWpHandler {
 	// @var int inserted post count
 	public $insPostCount = 0;
 	
+	// @var int updated post count 
+	public $updatedPostCount = 0;
+
 	// @var int no post author count
 	public $noPostAuthCount = 0;
 	
@@ -76,20 +79,22 @@ class SmackImpCE extends SmackWpHandler {
 		global $wpdb;
 		
 		if ($type == 'content') {
-			$contentLength = strlen ( $text );
-			$post_exist = $wpdb->get_results ( "select ID from " . $wpdb->posts . " where length(post_content) = \"{$contentLength}\"" );
-			if (count ( $post_exist ) > 0) {
-				$chkforeach = 0;
-				foreach ( $post_exist as $singlepost ) {
-					$postdata = $wpdb->get_results ( "select post_content from " . $wpdb->posts . " where id = \"{$singlepost->ID}\"" );
-					if (substr ( $postdata [0]->post_content, 0, 50 ) == substr ( $text, 0, 50 )) {
-						$this->dupPostCount ++;
-						return false;
-					}
+			$htmlDecode = html_entity_decode( $text );
+			$strippedText = strip_tags( $htmlDecode );
+			$contentLength = strlen ( $strippedText );
+		        $allPosts_count = $wpdb->get_results("SELECT COUNT(ID) as count FROM $wpdb->posts WHERE post_status IN('publish','future','draft','pending','private')");
+		        $allPosts_count = $allPosts_count[0]->count;
+		        $allPosts = $wpdb->get_results("SELECT ID,post_title,post_date,post_content FROM $wpdb->posts WHERE post_status IN('publish','future','draft','pending','private')");
+			foreach($allPosts as $allPost){
+				$htmlDecodePCont = html_entity_decode( $allPost->post_content );
+				$strippedTextPCont = strip_tags( $htmlDecodePCont );
+				similar_text($strippedTextPCont, $strippedText, $p);
+				if($p == 100){
+                                	$this->dupPostCount ++;
+                                        return false;
 				}
-			} else {
-				return true;
 			}
+			return true;
 		} else if ($type == 'title') {
 			$post_exist = $wpdb->get_results ( "select ID from " . $wpdb->posts . " where post_title = \"{$text}\" and post_type = \"{$gettype}\" and post_status in('publish','future','draft','pending','private')" );
 			if (count ( $post_exist ) == 0 && ($text != null || $text != ''))
@@ -98,6 +103,19 @@ class SmackImpCE extends SmackWpHandler {
 		$this->dupPostCount ++;
 		return false;
 	}
+
+        function getMatchedId($text, $gettype) {
+                global $wpdb;
+		$type = 'title';
+
+                $post_exist = $wpdb->get_results ( "select ID from " . $wpdb->posts . " where post_title = \"{$text}\" and post_type = \"{$gettype}\" and post_status in('publish','future','draft','pending','private')" );
+			return $post_exist;
+        }
+	function getCreatedRecords($csvname){
+		global $wpdb;
+		return $wpdb->get_results("select created_records from smack_dashboard_manager where csv_name = \"{$csvname}\"");
+	}
+
 	
 	/**
 	 * Get upload directory
@@ -121,7 +139,7 @@ class SmackImpCE extends SmackWpHandler {
 	/**
 	 * Remove CSV file
 	 */
-	function fileDelete($filepath, $filename) {
+	function fileDelete($filepath, $filename) { 
 		if (file_exists ( $filepath . $filename ) && $filename != "" && $filename != "n/a") {
 			unlink ( $filepath . $filename );
 			return TRUE;
@@ -189,6 +207,7 @@ class SmackImpCE extends SmackWpHandler {
 			if ($init == 0) {
 				$this->headers = $keys;
 			} else {
+				if(!(($keys[0] == null) && (count($keys) == 1)))
 				array_push ( $data_rows, $keys );
 			}
 			$init ++;
@@ -197,7 +216,12 @@ class SmackImpCE extends SmackWpHandler {
 		ini_set ( "auto_detect_line_endings", false );
 		return $data_rows;
 	}
-	
+
+	/**function to form data_rows**/
+	function getDataRows($filename,$delim){
+	$data_rows = $this->csv_file_data ( $this->getUploadDirectory () . "/" . $filename, $delim );
+	return $data_rows;
+	}
 	/**
 	 * function to map the csv file and process it
 	 *
@@ -307,6 +331,7 @@ class SmackImpCE extends SmackWpHandler {
                                                         else{
                                                         $img_title = $img_name = $img_name [0];
                                                         }
+							$attachmentName = $img_title.'.'.$type;
 							$dir = wp_upload_dir ();
                                                         $dirname = date('Y').'/'.date('m');
 							$full_path = $dir ['basedir'] . '/' . $dirname;
@@ -327,11 +352,11 @@ class SmackImpCE extends SmackWpHandler {
 
                                                             $sizes_array =     array(
                                                                 // #1 - resizes to 1024x768 pixel, square-cropped image
-                                                                array ('width' => 1024, 'height' => 768, 'crop' => false),
+                                                                array ('width' => 1024, 'height' => 768, 'crop' => true),
                                                                 // #2 - resizes to 100px max width/height, non-cropped image
-                                                                array ('width' => 150, 'height' => 150, 'crop' => false),
+                                                                array ('width' => 100, 'height' => 100, 'crop' => false),
                                                                 // #3 - resizes to 100 pixel max height, non-cropped image
-                                                                array ('width' => 330, 'height' => 220, 'crop' => false),
+                                                                array ('width' => 300, 'height' => 100, 'crop' => false),
                                                                 // #3 - resizes to 624x468 pixel max width, non-cropped image
                                                                 array ('width' => 624, 'height' => 468, 'crop' => false)
                                                             );
@@ -341,7 +366,7 @@ class SmackImpCE extends SmackWpHandler {
 								$file ['guid'] = $fileurl;
 								$file ['post_title'] = $img_title;
 								$file ['post_content'] = '';
-								$file ['post_status'] = 'inherit';
+								$file ['post_status'] = 'attachment';
 							} else {
 								$file = false;
 							}
@@ -475,19 +500,30 @@ class SmackImpCE extends SmackWpHandler {
 					}
 					// Add featured image
 					if (! empty ( $file )) {
-						$file_name = $dirname . '/' . $img_title . '.' . $type;
-						$attach_id = wp_insert_attachment ( $file, $file_name, $post_id );
-						require_once (ABSPATH . 'wp-admin/includes/image.php');
-						$attach_data = wp_generate_attachment_metadata ( $attach_id, $fileurl );
-						wp_update_attachment_metadata ( $attach_id, $attach_data );
-						set_post_thumbnail ( $post_id, $attach_id );
+                                                $wp_filetype = wp_check_filetype(basename($attachmentName), null );
+                                                $wp_upload_dir = wp_upload_dir();
+                                                $attachment = array(
+                                                                'guid' => $wp_upload_dir['url'] . '/' . basename( $attachmentName ),
+                                                                'post_mime_type' => $wp_filetype['type'],
+                                                                'post_title' => preg_replace('/\.[^.]+$/', '', basename($attachmentName)),
+                                                                'post_content' => '',
+                                                                'post_status' => 'inherit'
+                                                                );
+                                                $generate_attachment = $dirname . '/' . $attachmentName;
+                                                $uploadedImage = $wp_upload_dir['path']. '/' .$attachmentName;
+                                                $attach_id = wp_insert_attachment( $attachment, $generate_attachment, $post_id );
+                                                require_once(ABSPATH . 'wp-admin/includes/image.php');
+                                                $attach_data = wp_generate_attachment_metadata( $attach_id, $uploadedImage );
+                                                wp_update_attachment_metadata( $attach_id, $attach_data );
+                                                set_post_thumbnail ( $post_id, $attach_id );
 					}
 				}
 			}
 		}
 		
-		if (file_exists ( $this->getUploadDirectory () . $_POST ['filename'] )) {
-			$this->fileDelete ( $this->getUploadDirectory (), $_POST ['filename'] );
+		if (file_exists ( $this->getUploadDirectory () .'/'. $_POST ['filename'] )) {
+			$filePath = $this->getUploadDirectory ().'/';
+			$this->fileDelete ( $filePath, $_POST ['filename'] );
 		}
 	}
 }
