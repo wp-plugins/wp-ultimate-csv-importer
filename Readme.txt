@@ -90,6 +90,8 @@ Or view our hoe to guide video guide in our [Youtube Channel](www.youtube.com/us
 
 = 3.2.0 = WordPress 3.6 compatibility added, Much Improved UI.
 	-- Featured image issues fixed for WordPress-3.6.
+	-- Plugin deactivate bug fixed.
+	-- Custom Post issue fixed.
 
 = 3.1.0 = Much Improved Featured Image feature
         -- Image url for featured image issues fixed
@@ -173,6 +175,8 @@ Or view our hoe to guide video guide in our [Youtube Channel](www.youtube.com/us
 
 =v 3.2.0 = WordPress 3.6 compatibility added, Much Improved UI.
 		-- Featured image issues fixed for WordPress-3.6.
+        	-- Plugin deactivate bug fixed.
+	        -- Custom Post issue fixed.
 
 =v 3.1.0 = Now Much Improved Featured Image and url handling
 
