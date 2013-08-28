@@ -29,10 +29,7 @@ class IMPSettings
 
     public function chkCustomTypePost()
     {
-        if (in_array('custom-post-type-ui/custom-post-type-ui.php', $this->activePlugins))
             return true;
-        else
-            return false;
     }
 
     public function isPluginPresent($plugin)

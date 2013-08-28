@@ -54,7 +54,7 @@ function wp_ultimate_csv_importer_activate()
  */
 function wp_ultimate_csv_importer_deactivate()
 {
-    require_once 'plugin_deactivate.php';
+
 }
 
 /**
@@ -332,7 +332,7 @@ function upload_csv_file()
 
             </form>
             </div>
-            <div style="min-width: 45%;float:right;margin-right:10px;">
+            <div style="min-width: 45%;float:right;margin-right:9px;">
 		<div style="width:100%;">
 		<div style="float:left;"><h3>CSV Mapping Headers Explained</h3></div>
 		<div style="float:right;margin-top:15px;margin-right:25px;"><a href="http://www.smackcoders.com/blog/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html" target="_blank">Download Sample Files Here</a></div>
