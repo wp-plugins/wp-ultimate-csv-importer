@@ -1,8 +1,39 @@
 <?php
-/**
- * @author fenzik
- * Common class for Smackcoder's CSV Importer CE
- */
+/*********************************************************************************
+ * WordPress ultimate CSV Importer is a Tool for importing CSV for the Wordpress
+ * plugin developed by Smackcoder. Copyright (C) 2013 Smackcoders.
+ *
+ * WordPress ultimate CSV Importer is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Affero General Public License version 3 as
+ * published by the Free Software Foundation with the addition of the following
+ * permission added to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE
+ * COVERED WORK IN WHICH THE COPYRIGHT IS OWNED BY WordPress ultimate CSV Importer,
+ * WordPress ultimate CSV Importer DISCLAIMS THE WARRANTY OF NON INFRINGEMENT OF THIRD
+ * PARTY RIGHTS.
+ *
+ * WordPress ultimate CSV Importer is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License along with
+ * this program; if not, see http://www.gnu.org/licenses or write to the Free
+ * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA.
+ *
+ * You can contact Smackcoders at email address info@smackcoders.com.
+ *
+ * The interactive user interfaces in original and modified versions
+ * of this program must display Appropriate Legal Notices, as required under
+ * Section 5 of the GNU Affero General Public License version 3.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License version 3,
+ * these Appropriate Legal Notices must retain the display of the WordPress ultimate
+ * CSV Importer copyright notice. If the display of the logo is not reasonably feasible
+ * for technical reasons, the Appropriate Legal Notices must display the words
+ * "Copyright Smackcoders. 2013. All rights reserved".
+ ********************************************************************************/
+
 require_once ("SmackWpHandler.php");
 
 class SmackImpCE extends SmackWpHandler
@@ -72,11 +103,20 @@ class SmackImpCE extends SmackWpHandler
         $this->getKeyVals();
     }
 
+    /*
+     * Function to get the plugin row
+     * @$plugin_name as string
+     */
+    public static function plugin_row($plugin_name)
+    {
+        echo '</tr><tr class="plugin-update-tr"><td colspan="3" class="plugin-update"><div class="update-message"> Upgrade to Pro Version Now for more features and 3rd party plugins  (AIO, WP SEO YOAST, WooCommerce, WP e-Commerce, eShop, CCTM,ACF) support. <a href="http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html">Purchase pro version now!</a></div></td>';
+    }
+
     /**
      * Manage duplicates
      *
-     * @param
-     *            string type = (title|content), string content
+     * @param string type = (title|content), string content
+     * @return boolean
      */
     function duplicateChecks($type = 'title', $text, $gettype)
     {
@@ -86,9 +126,9 @@ class SmackImpCE extends SmackWpHandler
             $htmlDecode = html_entity_decode($text);
             $strippedText = strip_tags($htmlDecode);
             $contentLength = strlen($strippedText);
-            $allPosts_count = $wpdb->get_results("SELECT COUNT(ID) as count FROM $wpdb->posts WHERE post_status IN('publish','future','draft','pending','private')");
+            $allPosts_count = $wpdb->get_results("SELECT COUNT(ID) as count FROM $wpdb->posts WHERE post_type = \"{$gettype}\" and post_status IN('publish','future','draft','pending','private')");
             $allPosts_count = $allPosts_count[0]->count;
-            $allPosts = $wpdb->get_results("SELECT ID,post_title,post_date,post_content FROM $wpdb->posts WHERE post_status IN('publish','future','draft','pending','private')");
+            $allPosts = $wpdb->get_results("SELECT ID,post_title,post_date,post_content FROM $wpdb->posts WHERE post_type = \"{$gettype}\" and post_status IN('publish','future','draft','pending','private')");
             foreach ($allPosts as $allPost) {
                 $htmlDecodePCont = html_entity_decode($allPost->post_content);
                 $strippedTextPCont = strip_tags($htmlDecodePCont);
@@ -213,20 +253,30 @@ class SmackImpCE extends SmackWpHandler
         ini_set("auto_detect_line_endings", true);
 
         $data_rows = array();
-        $resource = fopen($file, 'r');
 
-        $init = 0;
-        while ($keys = fgetcsv($resource, '', $this->delim, '"')) {
-            if ($init == 0) {
-                $this->headers = $keys;
-            } else {
-                if (!(($keys[0] == null) && (count($keys) == 1)))
-                    array_push($data_rows, $keys);
+        # Check whether file is present in the given file location
+        $fileexists = file_exists($file);
+
+        if ($fileexists) {
+            $resource = fopen($file, 'r');
+
+            $init = 0;
+            while ($keys = fgetcsv($resource, '', $this->delim, '"')) {
+                if ($init == 0) {
+                    $this->headers = $keys;
+                } else {
+                    if (!(($keys[0] == null) && (count($keys) == 1)))
+                        array_push($data_rows, $keys);
+                }
+                $init++;
             }
-            $init++;
+            fclose($resource);
+            ini_set("auto_detect_line_endings", false);
+        } else {
+            #	require_once "class.rendercsv.php";
+            #	$impRen = new RenderCSVCE;
+            #	echo $impRen->showMessage('error', "File Not Exists in this location $file");
         }
-        fclose($resource);
-        ini_set("auto_detect_line_endings", false);
         return $data_rows;
     }
 
@@ -258,7 +308,6 @@ class SmackImpCE extends SmackWpHandler
         }
 
         foreach ($data_rows as $key => $value) {
-
             for ($i = 0; $i < count($value); $i++) {
                 if (array_key_exists('mapping' . $i, $ret_array)) {
                     if ($ret_array ['mapping' . $i] != 'add_custom' . $i) {
@@ -269,13 +318,13 @@ class SmackImpCE extends SmackWpHandler
                         } else {
                             $new_post[$ret_array['mapping' . $i]] = $value[$i];
                         }
-
                     } else {
                         $new_post [$ret_array ['textbox' . $i]] = $value [$i];
                         $custom_array [$ret_array ['textbox' . $i]] = $value [$i];
                     }
                 }
             }
+
             for ($inc = 0; $inc < count($value); $inc++) {
                 foreach ($this->keys as $k => $v) {
                     if (array_key_exists($v, $new_post)) {
@@ -294,17 +343,27 @@ class SmackImpCE extends SmackWpHandler
                         }
                     }
                 }
+
+                $taxo_check = 0;
+                if (!isset($smack_taxo[$ckey])) {
+                    $smack_taxo [$ckey] = null;
+                    $taxo_check = 1;
+                }
                 if ($ckey != 'post_category' && $ckey != 'post_tag' && $ckey != 'featured_image' && $ckey != $smack_taxo [$ckey]) {
+                    if ($taxo_check == 1) {
+                        unset($smack_taxo[$ckey]);
+                        $taxo_check = 0;
+                    }
                     if (array_key_exists($ckey, $custom_array)) {
                         $darray [$ckey] = $new_post [$ckey];
                     } else {
                         if (array_key_exists($ckey, $smack_taxo)) {
+                            $data_array[$ckey] = null;
                         } else {
-                            $data_array [$ckey] = $new_post [$ckey];
+                            $data_array[$ckey] = $new_post [$ckey];
                         }
                     }
                 } else {
-
                     switch ($ckey) {
                         case 'post_tag' :
                             $tags [$ckey] = $new_post [$ckey];
@@ -324,6 +383,7 @@ class SmackImpCE extends SmackWpHandler
                             $file_type = explode('.', $filetype [$ckey]);
                             $count = count($file_type);
                             $type = $file_type [$count - 1];
+
                             if ($type == 'png') {
                                 $file ['post_mime_type'] = 'image/png';
                             } else if ($type == 'jpg' || $type == 'jpeg') {
@@ -341,18 +401,17 @@ class SmackImpCE extends SmackWpHandler
                                     else
                                         $img_title .= '.' . $img_name[$r];
                                 }
-                                $img_name = $img_title;
                             } else {
                                 $img_title = $img_name = $img_name [0];
                             }
-                            $attachmentName = $img_title . '.' . $type;
+                            $attachmentName = urldecode($img_title) . '.' . $type;
                             $dir = wp_upload_dir();
                             $dirname = date('Y') . '/' . date('m');
                             $full_path = $dir ['basedir'] . '/' . $dirname;
                             $baseurl = $dir ['baseurl'] . '/' . $dirname;
                             $filename = explode('/', $file_url);
                             $file_split = count($filename);
-                            $filepath = $full_path . '/' . $plain_filename;
+                            $filepath = $full_path . '/' . urldecode($plain_filename);
                             $fileurl = $baseurl . '/' . $filename [$file_split - 1];
                             if (is_dir($full_path)) {
                                 $smack_fileCopy = @copy($file_url, $filepath);
@@ -394,12 +453,17 @@ class SmackImpCE extends SmackWpHandler
                 $this->postFlag = $this->duplicateChecks('title', $data_array ['post_title'], $data_array ['post_type']);
 
             if ($this->conDupCheck && $this->postFlag)
-                $this->postFlag = $this->duplicateChecks('content', $data_array ['post_content'], '');
+                $this->postFlag = $this->duplicateChecks('content', $data_array ['post_content'], $data_array ['post_type']);
+
 
             if ($this->postFlag) {
                 unset ($sticky);
+                if (empty($data_array['post_status']))
+                    $data_array['post_status'] = null;
+
                 if ($_POST['importallwithps'] != 0)
                     $data_array['post_status'] = $_POST['importallwithps'];
+
                 switch ($data_array ['post_status']) {
                     case 1 :
                         $data_array['post_status'] = 'publish';
@@ -451,6 +515,7 @@ class SmackImpCE extends SmackWpHandler
                 $postuserid = $data_array ['post_author'];
                 $checkpostuserid = intval($data_array ['post_author']);
                 $postAuthorLen = strlen($checkpostuserid);
+                $postauthor = array();
 
                 if ($authorLen == $postAuthorLen) {
                     $postauthor = $wpdb->get_results("select ID from $wpdb->users where ID = \"{$postuserid}\"");
@@ -458,7 +523,7 @@ class SmackImpCE extends SmackWpHandler
                     $postauthor = $wpdb->get_results("select ID from $wpdb->users where user_login = \"{$postuserid}\"");
                 }
 
-                if (!$postauthor [0]->ID) {
+                if (empty($postauthor) || !$postauthor[0]->ID) {
                     $data_array ['post_author'] = 1;
                     $this->noPostAuthCount++;
                 } else {
@@ -469,13 +534,14 @@ class SmackImpCE extends SmackWpHandler
                 if (!$data_array ['post_date'])
                     $data_array ['post_date'] = date('Y-m-d H:i:s');
                 $data_array ['post_date'] = date('Y-m-d H:i:s', strtotime($data_array ['post_date']));
+
                 if ($data_array)
                     $post_id = wp_insert_post($data_array);
                 unset($data_array);
                 unset($postauthor);
                 if ($post_id) {
                     $this->insPostCount++;
-                    if ($sticky)
+                    if (isset($sticky) && $sticky)
                         stick_post($post_id);
 
                     if (!empty ($custom_array)) {
@@ -487,8 +553,10 @@ class SmackImpCE extends SmackWpHandler
                     // Create custom taxonomy to post
                     if (!empty ($smack_taxo)) {
                         foreach ($smack_taxo as $taxo_key => $taxo_value) {
-                            $split_line = explode('|', $taxo_value);
-                            wp_set_object_terms($post_id, $split_line, $taxo_key);
+                            if (!empty($taxo_value)) {
+                                $split_line = explode('|', $taxo_value);
+                                wp_set_object_terms($post_id, $split_line, $taxo_key);
+                            }
                         }
                     }
 

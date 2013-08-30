@@ -1,11 +1,11 @@
 === WP Ultimate CSV Importer Plugin ===
-Contributors: Smackcoders
+Contributors: smackcoders
 Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4.0
 Tested up to: 3.6
-Stable tag: 3.2.0
-Version: 3.2.0
+Stable tag: 3.2.1
+Version: 3.2.1
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
@@ -15,12 +15,11 @@ A plugin that turns your offline data as wordpress post, page or custom post dat
 
 == Description ==
 
-       Version 3.1.0 is out now. So many major improvement changes, 
-	   more flexible import options and added powerful features.    
+Version 3.2.1 is out now with performance improvements and added powerful features.    
 
 WP Ultimate CSV Importer Plugin helps you to import any CSV file as post, page or even as custom post type. Convert your offline database maintained for years into your valuable website content. Also do periodical content changes, maintenance, content update, prices, offers, coupons and inventory etc.
 
-This simple but ultimate plugin as you can import everything needed to create as any WP post types from admin as simple as CSV file. Just in few clicks to map your CSV data set to match the Wordpress fields to import. That’s all, now your imports are turned as Wordpress site content in matter of seconds. No more pain of creating post content one by one of converting your offline data. You can import all the essential data as Wordpress post and skip unwanted things. Or you can import as many as custom fields without missing even a single data. Provided you should have a theme that supports custom fields. So you can now make use of your offline data, inventory, price catalog, information data, database and any other excel data sheet for online content distribution to your valuable visitor or customers. 
+This simple but ultimate plugin as you can import everything needed to create as any WP post types from admin as simple as CSV file. Just in few clicks to map your CSV data set to match the Wordpress fields to import. Thatï¿½s all, now your imports are turned as Wordpress site content in matter of seconds. No more pain of creating post content one by one of converting your offline data. You can import all the essential data as Wordpress post and skip unwanted things. Or you can import as many as custom fields without missing even a single data. Provided you should have a theme that supports custom fields. So you can now make use of your offline data, inventory, price catalog, information data, database and any other excel data sheet for online content distribution to your valuable visitor or customers. 
 
 1.	Admin can import the data's from any CSV file. 
 2.	Can import as post, page or custom post. 
@@ -71,7 +70,6 @@ Please create issues only in our tracker http://forge.smackcoders.com/projects/w
 For guides and tutorials, visit http://forge.smackcoders.com/projects/wp-ultimate-csv-importer-free . 
 
 
-
 == Installation ==
 
 
@@ -88,10 +86,15 @@ Or view our hoe to guide video guide in our [Youtube Channel](www.youtube.com/us
 
 == Changelog ==
 
+= 3.2.1 = Performance improvements on SQL and CSV parsing
+        -- [resolved] require_once(plugin_deactivate.php): failed to open stream
+	-- [resolved] Links in the cells makes problems with the "quote"
+	-- [resolved] Loading content from more than one colunm
+	-- [resolved] Custom Post Plugin Not Found
+
 = 3.2.0 = WordPress 3.6 compatibility added, Much Improved UI.
 	-- Featured image issues fixed for WordPress-3.6.
-	-- Plugin deactivate bug fixed.
-	-- Custom Post issue fixed.
+	-- User interface improvements
 
 = 3.1.0 = Much Improved Featured Image feature
         -- Image url for featured image issues fixed

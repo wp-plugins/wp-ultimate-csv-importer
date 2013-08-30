@@ -1,14 +1,14 @@
 <?php
-/*
-*Plugin Name: WP Ultimate CSV Importer
-*Plugin URI: http://www.smackcoders.com/blog/how-to-guide-for-free-wordpress-ultimate-csv-importer-plugin.html
-*Description: A plugin that helps to import the data's from a CSV file.
-*Version: 3.2.0
-*Author: smackcoders.com
-*Author URI: http://www.smackcoders.com
-*
-* Copyright (C) 2013 Smackcoders (www.smackcoders.com)
-*
+/**
+ *Plugin Name: WP Ultimate CSV Importer
+ *Plugin URI: http://www.smackcoders.com/blog/how-to-guide-for-free-wordpress-ultimate-csv-importer-plugin.html
+ *Description: A plugin that helps to import the data's from a CSV file.
+ *Version: 3.2.1
+ *Author: smackcoders.com
+ *Author URI: http://www.smackcoders.com
+ *
+ * Copyright (C) 2013 Smackcoders (www.smackcoders.com)
+ *
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
 published by the Free Software Foundation.
@@ -21,12 +21,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*
-* @link http://www.smackcoders.com/blog/category/free-wordpress-plugins
-***********************************************************************************************
-*/
-
-//error_reporting(0);
+ *
+ * @link http://www.smackcoders.com/blog/category/free-wordpress-plugins
+ ***********************************************************************************************
+ */
 
 ini_set('max_execution_time', 600);
 ini_set('memory_limit', '128M');
@@ -70,20 +68,25 @@ function wp_ultimate_csv_importer()
  */
 function LoadWpScript()
 {
-    if ($_REQUEST['page'] == 'upload_csv_file') {
-        wp_register_script('wp_ultimate_scripts', WP_CONTENT_URL . "/plugins/wp-ultimate-csv-importer/wp_ultimate_csv_importer.js", array("jquery"));
+    if (isset($_REQUEST['page'])) {
+        if ($_REQUEST['page'] == 'upload_csv_file') {
+            wp_register_script('wp_ultimate_scripts', WP_CONTENT_URL . "/plugins/wp-ultimate-csv-importer/wp_ultimate_csv_importer.js", array("jquery"));
+        }
     }
+
+    if (isset($_REQUEST['page'])) {
+        if ($_REQUEST['page'] == 'upload_csv_file') {
+            wp_enqueue_style('importer_styles', WP_CONTENT_URL . '/plugins/wp-ultimate-csv-importer/css/custom-style.css');
+        }
+    }
+
     wp_enqueue_script('wp_ultimate_scripts');
 
 }
 
 add_action('admin_enqueue_scripts', 'LoadWpScript');
-
-if ($_REQUEST['page'] == 'upload_csv_file') {
-    wp_enqueue_style('importer_styles', WP_CONTENT_URL . '/plugins/wp-ultimate-csv-importer/css/custom-style.css');
-}
-
 add_action("admin_menu", "wp_ultimate_csv_importer");
+add_action('after_plugin_row_wp-ultimate-csv-importer/wp_ultimate_csv_importer.php', array('SmackImpCE', 'plugin_row'));
 
 register_activation_hook(__FILE__, 'wp_ultimate_csv_importer_activate');
 register_deactivation_hook(__FILE__, 'wp_ultimate_csv_importer_deactivate');
@@ -93,11 +96,11 @@ register_deactivation_hook(__FILE__, 'wp_ultimate_csv_importer_deactivate');
  */
 function upload_csv_file()
 {
-    global $impCE, $impRen;
+    global $impCE, $impRen, $pluginActive, $custo_taxo;
     global $custom_array;
     global $wpdb;
 
-    if (!$_REQUEST['action']) {
+    if (!isset($_REQUEST['action']) || !$_REQUEST['action']) {
         ?>
         <script>
             window.location.href = "<?php echo WP_PLUGIN_URL;?>/../../wp-admin/admin.php?page=upload_csv_file&action=post";
@@ -105,7 +108,7 @@ function upload_csv_file()
     <?php
     }
     $importdir = $impCE->getUploadDirectory();
-    if (!$_REQUEST['action'] || $_POST['post_csv'])
+    if (!$_REQUEST['action'] || (isset($_POST['post_csv']) && $_POST['post_csv']))
         echo "<input type = 'hidden' value ='dashboard' id='requestaction'>";
     else
         echo "<input type='hidden' value='" . $_REQUEST['action'] . "' id ='requestaction'>";
@@ -141,10 +144,13 @@ function upload_csv_file()
             <form class="add:the-list: validate" name="secondform" method="post" onsubmit="return import_csv();"
                   class="secondform">
                 <div style="float: left; min-width: 45%">
-		<div style="float: left; margin-top: 11px; margin-right: 5px;"><img src = "<?php echo WP_CONTENT_URL; ?>/plugins/wp-ultimate-csv-importer/images/Importicon_24.png"></div>
-		    <div style="float:left;">
-                    <h3>Import Data Configuration</h3>
-		    </div></br>
+                    <div style="float: left; margin-top: 11px; margin-right: 5px;"><img
+                            src="<?php echo WP_CONTENT_URL; ?>/plugins/wp-ultimate-csv-importer/images/Importicon_24.png">
+                    </div>
+                    <div style="float:left;">
+                        <h3>Import Data Configuration</h3>
+                    </div>
+                    </br>
                     <?php $cnt = count($impCE->defCols) + 2;
                     $cnt1 = count($impCE->headers); ?>
                     <input type="hidden" id="h1" name="h1" value="<?php echo $cnt; ?>"/>
@@ -333,11 +339,16 @@ function upload_csv_file()
             </form>
             </div>
             <div style="min-width: 45%;float:right;margin-right:9px;">
-		<div style="width:100%;">
-		<div style="float:left;"><h3>CSV Mapping Headers Explained</h3></div>
-		<div style="float:right;margin-top:15px;margin-right:25px;"><a href="http://www.smackcoders.com/blog/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html" target="_blank">Download Sample Files Here</a></div>
-		</div>
-		<a href="<?php echo WP_CONTENT_URL; ?>/plugins/wp-ultimate-csv-importer/images/HeadersExplained.jpeg" target="_blank" title="Headers Explained"><img src="<?php echo WP_CONTENT_URL; ?>/plugins/wp-ultimate-csv-importer/images/HeadersExplained.jpeg" width=600 style='border:1px solid;padding:2px;' /></a>
+                <div style="width:100%;">
+                    <div style="float:left;"><h3>CSV Mapping Headers Explained</h3></div>
+                    <div style="float:right;margin-top:15px;margin-right:25px;"><a
+                            href="http://www.smackcoders.com/blog/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html"
+                            target="_blank">Download Sample Files Here</a></div>
+                </div>
+                <a href="<?php echo WP_CONTENT_URL; ?>/plugins/wp-ultimate-csv-importer/images/HeadersExplained.jpeg"
+                   target="_blank" title="Headers Explained"><img
+                        src="<?php echo WP_CONTENT_URL; ?>/plugins/wp-ultimate-csv-importer/images/HeadersExplained.jpeg"
+                        width=600 style='border:1px solid;padding:2px;'/></a>
             </div>
         <?php
         } else {
@@ -371,7 +382,7 @@ function upload_csv_file()
                 <?php
                 echo $impRen->setDashboardAction();
                 $messageString = $impCE->insPostCount . " records are successfully Imported.";
-                if ($_POST['titleduplicatecheck'] == 1 || $_POST['contentduplicatecheck'] == 1)
+                if ((isset($_POST['titleduplicatecheck']) && $_POST['titleduplicatecheck'] == 1) || (isset($_POST['contentduplicatecheck']) && $_POST['contentduplicatecheck'] == 1))
                     $messageString .= $impCE->dupPostCount . " duplicate records found.";
                 if (($impCE->noPostAuthCount != 0) && (in_array('post_author', $_POST)))
                     $messageString .= '<br>' . $impCE->noPostAuthCount . " posts with no valid UserID/Name are assigned admin as author.";
