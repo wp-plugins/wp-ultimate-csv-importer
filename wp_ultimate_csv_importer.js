@@ -76,39 +76,34 @@ function importAllPostStatus(selectedId, headerCount) {
     }
 }
 
-function loadSelectedPost(selectedCateg, contenturl) {
-    jQuery.ajax({
-        url: contenturl + '/plugins/wp-ultimate-csv-importer/commentspost.php?categid=' + selectedCateg,
-        type: 'post',
-        data: selectedCateg,
-        success: function (response) {
-            jQuery("#showPosts").html(response);
-        }
-    });
-}
-function showRadioSett(id) {
-    var inputs = document.getElementsByClassName(id);
-    if (document.getElementById(id).checked) {
-        for (var i = 0; i < inputs.length; i++) {
-            inputs[i].disabled = false;
-        }
-    }
-    else {
-        for (var i = 0; i < inputs.length; i++) {
-            inputs[i].disabled = true;
-        }
-    }
-}
 // Function for add customfield
 
-function addcustomfield(myval, selected_id) {
+function addcustomfield(myval, selected_id) { 
     var a = document.getElementById('h1').value;
     var importer = document.getElementById('selectedImporter').value;
     var aa = document.getElementById('h2').value;
-    var selected_value;
     if (importer == 'custompost' || importer == 'post' || importer == 'page') {
+       	var selected_dropdown = document.getElementById('mapping' + selected_id);
+	var selected_value = selected_dropdown.value; 
+	var prevoptionindex = document.getElementById('prevoptionindex').value;
+	var prevoptionvalue = document.getElementById('prevoptionvalue').value;
+	var mappedID = 'mapping' + selected_id;
+	var add_prev_option = false;
+	if(mappedID == prevoptionindex){
+		add_prev_option = true;	
+	}
         for (var i = 0; i < aa; i++) {
             var b = document.getElementById('mapping' + i).value;
+	    var id = 'mapping' + i;
+	    if(add_prev_option){
+		if(i != selected_id){	
+			jQuery('#'+id).append( new Option(prevoptionvalue,prevoptionvalue) );
+		}
+	    }
+	    if(i != selected_id){
+        	var x=document.getElementById('mapping' + i);
+		jQuery('#'+id+' option[value="'+selected_value+'"]').remove();
+	    }
             if (b == 'add_custom' + i) {
                 document.getElementById('textbox' + i).style.display = "";
                 document.getElementById('customspan' + i).style.display = "";
@@ -118,8 +113,13 @@ function addcustomfield(myval, selected_id) {
                 document.getElementById('customspan' + i).style.display = "none";
             }
         }
+	document.getElementById('prevoptionindex').value = 'mapping' + selected_id;
+	var customField = selected_value.indexOf("add_custom");
+	if(selected_value != '-- Select --' && customField != 0){
+		document.getElementById('prevoptionvalue').value = selected_value;
+	}
     }
-    var header_count = document.getElementById('h2').value;
+/*    var header_count = document.getElementById('h2').value;
     for (var j = 0; j < header_count; j++) {
         var selected_value = document.getElementById('mapping' + j);
         var value1 = selected_value.options[selected_value.selectedIndex].value;
@@ -129,24 +129,16 @@ function addcustomfield(myval, selected_id) {
                 selected_dropdown.selectedIndex = '-- Select --';
                 showMapMessages('error', myval + ' is already selected!');
             }
+	    //var x=document.getElementById('mapping' + j);
+	    //x.remove(x.selectedIndex);
         }
-    }
+    }*/
 }
 
 // Function for check file exist
 
 function file_exist() {
     var requestaction = document.getElementById('requestaction').value;
-    if (requestaction == 'post' || requestaction == 'custompost' || requestaction == 'page') {
-        if (document.getElementById('filenameupdate').checked) {
-            if ((!document.getElementById('updatewithpostid').checked) && (!document.getElementById('updatewithposttitle').checked)) {
-                showMessages('error', 'Select Update Based On.');
-                return false;
-            }
-
-        }
-    }
-
     if (document.getElementById('csv_import').value == '') {
         showMessages('error', "Please attach your CSV.");
         return false;
@@ -225,42 +217,6 @@ function import_csv() {
 }
 
 // Select the Mapper for Post/Page
-function selectType(id, adminurl) {
-    var headercount = document.getElementById('h2').value;
-    var getdropdownvalue = document.getElementById(id);
-    var selectedvalue = getdropdownvalue.options[getdropdownvalue.selectedIndex].text;
-    for (var i = 0; i < headercount; i++) {
-        var x = document.getElementById("mapping" + i);
-        var myOpts = x.options;
-        var postCatePresent = false;
-        var postTagPresent = false;
-        if (selectedvalue == 'post') {
-            for (var j = 0; j < myOpts.length; j++) {
-                if (myOpts[j].value == 'post_category')
-                    postCatePresent = true;
-                if (myOpts[j].value == 'post_tag')
-                    postTagPresent = true;
-            }
-            if (!postCatePresent) {
-                var option = document.createElement("option");
-                option.value = "post_category";
-                option.text = "post_category";
-                x.add(option);
-            }
-            if (!postTagPresent) {
-                var option1 = document.createElement("option");
-                option1.value = 'post_tag';
-                option1.text = 'post_tag';
-                x.add(option1);
-            }
-        }
-        else {
-            jQuery("#mapping" + i + " option[value='post_category']").remove();
-            jQuery("#mapping" + i + " option[value='post_tag']").remove();
-        }
-    }
-}
-
 function slideonlyone(thechosenone, content_url) {
     jQuery('.newboxes2').each(function (index) {
         if (jQuery(this).attr("id") == thechosenone) {
@@ -291,3 +247,30 @@ function hideSuccessMessage() {
     document.getElementById('upgradetopro').style.display = "none";
 }
 
+function clearmapping(){
+	var total_mfields = document.getElementById('h2').value; 
+	var mfields_arr = document.getElementById('mapping_fields_array').value;
+	var n=mfields_arr.split(",");
+	var options = '<option id="select">-- Select --</option>';
+	for(var i=0;i<n.length;i++){
+		options +="<option value='"+n[i]+"'>"+n[i]+"</option>";
+	}
+	for(var j=0;j<total_mfields;j++){
+		document.getElementById('mapping'+j).innerHTML = options;
+		document.getElementById('mapping'+j).innerHTML += "<option value='add_custom"+j+"'>Add Custom Field</option>";
+		document.getElementById('textbox'+j).style.display = 'none';
+		document.getElementById('customspan'+j).style.display = 'none';
+	}	
+}
+
+// Enable/Disable WP-e-Commerce Custom Fields
+function enablewpcustomfield(val){
+        if(val == 'wpcustomfields'){
+                document.getElementById('wpcustomfieldstr').style.display = '';
+        }
+        else{
+                document.getElementById('wpcustomfields').checked = false;
+                document.getElementById('wpcustomfieldstr').style.display = 'none';
+        }
+	savePluginSettings();
+}

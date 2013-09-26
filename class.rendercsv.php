@@ -58,7 +58,7 @@ class RenderCSVCE
      */
     function renderSettings()
     {
-        $selected_var = array('disable', 'enable', 'yoastseo', 'aioseo', 'nonerseooption', 'cctm', 'custompostuitype', 'wpcommerce', 'eshop', 'users', 'automapping', 'utfsupport', 'categories', 'customtaxonomy', 'comments', 'ecommerce');
+        $selected_var = array('disable', 'enable', 'yoastseo', 'aioseo', 'nonerseooption', 'cctm', 'custompostuitype', 'wpcommerce', 'eshop', 'users', 'automapping', 'utfsupport', 'categories', 'customtaxonomy', 'comments', 'ecommerce', 'woocommerce', 'acf');
         foreach ($selected_var as $single_selected_var) {
             $$single_selected_var = "";
         }
@@ -73,17 +73,23 @@ class RenderCSVCE
         $cptutd = $this->getPluginState('custom-post-type-ui/custom-post-type-ui.php');
         $eshoptd = $this->getPluginState('eshop/eshop.php');
         $wpcomtd = $this->getPluginState('wp-e-commerce/wp-shopping-cart.php');
+	$woocomtd = $this->getPluginState('woocommerce/woocommerce.php');
         $aioseotd = $this->getPluginState('all-in-one-seo-pack/all_in_one_seo_pack.php');
         $yoasttd = $this->getPluginState('wordpress-seo/wp-seo.php');
         $cateicontd = $this->getPluginState('category-icons/category_icons.php');
+        $wecftd = $this->getPluginState('wp-e-commerce-custom-fields/custom-fields.php');
+        $acftd = $this->getPluginState('advanced-custom-fields/acf.php');
 
         $cctmtdi = $this->getPluginStateImg('custom-content-type-manager/index.php');
         $cptutdi = $this->getPluginStateImg('custom-post-type-ui/custom-post-type-ui.php');
         $eshoptdi = $this->getPluginStateImg('eshop/eshop.php');
         $wpcomtdi = $this->getPluginStateImg('wp-e-commerce/wp-shopping-cart.php');
+	$woocomtdi = $this->getPluginStateImg('woocommerce/woocommerce.php');
         $aioseotdi = $this->getPluginStateImg('all-in-one-seo-pack/all_in_one_seo_pack.php');
         $yoasttdi = $this->getPluginStateImg('wordpress-seo/wp-seo.php');
         $cateicontdi = $this->getPluginStateImg('category-icons/category_icons.php');
+        $cateicontdi = $this->getPluginStateImg('category-icons/category_icons.php');
+        $acftdi = $this->getPluginStateImg('advanced-custom-fields/acf.php');
 
         if (!$ecommerce)
             $ecommercedisabled = 'disabled';
@@ -117,11 +123,18 @@ class RenderCSVCE
         $setString .= "<tr><td><div id='thirdPartyBox' class = 'switchercontent newboxes2'><table>";
         $setString .= "<tr><td><b>Ecommerce</b></td></tr>";
         $setString .= "<tr><td><label class=$nonerecommerce><input type = 'radio' name ='recommerce' value='nonerecommerce' onclick='savePluginSettings()' " . $nonerecommerce . " class='ecommerce'>" . $impCESett->t('NONE') . "</label></td>";
-        $setString .= "<td><label class=\"$eshoptd $eshop\"><input type='radio' name='recommerce' value='eshop' onclick='savePluginSettings()' " . $eshop . "  " . " class='ecommerce'>Eshop</label></td><td><label class=\"$wpcomtd $wpcommerce\"><input type='radio' name='recommerce' value='wpcommerce' onclick='savePluginSettings()' " . $wpcommerce . "  class = 'ecommerce'>WP e-Commerce</label></td></tr>";
+        $setString .= "<td><label class=\"$eshoptd $eshop\"><input type='radio' name='recommerce' value='eshop' onclick='enablewpcustomfield(\"none\")' " . $eshop . "  " . " class='ecommerce'>Eshop</label></td><td><label class=\"$wpcomtd $wpcommerce\"><input type='radio' name='recommerce' value='wpcommerce' onclick='enablewpcustomfield(\"wpcustomfields\")' " . $wpcommerce . "  class = 'ecommerce'>WP e-Commerce</label></td><td><label class=\"$woocomtd $woocommerce\"><input type='radio' name='recommerce' value='woocommerce' ".$woocommerce."  class = 'woocommerce' onclick='enablewpcustomfield(\"none\")'>WooCommerce</label></td></tr>";
+	$chkwecfstate = get_option('wpcsvprosettings');
+                if($chkwecfstate['recommerce'] == 'wpcommerce'){
+                        $setString .= "<tr id='wpcustomfieldstr'><td></td><td></td><td><input type='checkbox' name='wpcustomfields' id='wpcustomfields' onclick='savePluginSettings()' checked />WP e-Commerce Custom Fields</td></tr>";
+                }else{
+                        $setString .= "<tr id='wpcustomfieldstr' style='display:none;'><td></td><td></td><td><input type='checkbox' name='wpcustomfields' id='wpcustomfields' onclick='savePluginSettings()' />WP e-Commerce Custom Fields</td></tr>";
+                }
         $setString .= "<tr><td><b>" . $impCESett->t('CUSTOMPOST') . "</b></td></tr>";
         $setString .= "<tr><td><label class=$nonercustompost><input type = 'radio' name ='rcustompost' value='nonercustompost' onclick='savePluginSettings()' " . $nonercustompost . " class='ecommerce'>" . $impCESett->t('NONE') . "</label></td>";
         $setString .= "<td><label class=\"$cptutd $custompostuitype\"><input type ='radio' name = 'rcustompost' value='custompostuitype' onclick='savePluginSettings()' " . $custompostuitype . ">" . $impCESett->t('CUSTOMPOSTTYPE') . "</label></td>";
-        $setString .= "<td><label class=\"$cctmtd $cctm\"><input type ='radio' name = 'rcustompost' value='cctm' onclick='savePluginSettings()' " . $cctm . ">" . $impCESett->t('CCTM') . "</label>" . "</td></tr>";
+        $setString .= "<td><label class=\"$cctmtd $cctm\"><input type ='radio' name = 'rcustompost' value='cctm' onclick='savePluginSettings()' " . $cctm . ">" . $impCESett->t('CCTM') . "</label></td>";
+	$setString .= "<td><label class=\"$acftd $acf\"><input type ='checkbox' name = 'rcustomfield' value='acf' ".$acf.">".$impCESett->t('ACF')."</label>"."</td></tr>";
         $setString .= "<tr><td><b>" . $impCESett->t('SEO_OPTIONS') . "</b></td></tr>";
         $setString .= "<tr><td><label class=$nonerseooption><input type = 'radio' name ='rseooption' value='nonerseooption' onclick='savePluginSettings()' " . $nonerseooption . " class='ecommerce'>" . $impCESett->t('NONE') . "</label></td>";
         $setString .= "<td><label class=\"$aioseotd $aioseo\"><input type ='radio' name = 'rseooption' value='aioseo' onclick='savePluginSettings()' " . $aioseo . ">" . $impCESett->t('ALLINONESEO') . "</label></td>";

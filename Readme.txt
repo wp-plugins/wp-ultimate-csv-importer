@@ -4,8 +4,8 @@ Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4.0
 Tested up to: 3.6
-Stable tag: 3.2.1
-Version: 3.2.1
+Stable tag: 3.2.2
+Version: 3.2.2
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
@@ -15,7 +15,7 @@ A plugin that turns your offline data as wordpress post, page or custom post dat
 
 == Description ==
 
-Version 3.2.1 is out now with performance improvements and added powerful features.    
+Version 3.2.2 is out now with bug fix and UI improvements.
 
 WP Ultimate CSV Importer Plugin helps you to import any CSV file as post, page or even as custom post type. Convert your offline database maintained for years into your valuable website content. Also do periodical content changes, maintenance, content update, prices, offers, coupons and inventory etc.
 
@@ -86,11 +86,16 @@ Or view our hoe to guide video guide in our [Youtube Channel](www.youtube.com/us
 
 == Changelog ==
 
+= 3.2.2 = WordPress 3.6.1 compatibility added.
+	-- Post slug issue fixed and tested for 3.6 and 3.6.1
+	-- Help content added
+	-- Mapping UI improved with on select dynamic update feature
+
 = 3.2.1 = Performance improvements on SQL and CSV parsing
-        -- [resolved] require_once(plugin_deactivate.php): failed to open stream
-	-- [resolved] Links in the cells makes problems with the "quote"
-	-- [resolved] Loading content from more than one colunm
-	-- [resolved] Custom Post Plugin Not Found
+    -- Plugin deactivation issue fixed and updated the code.
+	-- Links in the cells makes problems with the "quote"
+	-- Loading content from more than one colunm
+	-- Custom Post type issues fixed
 
 = 3.2.0 = WordPress 3.6 compatibility added, Much Improved UI.
 	-- Featured image issues fixed for WordPress-3.6.
@@ -176,10 +181,11 @@ Or view our hoe to guide video guide in our [Youtube Channel](www.youtube.com/us
 
 == Upgrade Notice ==
 
-=v 3.2.0 = WordPress 3.6 compatibility added, Much Improved UI.
-		-- Featured image issues fixed for WordPress-3.6.
-        	-- Plugin deactivate bug fixed.
-	        -- Custom Post issue fixed.
+=v 3.2.2 = WordPress 3.6.1 compatibile, bug fix and UI improvements
+
+=v 3.2.1 = Performance improvements on SQL and CSV parsing
+
+=v 3.2.0 = Now compatible with 3.6 and improved featured image
 
 =v 3.1.0 = Now Much Improved Featured Image and url handling
 

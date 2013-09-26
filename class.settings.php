@@ -44,29 +44,6 @@ class IMPSettings
         $this->activePlugins = get_option('active_plugins');
     }
 
-    public function chkCustomPostPlugin()
-    {
-        $customPostType = $this->chkCustomTypePost();
-        $cctm = $this->chkCCTM();
-        if (($cctm) || ($customPostType))
-            return true;
-        else
-            return false;
-    }
-
-    public function chkCCTM()
-    {
-        if (in_array('custom-content-type-manager/index.php', $this->activePlugins))
-            return true;
-        else
-            return false;
-    }
-
-    public function chkCustomTypePost()
-    {
-        return true;
-    }
-
     public function isPluginPresent($plugin)
     {
         $plugins = get_plugins();

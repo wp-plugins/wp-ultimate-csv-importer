@@ -87,9 +87,6 @@ class SmackImpCE extends SmackWpHandler
     // @var int inserted post count
     public $insPostCount = 0;
 
-    // @var int updated post count
-    public $updatedPostCount = 0;
-
     // @var int no post author count
     public $noPostAuthCount = 0;
 
@@ -147,22 +144,6 @@ class SmackImpCE extends SmackWpHandler
         $this->dupPostCount++;
         return false;
     }
-
-    function getMatchedId($text, $gettype)
-    {
-        global $wpdb;
-        $type = 'title';
-
-        $post_exist = $wpdb->get_results("select ID from " . $wpdb->posts . " where post_title = \"{$text}\" and post_type = \"{$gettype}\" and post_status in('publish','future','draft','pending','private')");
-        return $post_exist;
-    }
-
-    function getCreatedRecords($csvname)
-    {
-        global $wpdb;
-        return $wpdb->get_results("select created_records from smack_dashboard_manager where csv_name = \"{$csvname}\"");
-    }
-
 
     /**
      * Get upload directory
@@ -277,13 +258,6 @@ class SmackImpCE extends SmackWpHandler
             #	$impRen = new RenderCSVCE;
             #	echo $impRen->showMessage('error', "File Not Exists in this location $file");
         }
-        return $data_rows;
-    }
-
-    /**function to form data_rows**/
-    function getDataRows($filename, $delim)
-    {
-        $data_rows = $this->csv_file_data($this->getUploadDirectory() . "/" . $filename, $delim);
         return $data_rows;
     }
 
@@ -511,29 +485,39 @@ class SmackImpCE extends SmackWpHandler
 
                 }
                 // Author name/id update
-                $authorLen = strlen($data_array ['post_author']);
-                $postuserid = $data_array ['post_author'];
-                $checkpostuserid = intval($data_array ['post_author']);
-                $postAuthorLen = strlen($checkpostuserid);
-                $postauthor = array();
+		if(isset($data_array ['post_author'])){
+			$authorLen = strlen($data_array ['post_author']);
+			$postuserid = $data_array ['post_author'];
+			$checkpostuserid = intval($data_array ['post_author']);
+			$postAuthorLen = strlen($checkpostuserid);
+			$postauthor = array();
 
-                if ($authorLen == $postAuthorLen) {
-                    $postauthor = $wpdb->get_results("select ID from $wpdb->users where ID = \"{$postuserid}\"");
-                } else {
-                    $postauthor = $wpdb->get_results("select ID from $wpdb->users where user_login = \"{$postuserid}\"");
-                }
+			if ($authorLen == $postAuthorLen) {
+				$postauthor = $wpdb->get_results("select ID from $wpdb->users where ID = \"{$postuserid}\"");
+			} else {
+				$postauthor = $wpdb->get_results("select ID from $wpdb->users where user_login = \"{$postuserid}\"");
+			}
 
-                if (empty($postauthor) || !$postauthor[0]->ID) {
-                    $data_array ['post_author'] = 1;
-                    $this->noPostAuthCount++;
-                } else {
-                    $data_array ['post_author'] = $postauthor [0]->ID;
-                }
-
+			if (empty($postauthor) || !$postauthor[0]->ID) {
+				$data_array ['post_author'] = 1;
+				$this->noPostAuthCount++;
+			} else {
+				$data_array ['post_author'] = $postauthor [0]->ID;
+			}
+		}
+		else{
+			$data_array ['post_author'] = 1;
+			$this->noPostAuthCount++;
+		}
                 // Date format post
-                if (!$data_array ['post_date'])
+                if (!isset($data_array ['post_date'])){
                     $data_array ['post_date'] = date('Y-m-d H:i:s');
-                $data_array ['post_date'] = date('Y-m-d H:i:s', strtotime($data_array ['post_date']));
+		}else{
+	                $data_array ['post_date'] = date('Y-m-d H:i:s', strtotime($data_array ['post_date']));
+		}
+		if(isset($data_array ['post_slug'])){
+			$data_array ['post_name'] = $data_array ['post_slug'];
+		}
 
                 if ($data_array)
                     $post_id = wp_insert_post($data_array);

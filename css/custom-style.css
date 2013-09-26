@@ -470,3 +470,36 @@ div.helpatright h4 {
     font-weight: bold;
     text-align: center;
 }
+
+/* Tooltip */
+
+a.tooltip {outline:none; }
+a.tooltip strong {line-height:20px;}
+a.tooltip:hover {text-decoration:none;} 
+a.tooltip span {
+	z-index:10;display:none; padding:3px 12px;
+}
+a.tooltip:hover span{
+display:inline; position:absolute; color:#111;
+border:1px solid #DCA; background:#fffAF0;}
+.callout {z-index:20;position:absolute;top:8px;border:0;left:-12px;}
+
+/*CSS3 extras*/
+a.tooltip span
+{
+	border-radius:4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+
+	-moz-box-shadow: 5px 5px 8px #CCC;
+	-webkit-box-shadow: 5px 5px 8px #CCC;
+	box-shadow: 5px 5px 8px #CCC;
+}
+
+.tooltipOne {margin-top:-12px;margin-left:10px;width:225px; line-height:30px;}
+.tooltipTwo {margin-top:-37px;margin-left:160px;width:245px; line-height:20px;}
+.tooltipThree {margin-top:-12px;margin-left:10px;width:160px; line-height:30px;} 
+.tooltipFour {margin-top:-35px;margin-left:360px;width:240px; line-height:30px;}
+.tooltipFive {margin-top:-35px;margin-left:160px;width:245px; line-height:20px;}
+
+

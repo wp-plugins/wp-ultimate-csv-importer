@@ -62,6 +62,7 @@ $slang = Array(
     'SETTINGS' => 'Settings',
     'CUSTOMPOSTTYPE' => 'Custom Post Type UI',
     'CCTM' => 'CCTM',
+    'ACF' => 'ACF',
     'PLUGINSUPPORT' => 'Plugin Support',
     'NONE' => 'None',
     'ESHOP' => 'EShop',
