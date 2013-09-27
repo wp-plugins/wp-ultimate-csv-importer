@@ -15,7 +15,7 @@ A plugin that turns your offline data as wordpress post, page or custom post dat
 
 == Description ==
 
-Version 3.2.2 is out now with bug fix and UI improvements.
+Version 3.2.2 is out now with bug fix and UI improvements. Please visit http://www.smackcoders.com/category/free-wordpress-plugins.html for guides and tutorials.
 
 WP Ultimate CSV Importer Plugin helps you to import any CSV file as post, page or even as custom post type. Convert your offline database maintained for years into your valuable website content. Also do periodical content changes, maintenance, content update, prices, offers, coupons and inventory etc.
 
@@ -63,25 +63,84 @@ One click Import of Custom taxonomies with proper description and seo slugs
 Import, update and maintain your WP Commerce / eshop inventory, prices, periodical and short term offers, coupons, bonus etc.
 
 
-Support and Feature request.
-----------------------------
-
-Please create issues only in our tracker http://forge.smackcoders.com/projects/wp-ultimate-csv-importer-free/issues instead of WordPress support forum. 
-For guides and tutorials, visit http://forge.smackcoders.com/projects/wp-ultimate-csv-importer-free . 
-
 
 == Installation ==
+Wp Ultimate CSV Importer is very easy to install like any other wordpress plugin. No need to edit or modify anything here.
 
+1.    Unzip the file 'wp-ultimate-csv-importer.zip'.
+2.    Upload the ' wp-ultimate-csv-importer ' directory to '/wp-content/plugins/' directory using ftp client or upload and install wp-ultimate-csv-importer.zip through plugin install wizard in wp admin panel .
+3.    Activate the plugin through the 'Plugins' menu in WordPress.
+4.    After activating, you will see an option for 'Wp Ultimate CSV Importer' in the admin menu (left navigation) and you will import the csv files to import the data's.
 
 Please click here for [Detailed Installation Instructions](http://www.smackcoders.com/blog/how-to-guide-for-free-wordpress-ultimate-csv-importer-plugin.html)
-Or view our hoe to guide video guide in our [Youtube Channel](www.youtube.com/user/smackcoders)
+Or view our how to guide video guide in our [Youtube Channel](www.youtube.com/user/smackcoders)
 
 
 == Screenshots ==
 
 1. Admin settings for WP Ultimate CSV Importer Plugin .
 2. Admin settings for Import Data and Header Mapping configuration to import data's from a csv file.
+3. Explained -How to CSV Mapping Headers works and how CSV can be related to wordpress fields?
 
+== Frequently Asked Questions ==
+
+1. How to install the plugin?
+Like other plugins wp-ultimate-csv-importer is easy to install. Upload the wp-ultimate-csv-importer.zip file through plugin install page through wp admin. Everything will work fine with it.
+
+2. How to use the plugin?
+After plugin activation you can see the ' Wp Ultimate CSV Importer ' menu in admin backend.
+1)Browse csv file to import the data's.
+2)You can mapping the headers to import the data's.
+3)If you checked the import as draft,it will import as draft then you can publish the data's later.
+4)The data's are imported based on the post type you selected.
+Configuring our plugin is as simple as that.
+
+3. What to do when an import broke in the middle of import?
+Check your CSV format. It should be UTF-8. If you get memory related issue, change or create	a custom php.ini with increased value for max_execution_time and memory limt
+   
+4. I am cant get my featured image imported?
+Check that allow_url_fopen is allowed in your php ini. If not, request your hosting or you can enable it in custom php ini settings. 
+	
+5. How to import other languages using ultimate csv importer?
+It should strictly UTF-8 format. Users have reported that utf-8 without BOM works well for languages like Polish characters etc. Follow these simple steps to import other languages. Thanks for the steps mojeprogramy.com.
+1) Prepare a CSV file with the data (I used Excel)
+2) Saving files to CSV (Excel function)
+3) I opened the CSV file in Notepad + +
+4) CTR + A, CTR + C (copy all the text)
+5) The "Encoding"> "Encode without BOM"
+6) CTR + V to paste all text
+7) Save the file
+8) Imports for WordPress ;) 
+
+6. How to Format a CSV file for WP Ultimate CSV Importer Plugin?
+This video helps you to tweak/format your CSV file to make a fast, simple and easy import using WP Ultimate CSV importer plugin without missing all the 
+features. We have used MS Excel as CSV editor here. You can use other applications also. Take advantage of our importer format by slightly tweaking your csv.
+<p>http://www.youtube.com/watch?v=pnObJdiedus</p>
+For more details visit www.smackcoders.com
+
+7. How to creat a well formatted csv? - the other way to learn tweaking
+We have used text editor here to explain how to create a well formatted csv in seconds for importing. You can use this format to take advantage of our importer format by slightly tweaking your csv. This video helps you to tweak/format your CSV file to make a fast, simple and easy import using WP Ultimate CSV importer plugin without missing all the features.
+<p>http://www.youtube.com/watch?v=9W_my0rSybE</p>
+
+8. Where can i get sample files and other references?
+We have a set of sample/template files for different purposes with supported plugin fields. All the sample/templates are auto mapping headers enabled which will almost removes manual mapping. [You can find updated news and links to download here] (http://www.smackcoders.com/category/free-wordpress-plugins.html). You can use these sample/template files to prepare your CSV to make your import just in few clicks
+Post & Page
+Post with All in SEO fields 
+Post with SEO by YOAST fields
+Post with Advanced custom fields
+Custom Posts for Custom post type UI plugin
+Custom Posts for CCTM plugin
+Custom Posts for Types plugin
+Nested Category 
+Nested Category with category icons
+Tags and Custom Taxonomies
+Users with roles
+Advanced eshop import
+WP ecommerce import
+WP ecommerce import with wp ecommerce custom fields,
+Advanced Woo commerce import
+
+Please click here for [ More Details](http://www.smackcoders.com/blog/category/free-wordpress-plugins.html)
 
 
 == Changelog ==
@@ -217,25 +276,6 @@ Or view our hoe to guide video guide in our [Youtube Channel](www.youtube.com/us
 
 
 
-== Frequently Asked Questions ==
-How to Format a CSV file for WP Ultimate CSV Importer Plugin?
-
-This video helps you to tweak/format your CSV file to make a fast, simple and easy import using WP Ultimate CSV importer plugin without missing all the 
-features. We have used MS Excel as CSV editor here. You can use other applications also. Take advantage of our importer format by slightly tweaking your csv.
-
-<p>http://www.youtube.com/watch?v=pnObJdiedus</p>
-
-For more details visit www.smackcoders.com
-
-How to creat a well formatted csv? - the other way to learn tweaking
-
-We have used text editor here to explain how to create a well formatted csv in seconds for importing. You can use this format to take advantage of our importer format by slightly tweaking your csv. This video helps you to tweak/format your CSV file to make a fast, simple and easy import using WP Ultimate CSV importer plugin without missing all the features.
-
-<p>http://www.youtube.com/watch?v=9W_my0rSybE</p>
-
-Please click here for [ Detailed Frequently Asked Questions](http://www.smackcoders.com/blog/category/free-wordpress-plugins/wordpress-ultimate-csv-importer-plugin/)
-
-For quick response and reply please create issues in our [support](http://forge.smackcoders.com/projects/wp-ultimate-csv-importer-free/issues) instead of WordPress support forum.
 
 
 
