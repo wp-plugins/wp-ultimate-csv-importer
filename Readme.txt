@@ -3,9 +3,9 @@ Contributors: smackcoders
 Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4.0
-Tested up to: 3.6
-Stable tag: 3.2.2
-Version: 3.2.2
+Tested up to: 3.7.1
+Stable tag: 3.2.3
+Version: 3.2.3
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
@@ -15,11 +15,11 @@ A plugin that turns your offline data as wordpress post, page or custom post dat
 
 == Description ==
 
-Version 3.2.2 is out now with bug fix and UI improvements. Please visit http://www.smackcoders.com/category/free-wordpress-plugins.html for guides and tutorials.
+Version 3.2.3 is now available with WP 3.7.1 compatibility. [Please visit for guides and tutorials.] (http://www.smackcoders.com/category/free-wordpress-plugins.html)
 
-Make you CSV imports as easy as with simple cicks. Just relate or map your csv header (column name or field name) to wordpress fields. Turn your every CSV import as your wordpress content. WP Ultimate CSV Importer Plugin helps in this way to import any CSV file as post, page or even as custom post type. Also do periodical content changes, maintenance, content update, prices, offers, coupons and inventory etc.
+WP Ultimate CSV Importer Plugin helps you to import any CSV file as post, page or even as custom post type. Convert your offline database maintained for years into your valuable website content. Also do periodical content changes, maintenance, content update, prices, offers, coupons and inventory etc.
 
-This simple but ultimate plugin as you can import everything needed to create as any WP post types from admin as simple as CSV import. Just in few clicks to map your CSV import set to match the Wordpress fields to import. Thats all, now your imports are turned as Wordpress site content in matter of seconds. No more pain of creating post content one by one of converting your offline data. You can import all the essential data as Wordpress post and skip unwanted things. Or you can import as many as custom fields without missing even a single data. Provided you should have a theme that supports custom fields. So you can now make use of your offline data, inventory, price catalog, information data, database and any other excel data sheet for online content distribution to your valuable visitor or customers. 
+This simple but ultimate plugin as you can import everything needed to create as any WP post types from admin as simple as CSV file. Just in few clicks to map your CSV data set to match the Wordpress fields to import. That�s all, now your imports are turned as Wordpress site content in matter of seconds. No more pain of creating post content one by one of converting your offline data. You can import all the essential data as Wordpress post and skip unwanted things. Or you can import as many as custom fields without missing even a single data. Provided you should have a theme that supports custom fields. So you can now make use of your offline data, inventory, price catalog, information data, database and any other excel data sheet for online content distribution to your valuable visitor or customers. 
 
 1.	Admin can import the data's from any CSV file. 
 2.	Can import as post, page or custom post. 
@@ -39,8 +39,7 @@ This simple but ultimate plugin as you can import everything needed to create as
 16.	Skip Duplicate titles or content or both to avoid duplicates at time of import itself
 17.	Only option we missed is post format, will be added in next major update.
 
-
-<p>http://www.youtube.com/embed/OwKdt_NlT2U?list=PL2k3Ck1bFtbQqFhOK7g08kxENI4qQkmC-</p>
+<p>http://www.youtube.com/watch?v=OwKdt_NlT2U&list=PL2k3Ck1bFtbQqFhOK7g08kxENI4qQkmC</p>
 
 
 Important Notes:  
@@ -145,6 +144,14 @@ Please click here for [ More Details](http://www.smackcoders.com/blog/category/f
 
 == Changelog ==
 
+= 3.2.3 = WordPress 3.7.1 compatibility added.
+	-- Different media path support added.
+	-- Changelog for 3.2.3
+	-- Updated plugin directory path.
+	-- Sub folder installations support added.
+	-- Removed unwanted warnings.
+	-- Performance check.
+
 = 3.2.2 = WordPress 3.6.1 compatibility added.
 	-- Post slug issue fixed and tested for 3.6 and 3.6.1
 	-- Help content added
@@ -239,6 +246,8 @@ Please click here for [ More Details](http://www.smackcoders.com/blog/category/f
 
 
 == Upgrade Notice ==
+
+=v 3.2.3 = Upgrade for WordPress 3.7.1 compatibility and minor bug fixes
 
 =v 3.2.2 = WordPress 3.6.1 compatibile, bug fix and UI improvements
 

@@ -380,9 +380,15 @@ class SmackImpCE extends SmackWpHandler
                             }
                             $attachmentName = urldecode($img_title) . '.' . $type;
                             $dir = wp_upload_dir();
-                            $dirname = date('Y') . '/' . date('m');
-                            $full_path = $dir ['basedir'] . '/' . $dirname;
-                            $baseurl = $dir ['baseurl'] . '/' . $dirname;
+                            $get_media_settings = get_option('uploads_use_yearmonth_folders');
+                            if($get_media_settings == 1){
+	                            $dirname = date('Y') . '/' . date('m');
+        	                    $full_path = $dir ['basedir'] . '/' . $dirname;
+                	            $baseurl = $dir ['baseurl'] . '/' . $dirname;
+			    }else{
+                                $full_path = $dir ['basedir'];
+                                $baseurl = $dir ['baseurl'];
+                            }
                             $filename = explode('/', $file_url);
                             $file_split = count($filename);
                             $filepath = $full_path . '/' . urldecode($plain_filename);
@@ -571,7 +577,11 @@ class SmackImpCE extends SmackWpHandler
                             'post_content' => '',
                             'post_status' => 'inherit'
                         );
-                        $generate_attachment = $dirname . '/' . $attachmentName;
+                        if($get_media_settings == 1){
+                                $generate_attachment = $dirname . '/' . $attachmentName;
+                        }else{
+                                $generate_attachment = $attachmentName;
+                        }
                         $uploadedImage = $wp_upload_dir['path'] . '/' . $attachmentName;
                         $attach_id = wp_insert_attachment($attachment, $generate_attachment, $post_id);
                         require_once(ABSPATH . 'wp-admin/includes/image.php');

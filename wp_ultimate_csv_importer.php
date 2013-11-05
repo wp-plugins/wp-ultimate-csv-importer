@@ -3,7 +3,7 @@
  *Plugin Name: WP Ultimate CSV Importer
  *Plugin URI: http://www.smackcoders.com/blog/how-to-guide-for-free-wordpress-ultimate-csv-importer-plugin.html
  *Description: A plugin that helps to import the data's from a CSV file.
- *Version: 3.2.2
+ *Version: 3.2.3
  *Author: smackcoders.com
  *Author URI: http://www.smackcoders.com
  *
@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ini_set('max_execution_time', 600);
 ini_set('memory_limit', '128M');
 
-require_once (dirname(__FILE__) . '/../../../wp-load.php');
+require_once (ABSPATH . 'wp-load.php');
 
 require_once "SmackImpCE.php";
 require_once "class.rendercsv.php";
