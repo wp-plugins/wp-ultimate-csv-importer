@@ -144,143 +144,160 @@ Please click here for [ More Details](http://www.smackcoders.com/blog/category/f
 
 == Changelog ==
 
-= 3.2.3 = WordPress 3.7.1 compatibility added.
-	-- Different media path support added.
-	-- Changelog for 3.2.3
-	-- Updated plugin directory path.
-	-- Sub folder installations support added.
-	-- Removed unwanted warnings.
-	-- Performance check.
+= 3.2.3 = 
+* Added: WordPress 3.7.1 compatibility added.
+* Added: Different media path support added.
+* Added: Sub folder installations support added.
+* Improved: Updated plugin directory path.
+* Improved: Removed unwanted warnings.
+* Improved: Performance check.
 
-= 3.2.2 = WordPress 3.6.1 compatibility added.
-	-- Post slug issue fixed and tested for 3.6 and 3.6.1
-	-- Help content added
-	-- Mapping UI improved with on select dynamic update feature
+= 3.2.2 = 
+* Added: WordPress 3.6.1 compatibility added.
+* Added: Mapping UI improved with on select dynamic update feature
+* Added: Help content added
+* Fixed: Post slug issue fixed and tested for 3.6 and 3.6.1
 
-= 3.2.1 = Performance improvements on SQL and CSV parsing
-    -- Plugin deactivation issue fixed and updated the code.
-	-- Links in the cells makes problems with the "quote"
-	-- Loading content from more than one colunm
-	-- Custom Post type issues fixed
+= 3.2.1 = 
+* Improved: Performance improvements on SQL and CSV parsing
+* Fixed: Plugin deactivation issue fixed and updated the code.
+* Fixed: Links in the cells makes problems with the "quote"
+* Fixed: Loading content from more than one colunm
+* Fixed: Custom Post type issues fixed
 
-= 3.2.0 = WordPress 3.6 compatibility added, Much Improved UI.
-	-- Featured image issues fixed for WordPress-3.6.
-	-- User interface improvements
+= 3.2.0 = 
+* Improved: User interface improvements
+* Improved:WordPress 3.6 compatibility added, Much Improved UI.
+* Fixed: Featured image issues fixed for WordPress-3.6.
 
-= 3.1.0 = Much Improved Featured Image feature
-        -- Image url for featured image issues fixed
-		-- PHP 5.4 upgrade fix
+= 3.1.0 = 
+* Improved: Much Improved Featured Image feature
+* Fixed: Image url for featured image issues fixed
+* Fixed: PHP 5.4 upgrade fix
 		
-= 3.0.0 = Lot of performance improvements
-		- Much improved workflow
-		- Custom Field mapping and import fixed
-		- Add custom field option improved.
-		- Date format handling improved
-		- Any Date format is supported now
-		- Future scheduling and status improved
-		- Overall Status option improved and issue fixed
-		- Password field fixed for Protected
-		- Status as in CSV option improved and fixed
-		- Can apply post status for individual post via csv itself
-		- Now password should be mentioned as {password}
-		- Featured image handling improved and fixed. More improvement are scheduled.
-		- Category in numericals are restricted and skipped to Uncategorized
-		- Duplicate check options improved for both title and content option.
-		- Post authors can be User ID or name 
-		- Post author issue fixed and improved
-		- Wrong user id or name are automatically assigned under admin
-		- Multi category and tags improved
+= 3.0.0 = 
+* Added: Category in numericals are restricted and skipped to Uncategorized
+* Added: Now password should be mentioned as {password}
+* Added: Post authors can be User ID or name 
+* Improved: Much improved workflow
+* Improved: Add custom field option improved.
+* Improved: Date format handling improved
+* Improved: Any Date format is supported now
+* Improved: Future scheduling and status improved
+* Improved: Can apply post status for individual post via csv itself
+* Improved: Featured image handling improved and fixed. More improvement are scheduled.
+* Improved: Duplicate check options improved for both title and content option.
+* Improved: Post author issue fixed and improved
+* Improved: Wrong user id or name are automatically assigned under admin
+* Improved: Multi category and tags improved
+* Fixed: Custom Field mapping and import fixed
+* Fixed: Overall Status option improved and issue fixed
+* Fixed: Password field fixed for Protected
+* Fixed: Status as in CSV option improved and fixed
 
-= 2.7.0 =  Post Status 
-		-- Added more post status options 
-		-- Publish, Sticky, Private, Draft and Pending Status for whole import
-		-- Protected status with a common password option added
-		-- "Status as in CSV" to assign status for individual psot thorugh CSV as ID or Field Tag
-		
-		Post Author 
-		-- User ID and User Name support for Post author feature added
-		-- In case of missing or false IDs post assigned to admin as draft
-		-- 
-		
-		Extra date formats support added.
-		-- 6 Standard date format added as dropdown to choose.
-		-- Date format conflict at import fixed.
-		
-		Custom field feature improved.
-		-- Listed custom fields with prefix as CF: Name for easy identification.
-		-- Add Custom Field Textbox autofilled with CSV header tag.
-        
-		Added Feature
-		-- Duplicate detection for post content and post title added as options.
-		-- User can choose either one or both to avoid duplicate issues.
-		
-		Post Slug
-		-- Renamed post_name as post_slug to avoid confusion
-		
-		Mapping Fields
-		-- Field tags are formatted to support auto mapping option (next milestone)
+= 2.7.0 =  
+	
+* Added: Added more post status options 
+* Added: Publish, Sticky, Private, Draft and Pending Status for whole import
+* Added: Protected status with a common password option added
+* Added: "Status as in CSV" to assign status for individual psot thorugh CSV as ID or Field Tag		
+* Added: User ID and User Name support for Post author feature added
+* Added: In case of missing or false IDs post assigned to admin as draft
+* Added: Add Custom Field Textbox autofilled with CSV header tag.
+* Added: Duplicate detection for post content and post title added as options.
+* Added: User can choose either one or both to avoid duplicate issues.
+* Improved: 6 Standard date format added as dropdown to choose.
+* Improved: Renamed post_name as post_slug to avoid confusion	
+* Improved: Mapping Fields
+* Improved: Field tags are formatted to support auto mapping option (next milestone)
+* Improved: Listed custom fields with prefix as CF: Name for easy identification.
+* Fixed: Date format conflict at import fixed.
 
 
-= 2.6.0 =	Major Bug fixed
-		-- Added UTF-8 support.
-		-- Fixed Html tag conflicts.
+= 2.6.0 =	
+* Fixed: Major Bug fixed
+* Fixed: Added UTF-8 support.
+* Fixed: Fixed Html tag conflicts.
 
-= 2.5.0 = 	Major issues fixed and updated to WordPress-3.5.1 compatibility.
+= 2.5.0 = 	
+* Major issues fixed and updated to WordPress-3.5.1 compatibility.
 
-= 2.0.1 =	Update to WordPress-3.5 compatibility.
+= 2.0.1 =	
+* Update to WordPress-3.5 compatibility.
 
-= 2.0.0 =	WPDEBUG errors fixed. CSV import folder changed to WP native uploads folder.
+= 2.0.0 =	
+* WPDEBUG errors fixed. CSV import folder changed to WP native uploads folder.
 
-= 1.1.1 =	Renamed the mapping field attachment as featured_image and category as post_category.
+= 1.1.1 =	
+* Renamed the mapping field attachment as featured_image and category as post_category.
 
-= 1.1.0 =	Added featured image import feature along with post/page/custom post.
+= 1.1.0 =	
+* Added featured image import feature along with post/page/custom post.
 
-= 1.0.2 = Bug fixed to recognize the trimmed trailing space in the CSV file 
-		- Added validation for the duplicate field mapping.
+= 1.0.2 = 
+* Bug fixed to recognize the trimmed trailing space in the CSV file 
+* Added validation for the duplicate field mapping.
 
-= 1.0.1 =	Added features to import multiple tags and categories with different delimiters.
+= 1.0.1 =	
+* Added features to import multiple tags and categories with different delimiters.
 
-= 1.0.0 =	Initial release version. Tested and found works well without any issues.
+= 1.0.0 =	
+* Initial release version. Tested and found works well without any issues.
 
 
 
 
 == Upgrade Notice ==
 
-=v 3.2.3 = Upgrade for WordPress 3.7.1 compatibility and minor bug fixes
+= 3.2.3 = 
+* Upgrade for WordPress 3.7.1 compatibility and minor bug fixes
 
-=v 3.2.2 = WordPress 3.6.1 compatibile, bug fix and UI improvements
+= 3.2.2 = 
+* WordPress 3.6.1 compatibile, bug fix and UI improvements
 
-=v 3.2.1 = Performance improvements on SQL and CSV parsing
+= 3.2.1 = 
+* Performance improvements on SQL and CSV parsing
 
-=v 3.2.0 = Now compatible with 3.6 and improved featured image
+= 3.2.0 = 
+* Now compatible with 3.6 and improved featured image
 
-=v 3.1.0 = Now Much Improved Featured Image and url handling
+= 3.1.0 = 
+* Now Much Improved Featured Image and url handling
 
-=v 3.0.0 = Must upgrade to have Major improvements, performance fixes and issue fixes
+= 3.0.0 = 
+* Must upgrade to have Major improvements, performance fixes and issue fixes
 
-=v 2.7.0 = Major improvements and feature changes.
+= 2.7.0 = 
+* Major improvements and feature changes.
 
-=v 2.6.0 = Bug fixed and should upgrade.
+= 2.6.0 = 
+* Bug fixed and should upgrade.
 
-=v 2.5.0 = Issues fixed and updated to WordPress-3.5.1 compatibility.
-		-- Duplicate detection added.
-		-- Added more information in success message.
-		-- Import memory issues solved.
+= 2.5.0 = 
+* Duplicate detection added.
+* Added more information in success message.
+* Import memory issues solved.
 
-=v 2.0.1 =	Update to WordPress-3.5 compatibility.
+= 2.0.1 =	
+* Update to WordPress-3.5 compatibility.
 
-=v 2.0.0 =	Major Bug fixed and should upgrade. WPDEBUG errors fixed. CSV import folder changed to WP native uploads folder.
+= 2.0.0 =	
+* Major Bug fixed and should upgrade. WPDEBUG errors fixed. CSV import folder changed to WP native uploads folder.
 
-=v 1.1.1 =	Minor correction and fix applied.
+= 1.1.1 =	
+* Minor correction and fix applied.
 
-=v 1.1.0 = 	A major new feature added in this version. Update needed.
+= 1.1.0 = 	
+* A major new feature added in this version. Update needed.
 
-=v 1.0.2 =	This version have important bug fixes and newly added features. Must be upgrade immediately.
+= 1.0.2 =	
+* This version have important bug fixes and newly added features. Must be upgrade immediately.
 
-=v 1.0.1 =	Added features to import multiple tags and categories with different delimiters.
+= 1.0.1 =	
+* Added features to import multiple tags and categories with different delimiters.
 
-=v 1.0.0 =	Initial release of plugin. 
+= 1.0.0 =	
+* Initial release of plugin. 
 
 
 
