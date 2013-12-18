@@ -111,10 +111,10 @@ class RenderCSVCE
         $setString .= "<li><label class='checked'><input type='checkbox' name='post' value='post' onclick='savePluginSettings()' disabled checked>" . $impCESett->t('POST') . "</label>";
         $setString .= "<label class='checked'><input type='checkbox' name='custompost' value='custompost' onclick='savePluginSettings()' disabled checked>" . $impCESett->t('CUSTOMPOST') . "</label>";
         $setString .= "<label class='checked'><input type='checkbox' name='page' value='page' onclick='savePluginSettings()' disabled checked>" . $impCESett->t('PAGE') . '</label>';
-        $setString .= "<label class=\"$comments\"><input type='checkbox' name='comments' value='comments' onclick='savePluginSettings()' " . $comments . ">" . $impCESett->t('COMMENTS') . "</label></li>";
+        $setString .= "<label class='checked'><input type='checkbox' name='comments' value='comments' onclick='savePluginSettings()' disabled checked>" . $impCESett->t('COMMENTS') . "</label></li>";
         $setString .= "<li><label class=$categories><input type='checkbox' name='categories' value='categories' onclick='savePluginSettings()' " . $categories . " >Categories/Tags</label>";
         $setString .= "<label class=$customtaxonomy><input type='checkbox' name='customtaxonomy' value='customtaxonomy' onclick='savePluginSettings()' " . $customtaxonomy . " >Custom Taxonomy</label>";
-        $setString .= "<label class=$users><input type='checkbox' name='users' value='users' onclick='savePluginSettings()' " . $users . ">Users/Roles</label></li>";
+        $setString .= "<label class='checked'><input type='checkbox' name='users' value='users' onclick='savePluginSettings()' disabled checked>" . $impCESett->t('USERSROLES') . "</label></li>";
         $setString .= "</ul></td></tr></table></div></td></tr>";
 
 
@@ -197,6 +197,8 @@ class RenderCSVCE
         $menuHTML .= "<li class=\"navigationMenu $post\" style='margin-left:0px;'><a href = 'admin.php?page=upload_csv_file&action=post' class = 'navigationMenu-link' id='module1'>" . $impCEM->t('POST') . "</a></li>";
         $menuHTML .= "<li class=\"navigationMenu $page\"><a href = 'admin.php?page=upload_csv_file&action=page' class = 'navigationMenu-link' id='module1'>" . $impCEM->t("PAGE") . "</a></li>";
         $menuHTML .= "<li class=\"navigationMenu $custompost\"><a href = 'admin.php?page=upload_csv_file&action=custompost' class = 'navigationMenu-link' id = 'module2'>" . $impCEM->t('CUSTOMPOST') . "</a></li>";
+        $menuHTML .= "<li class=\"navigationMenu $users \"><a href = 'admin.php?page=upload_csv_file&action=users' class = 'navigationMenu-link' id = 'module4'>".$impCEM->t('USERSROLES')."</a></li>";
+        $menuHTML .= "<li class=\"navigationMenu $comments\"><a href = 'admin.php?page=upload_csv_file&action=comments' class = 'navigationMenu-link' id = 'module8'>".$impCEM->t('COMMENTS')."</a></li>";
         $menuHTML .= "<li class=\"navigationMenu $settings\"><a href = 'admin.php?page=upload_csv_file&action=settings' class='navigationMenu-link' id='module9'>" . $impCEM->t('SETTINGS') . "</a></li>";
         $menuHTML .= "<li class=\"navigationMenu $dashboard\"><a href = 'admin.php?page=upload_csv_file&action=dashboard' class='navigationMenu-link' id='module0'>" . $impCEM->t('DASHBOARD') . "</a></li>";
         $menuHTML .= "</ul></div> <div style='margin-top:-55px;float:right;margin-right:300px'><a href='http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html' target='_blank'><input type='button' class='button-primary' name='Upgradetopro' id='Upgradetopro' value='Upgrade To PRO' /></a></div> <div class='msg' id = 'showMsg' style = 'display:none;'></div>";
@@ -270,5 +272,39 @@ class RenderCSVCE
             $state = 'pluginActive';
         return $state;
     }
+
+    /**
+     * return mapping fields for comments and user module
+     */
+    function renderMapping($action){
+	    if($action == 'users'){
+		    $maparray = array(
+				    'user_login'    => null,
+				    'first_name'    => null,
+				    'last_name'     => null,
+				    'nickname'      => null,
+				    'user_email'    => null,
+				    'user_url'      => null,
+				    'aim'           => null,
+				    'yim'           => null,
+				    'jabber/gtalk'  => null,
+				    'role'          => null,
+				    'description'   => null,
+				    );
+	    }else if($action == 'comments'){
+		    $maparray = array(
+				    'comment_post_ID' => null,
+				    'comment_author'  => null,
+				    'comment_author_email'  => null,
+				    'comment_author_url' => null,
+				    'comment_content' => null,
+				    'comment_author_IP' => null,
+				    'comment_date' =>null,
+				    'comment_approved' =>null,
+				    );
+	    }
+	    return $maparray;
+    }
+
 }
 ?>

@@ -3,9 +3,9 @@ Contributors: smackcoders
 Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4.0
-Tested up to: 3.7.1
-Stable tag: 3.2.3
-Version: 3.2.3
+Tested up to: 3.8
+Stable tag: 3.3.0
+Version: 3.3.0
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
@@ -15,7 +15,8 @@ A plugin that turns your offline data as wordpress post, page or custom post dat
 
 == Description ==
 
-Version 3.2.3 is now available with WP 3.7.1 compatibility. [Please visit for guides and tutorials.] (http://www.smackcoders.com/category/free-wordpress-plugins.html)
+Version 3.3.0 is now available with WP 3.8 compatibility and added bulk user,comments import feature.
+[Please visit for guides and tutorials.] (http://www.smackcoders.com/category/free-wordpress-plugins.html)
 
 WP Ultimate CSV Importer Plugin helps you to import any CSV file as post, page or even as custom post type. Convert your offline database maintained for years into your valuable website content. Also do periodical content changes, maintenance, content update, prices, offers, coupons and inventory etc.
 
@@ -77,9 +78,11 @@ Or view our how to guide video guide in our [Youtube Channel](www.youtube.com/us
 
 == Screenshots ==
 
-1. Admin settings for WP Ultimate CSV Importer Plugin .
-2. Admin settings for Import Data and Header Mapping configuration to import data's from a csv file.
-3. Explained -How to CSV Mapping Headers works and how CSV can be related to wordpress fields?
+1. Browse and Import CSV with delimiter
+2. Explained -How to CSV Mapping Headers works and how CSV can be related to wordpress fields?
+3. Simple click mapping option to relate csv field headers with wordpress post type fields
+4. Wp Ultimate CSV Importer Settings 
+5. Wp Ultimate CSV Importer Dashboard, Reports.
 
 == Frequently Asked Questions ==
 
@@ -143,6 +146,11 @@ Please click here for [ More Details](http://www.smackcoders.com/blog/category/f
 
 
 == Changelog ==
+
+= 3.3.0 =
+* Added: WordPress 3.8 compatibility.
+* Added: Bulk users with role import feature.
+* Added: Comments import feature with relevant post ids.
 
 = 3.2.3 = 
 * Added: WordPress 3.7.1 compatibility added.
@@ -248,6 +256,9 @@ Please click here for [ More Details](http://www.smackcoders.com/blog/category/f
 
 
 == Upgrade Notice ==
+
+= 3.3.0 =
+* Upgrade now for WP 3.8 compatibility and added bulk user,comments feature.
 
 = 3.2.3 = 
 * Upgrade for WordPress 3.7.1 compatibility and minor bug fixes

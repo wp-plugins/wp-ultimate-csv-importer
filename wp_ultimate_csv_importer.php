@@ -3,7 +3,7 @@
  *Plugin Name: WP Ultimate CSV Importer
  *Plugin URI: http://www.smackcoders.com/blog/how-to-guide-for-free-wordpress-ultimate-csv-importer-plugin.html
  *Description: A plugin that helps to import the data's from a CSV file.
- *Version: 3.2.3
+ *Version: 3.3.0
  *Author: smackcoders.com
  *Author URI: http://www.smackcoders.com
  *
@@ -138,6 +138,9 @@ function upload_csv_file()
 			<div class="smack-wrap" id="smack-content">
 			<?php
 			echo $impRen->renderMenu();
+			if($_REQUEST['action']=='users' || $_REQUEST['action']=='comments'){
+			$impCE->defCols = $impRen->renderMapping($_REQUEST['action']);
+			}
 		if (count($impCE->headers) >= 1 && count($data_rows) >= 1) {
 			?>
 				<form class="add:the-list: validate" name="secondform" id="secondform" method="post" onsubmit="return import_csv();"
@@ -158,7 +161,7 @@ function upload_csv_file()
 				<input type="hidden" id="prevoptionvalue" name="prevoptionvalue" value=""/>
 				<?php
 				// second form starts here
-				if (($_REQUEST['action'] == 'post') || ($_REQUEST['action'] == 'custompost') || ($_REQUEST['action'] == 'page')) {
+				if (($_REQUEST['action'] == 'post') || ($_REQUEST['action'] == 'custompost') || ($_REQUEST['action'] == 'page') || ($_REQUEST['action'] == 'users') || ($_REQUEST['action'] == 'comments')) {
 
 					//set custom fields value
 					$taxo = get_taxonomies();
@@ -170,7 +173,7 @@ function upload_csv_file()
 					$custo_taxo = substr($custo_taxo, 0, -1);
 
 					?>
-						<input type='hidden' name='cust_taxo' id='cust_taxo' value='<?php echo $custo_taxo; ?>'/>
+						<input type='hidden' name='cust_taxo' id='cust_taxo' value='<?php echo $custo_taxo; ?>'/><br>
 						<div id="posttypecss" style="margin-top: 30px;">
 						<table>
 						<tr>
@@ -206,9 +209,11 @@ function upload_csv_file()
 										<?php } ?>
 										</td>
 										</tr>
+										<?php $cnt1 = count($impCE->headers);
+										if($_REQUEST['action']!='users' && $_REQUEST['action']!='comments'){
+										?>
 										<tr>
 										<td>
-										<?php $cnt1 = count($impCE->headers);?>
 
 										<label>Import with post status<span class="mandatory"> *</span></label></td>
 										<td><select
@@ -246,6 +251,7 @@ function upload_csv_file()
 										</td>
 										</tr>
 										</table>
+										<?php } ?>
 										</div>
 										<div style="width:50%;float:left;"><h3>Map Fields</h3></div><div style="width:50%;float:right;"><input type="button" name="remap" id="remap" value="Clear Mapping" onclick="clearmapping();" />
 										<a href="#" class="tooltip">
@@ -308,6 +314,7 @@ function upload_csv_file()
 											<?php
 
 									}
+								if($_REQUEST['action']!='users' && $_REQUEST['action']!='comments'){
 								foreach (get_taxonomies() as $taxokey => $taxovalue) {
 									if ($taxokey != 'category' && $taxokey != 'link_category' && $taxokey != 'post_tag' && $taxokey != 'nav_menu' && $taxokey != 'post_format') {
 										?>
@@ -321,7 +328,7 @@ function upload_csv_file()
 								?>
 									<option value="add_custom<?php print($count); ?>">Add Custom Field
 									</option>
-
+								<?php } ?>
 									</select> <!-- added to solve issue id 1072-->
 									<input class="customfieldtext" type="text"
 									id="textbox<?php print($count); ?>"
@@ -416,10 +423,9 @@ function upload_csv_file()
 		echo $impRen->renderMenu();
 		if (($impCE->insPostCount != 0) || ($impCE->dupPostCount != 0)) {
 			?>
-				<div>
-
-				<?php
-				echo $impRen->setDashboardAction();
+			<div>
+			<?php
+			echo $impRen->setDashboardAction();
 			$messageString = $impCE->insPostCount . " records are successfully Imported.";
 			if ((isset($_POST['titleduplicatecheck']) && $_POST['titleduplicatecheck'] == 1) || (isset($_POST['contentduplicatecheck']) && $_POST['contentduplicatecheck'] == 1))
 				$messageString .= $impCE->dupPostCount . " duplicate records found.";
@@ -430,12 +436,40 @@ function upload_csv_file()
 				<?php
 		} else if (($impCE->insPostCount == 0) && ($impCE->dupPostCount == 0)) {
 			?>
-				<div>
-				<?php echo $impRen->showMessage('error', "Check your CSV file and format."); ?>
-				</div>
-				<?php } ?>
-				<?php
-				$_REQUEST['action'] = 'dashboard';
+			<div>
+			<?php echo $impRen->showMessage('error', "Check your CSV file and format."); ?>
+			</div>
+	  <?php } 
+		$_REQUEST['action'] = 'dashboard';
+		echo $impRen->renderDashboard();
+	} else if(isset ($_POST ['post_csv']) && $_REQUEST['action'] == 'users') { // Code for import users and their Datas.
+		echo $impRen->setDashboardAction();
+		require_once('class.userroles.php');
+		$impCE1 = new SmackImpCE ();
+		$userObj = new Users();
+		$data_rows = $impCE1->csv_file_data($impCE1->getUploadDirectory() . "/" . $_POST['filename'],$_POST['delim']);
+		$result = $userObj->addUsers($data_rows);
+		echo $impRen->renderMenu();
+		if ($userObj->insUserCount != 0)
+			echo $impRen->showMessage('success',$userObj->insUserCount." users has been imported");
+		if($userObj->skipUserCount != 0)
+			echo $impRen->showMessage('error',$userObj->skipUserCount." users has been skipped");
+		$_SESSION['thirdformaction'] = 'dashboard';
+
+		echo $impRen->renderDashboard();
+	} else if(isset ($_POST ['post_csv']) && $_REQUEST['action'] == 'comments') {
+		echo $impRen->setDashboardAction();
+		require_once('class.comments.php');
+		$impCE1 = new SmackImpCE();
+		$commentObj = new Comments();
+		$data_rows = $impCE1->csv_file_data($impCE1->getUploadDirectory() . "/" . $_POST['filename'],$_POST['delim']);
+		$result = $commentObj->addComment($data_rows);
+		echo $impRen->renderMenu();
+		if ($commentObj->insComments != 0)
+			echo $impRen->showMessage('success',$commentObj->insComments." comments has been imported");
+		if ($commentObj->skippedComments != 0)
+			echo $impRen->showMessage('error',$commentObj->skippedComments." comments has been skipped");
+
 		echo $impRen->renderDashboard();
 	} else {
 		?>

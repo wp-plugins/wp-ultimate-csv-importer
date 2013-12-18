@@ -82,7 +82,7 @@ function addcustomfield(myval, selected_id) {
     var a = document.getElementById('h1').value;
     var importer = document.getElementById('selectedImporter').value;
     var aa = document.getElementById('h2').value;
-    if (importer == 'custompost' || importer == 'post' || importer == 'page') {
+    if (importer == 'custompost' || importer == 'post' || importer == 'page' || importer == 'comments' || importer == 'users') {
        	var selected_dropdown = document.getElementById('mapping' + selected_id);
 	var selected_value = selected_dropdown.value; 
 	var prevoptionindex = document.getElementById('prevoptionindex').value;
@@ -248,6 +248,7 @@ function hideSuccessMessage() {
 }
 
 function clearmapping(){
+	var importer = document.getElementById('selectedImporter').value;
 	var total_mfields = document.getElementById('h2').value; 
 	var mfields_arr = document.getElementById('mapping_fields_array').value;
 	var n=mfields_arr.split(",");
@@ -257,7 +258,9 @@ function clearmapping(){
 	}
 	for(var j=0;j<total_mfields;j++){
 		document.getElementById('mapping'+j).innerHTML = options;
-		document.getElementById('mapping'+j).innerHTML += "<option value='add_custom"+j+"'>Add Custom Field</option>";
+		if(importer != 'comments' && importer != 'users'){
+			document.getElementById('mapping'+j).innerHTML += "<option value='add_custom"+j+"'>Add Custom Field</option>";
+		}
 		document.getElementById('textbox'+j).style.display = 'none';
 		document.getElementById('customspan'+j).style.display = 'none';
 	}	
