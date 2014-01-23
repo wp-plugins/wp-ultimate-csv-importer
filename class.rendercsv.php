@@ -182,22 +182,25 @@ class RenderCSVCE
         $impSet = new IMPSettings();
         $settings = $impSet->getSettings();
         $impCEM = new SmackImpCE();
-        foreach ($settings as $key)
-            $$key = true;
+	if($settings){
+	        foreach ($settings as $key)
+	            $$key = true;
+	}
         if (isset($_POST['post_csv']) && $_POST['post_csv'] == 'Import')
             $dashboard = 'selected';
         else {
             $action = $_REQUEST['action'];
             $$action = 'selected';
         }
-
         if (!$_REQUEST['action'])
             $dashboard = 'selected';
         $menuHTML = "<div class='csv-top-navigation-wrapper' id='header' name='mainNavigation'><ul id='topNavigation'>";
         $menuHTML .= "<li class=\"navigationMenu $post\" style='margin-left:0px;'><a href = 'admin.php?page=upload_csv_file&action=post' class = 'navigationMenu-link' id='module1'>" . $impCEM->t('POST') . "</a></li>";
         $menuHTML .= "<li class=\"navigationMenu $page\"><a href = 'admin.php?page=upload_csv_file&action=page' class = 'navigationMenu-link' id='module1'>" . $impCEM->t("PAGE") . "</a></li>";
         $menuHTML .= "<li class=\"navigationMenu $custompost\"><a href = 'admin.php?page=upload_csv_file&action=custompost' class = 'navigationMenu-link' id = 'module2'>" . $impCEM->t('CUSTOMPOST') . "</a></li>";
-        $menuHTML .= "<li class=\"navigationMenu $users \"><a href = 'admin.php?page=upload_csv_file&action=users' class = 'navigationMenu-link' id = 'module4'>".$impCEM->t('USERSROLES')."</a></li>";
+	if ( !is_multisite() ) {
+	        $menuHTML .= "<li class=\"navigationMenu $users \"><a href = 'admin.php?page=upload_csv_file&action=users' class = 'navigationMenu-link' id = 'module4'>".$impCEM->t('USERSROLES')."</a></li>";
+	}
         $menuHTML .= "<li class=\"navigationMenu $comments\"><a href = 'admin.php?page=upload_csv_file&action=comments' class = 'navigationMenu-link' id = 'module8'>".$impCEM->t('COMMENTS')."</a></li>";
         $menuHTML .= "<li class=\"navigationMenu $settings\"><a href = 'admin.php?page=upload_csv_file&action=settings' class='navigationMenu-link' id='module9'>" . $impCEM->t('SETTINGS') . "</a></li>";
         $menuHTML .= "<li class=\"navigationMenu $dashboard\"><a href = 'admin.php?page=upload_csv_file&action=dashboard' class='navigationMenu-link' id='module0'>" . $impCEM->t('DASHBOARD') . "</a></li>";

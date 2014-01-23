@@ -1,11 +1,11 @@
 === WP Ultimate CSV Importer Plugin ===
-Contributors: smackcoders
+Contributors: smackcoders, mayavee, fenzik, fredricksujin, rajkumarmohan, kumarsacoe, yesjosephraja, muthukumarp, mansoorkhan
 Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, excel, import, spreadsheet, plugin, admin, csv, importer,
 Requires at least: 3.4.0
 Tested up to: 3.8
-Stable tag: 3.3.0
-Version: 3.3.0
+Stable tag: 3.3.1
+Version: 3.3.1
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
@@ -15,7 +15,7 @@ A plugin that turns your offline data as wordpress post, page or custom post dat
 
 == Description ==
 
-Version 3.3.0 is now available with WP 3.8 compatibility and added bulk user,comments import feature.
+Version 3.3.1 is now available with Multi site compatibility. Note:- User import option is switched off in multi site mode.
 [Please visit for guides and tutorials.] (http://www.smackcoders.com/category/free-wordpress-plugins.html)
 
 WP Ultimate CSV Importer Plugin helps you to import any CSV file as post, page or even as custom post type. Convert your offline database maintained for years into your valuable website content. Also do periodical content changes, maintenance, content update, prices, offers, coupons and inventory etc.
@@ -147,6 +147,11 @@ Please click here for [ More Details](http://www.smackcoders.com/blog/category/f
 
 == Changelog ==
 
+= 3.3.1 =
+* Added: Multi site compatibility except User import.
+* Added: Comments, Users modules mandatory fields validation added.
+* Improved: Removed unwanted warnings.
+
 = 3.3.0 =
 * Added: WordPress 3.8 compatibility.
 * Added: Bulk users with role import feature.
@@ -256,6 +261,9 @@ Please click here for [ More Details](http://www.smackcoders.com/blog/category/f
 
 
 == Upgrade Notice ==
+
+= 3.3.1 = 
+* Upgrade now for multi site compatibility.
 
 = 3.3.0 =
 * Upgrade now for WP 3.8 compatibility and added bulk user,comments feature.

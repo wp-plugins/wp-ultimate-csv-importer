@@ -176,6 +176,55 @@ function import_csv() {
         var value = e.options[e.selectedIndex].value;
         array[i] = value;
     }
+    if(importer == 'comments'){
+            for (var j = 0; j < array.length; j++) {
+                    if (array[j] == 'comment_post_ID') {
+                            val1 = 'On';
+                    }
+                    if (array[j] == 'comment_author') {
+                            val2 = 'On';
+                    }
+                    if (array[j] == 'comment_author_email') {
+                            val3 = 'On';
+                    }
+            }
+            if (val1 == 'On' && val2 == 'On' && val3 == 'On') {
+                    return true;
+            }
+            else {
+                    error_msg = '';
+                    if (val1 == 'Off')
+                            error_msg += " comment_post_ID,";
+                    if (val2 == 'Off')
+                            error_msg += " comment_author,";
+                    if (val3 == 'Off')
+                            error_msg += " comment_author_email";
+                    showMapMessages('error', 'Error: ' + error_msg + ' - Mandatory fields. Please map the fields to proceed.');
+                    return false;
+            }
+    }
+    if(importer == 'users'){
+            for (var j = 0; j < array.length; j++) {
+                    if (array[j] == 'user_login') {
+                            val1 = 'On';
+                    }
+                    if (array[j] == 'user_email') {
+                            val2 = 'On';
+                    }
+            }
+            if (val1 == 'On' && val2 == 'On') {
+                    return true;
+            }
+            else {
+                    error_msg = '';
+                    if (val1 == 'Off')
+                            error_msg += " user_login,";
+                    if (val2 == 'Off')
+                            error_msg += " user_email";
+                    showMapMessages('error', 'Error: ' + error_msg + ' - Mandatory fields. Please map the fields to proceed.');
+                    return false;
+            }
+    }
     if (importer == 'post' || importer == 'page' || importer == 'custompost') {
         var getSelectedIndex = document.getElementById('csv_importer_cat');
         var SelectedIndex = getSelectedIndex.value;
