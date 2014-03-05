@@ -79,7 +79,7 @@ It is more easy to convert any off line database maintained in Excel xls or spre
    
 Much improved User interface with most flexible jquery plugin features and bootstrap UI design makes csv import more simple, easy, fast and even more flexible for better user experience. With improved Multi site, buddy press compatibility (except user import module) works well for most of the best wordpress themes available online. Now manage multisite & buddypress, amazon data import, affiliates blog, product inventory, ecommerce store, multi author blog, automatic news import, photo blog etc periodically with simple click import. 
 
-= Extended Power Features in Wp Ultimate CSV Importer = [Read More >>](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
+= Extended Power Features in Wp Ultimate CSV Importer = 
 * Auto Schedule all your Imports
 * Save mapping as Templates for reuse
 * Auto Mapping Feature
@@ -96,6 +96,7 @@ Much improved User interface with most flexible jquery plugin features and boots
 * Custom Taxonomy import
 * [Get Complete List of supported 3rd party plugins here](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
 * Types and more supports are in pipeline 
+[Read More >>](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
 
 = Imp. Notes =
 * All CSV files should be should be strictly UTF-8 CSV format. 
@@ -108,20 +109,20 @@ Your wordpress theme should support featured image. If not, please add the follo
 `<?php add_theme_support( 'post-thumbnails' ); ?>`
 
 Also you can follow the instructions as given here 
-* [http://codex.wordpress.org/Function_Reference/the_post_thumbnail](http://codex.wordpress.org/Function_Reference/the_post_thumbnail)
-* [http://codex.wordpress.org/Post_Thumbnails](http://codex.wordpress.org/Post_Thumbnails)	
-* [http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5](http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5)
+	[http://codex.wordpress.org/Function_Reference/the_post_thumbnail](http://codex.wordpress.org/Function_Reference/the_post_thumbnail)
+	[http://codex.wordpress.org/Post_Thumbnails](http://codex.wordpress.org/Post_Thumbnails)	
+	[http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5](http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5)
 
 = Need More Help, Cool. Browse Below Links=
-* [Get Pro Power Features, check here](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
-* [Step By Step Installation Wiki with Snaps](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer#Installations)
-* [Detailed FAQ](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_FAQ)
-* [Old Support Threads](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Support_Threads)
-* [Wiki and Documentation](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer)
-* [Tutorials, Guides, Blog News and Updates](http://blog.smackcoders.com/category/free-wordpress-plugins/wordpress-ultimate-csv-importer-plugin/)
-* [Video Walkthrough](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Videos)
-* [Get the Sample CSV Files Here](http://blog.smackcoders.com/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html)
-* [Download CSV Format Cheat Sheets Here](http://blog.smackcoders.com/how-to-make-one-click-easy-csv-import-in-wordpress-free-cheat-sheet-downloads.html)
+	[Get Pro Power Features, check here](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
+	[Step By Step Installation Wiki with Snaps](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer#Installations)
+	[Detailed FAQ](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_FAQ)
+	[Old Support Threads](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Support_Threads)
+	[Wiki and Documentation](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer)
+	[Tutorials, Guides, Blog News and Updates](http://blog.smackcoders.com/category/free-wordpress-plugins/wordpress-ultimate-csv-importer-plugin/)
+	[Video Walkthrough](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Videos)
+	[Get the Sample CSV Files Here](http://blog.smackcoders.com/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html)
+	[Download CSV Format Cheat Sheets Here](http://blog.smackcoders.com/how-to-make-one-click-easy-csv-import-in-wordpress-free-cheat-sheet-downloads.html)
 
 == Installation ==
 
@@ -172,18 +173,21 @@ Not clear. You can use [step by step installation wiki with snaps here](http://w
 == Frequently Asked Questions ==
 
 [CSV File and Format Related](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_FAQ#CSV_File_and_Format_Related)
+
 * What is csv file? 
 * What is csv format and types of it?
 * How to open csv files? read csv file?
 * How to convert my existing data to csv format? csv converter
 
 [Plugin Related](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_FAQ#Plugin_Related)
+
 * How to install the csv importer plugin?
 * How to use the plugin to import a csv file?
 * What is a csv importer plugin? data feed, data import
 * Why we need CSV import for wordpress? import data
 
  [CSV Import Related](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_FAQ#CSV_Import_Related) 
+
 * What csv format is supported?
 * How to import other languages using ultimate csv importer?
 * How to Format a CSV file for simple sleek import using WP Ultimate CSV Importer Plugin?
@@ -205,12 +209,14 @@ Not clear. You can use [step by step installation wiki with snaps here](http://w
 * Is auto split up schedule import possible?
 
 [Data Export Related](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_FAQ#Data_Export_Related)
+
 * How to export data or export-csv from wordpress? data export export to csv
 * Can i schedule export?
 * How the export feature works?
 * Is export feature available to all modules?
 
 [Common Issues](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_FAQ#Common_Issues)
+
 * Why and What to do if my import broke in the middle?
 * Cant get my featured image imported?
 * Why  image import is broken
