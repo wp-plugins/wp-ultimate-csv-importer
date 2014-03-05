@@ -57,9 +57,9 @@ The csv importer supports almost every wordpress modules and plugin fields as fo
 = Supported Core Modules and Attributes =
 * Post
 * Page
-* Standard WP Custom Post types**
-* Wordpress themes custom posts**
-* Custom post type UI plugin Post types**
+* Standard WP Custom Post types
+* Wordpress themes custom posts
+* Custom post type UI plugin Post types
 * Users with roles
 * Comments
 * Custom Fields
@@ -96,6 +96,7 @@ Much improved User interface with most flexible jquery plugin features and boots
 * Custom Taxonomy import
 * [Get Complete List of supported 3rd party plugins here](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
 * Types and more supports are in pipeline 
+
 [Read More >>](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
 
 = Imp. Notes =
