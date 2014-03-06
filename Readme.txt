@@ -99,6 +99,7 @@ Much improved User interface with most flexible jquery plugin features and boots
 [Read More about Pro>>](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html) or [Test Drive Our Live Demo](http://demo.smackcoders.com/demowpthree/wp-admin)
 
 = Imp. Notes =
+* It is advised to remove older version files () completely and install/reinstall version 3.5.0.
 * All CSV files should be should be strictly UTF-8 CSV format. 
 * All wordpress supported languages can imported with csv format as UTF-8 without BOM (See FAQ for instructions).
 * User import option is switched off in multi site mode.
@@ -127,6 +128,9 @@ Your wordpress theme should support featured image. If not, please add the follo
 == Installation ==
 
 Wp Ultimate CSV Importer is very easy to install like any other wordpress plugin. No need to edit or modify anything here. Users can install the plugin in 3 ways, choose one that suites you from below
+
+= Imp. Notes =
+* It is advised to remove older version files () completely and install/reinstall version 3.5.0.
 
 I. For simple general way to install
 
