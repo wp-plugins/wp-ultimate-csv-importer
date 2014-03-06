@@ -1,8 +1,7 @@
-=== Advanced CSV File Importer With Ultimate User Friendly Features ===
+=== Advanced CSV Importer With Ultimate User Friendly Features ===
 Contributors: smackcoders, mayavee, fenzik, fredricksujin, rajkumarmohan, kumarsacoe, yesjosephraja, muthukumarp, mansoorkhan
 Donate link: http://www.smackcoders.com/donate.html
-Tags: admin, administration, affiliate, amazon, author, automatic, blog, buddypress, categories, cms, comments, contact, content, custom post, dashboard, date, e-commerce, edit, events, feeds, Formatting, free, images, import, integration, jquery, language, manage, media, meta, multisite, News, page, performance, photos, pictures, plugin, Post, seo, shop, shortcode, sidebar, slider, slideshow, tags, Taxonomy, text, themes, TinyMCE, title, upload, url, users, video, widget, woocommerce, wordpress, wpmu, xml, youtube, batch, bulk, bulk edit, bulk editor, excel, spreadsheet, csv, importer, csv import
-Requires at least: 3.6.0
+Tags: admin, administration, affiliate, amazon, author, automatic, blog, buddypress, categories, cms, comments, contact, content, custom post, dashboard, e-commerce, edit, events, feeds, Formatting, free, images, import, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, sidebar, slideshow, tags, Taxonomy, text, themes, TinyMCE, title, users, video, widget, woocommerce, wordpress, xml, youtube, batch, bulk, bulk edit, bulk editor, excel, spreadsheet, csv, importer, csv importRequires at least: 3.6.0
 Tested up to: 3.8.1
 Stable tag: 3.5.0
 Version: 3.5.0
@@ -11,7 +10,7 @@ Author URI: http://profiles.wordpress.org/smackcoders/
 
 License: GPLv2 or later
 
-Advanced CSV File Importer plugin to import data as bulk post, page, custom post etc., simple clicks even for multisite and buddypress blog.
+Advanced CSV Importer plugin to import data as bulk post, page, custom post etc., simple clicks even for multisite and buddypress blog.
 
 == Description ==
 
@@ -79,7 +78,7 @@ It is more easy to convert any off line database maintained in Excel xls or spre
    
 Much improved User interface with most flexible jquery plugin features and bootstrap UI design makes csv import more simple, easy, fast and even more flexible for better user experience. With improved Multi site, buddy press compatibility (except user import module) works well for most of the best wordpress themes available online. Now manage multisite & buddypress, amazon data import, affiliates blog, product inventory, ecommerce store, multi author blog, automatic news import, photo blog etc periodically with simple click import. 
 
-= Extended Power Features in Wp Ultimate CSV Importer = 
+= Extended Pro Power Features in Wp Ultimate CSV Importer = 
 * Auto Schedule all your Imports
 * Save mapping as Templates for reuse
 * Auto Mapping Feature
@@ -97,7 +96,7 @@ Much improved User interface with most flexible jquery plugin features and boots
 * [Get Complete List of supported 3rd party plugins here](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
 * Types and more supports are in pipeline 
 
-[Read More >>](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
+[Read More about Pro>>](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html) or [Test Drive Our Live Demo](http://demo.smackcoders.com/demowpthree/wp-admin)
 
 = Imp. Notes =
 * All CSV files should be should be strictly UTF-8 CSV format. 
@@ -109,12 +108,12 @@ Featured Image Support
 Your wordpress theme should support featured image. If not, please add the following code to where you need to display E.g. wp-contents/themes/header.php
 `<?php add_theme_support( 'post-thumbnails' ); ?>`
 
-Also you can follow the instructions as given here 
+= Also you can follow the instructions as given here =
 	[http://codex.wordpress.org/Function_Reference/the_post_thumbnail](http://codex.wordpress.org/Function_Reference/the_post_thumbnail)
 	[http://codex.wordpress.org/Post_Thumbnails](http://codex.wordpress.org/Post_Thumbnails)	
 	[http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5](http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5)
 
-= Need More Help, Cool. Browse Below Links=
+= Need More Help, Cool. Browse Below Links =
 	[Get Pro Power Features, check here](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
 	[Step By Step Installation Wiki with Snaps](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer#Installations)
 	[Detailed FAQ](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_FAQ)
