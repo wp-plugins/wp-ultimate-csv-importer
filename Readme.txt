@@ -1,7 +1,8 @@
 === Advanced CSV Importer With Ultimate User Friendly Features ===
 Contributors: smackcoders, mayavee, fenzik, fredricksujin, rajkumarmohan, kumarsacoe, yesjosephraja, muthukumarp, mansoorkhan
 Donate link: http://www.smackcoders.com/donate.html
-Tags: admin, administration, affiliate, amazon, author, automatic, blog, buddypress, categories, cms, comments, contact, content, custom post, dashboard, e-commerce, edit, events, feeds, Formatting, free, images, import, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, sidebar, slideshow, tags, Taxonomy, text, themes, TinyMCE, title, users, video, widget, woocommerce, wordpress, xml, youtube, batch, bulk, bulk edit, bulk editor, excel, spreadsheet, csv, importer, csv importRequires at least: 3.6.0
+Tags: Advanced CSV Importer, Advanced CSV Import, csv, csv importer, csv import, csv file, csv format, admin, affiliate, amazon, author, automatic, blog, buddypress, categories, comments, content, custom post,  e-commerce, free, images, import, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, users, video, woocommerce, wordpress, xml, youtube, batch, bulk, bulk edit, bulk editor, excel, spreadsheet
+Requires at least: 3.6.0
 Tested up to: 3.8.1
 Stable tag: 3.5.0
 Version: 3.5.0
@@ -88,9 +89,9 @@ Much improved User interface with most flexible jquery plugin features and boots
 * Custom Post Type UI plugin import
 * Advanced Custom Fields Import 
 * CCTM Posts and Fields Import
-* Woocommerce Importer, 
-* eshop Importer
-* wp ecommerce Products Importer with WP e-Commerce Custom Fields 
+* Woocommerce CSV Importer, 
+* eshop CSV Importer
+* wp ecommerce Products CSV Importer with WP e-Commerce Custom Fields 
 * Categories & tags Import with Category icons plugin support
 * Custom Taxonomy import
 * [Get Complete List of supported 3rd party plugins here](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
@@ -167,7 +168,7 @@ Not clear. You can use [step by step installation wiki with snaps here](http://w
 
 == Screenshots ==
 
-1. Advanced CSV File Importer With Ultimate User Friendly Features with drag and drop etc.
+1. Advanced CSV Importer With Ultimate User Friendly Features with drag and drop etc.
 2. User friendly easy mapping for any csv file data to wordpress field attributes with sampling.
 3. Advanced duplicate post name and content check with server request control for high performance factor.
 4. Detailed real time log to know pinpoint status.
