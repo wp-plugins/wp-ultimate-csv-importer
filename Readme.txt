@@ -99,7 +99,7 @@ Much improved User interface with most flexible jquery plugin features and boots
 [Read More about Pro>>](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html) or [Test Drive Our Live Demo](http://demo.smackcoders.com/demowpthree/wp-admin)
 
 = Imp. Notes =
-* It is advised to remove older version files () completely and install/reinstall version 3.5.0.
+* It is advised to remove older version files completely and install/reinstall version 3.5.0.
 * All CSV files should be should be strictly UTF-8 CSV format. 
 * All wordpress supported languages can imported with csv format as UTF-8 without BOM (See FAQ for instructions).
 * User import option is switched off in multi site mode.
@@ -109,12 +109,12 @@ Featured Image Support
 Your wordpress theme should support featured image. If not, please add the following code to where you need to display E.g. wp-contents/themes/header.php
 `<?php add_theme_support( 'post-thumbnails' ); ?>`
 
-= Also you can follow the instructions as given here =
+Also you can follow the instructions as given here
 	[http://codex.wordpress.org/Function_Reference/the_post_thumbnail](http://codex.wordpress.org/Function_Reference/the_post_thumbnail)
 	[http://codex.wordpress.org/Post_Thumbnails](http://codex.wordpress.org/Post_Thumbnails)	
 	[http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5](http://wordpress.org/support/topic/featured-image-not-showing-7?replies=5)
 
-= Need More Help, Cool. Browse Below Links =
+Need More Help, Cool. Browse Below Links
 	[Get Pro Power Features, check here](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
 	[Step By Step Installation Wiki with Snaps](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer#Installations)
 	[Detailed FAQ](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_FAQ)
@@ -130,7 +130,7 @@ Your wordpress theme should support featured image. If not, please add the follo
 Wp Ultimate CSV Importer is very easy to install like any other wordpress plugin. No need to edit or modify anything here. Users can install the plugin in 3 ways, choose one that suites you from below
 
 = Imp. Notes =
-* It is advised to remove older version files () completely and install/reinstall version 3.5.0.
+* It is advised to remove older version files completely and install/reinstall version 3.5.0.
 
 I. For simple general way to install
 
@@ -175,6 +175,9 @@ Not clear. You can use [step by step installation wiki with snaps here](http://w
 6. Inbuilt support form for easy feedback, support, feature request with all useful links for easy and better csv import.
 
 == Frequently Asked Questions ==
+
+= Imp. Notes =
+* It is advised to remove older version files completely and install/reinstall version 3.5.0.
 
 [CSV File and Format Related](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_FAQ#CSV_File_and_Format_Related)
 
