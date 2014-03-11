@@ -184,7 +184,7 @@ Not clear. You can use [step by step installation wiki with snaps here](http://w
 
 [CSV File and Format Related](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_FAQ#CSV_File_and_Format_Related)
 
-== '''What is csv file?''' ==
+= '''What is csv file?''' =
 
 CSV stands for "Comma Seperated Values". CSV file format is used to store data in a structured table of lists as columns and rows. CSV File otherwise Comma Separated Values file is a simple text file that stores attribute names as headers and their related values in comma separated format. 
 
@@ -192,7 +192,7 @@ In general opening csv files in MS Excel or any spread sheet editor will show al
   
 For ultimate csv importer each row is imported as a post for a selected post type and columns are imported as filed attribute values of the posts. This is done by simple interface of drop downs of header or attribute names are mapped to wordpress post field attributes like post title, content, status. So no of rows are equal to no of posts that to be imported. And columns or csv headers are equal to no of field attributes assigned under each post like author, category, tags, custom fields etc.
 
-== '''What is csv format and types of it?''' ==
+= '''What is csv format and types of it?''' =
 
 The CSV file type 'Comma-Separated Variables' or comma delimited file is a records and data from a database or software exported, where each record/data in single line and each field attributes in records are indicated as comma separated. In some cases instead of comma other delimiters also can be used like ; separated. 
 
@@ -205,11 +205,11 @@ How to choose separator or delimiter for ultimate CSV Importer?
 
 In ultimate csv importer you can choose the delimiter as , or ; while importing the csv file. 
 
-== '''How to open csv files? read csv file?''' ==
+= '''How to open csv files? read csv file?''' =
 
 In general to read or open existing CSV files simple text editors can be used. For easy editing  and best view, any spread sheet editor like MS Excel or OpenOffice Calc is useful.
 
-== '''How to convert my existing data to csv format?''' ==
+= '''How to convert my existing data to csv format?''' =
 
 In general to read or open existing CSV files simple text editors can be used. For easy editing  and best view, any spread sheet editor like MS Excel or OpenOffice Calc is useful. To convert encoding format of a csv file open it in text editor and save as with needed file format. 
   
@@ -217,11 +217,11 @@ For E.g. open your csv file in Notepad++ copy the text. Now open a new empty fil
 
 [Plugin Related](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_FAQ#Plugin_Related)
 
-== '''How to install the plugin?''' ==
+= '''How to install the plugin?''' =
 
 For detailed installation instruction read here - http://wiki.smackcoders.com/index.php?title=WP_Ultimate_CSV_Importer#Installations
 
-== '''How to use the plugin to import a csv file?''' ==
+= '''How to use the plugin to import a csv file?''' =
 
 Refer here as below
 
@@ -229,11 +229,11 @@ Refer here as below
 
 2.http://blog.smackcoders.com/how-to-import-content-to-wordpress-simple-steps-tutorial-wordpress-ultimate-csv-importer-plugin-part-ii.html
 
-== '''What is a csv importer plugin?''' ==
+= '''What is a csv importer plugin?''' =
 
 Csv importer plugin is a tool/plugin that can import your data and records from exported, stored, saved as csv files to your software as useful viewable content to analyze, manage etc. In such way Ultimate CSV importer is a worpdress plugin that imports your off line records or data stored/exported as a csv file into any wordpress post type web content by simple easy mapping feature.
 
-== '''Why we need CSV import for wordpress?''' ==
+= '''Why we need CSV import for wordpress?''' =
 
 If you need to move data from our local system to live website as post content and their field attributes in bulk you should need a csv importer plugin for reduce manual work and time. In normal affiliates data like amazon, auto blogging, drop shipping ecommerce, inventory management, periodical changes to content in bulk, bulk editing cms content etc can be handled as simple as few easy clicks by an advanced csv importer plugin like Ultimate CSV importer plugin.
 
