@@ -96,9 +96,9 @@ class SkinnyBaseActions {
    * @return array
    */
    public function call($module='default', $action='index', $request=array('GET'=>array(), 'POST'=>array())) {
-      $moduleClass = SkinnyController::camelize($module) . 'Actions';
+      $moduleClass = SkinnyControllerWPCsvFree::camelize($module) . 'Actions';
 
-      $actionMethod = 'execute'.SkinnyController::camelize($action);
+      $actionMethod = 'execute'.SkinnyControllerWPCsvFree::camelize($action);
 
       $moduleObj = new $moduleClass();
 
@@ -326,7 +326,7 @@ class SkinnyBaseActions {
     */
    public function setLayout($layout)
    {
-     SkinnyBaseController::setLayout($layout);
+     SkinnyBaseControllerWPCsvFree::setLayout($layout);
    }
 
 }

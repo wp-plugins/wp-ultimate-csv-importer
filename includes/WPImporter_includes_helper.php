@@ -155,7 +155,7 @@ class WPImporter_includes_helper {
 		require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY.'config/settings.php');
 		require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY.'lib/skinnymvc/controller/SkinnyController.php');
 
-		$c = new SkinnyController;
+		$c = new SkinnyControllerWPCsvFree;
                 $c->main();
 	}
 

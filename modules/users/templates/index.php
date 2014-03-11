@@ -71,7 +71,7 @@ $('#defaultpanel').css('visibility','hidden');
 $('<p/>').text("").appendTo('#warning');
 $( "#warning" ).empty();
 $('#warning').css('display','inline');
-$('<p/>').text("Warning:   Sorry. There is no upload directory Please create it with write permission.").appendTo('#warning');
+$('<p/>').text("Warning:   Sorry. There is no uploads directory Please create it with write permission.").appendTo('#warning');
 $('#warning').css('color','red');
 $('#warning').css('font-weight','bold');
 $('#progress .progress-bar').css('visibility','hidden');

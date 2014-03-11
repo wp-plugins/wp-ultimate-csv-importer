@@ -5,15 +5,15 @@
 	$skinnyData['savesettings'] == 'notdone';
 ?>
     <script type="text/javascript"> 
-      $(document).ready( function() {
-	$('#ShowMsg').delay(2000).fadeOut();
-	$('#ShowMsg').css("display", "none");
-        $('#deletesuccess').delay(2000).fadeOut();
+      jQuery(document).ready( function() {
+	jQuery('#ShowMsg').delay(2000).fadeOut();
+	jQuery('#ShowMsg').css("display", "none");
+        jQuery('#deletesuccess').delay(2000).fadeOut();
       });
     </script>
 <?php
 } ?>
-<form class="add:the-list: validate" name="importerSettings" method="post" enctype="multipart/form-data">
+<form class="add:the-list: validate" action="" name="importerSettings" method="post" enctype="multipart/form-data">
 	<div class="container-fluid">
 		<div class="accordion" id="accordion2">
 			<div class="accordion-group">

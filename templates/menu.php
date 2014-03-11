@@ -68,7 +68,7 @@ $menuHTML .="<li class=\"moreMenu\"><a href = '#' class='navigationMenu-link' id
 $menuHTML .= "</ul>";
 $menuHTML .= "<div style='margin-right:10px;width: 250px;float: right;'>";
 $menuHTML .= "<span class='prolinks'><a class='label label-info' href='http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html' target='_blank'>GO PRO NOW</a></span>";
-$menuHTML .= "<span class='prolinks'><a class='label label-info' href='http://demo.smackcoders.com/demowpthree/wp-admin/admin.php?page=upload_csv_file' target='_blank'>TRY PRO LIVE DEMO NOW</a></span>";
+$menuHTML .= "<span class='prolinks'><a class='label label-info' href='http://demo.smackcoders.com/demowpthree/wp-admin/admin.php?page=wp-ultimate-csv-importer-pro/index.php&__module=dashboard' target='_blank'>TRY PRO LIVE DEMO NOW</a></span>";
 $menuHTML .= "</div>";
 $menuHTML .= "</div>";
 $menuHTML .= "<div style='width:100%;padding-bottom:30px;'>";

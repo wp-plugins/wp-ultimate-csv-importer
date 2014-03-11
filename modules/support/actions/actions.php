@@ -25,12 +25,13 @@ class SupportActions extends SkinnyActions {
 		$to = $_POST['smackmailid'];
 		$admin_mail_id = get_option('admin_email');
 		$site_url = get_option('siteurl');
+		$subject = WP_CONST_ULTIMATE_CSV_IMP_NAME . ': ';
 		if($_POST['subject'] == 'Support')
-			$subject = 'I need some "' . $_POST['subject'] . '"';
+			$subject .= 'I need some "' . $_POST['subject'] . '"';
 		else if($_POST['subject'] == 'Feature Request')
-			$subject = 'I have some "' . $_POST['subject'] . '"';
+			$subject .= 'I have some "' . $_POST['subject'] . '"';
 		else if($_POST['subject'] == 'Customization')
-			$subject = 'I need some "' . $_POST['subject'] . '"';
+			$subject .= 'I need some "' . $_POST['subject'] . '"';
 
 		$firstname = $_POST['firstname'];
 		$lastname = $_POST['lastname'];
@@ -47,9 +48,11 @@ class SupportActions extends SkinnyActions {
 			$lastname = '';
 		$username = $firstname . ' ' . $lastname;
 		$headers[] = 'From: '. $username . ' <' . $admin_mail_id . '>';
+		$headers[] = 'Cc: '. $username . ' <' . $admin_mail_id . '>';
 		$message = "\n\n First Name: ".$firstname;
 		$message .= "\n\n Last Name: ".$lastname;
 		$message .= "\n\n WordPress URL: ".$site_url;
+		$message .= "\n\n Plugin: ".WP_CONST_ULTIMATE_CSV_IMP_NAME;
 		$message .= "\n\n Email: ".$admin_mail_id;
 		$message .= "\n\n Message: ".$_POST['message'];
 		wp_mail( $to, $subject, $message, $headers );

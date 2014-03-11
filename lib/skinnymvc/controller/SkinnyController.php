@@ -6,7 +6,7 @@
 
 require_once('base/SkinnyBaseController.php');
 
-class SkinnyController extends SkinnyBaseController 
+class SkinnyControllerWPCsvFree extends SkinnyBaseControllerWPCsvFree 
 {
 
 	public function __construct()
@@ -85,13 +85,13 @@ class SkinnyController extends SkinnyBaseController
 
 } // class SkinnyController
 
-class CallSkinnyObj extends SkinnyController
+class CallSkinnyObj extends SkinnyControllerWPCsvFree
 {
 private static $_instance = null;
 public static function getInstance()
 {
 if( !is_object(self::$_instance) )  //or if( is_null(self::$_instance) ) or if( self::$_instance == null )
-self::$_instance = new SkinnyController();
+self::$_instance = new SkinnyControllerWPCsvFree();
 return self::$_instance;
 }
 }// CallSkinnyObj Class Ends
