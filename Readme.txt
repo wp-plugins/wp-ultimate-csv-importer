@@ -4,8 +4,8 @@ Donate link: http://www.smackcoders.com/donate.html
 Tags: Advanced CSV Importer, Advanced CSV Import, csv, csv importer, csv import, csv file, csv format, admin, affiliate, amazon, author, automatic, blog, buddypress, categories, comments, content, custom post,  e-commerce, free, images, import, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, users, video, woocommerce, wordpress, xml, youtube, batch, bulk, bulk edit, bulk editor, excel, spreadsheet
 Requires at least: 3.6.0
 Tested up to: 3.8.1
-Stable tag: 3.5.1
-Version: 3.5.1
+Stable tag: 3.5.2
+Version: 3.5.2
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 
@@ -15,7 +15,7 @@ Advanced CSV Importer plugin to import data as bulk post, page, custom post etc.
 
 == Description ==
 
-**Version 3.5.1 is now available with all reported bug fixes. Give a try today and [Leave your thoughts, comments, review and feed back here](http://wordpress.org/support/view/plugin-reviews/wp-ultimate-csv-importer?filter=5)**
+**Version 3.5.2 is now available with all reported bug fixes. Give a try today and [Leave your thoughts, comments, review and feed back here](http://wordpress.org/support/view/plugin-reviews/wp-ultimate-csv-importer?filter=5)**
 
 WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer With Ultimate User Friendly Features. It is much easy now even for newbies to import any csv file as any wordpress post type and associated fields by simple mapping feature. Now import any CSV file as thousands of post, page and custom post types. This is admin side free plugin helps you in bulk edit, create and import posts type for your blog or site. 
 
@@ -280,9 +280,18 @@ Read More FAQs from below wiki links.
 
 == Changelog ==
 
+= 3.5.2 =
+* Import posts with author names as numerical apart from User ID
+* Added menu_order attribute import
+* Added Auto image rename option
+* Option to cancel an partial import at middle
+* Improved image handling even special characters in Url
+* Import can handle image urls without any extensions
+* User reported bugs fixed
+
 = 3.5.1 =
 * User reported issue fixes
-* Activation and other plugin conflict issue solved like Jetpack
+* Activation and other plugin conflict issue solved like Jet pack
 * Admin UI freezing issues - screen option, Help links issues fixed.
 * WYSIWIG editor UI issue fixed.
 
@@ -408,6 +417,9 @@ Read More FAQs from below wiki links.
 
 
 == Upgrade Notice ==
+
+= 3.5.2 =
+* Upgrade for bug free version and improved image handling
 
 = 3.5.1 = 
 * Must upgrade now for 3.5 bug fixes

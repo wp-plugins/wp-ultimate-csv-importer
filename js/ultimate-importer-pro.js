@@ -502,11 +502,17 @@ function importRecordsbySettings(siteurl)
 		},
 		success:function(data) { 
         	        if(parseInt(tmpCnt) < parseInt(tot_no_of_records)){
-				currentlimit = parseInt(currentlimit)+parseInt(importlimit);
-				document.getElementById('currentlimit').value = currentlimit;
-				console.log('impLmt: '+importlimit+'totRecds: '+tot_no_of_records);
-				document.getElementById('tmpcount').value = parseInt(tmpCnt)+parseInt(importlimit);
-				setTimeout(function(){importRecordsbySettings()},0);
+				var terminate_action = document.getElementById('terminateaction').value;
+				if(terminate_action == 'continue'){
+					currentlimit = parseInt(currentlimit)+parseInt(importlimit);
+					document.getElementById('currentlimit').value = currentlimit;
+					console.log('impLmt: '+importlimit+'totRecds: '+tot_no_of_records);
+					document.getElementById('tmpcount').value = parseInt(tmpCnt)+parseInt(importlimit);
+					setTimeout(function(){importRecordsbySettings()},0);
+				} else {
+					document.getElementById('log').innerHTML += "Import process has been terminated.</br>";
+					return false;
+				}
 	                }else{
 				document.getElementById('ajaxloader').style.display="none";
 		                document.getElementById('startbutton').style.display="none";
@@ -521,6 +527,12 @@ function importRecordsbySettings(siteurl)
 		}
 	});
 }
+
+// Terminate import process
+function terminateProcess(){
+	document.getElementById('terminateaction').value = 'terminate';
+}
+
 
 // Enable/Disable WP-e-Commerce Custom Fields
 function enablewpcustomfield(val){
@@ -655,4 +667,10 @@ function check_allnumeric(inputtxt)
 			alert('Please enter numeric characters only');  
 		return false;  
 	}  
+}
+
+function gotoback() {
+	var currentURL = document.getElementById('current_url').value;
+	var set_assigned_step = currentURL.replace("uploadfile","mapping_settings");
+//	window.location.assign(set_assigned_step);
 }

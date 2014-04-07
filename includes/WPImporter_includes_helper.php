@@ -62,7 +62,8 @@ class WPImporter_includes_helper {
 			'post_author' => null,
 			'featured_image' => null,
 			'post_parent' => 0,
-			'post_status' => 0
+			'post_status' => 0,
+			'menu_order'  => 0,
 			);
 
 	// @var array CSV headers
@@ -73,31 +74,31 @@ class WPImporter_includes_helper {
 	/* getImportDataConfiguration */
 	public function getImportDataConfiguration(){
 		$importDataConfig = "<div class='importstatus'id='importallwithps_div'>
-                        <table><tr><td>
-                        <label>Import with post status</label><span class='mandatory'> *</span></td><td>
+			<table><tr><td>
+			<label>Import with post status</label><span class='mandatory'> *</span></td><td>
 			<div style='float:left;'>
-                        <select name='importallwithps' id='importallwithps' onChange='selectpoststatus();' >
-                        <option value='0'>Status as in CSV</option>
-                        <option value='1'>Publish</option>
-                        <option value='2'>Sticky</option>
-                        <option value='4'>Private</option>
-                        <option value='3'>Protected</option>
-                        <option value='5'>Draft</option>
-                        <option value='6'>Pending</option>
-                        </select></div>
+			<select name='importallwithps' id='importallwithps' onChange='selectpoststatus();' >
+			<option value='0'>Status as in CSV</option>
+			<option value='1'>Publish</option>
+			<option value='2'>Sticky</option>
+			<option value='4'>Private</option>
+			<option value='3'>Protected</option>
+			<option value='5'>Draft</option>
+			<option value='6'>Pending</option>
+			</select></div>
 			<div style='float:right;'>
-                        <a href='#' class='tooltip'>
-                        <img src='".WP_CONST_ULTIMATE_CSV_IMP_DIR."images/help.png' />
-                        <span class='tooltipPostStatus'>
-                        <img class='callout' src='".WP_CONST_ULTIMATE_CSV_IMP_DIR."images/callout.gif' />
-                        Select the status for the post  imported, if not defined within your csv .E.g.publish
-                        <img src='". WP_CONST_ULTIMATE_CSV_IMP_DIR."images/help.png' style='margin-top: 6px;float:right;' />
-                        </span></a> </div>
-                        </td></tr><tr><td>
-                        <div id='globalpassword_label' class='globalpassword' style='display:none;'><label>Password</label><span class='mandatory'> *</span></div></td><td>
-                        <div id='globalpassword_text' class='globalpassword' style='display:none;'><input type = 'text' id='globalpassword_txt' name='globalpassword_txt' placeholder='Password for all post'></div></td></tr></table>
-                        </div>";
-			return $importDataConfig;
+			<a href='#' class='tooltip'>
+			<img src='".WP_CONST_ULTIMATE_CSV_IMP_DIR."images/help.png' />
+			<span class='tooltipPostStatus'>
+			<img class='callout' src='".WP_CONST_ULTIMATE_CSV_IMP_DIR."images/callout.gif' />
+			Select the status for the post  imported, if not defined within your csv .E.g.publish
+			<img src='". WP_CONST_ULTIMATE_CSV_IMP_DIR."images/help.png' style='margin-top: 6px;float:right;' />
+			</span></a> </div>
+			</td></tr><tr><td>
+			<div id='globalpassword_label' class='globalpassword' style='display:none;'><label>Password</label><span class='mandatory'> *</span></div></td><td>
+			<div id='globalpassword_text' class='globalpassword' style='display:none;'><input type = 'text' id='globalpassword_txt' name='globalpassword_txt' placeholder='Password for all post'></div></td></tr></table>
+			</div>";
+		return $importDataConfig;
 	}
 
 	/**
@@ -146,7 +147,7 @@ class WPImporter_includes_helper {
 		delete_option('wpcsvfreesettings');
 	}
 
-	public function output_fd_page()
+	public static function output_fd_page()
 	{
 		if(!isset($_REQUEST['__module']))
 		{
@@ -156,7 +157,7 @@ class WPImporter_includes_helper {
 		require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY.'lib/skinnymvc/controller/SkinnyController.php');
 
 		$c = new SkinnyControllerWPCsvFree;
-                $c->main();
+		$c->main();
 	}
 
 	public function getSettings(){
@@ -234,8 +235,8 @@ class WPImporter_includes_helper {
 			$this->defCols ["CF: " . $val] = $val;
 		}
 
-		
-	
+
+
 	}
 
 	/**
@@ -255,7 +256,7 @@ class WPImporter_includes_helper {
 		$data_rows = array();
 		$this->delim = $delim;
 		//print($this->delim);die;
-		# Check whether file is present in the given file location
+# Check whether file is present in the given file location
 		$fileexists = file_exists($file);
 
 		if ($fileexists) {
@@ -316,6 +317,28 @@ class WPImporter_includes_helper {
 		return false;
 	}
 
+	/**
+	 * function to fetch the featured image from remote URL
+	 *
+	 */
+	function get_fimg_from_URL($f_img,$fimg_path,$fimg_name,$post_slug_value){
+		if($fimg_path!="" && $fimg_path){
+			$fimg_path = $fimg_path . "/" . $post_slug_value . "-" . $fimg_name;
+		}
+		$ch = curl_init ($f_img);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
+		curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
+		$rawdata=curl_exec($ch);
+		curl_close ($ch);
+		if(file_exists($fimg_path)){
+			unlink($fimg_path);
+		}
+		$fp = fopen($fimg_path,'x');
+		fwrite($fp, $rawdata);
+		fclose($fp);
+	}
 
 	/**
 	 * function to map the csv file and process it
@@ -329,6 +352,7 @@ class WPImporter_includes_helper {
 		$smack_taxo = array();
 		$custom_array = array();
 		$seo_custom_array= array();		
+		$imported_feature_img = array();
 
 		$headr_count = $ret_array['h2'];
 		for ($i = 0; $i < count($data_rows); $i++) {
@@ -358,129 +382,105 @@ class WPImporter_includes_helper {
 			}
 		}
 		if(is_array( $new_post )){
-		foreach ($new_post as $ckey => $cval) {
-			$this->postFlag = true;
-			$taxo = get_taxonomies();
-			foreach ($taxo as $taxokey => $taxovalue) {
-				if ($taxokey != 'category' && $taxokey != 'link_category' && $taxokey != 'post_tag' && $taxokey != 'nav_menu' && $taxokey != 'post_format') {
-					if ($taxokey == $ckey) {
-						$smack_taxo [$ckey] = $new_post [$ckey];
+			foreach ($new_post as $ckey => $cval) {
+				$this->postFlag = true;
+				$taxo = get_taxonomies();
+				foreach ($taxo as $taxokey => $taxovalue) {
+					if ($taxokey != 'category' && $taxokey != 'link_category' && $taxokey != 'post_tag' && $taxokey != 'nav_menu' && $taxokey != 'post_format') {
+						if ($taxokey == $ckey) {
+							$smack_taxo [$ckey] = $new_post [$ckey];
+						}
 					}
 				}
-			}
 
-			$taxo_check = 0;
-			if (!isset($smack_taxo[$ckey])) {
-				$smack_taxo [$ckey] = null;
-				$taxo_check = 1;
-			}
-			if ($ckey != 'post_category' && $ckey != 'post_tag' && $ckey != 'featured_image' && $ckey != $smack_taxo [$ckey]) {
-				if ($taxo_check == 1) {
-					unset($smack_taxo[$ckey]);
-					$taxo_check = 0;
+				$taxo_check = 0;
+				if (!isset($smack_taxo[$ckey])) {
+					$smack_taxo [$ckey] = null;
+					$taxo_check = 1;
 				}
-				if (array_key_exists($ckey, $custom_array)) {
-					$darray [$ckey] = $new_post [$ckey];
-				} else {
-					if (array_key_exists($ckey, $smack_taxo)) {
-						$data_array[$ckey] = null;
+				if ($ckey != 'post_category' && $ckey != 'post_tag' && $ckey != 'featured_image' && $ckey != $smack_taxo [$ckey]) {
+					if ($taxo_check == 1) {
+						unset($smack_taxo[$ckey]);
+						$taxo_check = 0;
+					}
+					if (array_key_exists($ckey, $custom_array)) {
+						$darray [$ckey] = $new_post [$ckey];
 					} else {
-						$data_array[$ckey] = $new_post [$ckey];
+						if (array_key_exists($ckey, $smack_taxo)) {
+							$data_array[$ckey] = null;
+						} else {
+							$data_array[$ckey] = $new_post [$ckey];
+						}
+					}
+				} else {
+					switch ($ckey) {
+						case 'post_tag' :
+							$tags [$ckey] = $new_post [$ckey];
+							break;
+						case 'post_category' :
+							$categories [$ckey] = $new_post [$ckey];
+							break;
+						case 'featured_image' :
+							require_once(ABSPATH . "wp-includes/pluggable.php");
+							require_once(ABSPATH . 'wp-admin/includes/image.php');
+							$dir = wp_upload_dir();
+							$get_media_settings = get_option('uploads_use_yearmonth_folders');
+							if($get_media_settings == 1){
+								$dirname = date('Y') . '/' . date('m');
+								$full_path = $dir ['basedir'] . '/' . $dirname;
+								$baseurl = $dir ['baseurl'] . '/' . $dirname;
+							}else{
+								$full_path = $dir ['basedir'];
+								$baseurl = $dir ['baseurl'];
+							}
+
+							$f_img = $new_post [$ckey];
+							$fimg_path = $full_path;
+
+							$fimg_name = @basename($f_img);
+							$fimg_name = preg_replace("/[^a-zA-Z0-9._\s]/", "", $fimg_name);
+							$fimg_name = preg_replace('/\s/', '-', $fimg_name);
+							$fimg_name = urlencode($fimg_name);
+							
+							$parseURL = parse_url($f_img);
+							$path_parts = pathinfo($f_img);
+							if(!isset($path_parts['extension']))
+								$fimg_name = $fimg_name . '.jpg';
+
+							$f_img_slug = preg_replace("/[^a-zA-Z0-9._\s]/", "", $new_post['post_title']);
+							$f_img_slug = preg_replace('/\s/', '-', $f_img_slug);
+
+							$post_slug_value = strtolower($f_img_slug);
+							$this->get_fimg_from_URL($f_img,$fimg_path,$fimg_name,$post_slug_value);
+							$filepath = $fimg_path."/" . $post_slug_value . "-" . $fimg_name;
+	
+							if(@getimagesize($filepath)){
+								$img = wp_get_image_editor($filepath);
+								if (!is_wp_error($img)) {
+									$sizes_array = array(
+											// #1 - resizes to 1024x768 pixel, square-cropped image
+											array('width' => 1024, 'height' => 768, 'crop' => true),
+											// #2 - resizes to 100px max width/height, non-cropped image
+											array('width' => 100, 'height' => 100, 'crop' => false),
+											// #3 - resizes to 100 pixel max height, non-cropped image
+											array('width' => 300, 'height' => 100, 'crop' => false),
+											// #3 - resizes to 624x468 pixel max width, non-cropped image
+											array('width' => 624, 'height' => 468, 'crop' => false)
+											);
+									$resize = $img->multi_resize($sizes_array);
+								}
+								$file ['guid'] = $baseurl."/".$fimg_name;
+								$file ['post_title'] = $fimg_name;
+								$file ['post_content'] = '';
+								$file ['post_status'] = 'attachment';
+							}
+							else	{
+								$file = false;
+							}
+							break;
 					}
 				}
-			} else {
-				switch ($ckey) {
-					case 'post_tag' :
-						$tags [$ckey] = $new_post [$ckey];
-						break;
-					case 'post_category' :
-						$categories [$ckey] = $new_post [$ckey];
-						break;
-					case 'featured_image' :
-						/*
-						 * TODO: Cleanup required
-						 */
-						$split_filename = explode('/', htmlentities($new_post [$ckey]));
-						$arr_filename = count($split_filename);
-						$plain_filename = $split_filename [$arr_filename - 1];
-						$new_post [$ckey] = str_replace(' ', '%20', $new_post [$ckey]);
-						$file_url = $filetype [$ckey] = $new_post [$ckey];
-						$file_type = explode('.', $filetype [$ckey]);
-						$count = count($file_type);
-						$type = $file_type [$count - 1];
-
-						if ($type == 'png') {
-							$file ['post_mime_type'] = 'image/png';
-						} else if ($type == 'jpg' || $type == 'jpeg') {
-							$file ['post_mime_type'] = 'image/jpeg';
-						} else if ($type == 'gif') {
-							$file ['post_mime_type'] = 'image/gif';
-						}
-						$img_name = explode('/', $file_url);
-						$imgurl_split = count($img_name);
-						$img_name = explode('.', $img_name [$imgurl_split - 1]);
-						if (count($img_name) > 2) {
-							for ($r = 0; $r < (count($img_name) - 1); $r++) {
-								if ($r == 0)
-									$img_title = $img_name[$r];
-								else
-									$img_title .= '.' . $img_name[$r];
-							}
-						} else {
-							$img_title = $img_name = $img_name [0];
-						}
-						$attachmentName = urldecode($img_title) . '.' . $type;
-						$dir = wp_upload_dir();
-						$get_media_settings = get_option('uploads_use_yearmonth_folders');
-						if($get_media_settings == 1){
-							$dirname = date('Y') . '/' . date('m');
-							$full_path = $dir ['basedir'] . '/' . $dirname;
-							$baseurl = $dir ['baseurl'] . '/' . $dirname;
-						}else{
-							$full_path = $dir ['basedir'];
-							$baseurl = $dir ['baseurl'];
-						}
-						$filename = explode('/', $file_url);
-						$file_split = count($filename);
-						$filepath = $full_path . '/' . urldecode($plain_filename);
-						$fileurl = $baseurl . '/' . $filename [$file_split - 1];
-						if (is_dir($full_path)) {
-							$smack_fileCopy = @copy($file_url, $filepath);
-						} else {
-							wp_mkdir_p($full_path);
-							$smack_fileCopy = @copy($file_url, $filepath);
-						}
-
-						if(!function_exists('wp_get_current_user')) {
-						    include(ABSPATH . "wp-includes/pluggable.php"); 
-						}
-						$img = wp_get_image_editor($filepath);
-						if (!is_wp_error($img)) {
-
-							$sizes_array = array(
-									// #1 - resizes to 1024x768 pixel, square-cropped image
-									array('width' => 1024, 'height' => 768, 'crop' => true),
-									// #2 - resizes to 100px max width/height, non-cropped image
-									array('width' => 100, 'height' => 100, 'crop' => false),
-									// #3 - resizes to 100 pixel max height, non-cropped image
-									array('width' => 300, 'height' => 100, 'crop' => false),
-									// #3 - resizes to 624x468 pixel max width, non-cropped image
-									array('width' => 624, 'height' => 468, 'crop' => false)
-									);
-							$resize = $img->multi_resize($sizes_array);
-						}
-						if ($smack_fileCopy) {
-							$file ['guid'] = $fileurl;
-							$file ['post_title'] = $img_title;
-							$file ['post_content'] = '';
-							$file ['post_status'] = 'attachment';
-						} else {
-							$file = false;
-						}
-						break;
-				}
 			}
-		}
 		}
 
 		if($_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['selectedImporter'] != 'custompost'){
@@ -558,6 +558,9 @@ class WPImporter_includes_helper {
 
 				if ($authorLen == $postAuthorLen) {
 					$postauthor = $wpdb->get_results("select ID from $wpdb->users where ID = \"{$postuserid}\"");
+					if(empty($postauthor) || !$postauthor[0]->ID) { // If user name are numeric Ex: 1300001
+						$postauthor = $wpdb->get_results("select ID from $wpdb->users where user_login = \"{$postuserid}\"");
+					}
 				} else {
 					$postauthor = $wpdb->get_results("select ID from $wpdb->users where user_login = \"{$postuserid}\"");
 				}
@@ -573,7 +576,7 @@ class WPImporter_includes_helper {
 				$data_array ['post_author'] = 1;
 				$this->noPostAuthCount++;
 			}
-		
+
 			// Date format post
 			if (!isset($data_array ['post_date'])){
 				$data_array ['post_date'] = date('Y-m-d H:i:s');
@@ -588,7 +591,7 @@ class WPImporter_includes_helper {
 			if($data_array){
 				if($ret_array['importallwithps'] == 3){
 					$data_array['post_password'] = $ret_array['globalpassword_txt'];
-					
+
 				}
 			}
 			//print('<pre>');print_r($data_array);die;
@@ -598,13 +601,22 @@ class WPImporter_includes_helper {
 			unset($postauthor);
 			if ($post_id) {
 				$uploaded_file_name=$session_arr['uploadedFile'];
-                                $real_file_name = $session_arr['uploaded_csv_name'];
-//                                $version = $session_arr['currentfileversion'];
+				$real_file_name = $session_arr['uploaded_csv_name'];
+				//                                $version = $session_arr['currentfileversion'];
 				$action = $data_array['post_type'];
-/*				$version_arr=array();
-				$version_arr=explode("(",$uploaded_file_name);
-				$version_arr=explode(")",$version_arr[1]);
-				$version=$version_arr[0]; */
+				/*				$version_arr=array();
+								$version_arr=explode("(",$uploaded_file_name);
+								$version_arr=explode(")",$version_arr[1]);
+								$version=$version_arr[0]; */
+				$get_imported_feature_image = array();
+				$get_imported_feature_image = get_option('IMPORTED_FEATURE_IMAGES');
+				if(is_array($get_imported_feature_image)){
+					$imported_feature_img = array_merge($get_imported_feature_image, $imported_feature_img);
+				}
+				else{
+					$imported_feature_img = $imported_feature_img;
+				}
+				update_option('IMPORTED_FEATURE_IMAGES', $imported_feature_img);
 				$created_records[$action][] = $post_id;
 				if($action == 'post'){
 					$imported_as = 'Post';
@@ -626,7 +638,7 @@ class WPImporter_includes_helper {
 					}
 				}
 
-				
+
 				// Create custom taxonomy to post
 				if (!empty ($smack_taxo)) {
 					foreach ($smack_taxo as $taxo_key => $taxo_value) {
@@ -655,23 +667,22 @@ class WPImporter_includes_helper {
 				}
 				// Add featured image
 				if (!empty ($file)) {
-					$wp_filetype = wp_check_filetype(basename($attachmentName), null);
+					//$wp_filetype = wp_check_filetype(@basename($file ['guid']), null);
 					$wp_upload_dir = wp_upload_dir();
 					$attachment = array(
-							'guid' => $wp_upload_dir['url'] . '/' . basename($attachmentName),
-							'post_mime_type' => $wp_filetype['type'],
-							'post_title' => preg_replace('/\.[^.]+$/', '', basename($attachmentName)),
+							'guid' => $file ['guid'],
+							'post_mime_type' => 'image/jpeg',
+							'post_title' => preg_replace('/\.[^.]+$/', '', @basename($file ['guid'])),
 							'post_content' => '',
 							'post_status' => 'inherit'
 							);
 					if($get_media_settings == 1){
-						$generate_attachment = $dirname . '/' . $attachmentName;
+						$generate_attachment = $dirname . '/' . $post_slug_value . '-' .  $fimg_name;
 					}else{
-						$generate_attachment = $attachmentName;
+						$generate_attachment = $fimg_name;
 					}
-					$uploadedImage = $wp_upload_dir['path'] . '/' . $attachmentName;
+					$uploadedImage = $wp_upload_dir['path'] . '/' . $post_slug_value . '-' . $fimg_name;
 					$attach_id = wp_insert_attachment($attachment, $generate_attachment, $post_id);
-					require_once(ABSPATH . 'wp-admin/includes/image.php');
 					$attach_data = wp_generate_attachment_metadata($attach_id, $uploadedImage);
 					wp_update_attachment_metadata($attach_id, $attach_data);
 					set_post_thumbnail($post_id, $attach_id);
@@ -681,25 +692,25 @@ class WPImporter_includes_helper {
 				$skippedRecords[] = $_SESSION['SMACK_SKIPPED_RECORDS'];
 			}
 		}
-				unset($data_array);
+		unset($data_array);
 	}
-        
-        /**
-         * Delete uploaded file after import process
-         */
-        function deletefileafterprocesscomplete($uploadDir) {
-                //array_map('unlink', glob("$uploadDir/*"));
+
+	/**
+	 * Delete uploaded file after import process
+	 */
+	function deletefileafterprocesscomplete($uploadDir) {
+		//array_map('unlink', glob("$uploadDir/*"));
 		$files = array_diff(scandir($uploadDir), array('.','..')); 
 		foreach ($files as $file) { 
 			(is_dir("$uploadDir/$file")) ? rmdir("$uploadDir/$file") : unlink("$uploadDir/$file"); 
 		} 
-        }
+	}
 
-        // Function convert string to hash_key
-        public function convert_string2hash_key($value) {
-                $file_name = hash_hmac('md5', "$value", 'secret');
-                return $file_name;
-        }
+	// Function convert string to hash_key
+	public function convert_string2hash_key($value) {
+		$file_name = hash_hmac('md5', "$value", 'secret');
+		return $file_name;
+	}
 
 	// Function for common footer
 	public function common_footer_for_other_plugin_promotions(){
@@ -720,7 +731,7 @@ class WPImporter_includes_helper {
 			<label class="plugintags"><a href="http://www.smackcoders.com/vtiger-quickbooks-integration-module.html" target="_blank">Vtiger QuickBooks</a></label>
 			<label class="plugintags"><a href="http://www.smackcoders.com/xero-vtiger-integration.html" target="_blank">Vtiger Xero Sync</a></label>
 			<label class="plugintags"><a href="http://www.smackcoders.com/vtiger-crm-hrm-payroll-modules.html" target="_blank">Vtiger HR and Payroll</a></label>
-                        <label class="plugintags"><a href="http://www.smackcoders.com/hr-payroll.html" target="_blank">HR Payroll</a></label>
+			<label class="plugintags"><a href="http://www.smackcoders.com/hr-payroll.html" target="_blank">HR Payroll</a></label>
 			<div style="position:relative;float:right;"><a href="http://www.smackcoders.com/"><img width=80 src="http://www.smackcoders.com/skin/frontend/default/megashop/images/logo.png" /></a></div>
 			</div>';
 		echo $content;

@@ -352,13 +352,15 @@ $mFieldsArr = substr($mFieldsArr, 0, -1);
 			<span class='msg' id='server_request_warning' style="display:none;color:red;margin-left:-10px;">You can set upto <?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords']; ?> per request.</span>
 			<input type="hidden" id="currentlimit" name="currentlimit" value="0"/>
 			<input type="hidden" id="tmpcount" name="tmpcount" value="0" />
+			<input type="hidden" id="terminateaction" name="terminateaction" value="continue" />
                     </li>
 <!--                    <li>
                         Ignore these words while comparing <input name="filterwords" id="filterwords" type="text" value="">
                     </li>-->
                 </ul>
-                <input id="startbutton" class="btn btn-primary" type="button" value="Import Now" style="color: #ffffff;background:#2E9AFE;" onclick="importRecordsbySettings();" >
-		<input class="btn btn-warning" type="button" value="Import Again" id="importagain" style="display:none" onclick="import_again();">
+                <input id="startbutton" class="btn btn-primary" type="button" value="Import Now" style="color: #ffffff;background:#2E9AFE;" onclick="importRecordsbySettings();" />
+		<input id="terminatenow" class="btn btn-danger btn-sm" type="button" value="Terminate Now" style="" onclick="terminateProcess();" />
+		<input class="btn btn-warning" type="button" value="Import Again" id="importagain" style="display:none" onclick="import_again();" />
 <!--                <input id="continuebutton" class="button" type="button" value="Continue old search" style="color: #ffffff;background:#2E9AFE;">-->
 		<div id="ajaxloader" style="display:none"><img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR; ?>images/ajax-loader.gif"> Processing...</div>
                 <div class="clear"></div>
