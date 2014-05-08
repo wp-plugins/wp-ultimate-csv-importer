@@ -9,7 +9,7 @@ if(importer=='custompost' && step=='mapping_settings')
 }	
 var checkfile = document.getElementById('checkfile').value;
 var uploadedFile = document.getElementById('uploadedFile').value;
-var select_delimeter=document.getElementById('select_delimeter').value;
+var select_delimeter=document.getElementById('select_delim').value;
 var select_delim=document.getElementById('select_delim').value;
 var get_log = document.getElementById('log').innerHTML; 
 if( !$.trim( $('#log').html() ).length ) {
@@ -446,20 +446,20 @@ function showMapMessages(alerttype, msg) {
 
 function importRecordsbySettings(siteurl)
 {
+        var importlimit = document.getElementById('importlimit').value; 
+        var get_requested_count = importlimit; 
         var tot_no_of_records = document.getElementById('checktotal').value;
         var importas = document.getElementById('selectedImporter').value;
         var uploadedFile = document.getElementById('checkfile').value;
-        var no_of_columns = document.getElementById('h2').value;
+       // var no_of_columns = document.getElementById('h2').value;
         var step = document.getElementById('stepstatus').value;
         var mappingArr = document.getElementById('mappingArr').value;
 	var dupContent = document.getElementById('duplicatecontent').checked;
 	var dupTitle = document.getElementById('duplicatetitle').checked;
-	var importlimit = document.getElementById('importlimit').value; 
 	var currentlimit = document.getElementById('currentlimit').value;
 	var tmpCnt = document.getElementById('tmpcount').value;
 	var no_of_tot_records = document.getElementById('tot_records').value;
-        var get_requested_count = document.getElementById('importlimit').value; 
-	var get_log = document.getElementById('log').innerHTML;
+        var get_log = document.getElementById('log').innerHTML;
 
         if(get_requested_count != '') {
                 //return true;
@@ -500,7 +500,10 @@ function importRecordsbySettings(siteurl)
 		    'postdata' : postdata,
 		    'siteurl'  : siteurl,
 		},
-		success:function(data) { 
+		success:function(data) {
+                        if(parseInt(tmpCnt) == parseInt(tot_no_of_records)){
+                                document.getElementById('terminatenow').style.display = "none";
+                        } 
         	        if(parseInt(tmpCnt) < parseInt(tot_no_of_records)){
 				var terminate_action = document.getElementById('terminateaction').value;
 				if(terminate_action == 'continue'){
@@ -673,4 +676,28 @@ function gotoback() {
 	var currentURL = document.getElementById('current_url').value;
 	var set_assigned_step = currentURL.replace("uploadfile","mapping_settings");
 //	window.location.assign(set_assigned_step);
+}
+function export_module(){
+        var get_selected_module = document.getElementsByName('export');
+//      alert(get_selected_module);
+        for (var i = 0, length = get_selected_module.length; i < length; i++) {
+                if (get_selected_module[i].checked) {
+                        // do whatever you want with the checked radio
+                        //alert(get_selected_module[i].value);
+                        // only one radio can be logically checked, don't check the rest
+                        //break;
+                        return true;
+                }
+        }
+        showMapMessages('error', 'Please choose one module to export the records!');
+        return false;
+}
+function export_check(value) {
+	if(value == 'eshop' || value == 'woocommerce' || value == 'wpcommerce' || value == 'marketpress') { 
+		document.getElementById(value).checked = false;
+		document.getElementById('ShowMsg').style.display = "";
+		value = value.toUpperCase();
+		document.getElementById('warning-msg').innerHTML = value+' Feature is available only for PRO!.';
+		$('#ShowMsg').delay(7000).fadeOut();
+	}
 }

@@ -349,6 +349,7 @@ class WPImporter_includes_helper {
 	{
 		global $wpdb;
 		$post_id = '';
+		$new_post = array();
 		$smack_taxo = array();
 		$custom_array = array();
 		$seo_custom_array= array();		
@@ -779,6 +780,43 @@ class WPImporter_includes_helper {
 		$htmlShareButtons .= '</a>';
 		$htmlShareButtons .= '</span>';
 		echo $htmlShareButtons;
+	}
+
+	public function common_footer() {
+		$get_pluginData = get_plugin_data(plugin_dir_path( __FILE__ ).'../index.php');
+		$footer = '';
+		//$footer .= '<div style="width:85%;height:20px;margin-top:25px;position:relative;"><hr style="border-top: 1px solid #C0C0C0;">';
+		//$footer .= '<label>Powered by Smackcoders</label>';
+		$footer .= '<div style="padding:10px;">';
+		$footer .= '<label class="plugintags"><a href="http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer" target="_blank">WIKI</a></label>
+			<label class="plugintags"><a href="http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_FAQ" target="_blank">FAQ</a></label>
+			<label class="plugintags"><a href="http://blog.smackcoders.com/category/free-wordpress-plugins/wordpress-ultimate-csv-importer-plugin/" target="_blank">TUTORIALS</a></label>
+			<label class="plugintags"><a href="http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Videos" target="_blank">VIDEOS</a></label>
+			<label class="plugintags"><a href="http://forum.smackcoders.com/" target="_blank">FORUM</a></label>
+			<label class="plugintags"><a href="http://blog.smackcoders.com/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html" target="_blank">SAMPLE FILES</a></label>
+			<label class="plugintags"><a href="http://blog.smackcoders.com/how-to-make-one-click-easy-csv-import-in-wordpress-free-cheat-sheet-downloads.html" target="_blank">CHEAT SHEETS</a></label>
+			<label class="plugintags"><a href="http://blog.smackcoders.com/category/free-wordpress-plugins/wordpress-ultimate-csv-importer-plugin/" target="_blank">RELATED DOWNLOADS</a></label>
+			<label class="plugintags"><a href="http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Change_Log" target="_blank">CHANGE LOG</a></label>
+			<label class="plugintags"><a href="http://blog.smackcoders.com/category/free-wordpress-plugins/wordpress-ultimate-csv-importer-plugin/" target="_blank">CURRENT VERSION NEWS</a></label>';
+		$footer .= '</div>';
+		$footer .= '<div style="padding:10px;margin-bottom:20px;">';
+		if(isset ($_REQUEST['__module']) && $_REQUEST['__module'] != 'settings')
+			$footer .= "<div style='float:left;'><a class='label label-info' href='".get_admin_url()."admin.php?page=".WP_CONST_ULTIMATE_CSV_IMP_SLUG."/index.php&__module=settings'>Click here to Enable any disabled module</a></div>";
+
+		if(isset ($_REQUEST['__module']) && $_REQUEST['__module'] == 'settings') {
+			$footer .= "<div style='float:left;margin-left:15px;'><a class='label label-info' href='".get_admin_url()."admin.php?page=".WP_CONST_ULTIMATE_CSV_IMP_SLUG."/index.php&__module=support'>Click here to Get some useful links</a></div>";
+			$footer .= "<div style='float:right;margin-right:15px;'><a class='label label-info' href='http://wordpress.org/plugins/wp-ultimate-csv-importer/developers/'>Get Old Versions</a> </span> Current Version: ".$get_pluginData['Version']." </div>";
+		}
+		if(isset ($_REQUEST['__module']) && $_REQUEST['__module'] != 'support' && $_REQUEST['__module'] != 'settings') {
+			$footer .= "<div style='float:left;margin-left:15px;'><a class='label label-info' href='".get_admin_url()."admin.php?page=".WP_CONST_ULTIMATE_CSV_IMP_SLUG."/index.php&__module=support'>Click here to Get some useful links</a></div>";
+			$footer .= "<div style='float:right;margin-right:15px;'><span style='margin-right:20px;'> <a class='label label-info' href='http://wordpress.org/plugins/wp-ultimate-csv-importer/developers/'>Get Old Versions</a></span> Current Version: ".$get_pluginData['Version']." </div>";
+		}
+		if(isset ($_REQUEST['__module']) && $_REQUEST['__module'] == 'support'){
+			$footer .= "<div style='float:right;margin-right:15px;'><span style='margin-right:20px;'>Current Version: ".$get_pluginData['Version']." </span><span style='margin-right:10px;'><a class='label label-info' href='http://wordpress.org/plugins/wp-ultimate-csv-importer/developers/'>Get Old Versions</a></span></div>";
+		}
+		$footer .= '</div>';
+		$footer .= '<div style="float:right;margin-right:15px;"> <label>Powered By <a href="http://www.smackcoders.com"> Smackcoders</a></label> </div>';
+		echo $footer;
 	}
 
 }

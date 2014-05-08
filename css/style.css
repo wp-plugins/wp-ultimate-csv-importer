@@ -221,6 +221,12 @@ margin-top:12px
 /*margin-top:15px;*/
 padding: 0 5px;
 }
+.newmoduleicon {
+z-index: 1000;
+margin-top: -12px;
+margin-left: -10px;
+position: absolute;
+}
 /*.mappingheader .table-condensed label {
 margin-top:13px;
 }

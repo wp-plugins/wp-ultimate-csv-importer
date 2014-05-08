@@ -1,11 +1,11 @@
 === Advanced CSV Importer With Ultimate User Friendly Features ===
-Contributors: smackcoders, mayavee, fenzik, fredricksujin, rajkumarmohan, kumarsacoe, yesjosephraja, muthukumarp, mansoorkhan
+Contributors: smackcoders
 Donate link: http://www.smackcoders.com/donate.html
 Tags: Advanced CSV Importer, Advanced CSV Import, csv, csv importer, csv import, csv file, csv format, admin, affiliate, amazon, author, automatic, blog, buddypress, categories, comments, content, custom post,  e-commerce, free, images, import, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, users, video, woocommerce, wordpress, xml, youtube, batch, bulk, bulk edit, bulk editor, excel, spreadsheet
 Requires at least: 3.6.0
-Tested up to: 3.8.1
-Stable tag: 3.5.2
-Version: 3.5.2
+Tested up to: 3.9
+Stable tag: 3.5.3
+Version: 3.5.3
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 
@@ -15,7 +15,7 @@ Advanced CSV Importer plugin to import data as bulk post, page, custom post etc.
 
 == Description ==
 
-**Version 3.5.2 is now available with all reported bug fixes. Give a try today and [Leave your thoughts, comments, review and feed back here](http://wordpress.org/support/view/plugin-reviews/wp-ultimate-csv-importer?filter=5)**
+**Version 3.5.3 is now available with all reported warnings, bug fixes and 3.9 compatibility. Give a try today and [Leave your thoughts, comments, review and feed back here](http://wordpress.org/support/view/plugin-reviews/wp-ultimate-csv-importer)**
 
 WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer With Ultimate User Friendly Features. It is much easy now even for newbies to import any csv file as any wordpress post type and associated fields by simple mapping feature. Now import any CSV file as thousands of post, page and custom post types. This is admin side free plugin helps you in bulk edit, create and import posts type for your blog or site. 
 
@@ -26,7 +26,7 @@ WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer
 = Highlights =
 * Drag drop import
 * Define any type of post 
-* Control post status (Publish, Private, Pending, Draft, Stciky and Protected)
+* Control post status (Publish, Private, Pending, Draft, Sticky and Protected)
 * Simple yet Powerful mapping feature 
 * Convert any csv import as perfect posts and fields
 * Scheduled Publishing
@@ -39,14 +39,14 @@ WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer
 
 = Power Import Features to Control your csv import =
 * Post title, content and even excerpt 
-* Text, WYSIWYG/HTML, inline CSS in post content
+* Text, WYSIWYG/HTML, in line CSS in post content
 * Images, Youtube, Videos in post content
 * Featured image by Url 
 * Multi authors
 * Multiple tags and categories 
 * Non existing tags and categories are created automatically
 * Any Short Codes in post content
-* Assign sidebar widget, slider, slideshow as shortcodes
+* Assign sidebar widget, slider, slide show as short codes
 * Manual slug feature for SEO friendly urls
 * Different post status for each post in CSV file.
 * Custom fields support for WP standard
@@ -77,7 +77,7 @@ It is more easy to convert any off line database maintained in Excel xls or spre
 * Drag drop import
 * Advanced CMS administration 
    
-Much improved User interface with most flexible jquery plugin features and bootstrap UI design makes csv import more simple, easy, fast and even more flexible for better user experience. With improved Multi site, buddy press compatibility (except user import module) works well for most of the best wordpress themes available online. Now manage multisite & buddypress, amazon data import, affiliates blog, product inventory, ecommerce store, multi author blog, automatic news import, photo blog etc periodically with simple click import. 
+Much improved User interface with most flexible jquery plugin features and bootstrap UI design makes csv import more simple, easy, fast and even more flexible for better user experience. With improved Multi site, buddy press compatibility (except user import module) works well for most of the best wordpress themes available online. Now manage multi site & buddy press, amazon data import, affiliates blog, product inventory, ecommerce store, multi author blog, automatic news import, photo blog etc periodically with simple click import. 
 
 = Extended Pro Power Features in Wp Ultimate CSV Importer = 
 * Auto Schedule all your Imports
@@ -89,7 +89,7 @@ Much improved User interface with most flexible jquery plugin features and boots
 * Custom Post Type UI plugin import
 * Advanced Custom Fields Import 
 * CCTM Posts and Fields Import
-* Woocommerce CSV Importer, 
+* Woo commerce CSV Importer, 
 * eshop CSV Importer
 * wp ecommerce Products CSV Importer with WP e-Commerce Custom Fields 
 * Categories & tags Import with Category icons plugin support
@@ -176,6 +176,7 @@ Not clear. You can use [step by step installation wiki with snaps here](http://w
 4. Detailed real time log to know pinpoint status.
 5. Module based environment for easy and reduced interface to enable most required modules and when ever needed.
 6. Inbuilt support form for easy feedback, support, feature request with all useful links for easy and better csv import.
+7. New export module for posts, page and all custom posts type plugins.
 
 == Frequently Asked Questions ==
 
@@ -186,7 +187,7 @@ Not clear. You can use [step by step installation wiki with snaps here](http://w
 
 = '''What is csv file?''' =
 
-CSV stands for "Comma Seperated Values". CSV file format is used to store data in a structured table of lists as columns and rows. CSV File otherwise Comma Separated Values file is a simple text file that stores attribute names as headers and their related values in comma separated format. 
+CSV stands for "Comma Separated Values". CSV file format is used to store data in a structured table of lists as columns and rows. CSV File otherwise Comma Separated Values file is a simple text file that stores attribute names as headers and their related values in comma separated format. 
 
 In general opening csv files in MS Excel or any spread sheet editor will show all values under each header as columns and rows. Each column have a attribute name called as CSV file header and their data/values in rows for each entry. 
   
@@ -231,7 +232,7 @@ Refer here as below
 
 = '''What is a csv importer plugin?''' =
 
-Csv importer plugin is a tool/plugin that can import your data and records from exported, stored, saved as csv files to your software as useful viewable content to analyze, manage etc. In such way Ultimate CSV importer is a worpdress plugin that imports your off line records or data stored/exported as a csv file into any wordpress post type web content by simple easy mapping feature.
+Csv importer plugin is a tool/plugin that can import your data and records from exported, stored, saved as csv files to your software as useful viewable content to analyse, manage etc. In such way Ultimate CSV importer is a worpdress plugin that imports your off line records or data stored/exported as a csv file into any wordpress post type web content by simple easy mapping feature.
 
 = '''Why we need CSV import for wordpress?''' =
 
@@ -279,6 +280,12 @@ Read More FAQs from below wiki links.
 * How to handle large data import?
 
 == Changelog ==
+
+= 3.5.3 =
+* Added: Compatible up to WordPress 3.9.
+* Added: Export feature added for posts, page, custom posts type plugins.
+* Improved: Removed all warnings.
+* Fixed reported bugs
 
 = 3.5.2 =
 * Import posts with author names as numerical apart from User ID
@@ -333,7 +340,7 @@ Read More FAQs from below wiki links.
 * Improved: Performance improvements on SQL and CSV parsing
 * Fixed: Plugin deactivation issue fixed and updated the code.
 * Fixed: Links in the cells makes problems with the "quote"
-* Fixed: Loading content from more than one colunm
+* Fixed: Loading content from more than one column
 * Fixed: Custom Post type issues fixed
 
 = 3.2.0 = 
@@ -350,7 +357,7 @@ Read More FAQs from below wiki links.
 * Added: Category in numericals are restricted and skipped to Uncategorized
 * Added: Now password should be mentioned as {password}
 * Added: Post authors can be User ID or name 
-* Improved: Much improved workflow
+* Improved: Much improved work flow
 * Improved: Add custom field option improved.
 * Improved: Date format handling improved
 * Improved: Any Date format is supported now
@@ -370,13 +377,13 @@ Read More FAQs from below wiki links.
 * Added: Added more post status options 
 * Added: Publish, Sticky, Private, Draft and Pending Status for whole import
 * Added: Protected status with a common password option added
-* Added: "Status as in CSV" to assign status for individual psot thorugh CSV as ID or Field Tag		
+* Added: "Status as in CSV" to assign status for individual post through CSV as ID or Field Tag		
 * Added: User ID and User Name support for Post author feature added
 * Added: In case of missing or false IDs post assigned to admin as draft
-* Added: Add Custom Field Textbox autofilled with CSV header tag.
+* Added: Add Custom Field Text box auto-filled with CSV header tag.
 * Added: Duplicate detection for post content and post title added as options.
 * Added: User can choose either one or both to avoid duplicate issues.
-* Improved: 6 Standard date format added as dropdown to choose.
+* Improved: 6 Standard date format added as drop down to choose.
 * Improved: Renamed post_name as post_slug to avoid confusion	
 * Improved: Mapping Fields
 * Improved: Field tags are formatted to support auto mapping option (next milestone)
@@ -418,6 +425,9 @@ Read More FAQs from below wiki links.
 
 == Upgrade Notice ==
 
+= 3.5.3 =
+* Upgrade for added export feature and bug fixes
+
 = 3.5.2 =
 * Upgrade for bug free version and improved image handling
 
@@ -437,7 +447,7 @@ Read More FAQs from below wiki links.
 * Upgrade for WordPress 3.7.1 compatibility and minor bug fixes
 
 = 3.2.2 = 
-* WordPress 3.6.1 compatibile, bug fix and UI improvements
+* WordPress 3.6.1 compatible, bug fix and UI improvements
 
 = 3.2.1 = 
 * Performance improvements on SQL and CSV parsing

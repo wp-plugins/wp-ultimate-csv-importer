@@ -56,7 +56,7 @@
 <tr>
 <td>Rate Our Plugin</td>
 <td>
-<a href="http://wordpress.org/support/view/plugin-reviews/wp-ultimate-csv-importer?rate=5#postform" target="_blank">
+<a href="http://wordpress.org/support/view/plugin-reviews/wp-ultimate-csv-importer" target="_blank">
 <ul class="stars">
     <li>1</li>
     <li>2</li>

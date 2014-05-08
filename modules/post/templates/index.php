@@ -29,12 +29,12 @@ $impCE = new WPImporter_includes_helper();
 	<!-- The file input field used as target for the file upload widget -->
 	<input type ='hidden' id="pluginurl"value="<?php echo WP_CONTENT_URL;?>">
 	<?php $uploadDir = wp_upload_dir(); ?>
-	<input type="hidden" id="uploaddir" value="<?php echo $uploadDir['basedir']; ?>">
+	<input type="hidden" id="uploaddir" value="<?php if(isset($uploadDir)) { echo $uploadDir['basedir']; }  ?>">
 	<input type="hidden" id="uploadFileName" name="uploadfilename" value="">
 	<input type = 'hidden' id = 'uploadedfilename' name = 'uploadedfilename' value = ''>
         <input type = 'hidden' id = 'upload_csv_realname' name = 'upload_csv_realname' value =''>
         <input type = 'hidden' id = 'current_file_version' name = 'current_file_version' value = ''>
-        <input type = 'hidden' id = 'current_module' name = 'current_module' value = '<?php echo $_REQUEST['__module']; ?>' >
+        <input type = 'hidden' id = 'current_module' name = 'current_module' value = '<?php if(isset($_REQUEST['__module'])) { echo $_REQUEST['__module']; }  ?>' >
 	<input id="fileupload" type="file" name="files[]" multiple>
 	</span>
 	<!-- The global progress bar -->
@@ -140,13 +140,15 @@ $impCE = new WPImporter_includes_helper();
 		$_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['delim'] = $_POST['mydelimeter']; 
 	}
 	$wpcsvsettings=array();
+        $custom_key = array();
 	$wpcsvsettings=get_option('wpcsvfreesettings');
 	?>
 	<h3>Mapping Configuration</h3>
+          <?php  if(isset($_REQUEST['step']) && $_REQUEST['step'] == 'mapping_settings')  {   ?> 
 	<div id='sec-two' <?php if($_REQUEST['step']!= 'mapping_settings'){ ?> style='display:none;' <?php } ?> >
 	<div class='mappingsection'>
 	<h2><div class="secondformheader">Import Data Configuration</div></h2>
-	<?php if($_REQUEST['__module']=='custompost'){ ?>
+	<?php if(isset($_REQUEST['__module']) && $_REQUEST['__module']=='custompost'){ ?>
 		<div class='importstatus' style='display:true;'>
 			<input type="hidden" id="customposts" name="customposts" value="">
 			<div style = 'float:left'> <label> Select Post Type </label> <span class="mandatory"> * </span> </div>
@@ -183,6 +185,7 @@ $impCE = new WPImporter_includes_helper();
 			$delimeter='';
 			$mappingFields_arr =array();
 			$filename='';
+                        $records = '';
 			if(isset($_POST['uploadfilename']) && $_POST['uploadfilename'] != ''){
 				$file_name = $_POST['uploadfilename'];
 				$filename = $impCE->convert_string2hash_key($file_name);
@@ -209,41 +212,42 @@ $impCE = new WPImporter_includes_helper();
 			<div align='center' style='float:right;'>
 			<?php $cnt = count($impCE->defCols) + 2;
 			$cnt1 = count($impCE->headers);
-			$imploded_array = implode(',', $impCE->headers); ?>
-			<input type = 'hidden' id = 'imploded_header' name = 'imploded_array' value = '<?php echo $imploded_array; ?>'>
-			<input type="hidden" id="h1" name="h1" value="<?php echo $cnt; ?>"/>
-			<input type="hidden" id="h2" name="h2" value="<?php echo $cnt1; ?>"/>
-			<input type='hidden' name='selectedImporter' id='selectedImporter' value="<?php echo $_REQUEST['__module']; ?>"/>
+                        $records = count($getrecords);
+			$imploaded_array = implode(',', $impCE->headers); ?>
+			<input type = 'hidden' id = 'imploded_header' name = 'imploded_array' value = '<?php if(isset($imploaded_array)) { echo $imploaded_array;  }  ?>'>
+			<input type='hidden' id='h1' name='h1' value="<?php if(isset($cnt)) { echo $cnt; } ?>"/>
+			<input type='hidden' id='h2' name='h2' value="<?php if(isset($cnt1)) { echo $cnt1;  } ?>"/>
+			<input type='hidden' name='selectedImporter' id='selectedImporter' value="<?php if(isset($_REQUEST['__module'])) { echo $_REQUEST['__module'];  }  ?>"/>
 			<input type="hidden" id="prevoptionindex" name="prevoptionindex" value=""/>
 			<input type="hidden" id="prevoptionvalue" name="prevoptionvalue" value=""/>
 			<input type='hidden' id='current_record' name='current_record' value='0' />
-			<input type='hidden' id='totRecords' name='totRecords' value='<?php echo count($getrecords); ?>' />
+			<input type='hidden' id='totRecords' name='totRecords' value='<?php if(isset($records)) { echo $records; }  ?>' />
 			<input type='hidden' id='tmpLoc' name='tmpLoc' value='<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR; ?>' />
-			<input type='hidden' id='uploadedFile' name='uploadedFile' value="<?php echo  $filename; ?>" />
+			<input type='hidden' id='uploadedFile' name='uploadedFile' value="<?php if(isset($filename)) { echo  $filename;  }  ?>" />
                         <!-- real uploaded filename -->
-                        <input type='hidden' id='uploaded_csv_name' name='uploaded_csv_name' value="<?php echo $uploaded_csv_name; ?>" />
-			<input type='hidden' id='select_delimeter' name='select_delimeter' value="<?php echo  $delimeter; ?>" />
-			<input type='hidden' id='stepstatus' name='stepstatus' value='<?php echo $_REQUEST['step']; ?>' />
+                        <input type='hidden' id='uploaded_csv_name' name='uploaded_csv_name' value="<?php if(isset($uploaded_csv_name)) {   echo $uploaded_csv_name;  }  ?>" />
+			<input type='hidden' id='select_delimeter' name='select_delimeter' value="<?php if(isset($delimeter)) { echo  $delimeter; }  ?>" />
+			<input type='hidden' id='stepstatus' name='stepstatus' value='<?php if(isset($_REQUEST['step'])){ echo $_REQUEST['step']; }  ?>' />
 			<input type='hidden' id='mappingArr' name='mappingArr' value='' />
 			<input type='button' id='prev_record' name='prev_record' class="btn btn-primary" value='<<' onclick='gotoelement(this.id);' />
-			<label style="padding-right:10px;">Change the csv sample record value by rows</label>
+			<label style="padding-right:10px;">Change your csv row data</label>
 			<input type='button' id='next_record' name='next_record' class="btn btn-primary" value='>>' onclick='gotoelement(this.id);' />
-			Go To: <input type='text' id='goto_element' name='goto_element' />
-			<input type='button' id='apply_element' name='apply_element' class="btn btn-success" value='Get Record' onclick='gotoelement(this.id);' />
+			Go To Row #<input type='text' id='goto_element' name='goto_element' />
+			<input type='button' id='apply_element' name='apply_element' class="btn btn-success" value='Show' onclick='gotoelement(this.id);' />
 			</div>
 			</td>
 			</tr> 
 			<?php
 			$count = 0;
-			if ($_REQUEST['__module'] == 'page') {
+			if (isset($_REQUEST['__module']) && $_REQUEST['__module'] == 'page') {
 				unset($impCE->defCols['post_category']);
 				unset($impCE->defCols['post_tag']);
 			}
-			if ($_REQUEST['__module'] != 'page') {
+			if (isset($_REQUEST['__module']) && $_REQUEST['__module'] != 'page') {
 				unset($impCE->defCols['menu_order']);
 			}
 			?>
-			<tr><td class="left_align"> <b>CSV HEADER</b> </td><td> <b>WP FIELDS</b> </td><td> <b>SAMPLE VALUE</b> </td><td></td></tr>
+			<tr><td class="left_align"> <b>CSV HEADER</b> </td><td> <b>WP FIELDS</b> </td><td> <b>CSV ROW</b> </td><td></td></tr>
 			<?php
 			foreach ($impCE->headers as $key => $value) 
 			{ ?>
@@ -323,7 +327,7 @@ $impCE = new WPImporter_includes_helper();
 			$mFieldsArr = substr($mFieldsArr, 0, -1);
 			?>
 		</table>
-		<input type="hidden" id="mapping_fields_array" name="mapping_fields_array" value="<?php print_r($mFieldsArr); ?>"/>
+		<input type="hidden" id="mapping_fields_array" name="mapping_fields_array" value="<?php if(isset($mFieldsArr)) { print_r($mFieldsArr); }  ?>"/>
 		<div>
 			<div class="goto_import_options" align=center>
 		<div class="mappingactions" >
@@ -345,6 +349,7 @@ $impCE = new WPImporter_includes_helper();
 		</div> 
 		</div>
 		</div>
+             <?php } ?>
 		</div>
 		</form>
 		</td>
@@ -352,7 +357,7 @@ $impCE = new WPImporter_includes_helper();
 		<tr>
 		<td>
 		<h3>Import Option Settings</h3>
-		<!--<?php //echo $_POST['uploadedFile']; ?><?php //echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords']; die;?>-->
+		<!--<?php //echo $_POST['uploadedFile']; ?><?php //echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords']; die;?>-->           <?php if(isset($_REQUEST['step'])  && $_REQUEST['step'] == 'importoptions') { ?>
 		<div id='sec-three' <?php if($_REQUEST['step']!= 'importoptions'){ ?> style='display:none;' <?php } ?> >
 		<?php //$prevoptionindex='';?>
 		<input type="hidden" id="prevoptionindex" name="prevoptionindex" value="<?php 
@@ -361,16 +366,21 @@ $impCE = new WPImporter_includes_helper();
 			echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['prevoptionindex']; 
 		}
 		?>"/>
+                <?php if(isset($_SESSION['SMACK_MAPPING_SETTINGS_VALUES'])) { ?>
 		<input type="hidden" id="prevoptionvalue" name="prevoptionvalue" value="<?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['prevoptionvalue']; ?>"/>
 		<input type='hidden' id='current_record' name='current_record' value='<?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['current_record']; ?>' />
 		<input type='hidden' id='tot_records' name='tot_records' value='<?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords']; ?>' />
 		<input type='hidden' id='checktotal' name='checktotal' value='<?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords']; ?>' />
-		<input type='hidden' id='tmpLoc' name='tmpLoc' value='<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR; ?>' />
+		<input type='hidden' id='stepstatus' name='stepstatus' value='<?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['stepstatus']; ?>' />
+		<input type='hidden' id='selectedImporter' name='selectedImporter' value='<?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['selectedImporter']; ?>' />
+		<?php } ?>
+                <input type='hidden' id='tmpLoc' name='tmpLoc' value='<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR; ?>' />
+               <?php if(isset($_POST)) { ?>
 		<input type='hidden' id='checkfile' name='checkfile' value='<?php echo $_POST['uploadedFile']; ?>' />
 		<input type='hidden' id='select_delim' name='select_delim' value='<?php echo $_POST['select_delimeter']; ?>' />
-		<input type='hidden' id='uploadedFile1' name='uploadedFile1' value='<?php echo $_POST['uploadedFile']; ?>' />
-		<input type='hidden' id='stepstatus' name='stepstatus' value='<?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['stepstatus']; ?>' />
+		<input type='hidden' id='uploadedFile' name='uploadedFile1' value='<?php echo $_POST['uploadedFile']; ?>' />
 		<input type='hidden' id='mappingArr' name='mappingArr' value='' />
+             <?php } ?>
 		<!-- Import settings options -->
 		<div class="postbox" id="options" style=" margin-bottom:0px;">
 		<!--        <h4 class="hndle">Search settings</h4>-->
@@ -398,10 +408,10 @@ $impCE = new WPImporter_includes_helper();
 		</select><br>
 		<input name="filterhtml" id="filterhtml" type="checkbox" value="1"> Filter out HTML-Tags while comparing <br>
 		<input name="filterhtmlentities" id="filterhtmlentities" type="checkbox" value="1"> Decode HTML-Entities before comparing <br>-->
-		<label><input name='duplicatecontent' id='duplicatecontent' type="checkbox" value=""> Detect Duplicate Post Content</label> <br>
-		<label><input name='duplicatetitle' id='duplicatetitle' type="checkbox" value="" > Detect Duplicate Post Title</label> <br>
-		How much comparisons per Server-Request? <span class="mandatory">*</span> <input name="importlimit" id="importlimit" type="text" value="" onblur="check_allnumeric(this.value);">
-		<span class='msg' id='server_request_warning' style="display:none;color:red;margin-left:-10px;">You can set upto <?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords']; ?> per request.</span>
+		<label><input name='duplicatecontent' id='duplicatecontent' type="checkbox" value=""> Detect duplicate post content</label> <br>
+		<label><input name='duplicatetitle' id='duplicatetitle' type="checkbox" value="" > Detect duplicate post title</label> <br>
+		How much import per server request? <span class="mandatory">*</span> <input name="importlimit" id="importlimit" type="text" value="" onblur="check_allnumeric(this.value);">
+		<span class='msg' id='server_request_warning' style="display:none;color:red;margin-left:-10px;">You can set upto <?php if(isset($_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords'])) { echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords'];   } ?> per request.</span>
 		<input type="hidden" id="currentlimit" name="currentlimit" value="0"/>
 		<input type="hidden" id="tmpcount" name="tmpcount" value="0" />
 		<input type="hidden" id="terminateaction" name="terminateaction" value="continue" />
@@ -411,7 +421,7 @@ $impCE = new WPImporter_includes_helper();
 		</li>-->
 		</ul>
 <!--		<input id="goto_back" name="goto_back" class="btn btn-warning" type="button" value="<< Back" onclick="gotoback();" /> -->
-		<input id="startbutton" class="btn btn-primary" type="button" value="Import Now" style="color: #ffffff;background:#2E9AFE;" onclick="importRecordsbySettings();" >
+		<input id="startbutton" class="btn btn-primary" type="button" value="Import Now" style="color: #ffffff;background:#2E9AFE;" onclick="importRecordsbySettings('<?php echo site_url(); ?>');" >
 		<input id="terminatenow" class="btn btn-danger btn-sm" type="button" value="Terminate Now" style="" onclick="terminateProcess();" />
 		<input class="btn btn-warning" type="button" value="Import Again" id="importagain" style="display:none" onclick="import_again();" />
 		<!--<input id="continuebutton" class="button" type="button" value="Continue old search" style="color: #ffffff;background:#2E9AFE;">-->
@@ -423,6 +433,7 @@ $impCE = new WPImporter_includes_helper();
 <!--		Compared <span id="done">0</span> of <span id="count">6</span> posts<br>Found <span id="found">0</span> duplicates            <br><input id="deletebutton" style="display: none" class="button" type="button" value="Move selected posts to trash">-->
 		</div>
 		</div>
+                <?php } ?>
 		<!-- Code Ends Here-->
 		</div>
 		</td>
@@ -437,16 +448,17 @@ $impCE = new WPImporter_includes_helper();
 		</div>
 		</div>
 		<!-- Promotion footer for other useful plugins -->
-		<!--<div class= "promobox" id="pluginpromo" style="width:99%;">
+		<div class= "promobox" id="pluginpromo" style="width:99%;">
 		<div class="accordion-group" >
 		<div class="accordion-heading">
-		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"> OTHER USEFUL PLUGINS BY SMACKCODERS </a>
+		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"> OTHER USEFUL LINKS </a>
 		</div>
 		<div class="accordion-body in collapse">
 		<div>
 		<?php //$impCE->common_footer_for_other_plugin_promotions(); ?>
+		<?php $impCE->common_footer(); ?>
 		</div>
 		</div>
 		</div>
-		</div>-->
+		</div>
 	</div>
