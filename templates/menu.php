@@ -101,5 +101,6 @@ if(isset ($_REQUEST['__module']) && $_REQUEST['__module'] == 'support'){
 //$menuHTML .= "</div>";
 $menuHTML .= "<div class='msg' id = 'showMsg' style = 'display:none;'></div>";
 $menuHTML .= "<input type='hidden' id='current_url' name='current_url' value='".get_admin_url()."admin.php?page=".WP_CONST_ULTIMATE_CSV_IMP_SLUG."/index.php&__module=".$_REQUEST['__module']."&step=uploadfile'/>";
+$menuHTML .= "<input type='hidden' name='checkmodule' id='checkmodule' value='".$_REQUEST['__module']."' />";
 echo $menuHTML;
 ?>

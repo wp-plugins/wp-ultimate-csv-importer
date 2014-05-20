@@ -14,7 +14,16 @@
 	}
 	?>	
 	</select> </div>
-	</div>	<div class = 'form-group'> <div class = 'col-sm-3 export_action'> <label > <input type='radio' name='export' value='eshop' id='eshop'  onclick="export_check(this.value)"> Eshop <span class="mandatory">*</span></label> </div> </div>
+	</div>
+        <div class = 'form-group'> <div class = 'col-sm-3 export_action'> <label> <input type="radio" name="export" value="users" id='users' onclick="export_check(this.value)"> Users <span class="mandatory">*</span></label> </div> </div>
+        <div class = 'form-group'> <div class = 'col-sm-3 export_action'> <label> <input type="radio" name="export" value="category" id='category' onclick="export_check(this.value)"> Category <span class="mandatory">*</span></label> </div> </div>
+        <div class = 'form-group'> <div class = 'col-sm-3 export_action'> <label> <input type="radio" name="export" value="tags" id='tags' onclick="export_check(this.value)"> Tags <span class="mandatory">*</span></label> </div> </div>
+        <div class = 'form-group'> <div class = 'col-sm-3 export_action'> <label> <input type="radio" name="export" value="customtaxonomy" id='customtaxonomy' onclick="export_check(this.value)" > Custom Taxonomy <span class="mandatory">*</span></label>
+	<select name="export_taxo_type">
+		<option>--Select--</option>       
+        </select> </div>
+	</div>
+	<div class = 'form-group'> <div class = 'col-sm-3 export_action'> <label > <input type='radio' name='export' value='eshop' id='eshop'  onclick="export_check(this.value)"> Eshop <span class="mandatory">*</span></label> </div> </div>
 	<div class = 'form-group'> <div class = 'col-sm-3 export_action'> <label> <input type="radio" name="export" id='wpcommerce'value="wpcommerce" onclick="export_check(this.value)" > Wp-Commerce <span class="mandatory">*</span></label> </div> </div>
 	<div class = 'form-group'> <div class = 'col-sm-3 export_action'> <label> <input type="radio" name="export" id='woocommerce'value="woocommerce" onclick="export_check(this.value)"> Woo-Commerce <span class="mandatory">*</span></label> </div> </div>
         <div class = 'form-group'> <div class = 'col-sm-3 export_action'> <label> <input type="radio" name="export" id='marketpress' value="marketpress" onclick="export_check(this.value)"> Marketpress <span class="mandatory">*</span></label> </div> </div>

@@ -3,9 +3,9 @@ Contributors: smackcoders
 Donate link: http://www.smackcoders.com/donate.html
 Tags: Advanced CSV Importer, Advanced CSV Import, csv, csv importer, csv import, csv file, csv format, admin, affiliate, amazon, author, automatic, blog, buddypress, categories, comments, content, custom post,  e-commerce, free, images, import, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, users, video, woocommerce, wordpress, xml, youtube, batch, bulk, bulk edit, bulk editor, excel, spreadsheet
 Requires at least: 3.6.0
-Tested up to: 3.9
-Stable tag: 3.5.3
-Version: 3.5.3
+Tested up to: 3.9.1
+Stable tag: 3.5.4
+Version: 3.5.4
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 
@@ -15,7 +15,7 @@ Advanced CSV Importer plugin to import data as bulk post, page, custom post etc.
 
 == Description ==
 
-**Version 3.5.3 is now available with all reported warnings, bug fixes and 3.9 compatibility. Give a try today and [Leave your thoughts, comments, review and feed back here](http://wordpress.org/support/view/plugin-reviews/wp-ultimate-csv-importer)**
+**Version 3.5.4 is now available with All-in-SEO import support and 3.9.1 compatibility. Give a try today and [Leave your thoughts, comments, review and feed back here](http://wordpress.org/support/view/plugin-reviews/wp-ultimate-csv-importer)**
 
 WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer With Ultimate User Friendly Features. It is much easy now even for newbies to import any csv file as any wordpress post type and associated fields by simple mapping feature. Now import any CSV file as thousands of post, page and custom post types. This is admin side free plugin helps you in bulk edit, create and import posts type for your blog or site. 
 
@@ -24,6 +24,7 @@ WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer
 <p>http://www.youtube.com/watch?v=OwKdt_NlT2U&list=PL2k3Ck1bFtbQqFhOK7g08kxENI4qQkmC</p>
 
 = Highlights =
+* All-in-SEO import support.
 * Drag drop import
 * Define any type of post 
 * Control post status (Publish, Private, Pending, Draft, Sticky and Protected)
@@ -281,6 +282,10 @@ Read More FAQs from below wiki links.
 
 == Changelog ==
 
+= 3.5.4 =
+* Added: All-in-SEO import support.
+* WordPress 3.9.1 compatibility added.
+
 = 3.5.3 =
 * Added: Compatible up to WordPress 3.9.
 * Added: Export feature added for posts, page, custom posts type plugins.
@@ -424,6 +429,9 @@ Read More FAQs from below wiki links.
 
 
 == Upgrade Notice ==
+
+= 3.5.4 = 
+* Upgrade now for All-in-SEO import support.
 
 = 3.5.3 =
 * Upgrade for added export feature and bug fixes

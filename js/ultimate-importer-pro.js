@@ -1,11 +1,19 @@
 jQuery( document ).ready(function() { 
-var importer = document.getElementById('selectedImporter').value;
-var step = document.getElementById('stepstatus').value;
-if(importer=='custompost' && step=='mapping_settings')
+    var checkmodule = document.getElementById('checkmodule').value;
+        if(checkmodule != 'dashboard' && checkmodule != 'filemanager') {
+                var get_log = document.getElementById('log').innerHTML;
+                if( !$.trim( $('#log').html() ).length ) {
+                        document.getElementById('log').innerHTML = '<p style="margin:15px;color:red;">NO LOGS YET NOW.</p>';
+                }
+        }
+if(checkmodule=='custompost')
 {
+	var step = document.getElementById('stepstatus').value;
+        if(step == 'mapping_settings') {
         var cust_post_list_count = document.getElementById('cust_post_list_count').value;
         if(cust_post_list_count=='0')
         document.getElementById('cust_post_empty').style.display='';
+	}
 }	
 var checkfile = document.getElementById('checkfile').value;
 var uploadedFile = document.getElementById('uploadedFile').value;
@@ -693,7 +701,7 @@ function export_module(){
         return false;
 }
 function export_check(value) {
-	if(value == 'eshop' || value == 'woocommerce' || value == 'wpcommerce' || value == 'marketpress') { 
+	if(value == 'eshop' || value == 'woocommerce' || value == 'wpcommerce' || value == 'marketpress' || value == 'users' || value == 'category' || value == 'tags' || value == 'customtaxonomy') { 
 		document.getElementById(value).checked = false;
 		document.getElementById('ShowMsg').style.display = "";
 		value = value.toUpperCase();

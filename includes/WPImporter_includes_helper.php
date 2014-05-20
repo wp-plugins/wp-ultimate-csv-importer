@@ -132,6 +132,10 @@ class WPImporter_includes_helper {
 	}
 
 	public function activate(){
+                if (!defined('PDO::ATTR_DRIVER_NAME')) {
+                        echo ("<p style='color:red;'>Make sure you have enable the PDO extensions in your environment before activate the plugin! </p>");
+                        die;
+                }
 		$csvfreesettings = array();
 		$csvfreesettings['post'] = 'post';
 		//$csvfreesettings['custompost'] = 'custompost';
@@ -222,6 +226,7 @@ class WPImporter_includes_helper {
 	{
 		$cust_fields='';
 		$acf_field=array();
+		$wpcsvfreesettings = array();
 		global $wpdb;
 		$active_plugins = get_option('active_plugins');
 		$limit = ( int )apply_filters('postmeta_form_limit', 150);
@@ -234,9 +239,14 @@ class WPImporter_includes_helper {
 		foreach ($this->keys as $val) {
 			$this->defCols ["CF: " . $val] = $val;
 		}
-
-
-
+		$wpcsvfreesettings = get_option('wpcsvfreesettings');
+                if(in_array('aioseo',$wpcsvfreesettings)){
+                        if(in_array('all-in-one-seo-pack/all_in_one_seo_pack.php', $active_plugins)){
+                                $seo_custoFields =array('SEO: keywords','SEO: description','SEO: title','SEO: noindex','SEO: nofollow','SEO: titleatr','SEO: menulabel','SEO: disable','SEO: disable_analytics');
+                                foreach($seo_custoFields as $val)
+                                        $this->defCols[$val]=$val;
+                        }
+                }
 	}
 
 	/**
@@ -361,10 +371,15 @@ class WPImporter_includes_helper {
 				if($ret_array ['mapping' . $i] != '-- Select --'){
 					if ($ret_array ['mapping' . $i] != 'add_custom' . $i) {
 						$strip_CF = strpos($ret_array['mapping' . $i], 'CF: ');
+						$strip_SEO = strpos($ret_array['mapping'.$i],'SEO: ');
 						if ($strip_CF === 0) {
 							$custom_key = substr($ret_array['mapping' . $i], 4);
 							$custom_array[$custom_key] = $data_rows[$i];
 						} 
+						elseif($strip_SEO === 0){
+                                                        $seo_key = substr($ret_array['mapping'.$i], 5);
+                                                        $seo_custom_array[$seo_key] = $data_rows[$i];
+                                                }
 						else {
 							$new_post[$ret_array['mapping' . $i]] = $data_rows[$i];
 						}
@@ -639,6 +654,14 @@ class WPImporter_includes_helper {
 					}
 				}
 
+                                //Import SEO Values     
+                                if(!empty($seo_custom_array)){
+                                        //require_once("class.customfields.php");
+                                        //$seoObj = new Customfields();
+                                        //$seoObj->importSEOFields($seo_custom_array, $post_id);
+                                        //print '<pre>';print_r($seo_custom_array);die;
+                                        $this->importSEOfields($seo_custom_array,$post_id);
+                                }
 
 				// Create custom taxonomy to post
 				if (!empty ($smack_taxo)) {
@@ -695,6 +718,32 @@ class WPImporter_includes_helper {
 		}
 		unset($data_array);
 	}
+
+	/**
+	 * Function for importing the all in seo data 
+	 * Feature added by Fredrick on version3.5.4
+	 */
+	function importSEOfields($array,$postId)
+	{
+		$seo_opt = get_option('wpcsvfreesettings');
+		if(in_array('aioseo',$seo_opt)){
+			if(isset($array['keywords'])) {    $custom_array['_aioseop_keywords'] = $array['keywords']; } 
+			if(isset($array['description'])) { $custom_array['_aioseop_description'] = $array['description']; }
+			if(isset($array['title'])) {       $custom_array['_aioseop_title'] = $array['title']; }
+			if(isset($array['noindex'])) {     $custom_array['_aioseop_noindex'] = $array['noindex']; }
+			if(isset($array['nofollow'])) {    $custom_array['_aioseop_nofollow'] = $array['nofollow']; }
+			if(isset($array['titleatr'])) {    $custom_array['_aioseop_titleatr'] = $array['titleatr']; }
+			if(isset($array['menulabel'])) {   $custom_array['_aioseop_menulabel'] = $array['menulabel']; }
+			if(isset($array['disable'])) {     $custom_array['_aioseop_disable'] = $array['disable']; }
+			if(isset($array['disable_analytics'])) { $custom_array['_aioseop_disable_analytics'] = $array['disable_analytics'];  }
+		}
+		if (! empty ( $custom_array )) {
+			foreach ( $custom_array as $custom_key => $custom_value ) {
+				update_post_meta ( $postId, $custom_key, $custom_value );
+			}
+		}
+
+	}//importSEOfields ends
 
 	/**
 	 * Delete uploaded file after import process

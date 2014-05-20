@@ -78,7 +78,7 @@
 </td>
 </tr>
 <!-- WP e-Commerce Custom Fields support -->
-<tr id='wpcustomfieldstr'>
+<tr id='wpcustomfieldstr' style='display:none;'>
 <td></td><td></td>
 <td><input type='checkbox' name='wpcustomfields' id='wpcustomfields' onclick='check_if_avail(this.id);'/> WP e-Commerce Custom Fields </td>
 </tr>
@@ -94,7 +94,7 @@
 </tr>
 <tr>
 <td><label class="<?php echo $skinnyData['nonerseooption'];?>" ><input type = 'radio' name ='rseooption' id='nonerseooption' value='nonerseooption' <?php echo $skinnyData['nonerseooption']; ?> class='ecommerce' onclick="check_if_avail(this.id);" > None </label></td>
-<td><label class="<?php echo $skinnyData['aioseotd'].' '.$skinnyData['aioseo']; ?>" ><input type ='radio' name = 'rseooption' id='aioseo' value='aioseo' <?php echo $skinnyData['aioseo']; ?> onclick="check_if_avail(this.id);" > All-in-SEO </label></td>
+<td><label class="<?php echo $skinnyData['aioseotd'].' '.$skinnyData['aioseo']; ?>" ><input type ='radio' name = 'rseooption' id='aioseo' value='aioseo' <?php echo $skinnyData['aioseo']; ?> > All-in-SEO </label></td>
 <td><label class="<?php echo $skinnyData['yoasttd'].' '.$skinnyData['yoastseo']; ?>" ><input type ='radio' name = 'rseooption' id='yoastseo' value='yoastseo' <?php echo $skinnyData['yoastseo']; ?> onclick="check_if_avail(this.id);" > Yoast SEO </label></td>
 </tr>
 <tr class='typeofplugin'>

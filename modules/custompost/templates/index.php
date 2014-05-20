@@ -167,8 +167,17 @@ $impCE = new WPImporter_includes_helper();
                                                 }
                                         }
                                 }
+                                $types_post_types = array();
+                                $types_post_types = get_option('wpcf-custom-types');
+                                if(!empty($types_post_types)) {
+                                        foreach($types_post_types as $tptKey => $tptVal){
+                                                if($tptKey == $value) {
+                                                        $value = 'createdByTypes';
+                                                }
+                                        }
+                                }
 				if($wpcsvsettings['rcustompost']=='custompostuitype'){	
-					if (($value != 'featured_image') && ($value != 'attachment') && ($value != 'wpsc-product') && ($value != 'wpsc-product-file') && ($value != 'revision') && ($value != 'nav_menu_item') && ($value != 'post') && ($value != 'page') && ($value != 'wp-types-group') && ($value != 'wp-types-user-group') && ($value != 'product') && ($value != 'product_variation') && ($value != 'shop_order') && ($value != 'shop_coupon') && ($value != 'acf') && ($value != 'createdByCCTM')) {?>
+					if (($value != 'featured_image') && ($value != 'attachment') && ($value != 'wpsc-product') && ($value != 'wpsc-product-file') && ($value != 'revision') && ($value != 'nav_menu_item') && ($value != 'post') && ($value != 'page') && ($value != 'wp-types-group') && ($value != 'wp-types-user-group') && ($value != 'product') && ($value != 'product_variation') && ($value != 'shop_order') && ($value != 'shop_coupon') && ($value != 'acf') && ($value != 'createdByCCTM') && ($value != 'createdByTypes')) {?>
 					<option id="<?php echo($value); ?>"> <?php echo($value);?> </option>
 						<?php	
 						$cust_post_list_count++;
@@ -193,7 +202,16 @@ $impCE = new WPImporter_includes_helper();
 							$value='createdByCustomPostUI';
 						}
 					}
-					if (($value != 'featured_image') && ($value != 'attachment') && ($value != 'wpsc-product') && ($value != 'wpsc-product-file') && ($value != 'revision') && ($value != 'nav_menu_item') && ($value != 'post') && ($value != 'page') && ($value != 'wp-types-group') && ($value != 'wp-types-user-group') && ($value != 'product') && ($value != 'product_variation') && ($value != 'shop_order') && ($value != 'shop_coupon') && ($value != 'acf') && ($value != 'createdByCustomPostUI') && ($value != 'createdByCCTM')) {?>
+					$types_post_types = array();
+					$types_post_types = get_option('wpcf-custom-types');
+					if(!empty($types_post_types)) {
+						foreach($types_post_types as $tptKey => $tptVal){
+							if($tptKey == $value) {
+								$value = 'createdByTypes';
+							}
+						}
+					}
+					if (($value != 'featured_image') && ($value != 'attachment') && ($value != 'wpsc-product') && ($value != 'wpsc-product-file') && ($value != 'revision') && ($value != 'nav_menu_item') && ($value != 'post') && ($value != 'page') && ($value != 'wp-types-group') && ($value != 'wp-types-user-group') && ($value != 'product') && ($value != 'product_variation') && ($value != 'shop_order') && ($value != 'shop_coupon') && ($value != 'acf') && ($value != 'createdByCustomPostUI') && ($value != 'createdByCCTM') && ($value != 'createdByTypes')) {?>
                                         	<option id="<?php echo($value); ?>"> <?php echo($value);?> </option>
                                                 <?php                 
 							$cust_post_list_count++;
