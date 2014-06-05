@@ -167,7 +167,7 @@ class WPImporter_includes_helper
     /**
      * Function to activate the plugin
      */
-    public function activate()
+    public static function activate()
     {
         if (!defined('PDO::ATTR_DRIVER_NAME')) {
             echo("<p style='color:red;'>Make sure you have enable the PDO extensions in your environment before activate the plugin! </p>");

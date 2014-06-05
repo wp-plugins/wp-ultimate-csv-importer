@@ -42,6 +42,7 @@
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
 
+ini_set("display_errors", "Off");
 ob_start();
 
 define('WP_CONST_ULTIMATE_CSV_IMP_URL', 'http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html');
