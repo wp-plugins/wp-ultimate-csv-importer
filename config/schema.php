@@ -1,45 +1,36 @@
 <?php
-/**
- * Use the schema to generate database.sql file and the model files
+/*********************************************************************************
+ * WP Ultimate CSV Importer is a Tool for importing CSV for the Wordpress
+ * plugin developed by Smackcoder. Copyright (C) 2014 Smackcoders.
  *
- * To create database.sql:
- *                          php skinnymvc.php generateSQL
+ * WP Ultimate CSV Importer is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Affero General Public License version 3
+ * as published by the Free Software Foundation with the addition of the
+ * following permission added to Section 15 as permitted in Section 7(a): FOR
+ * ANY PART OF THE COVERED WORK IN WHICH THE COPYRIGHT IS OWNED BY WP Ultimate
+ * CSV Importer, WP Ultimate CSV Importer DISCLAIMS THE WARRANTY OF NON
+ * INFRINGEMENT OF THIRD PARTY RIGHTS.
  *
- *    database.sql will be stored in lib/skinnymvc/model/sql
+ * WP Ultimate CSV Importer is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public
+ * License for more details.
  *
- * To create the model files:
- *                          php skinnymvc.php generateModel
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program; if not, see http://www.gnu.org/licenses or write
+ * to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301 USA.
  *
- *    model files will be stored in lib/skinnymvc/model
+ * You can contact Smackcoders at email address info@smackcoders.com.
  *
- * Example schema code:
- * $model = array('table1'=>array(
- *                                 'field1'=>array('type'=>'int', 'null'=>false, 'special'=>'auto_increment'),
- *                                 'field2'=>'datetime',
- *                                 'field3'=>'varchar(255)',
- *                                 '_INDEXES'=>array('field3'),
- *                                 '_PRIMARY_KEY'=>array('field1'),
- *                               ),
- *                'table2'=>array(
- *                                 'field1'=>array('type'=>'int', 'null'=>false, 'special'=>'auto_increment'), //null is false by default
- *                                 'field2'=>'decimal(10,4)',
- *                                 'field3'=>'varchar(255)',
- *                                 '_INDEXES'=>array( array('field3','field4') ),
- *                                 '_PRIMARY_KEY'=>array('field1'),
- *                               ),
- *                'table3'=>array(
- *                                 'field1'=>array('type'=>'int', 'null'=>false, 'special'=>'auto_increment'),
- *                                 'field2'=>array('type'=>'varchar(255)', 'null'=>false),
- *                                 'field3'=>'text',
- *                                 'field4'=>'int',
- *                                 'field5'=>'int',
- *                                 '_UNIQUES'=>array( 'field2', array('field4','field5') ),
- *                                 '_FULLTEXT'=>array('field3'),
- *                                 '_PRIMARY_KEY'=>array('field1'),
- *                                 '_FOREIGN_KEYS'=>array('field4'=>array('table'=>'table1','field'=>'field1'), 'field5'=>array('table'=>'table2','field'=>'field1')),
- *                                 '_DATABASE_KEY'=>'db_key',
- *                                 '_TABLE_NAME'=>'table_name',
- *                               ),
- *                  );
+ * The interactive user interfaces in original and modified versions
+ * of this program must display Appropriate Legal Notices, as required under
+ * Section 5 of the GNU Affero General Public License version 3.
  *
- */
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * WP Ultimate CSV Importer copyright notice. If the display of the logo is
+ * not reasonably feasible for technical reasons, the Appropriate Legal
+ * Notices must display the words
+ * "Copyright Smackcoders. 2014. All rights reserved".
+ ********************************************************************************/
