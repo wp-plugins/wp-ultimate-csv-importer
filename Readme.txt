@@ -1,4 +1,4 @@
-=== A CSV Importer With Ultimate User Friendly Mapping Features ===
+=== WP Ultimate CSV Importer Plugin ===
 Contributors: smackcoders
 Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, csv, excel, import, spreadsheet, autoblog, Autoblogger, csvimporter, data, dataimport, importer, wpcsvimporter, wpimporter, acf, auto blog, csv import, csv to post, data import, Easy CSV Importer, eci, import plugin, admin, user, users, Advanced CSV Import, Advanced CSV Importer, affiliate, amazon, author, automatic, blog, buddypress, bulk, bulk edit, bulk editor, categories, comments, content, csv file, csv format, csv importer, custom post, e-commerce, free, images, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, video, woocommerce, wordpress, xml, youtube
