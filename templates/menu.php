@@ -84,6 +84,9 @@ $menuHTML .= "</ul>
          $menuHTML .= "<li class = '{$export}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=export'>Export</a></li>";
          $menuHTML .= "<li class=  '{$settings}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=settings'  />Settings</a></li>
          <li class = '{$support}'><a href= 'admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=support'>Support</a></li>
+         
+         <li ><a href='http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html' target='_blank'>Go Pro Now</a></li>
+         <li ><a href='http://demo.smackcoders.com/demowpthree/wp-admin/admin.php?page=wp-ultimate-csv-importer-pro/index.php&__module=dashboard' target='_blank'>Try Live Demo Now</a></li>
       </ul>";
     $plugin_version = get_option('ULTIMATE_CSV_IMP_VERSION');
 $menuHTML .= "</div>";

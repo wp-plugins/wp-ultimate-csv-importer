@@ -15,7 +15,7 @@ Advanced CSV Importer plugin to import posts, pages, custom posts with custom fi
 
 == Description ==
 
-**Version 3.6 is now available with new features like users much requested auto UTF-8 handling, auto mapping, auto delimiter and more. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
+**Version 3.6 is now available with new users much requested features like auto UTF-8 handling, auto mapping, auto delimiter and more. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
 
 WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer With Ultimate User Friendly Features. It is much easy now even for newbies to import any csv file as any wordpress post type and associated fields by simple mapping feature. Now import any CSV file as thousands of post, page and custom post types. This is admin side free plugin helps you in bulk edit, create and import posts type for your blog or site. 
 
