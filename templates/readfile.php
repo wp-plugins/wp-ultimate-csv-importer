@@ -37,10 +37,12 @@
 
 require_once('../includes/WPImporter_includes_helper.php');
 require_once('../../../../wp-load.php');
-
 $impObj = CallWPImporterObj::getInstance(); //print_r($impObj);//die;
-$filename = $_POST['file_name'];
-$delimiter = $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['delim'];
-$result = $impObj->csv_file_data($filename, $delimiter);
-
-print_r(json_encode($result[$_REQUEST['record_no']]));
+$filename=$_POST['file_name'];
+$delimeter = '';
+//$delimeter = $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['delim'];
+$result = $impObj->csv_file_data($filename, $delimeter);
+foreach($result[$_REQUEST['record_no']] as $key => $value) {
+	$data[] = $value;
+}
+print_r(json_encode($data));

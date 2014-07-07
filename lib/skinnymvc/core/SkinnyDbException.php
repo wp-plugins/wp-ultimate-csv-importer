@@ -6,7 +6,6 @@
 
 require_once("SkinnyException.php");
 
-class SkinnyDbException extends SkinnyException
-{
+class SkinnyDbException extends SkinnyException {
 }
     

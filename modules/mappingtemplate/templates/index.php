@@ -34,4 +34,5 @@
  * Notices must display the words
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
-echo "<div align='center' style='width:100%;'> <p class='warnings' style='width:50%;text-align:center;color:red;'>This feature is only available in PRO!.</p></div>";
+?>
+ <div align='center' style='width:100%;'> <img src='<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR ?>images/templates.png' style='width:90%;'></div>

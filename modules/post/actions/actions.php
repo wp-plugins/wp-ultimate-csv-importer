@@ -35,18 +35,17 @@
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
 
-class PostActions extends SkinnyActions
-{
+class PostActions extends SkinnyActions {
 
     public function __construct()
     {
     }
 
-    /**
-     * The actions index method
-     * @param array $request
-     * @return array
-     */
+  /**
+   * The actions index method
+   * @param array $request
+   * @return array
+   */
     public function executeIndex($request)
     {
         // return an array of name value pairs to send data to the template

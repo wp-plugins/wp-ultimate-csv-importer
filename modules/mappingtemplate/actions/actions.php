@@ -35,21 +35,22 @@
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
 
-class MappingtemplateActions extends SkinnyActions
-{
+class MappingtemplateActions extends SkinnyActions {
+
     public function __construct()
     {
     }
 
-    /**
-     * The actions index method
-     * @param array $request
-     * @return array
-     */
+  /**
+   * The actions index method
+   * @param array $request
+   * @return array
+   */
     public function executeIndex($request)
     {
         // return an array of name value pairs to send data to the template
         $data = array();
         return $data;
     }
+
 }

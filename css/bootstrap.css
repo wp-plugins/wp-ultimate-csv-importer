@@ -3718,7 +3718,8 @@ input[type="button"].btn-block {
     margin: 2px 0 0;
     font-size: 14px;
     list-style: none;
-    background-color: #ffffff;
+    color:#fff;
+    background-color: #222222;
     border: 1px solid #cccccc;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 4px;
@@ -3745,15 +3746,15 @@ input[type="button"].btn-block {
     clear: both;
     font-weight: normal;
     line-height: 1.428571429;
-    color: #333333;
+    color: #fff;
     white-space: nowrap;
 }
 
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
-    color: #262626;
+    color: #fff;
     text-decoration: none;
-    background-color: #f5f5f5;
+    background-color: #0074A2;
 }
 
 .dropdown-menu > .active > a,
@@ -3761,7 +3762,7 @@ input[type="button"].btn-block {
 .dropdown-menu > .active > a:focus {
     color: #ffffff;
     text-decoration: none;
-    background-color: #428bca;
+    background-color: #0074A2;
     outline: 0;
 }
 
@@ -4514,6 +4515,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
     min-height: 50px;
     margin-bottom: 20px;
     border: 1px solid transparent;
+    background-color:#222222 !important;
+    width:98%;
 }
 
 .navbar:before,
@@ -4538,7 +4541,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 @media (min-width: 768px) {
     .navbar {
-        border-radius: 4px;
+        margin-top:25px;
+        margin-right:15px;
     }
 }
 
@@ -4923,24 +4927,24 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default .navbar-text {
-    color: #777777;
+    color: #fff;
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #777777;
+    color: #fff;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-    color: #333333;
-    background-color: transparent;
+    color: #fff;
+    background-color: #0074A2;
 }
 
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-    color: #555555;
-    background-color: #e7e7e7;
+    color: #fff;
+    background-color: #0074A2;
 }
 
 .navbar-default .navbar-nav > .disabled > a,
@@ -4971,7 +4975,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-    color: #555555;
+    color: #fff;
     background-color: #e7e7e7;
 }
 
@@ -5312,8 +5316,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .label {
     display: inline;
-    /*  padding: .2em .6em .3em; */
-    padding: 5px;
+    padding: .2em .6em .3em;
     font-size: 75%;
     font-weight: bold;
     line-height: 1;
@@ -7448,8 +7451,9 @@ td.visible-print {
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
-    background-color: #eeeeee;
-    border-color: #428bca;
+    background-color: #0074A2 !important;
+    color:#fff;
+   /* border-color: #428bca; */
 }
 
 .nav .nav-divider {

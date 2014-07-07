@@ -35,4 +35,50 @@
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
 
-echo "<div align='center' style='width:100%;'><a href='http://www.smackcoders.com/products-46/wordpress/wp-ultimate-csv-importer-pro.html' target='_blank'><img src='" . WP_PLUGIN_URL . "/" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/images/csv_importer_dashboard_v3.5.png' /></a></div>";
+global $wpdb;
+$impCE = new WPImporter_includes_helper(); 
+
+$dashObj = new DashboardActions();
+$ret_arr=array();
+if(isset($_REQUEST['msg']) && $_REQUEST['msg'] == 'filenotfound'){
+?>
+<script>
+showMapMessages('error','The files does not exist');
+</script>
+<?php
+} ?>
+<div class="box-one">
+	<div class="top-right-box">
+	<h3><span class="header-icon glyphicon glyphicon-list"></span>Importers Activity</h3>
+	<div class="top-right-content">
+	<div id='dispLabel'></div>
+	<div class='lineStats' id='lineStats' style='height: 250px;width:100%;margin-top:15px; margin-bottom:15px;'></div>
+	</div>
+	</div>
+	<div class="top-left-box">
+	<h3><span class="header-icon glyphicon glyphicon-dashboard"></span>Overall Statistics</h3>
+	<div class="top-left-content">
+	<div id='dispLabel'></div>
+	<div class='pieStats' id='pieStats' style='height: 250px;width:100%;margin-top:15px; margin-bottom:15px;'></div>
+	</div>
+	</div>
+</div>
+<div class= "promobox" id="pluginpromo" style="width:98%;">
+        <div class="accordion-group" >
+                <div class="accordion-body in collapse">
+                <div>
+                        <?php // $impCE->common_footer_for_other_plugin_promotions(); ?>
+                        <?php $impCE->common_footer(); ?>
+                </div>
+                </div>
+        </div>
+</div>
+
+<?php if(isset($_REQUEST['errormsg'])){
+?>
+<script type="text/javascript">
+        showMapMessages('error' , "<?php echo $_REQUEST['errormsg']; ?>")
+</script>
+<?
+        }
+?>
