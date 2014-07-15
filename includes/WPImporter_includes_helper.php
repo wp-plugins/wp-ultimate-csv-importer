@@ -284,7 +284,7 @@ class WPImporter_includes_helper {
 	 *            for the CSV
 	 * @return array formatted CSV output as array
 	 */
-	function csv_file_data($file, $delim)
+	function csv_file_data($file)
 	{
 		$file = $this->getUploadDirectory().'/'.$file;
 		$csv = new parseCSV();
@@ -383,7 +383,6 @@ class WPImporter_includes_helper {
 		$custom_array = array();
 		$seo_custom_array= array();		
 		$imported_feature_img = array();
-
 		$headr_count = $ret_array['h2'];
 		for ($i = 0; $i < count($data_rows); $i++) {
 			if (array_key_exists('mapping' . $i, $ret_array)) { 
@@ -665,7 +664,6 @@ class WPImporter_includes_helper {
 
 				}
 			}
-			//print('<pre>');print_r($data_array);die;
 			if ($data_array)
 				$post_id = wp_insert_post($data_array);
 
@@ -717,10 +715,6 @@ class WPImporter_includes_helper {
 		                }          
                                 //Import SEO Values     
                                 if(!empty($seo_custom_array)){
-                                        //require_once("class.customfields.php");
-                                        //$seoObj = new Customfields();
-                                        //$seoObj->importSEOFields($seo_custom_array, $post_id);
-                                        //print '<pre>';print_r($seo_custom_array);die;
                                         $this->importSEOfields($seo_custom_array,$post_id);
                                 }
 

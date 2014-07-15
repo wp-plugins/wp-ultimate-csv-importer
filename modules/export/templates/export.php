@@ -211,7 +211,7 @@ if ($exporttype == 'post' || $exporttype == 'page' || $exporttype == 'custompost
 						}
 						if (is_array($checkbox_option_fields) && in_array($postmeta->meta_key, $checkbox_option_fields)) {
 							$PostMetaData[$postmeta->post_id][$postmeta->meta_key] = '';
-							$eshop_products = unserialize($eshop_products); //print_r($eshop_products);
+							$eshop_products = unserialize($eshop_products); 
 							foreach ($eshop_products as $key) {
 								$PostMetaData[$postmeta->post_id][$postmeta->meta_key] .= $key . ',';
 							}
@@ -220,7 +220,6 @@ if ($exporttype == 'post' || $exporttype == 'page' || $exporttype == 'custompost
 					}
 				}
 			}
-			#print('<pre>'); print_r($PostMetaData); die;
 			// Tags & Categories
 			$get_tags = wp_get_post_tags($postID, array('fields' => 'names'));
 			$postTags = $postCategory = '';
@@ -393,7 +392,6 @@ elseif($exporttype=='users')
 				$Header[] = $rhq2_headkey->meta_key;
 		}
 	}
-	//       echo '<pre>'; print_r($Header); die('dsd');
 	$get_user_ids = "select DISTINCT ID from $wpdb->users u join $wpdb->usermeta um on um.user_id = u.ID";
 
 	$result = $wpdb->get_col($get_user_ids);
@@ -410,14 +408,11 @@ elseif($exporttype=='users')
 					}
 				}
 			}
-			//  echo '<pre>'; print_r($UserData); die ('dfdf'); 
 			$query2 = "SELECT user_id, meta_key, meta_value FROM  $wpdb->users wp JOIN $wpdb->usermeta wpm  ON wpm.user_id = wp.ID where ID=$userID";
 			$possible_values = array('s:', 'a:', ':{'); 
 				$result_query2 = $wpdb->get_results($query2); 
 				if (!empty($result_query2)) {
 					foreach ($result_query2 as $usermeta) { 
-						//  echo '<pre>'; print_r($usermeta);
-
 						foreach($possible_values as $posval){
 							if(strpos($usermeta->meta_value,$posval)){
 								if($usermeta->meta_key == 'mp_shipping_info' || $usermeta->meta_key == 'mp_billing_info')
@@ -455,7 +450,6 @@ elseif($exporttype=='users')
 							} else {
 								if($usermeta->meta_key == 'wp_capabilities') {
 									$getUserRole = unserialize($usermeta->meta_value);
-									//  echo '<pre>'; print_r($getUserRole); die('ddf');
 									foreach($getUserRole as $urKey => $urVal) {
 										$getUserRole = get_role($urKey);
 									}
@@ -467,7 +461,6 @@ elseif($exporttype=='users')
 											$rolelevel = $rolelevel + 1;
 										}
 									} $rolelevel = $rolelevel - 1;
-#$UserData[$userID][$usermeta->meta_key] = $rolelevel;
 								}
 							}
 						} else {
@@ -481,7 +474,7 @@ elseif($exporttype=='users')
 							}
 
 						}
-					} #echo '<pre>'; print_r($UserData); die('dd');
+					}
 				}
 			}
 		}
@@ -494,7 +487,6 @@ elseif($exporttype=='users')
 					$CSVContent[$header_key][] = '';
 			}
 		}
-		//  echo '<pre>'; print_r($CSVContent); die('it sded');
 		for ($j = 0; $j < $fieldsCount; $j++) {
 			foreach ($Header as $value) {
 				if ( ! isset($CSVDATA[$j])) {

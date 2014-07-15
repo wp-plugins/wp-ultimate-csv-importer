@@ -2,7 +2,7 @@
 /******************************
  * Plugin Name: WP Ultimate CSV Importer
  * Description: A plugin that helps to import the data's from a CSV file.
- * Version: 3.6
+ * Version: 3.6.1
  * Author: smackcoders.com
  * Plugin URI: http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html
  * Author URI: http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html
@@ -70,6 +70,13 @@ function action_csv_imp_admin_menu() {
         if(!function_exists('wp_get_current_user')) {
 		include(ABSPATH . "wp-includes/pluggable.php");
 	}
+       if(is_multisite()) {
+          if ( current_user_can( 'administrator' ) ) { 
+                add_menu_page(WP_CONST_ULTIMATE_CSV_IMP_SETTINGS, WP_CONST_ULTIMATE_CSV_IMP_NAME, 'manage_options', __FILE__, array('WPImporter_includes_helper', 'output_fd_page'), WP_CONST_ULTIMATE_CSV_IMP_DIR . "images/icon.png");
+               }
+
+        }
+        else {
 	if ( current_user_can( 'author' ) ) {
 		$HelperObj = new WPImporter_includes_helper();
                 $settings = $HelperObj->getSettings();
@@ -79,9 +86,9 @@ function action_csv_imp_admin_menu() {
 	} else if ( current_user_can( 'administrator' ) ) {
 		add_menu_page(WP_CONST_ULTIMATE_CSV_IMP_SETTINGS, WP_CONST_ULTIMATE_CSV_IMP_NAME, 'manage_options', __FILE__, array('WPImporter_includes_helper', 'output_fd_page'), WP_CONST_ULTIMATE_CSV_IMP_DIR . "images/icon.png");
 	}
+        }
 }
-
-add_action("admin_menu", "action_csv_imp_admin_menu");
+add_action("admin_menu" , "action_csv_imp_admin_menu"); 
 
 function action_csv_imp_admin_init() {
 	if (isset($_REQUEST['page']) && ($_REQUEST['page'] == 'wp-ultimate-csv-importer/index.php' || $_REQUEST['page'] == 'page')) {
@@ -147,12 +154,11 @@ function roundchart() {
 	require_once("modules/dashboard/actions/actions.php");
 	?>
 	<?php
-	$myObj = new DashboardActions(); //print_r($myObj);die;
+	$myObj = new DashboardActions(); 
 
 	$content = "<form name='piechart' onload='pieStats();'> <div id ='pieStats' style='height:250px;'>";
 	$content .= $myObj->piechart();
-	$content .= "</div></form>"; ?>
-	<!--           <input type='hidden' id ='checkmodule' value=''> <input type='hidden' id='log' value=''><input type='hidden' id='stepstatus' value=''><input type='hidden' id='checkfile' value=''><input type='hidden' id='uploadedFile' value=''><input type=><div id='pieStats'> </div>  --><?php
+	$content .= "</div></form>"; 
 	echo $content;
 }
 
@@ -165,12 +171,11 @@ function linetwoStats() {
 	require_once("modules/dashboard/actions/actions.php");
 	?>
 	<?php
-	$myObj = new DashboardActions(); //print_r($myObj);die;
+	$myObj = new DashboardActions(); 
 
 	$content = "<form name='piechart' onload='pieStats();'> <div id ='lineStats' style='height:250px'>";
 	$content .= $myObj->getStatsWithDate();
-	$content .= "</div></form>"; ?>
-	<!--           <input type='hidden' id ='checkmodule' value=''> <input type='hidden' id='log' value=''><input type='hidden' id='stepstatus' value=''><input type='hidden' id='checkfile' value=''><input type='hidden' id='uploadedFile' value=''><input type=><div id='pieStats'> </div>  --><?php
+	$content .= "</div></form>"; 
 	echo $content;
 }
 

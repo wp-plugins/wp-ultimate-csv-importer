@@ -196,7 +196,7 @@ if (isset($_POST['mydelimeter'])) {
 if(isset($_POST['upload_csv_realname']) && $_POST['upload_csv_realname'] != '') {
 	$uploaded_csv_name = $_POST['upload_csv_realname'];
 }
-$getrecords = $impCE->csv_file_data($filename,$delimeter); 
+$getrecords = $impCE->csv_file_data($filename); 
 $getcustomposts=get_post_types();
 $allcustomposts='';
 foreach($getcustomposts as $keys => $value)

@@ -181,7 +181,7 @@ class ExportActions extends SkinnyActions
 							}
 							if(is_array($checkbox_option_fields) && in_array($postmeta->meta_key,$checkbox_option_fields)){
 								$PostMetaData[$postmeta->post_id][$postmeta->meta_key] = '';
-								$eshop_products = unserialize($eshop_products); //print_r($eshop_products);
+								$eshop_products = unserialize($eshop_products); 
 								foreach ($eshop_products as $key) {
 									$PostMetaData[$postmeta->post_id][$postmeta->meta_key] .= $key . ',';
 								}

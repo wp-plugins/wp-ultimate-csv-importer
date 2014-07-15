@@ -40,7 +40,7 @@ require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY . 'lib/skinnymvc/core/base/Skin
 require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY . 'lib/skinnymvc/core/SkinnyActions.php');
 require_once('actions.php');
 
-$dashObj = new DashboardActions(); //print_r($dashObj);
+$dashObj = new DashboardActions(); 
 $maincontent = array();
 $totalfilescount = '';
 $content = $_REQUEST['postdata'];

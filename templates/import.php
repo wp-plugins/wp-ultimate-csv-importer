@@ -86,7 +86,6 @@ $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['importlimit'] = $_POST['postdata']['
 $count = $_POST['postdata']['importlimit'];
 $requested_limit = $_POST['postdata']['importlimit'];
 $tmpCnt = $_POST['postdata']['tmpcount'];
-
 if ($count < $totRecords) {
 	$count = $tmpCnt + $count;
 	if ($count > $totRecords) {
@@ -98,8 +97,7 @@ if ($count < $totRecords) {
 $resultArr = array();
 $filename = $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['uploadedFile'];
 $delim = $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['select_delimeter'];
-$resultArr = $skinnyObj->csv_file_data($filename, $delim);
-#print('<pre>'); print_r($resultArr); die;
+$resultArr = $skinnyObj->csv_file_data($filename);
 if ($_POST['postdata']['dupTitle']) {
 	$importObj->titleDupCheck = $_POST['postdata']['dupTitle'];
 }
@@ -112,10 +110,13 @@ for ($i = $limit; $i < $count; $i++) {
 	$_SESSION['SMACK_SKIPPED_RECORDS'] = $i;
 	foreach($resultArr[$i] as $resultKey => $resultVal) {
 		$to_be_import_rec[] = $resultVal;
-	}
-	$importObj->processDataInWP($to_be_import_rec, $_SESSION['SMACK_MAPPING_SETTINGS_VALUES'], $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']);
+	}  
+        
+	$importObj->processDataInWP($to_be_import_rec,$_SESSION['SMACK_MAPPING_SETTINGS_VALUES'], $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']);
 	$limit++;
+        unset($to_be_import_rec);
 }
+
 if ($limit >= $totRecords) {
 	$dir = $skinnyObj->getUploadDirectory();
 	$skinnyObj->deletefileafterprocesscomplete($dir);
@@ -241,6 +242,7 @@ if ($curr_action == 'users') {
 	echo "[" . date('h:m:s') . "] - No of " . $customposttype . " are assigned as admin - " . $importObj->noPostAuthCount . ".<br>";
 	if ($limit == $totRecords) {
 		echo "<br><div style='margin-left:3px;'>Import successfully completed!.</div>";
+                
 	}
 	echo "</div>";
 }

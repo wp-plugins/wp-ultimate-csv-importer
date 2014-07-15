@@ -196,7 +196,7 @@ if (isset($_POST['mydelimeter'])) {
 if(isset($_POST['upload_csv_realname']) && $_POST['upload_csv_realname'] != '') {
 	$uploaded_csv_name = $_POST['upload_csv_realname'];
 }
-$getrecords = $impCE->csv_file_data($filename,$delimeter); //print('<pre>');print_r($getrecords); print_r($impCE->headers);
+$getrecords = $impCE->csv_file_data($filename); 
 $getcustomposts=get_post_types();
 $allcustomposts='';
 $records = '';
@@ -346,7 +346,6 @@ $mFieldsArr = substr($mFieldsArr, 0, -1);
 <tr>
 <td>
   <h3>Settings and Performance</h3>
-<!--<?php //echo $_POST['uploadedFile']; ?><?php //echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords']; die;?>-->
   <?php if(isset($_REQUEST['step']) && $_REQUEST['step'] == 'importoptions') { ?>
   <div id='sec-three' <?php if($_REQUEST['step']!= 'importoptions'){ ?> style='display:none;' <?php } ?> >
    <?php if(isset($_SESSION['SMACK_MAPPING_SETTINGS_VALUES'])) { ?>

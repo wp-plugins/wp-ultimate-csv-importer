@@ -54,7 +54,3 @@ require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY.'lib/skinnymvc/core/SkinnyActio
 }
 
 
-elseif($_REQUEST['postdata']=='showDetailedGraph')
-{
-	require_once($_REQUEST['wpcontenturl'].'/'.$_REQUEST['csvimpslug'].'/modules/dashboard/actions/getInlineGraphValues.php');
-}

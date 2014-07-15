@@ -240,16 +240,10 @@ class UsersActions extends SkinnyActions {
         }
          function addStatusLog($inserted,$imported_as){
                 global $wpdb;
-              //  $lid = $wpdb->get_results("SELECT LAST_INSERT_ID() as id FROM smackcsv_pie_log");
-              //  $sdm_id = $lid[0]->id; 
-              //  $imp_as = $wpdb->get_results("select id,type from smackcsv_pie_log where id = {$sdm_id} ");
-            //    $import = $imp_as[0]->type;
-              //  $lid = $imp_as[1]->id;
                 $today = date('Y-m-d h:i:s');
                 $mon = date("M",strtotime($today));
                 $year = date("Y",strtotime($today));
                 $wpdb->insert('smackcsv_line_log', array('month'=>$mon,'year'=>$year,'imported_type'=>$imported_as,'imported_on'=>date('Y-m-d h:i:s'), 'inserted'=>$inserted ));
-             //  echo '<pre>'; print_r($wpdb); die('sd');
         }
 
 
