@@ -2,7 +2,7 @@
 /******************************
  * Plugin Name: WP Ultimate CSV Importer
  * Description: A plugin that helps to import the data's from a CSV file.
- * Version: 3.6.1
+ * Version: 3.6.2
  * Author: smackcoders.com
  * Plugin URI: http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html
  * Author URI: http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html
@@ -51,7 +51,7 @@ define('WP_CONST_ULTIMATE_CSV_IMP_URL', 'http://www.smackcoders.com/wp-ultimate-
 define('WP_CONST_ULTIMATE_CSV_IMP_NAME', 'WP Ultimate CSV Importer');
 define('WP_CONST_ULTIMATE_CSV_IMP_SLUG', 'wp-ultimate-csv-importer');
 define('WP_CONST_ULTIMATE_CSV_IMP_SETTINGS', 'WP Ultimate CSV Importer');
-define('WP_CONST_ULTIMATE_CSV_IMP_VERSION', '3.6');
+define('WP_CONST_ULTIMATE_CSV_IMP_VERSION', '3.6.2');
 define('WP_CONST_ULTIMATE_CSV_IMP_DIR', WP_PLUGIN_URL . '/' . WP_CONST_ULTIMATE_CSV_IMP_SLUG . '/');
 define('WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY', plugin_dir_path(__FILE__));
 define('WP_CSVIMP_PLUGIN_BASE', WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY);
@@ -113,7 +113,7 @@ function action_csv_imp_admin_init() {
 		wp_enqueue_style('ultimate-importer-css', plugins_url('css/main.css', __FILE__));
 		// For chart js
 		wp_enqueue_script('high_chart', plugins_url('js/highcharts.js', __FILE__));
-		wp_enqueue_script('export_module', plugins_url('js/exporting,js', __FILE__));
+		wp_enqueue_script('export_module', plugins_url('js/exporting.js', __FILE__));
 		wp_enqueue_script('pie_chart', plugins_url('js/highcharts-3d.js', __FILE__));
 		wp_enqueue_script('dropdown', plugins_url('js/dropdown.js', __FILE__));
 
@@ -184,7 +184,7 @@ function wpcsvimporter_add_dashboard_widgets() {
 
 	wp_enqueue_script('dashpiechart', plugins_url('js/dashchart.js', __FILE__));
 	wp_enqueue_script('high_chart', plugins_url('js/highcharts.js', __FILE__));
-	wp_enqueue_script('export_module', plugins_url('js/exporting,js', __FILE__));
+	wp_enqueue_script('export_module', plugins_url('js/exporting.js', __FILE__));
 	wp_enqueue_script('pie_chart', plugins_url('js/highcharts-3d.js', __FILE__));
 	wp_add_dashboard_widget('wpcsvimporter_dashboard_piehart', 'Ultimate-CSV-Importer-Statistics', 'roundchart',$screen = get_current_screen() , 'advanced' ,'high' );
 	wp_add_dashboard_widget('wpcsvimporter_dashboard_linechart', 'Ultimate-CSV-Importer-Activity', 'linetwoStats',$screen = get_current_screen(),'advanced','high');

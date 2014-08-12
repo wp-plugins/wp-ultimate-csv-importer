@@ -3,9 +3,9 @@ Contributors: smackcoders
 Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, csv, excel, import, spreadsheet, autoblog, Autoblogger, csvimporter, data, dataimport, importer, wpcsvimporter, wpimporter, acf, auto blog, csv import, csv to post, data import, Easy CSV Importer, eci, import plugin, admin, user, users, Advanced CSV Import, Advanced CSV Importer, affiliate, amazon, author, automatic, blog, buddypress, bulk, bulk edit, bulk editor, categories, comments, content, csv file, csv format, csv importer, custom post, e-commerce, free, images, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, video, woocommerce, wordpress, xml, youtube
 Requires at least: 3.6.0
-Tested up to: 3.9.1
-Stable tag: 3.6.1
-Version: 3.6.1
+Tested up to: 3.9.2
+Stable tag: 3.6.2
+Version: 3.6.2
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 
@@ -174,6 +174,9 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 == Changelog ==
 
+= 3.6.2 =
+* Hot security fix added.
+
 = 3.6.1 =
 * Multi-site support issue fixed
 * Duplicate import issue fixed
@@ -340,6 +343,12 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 
 == Upgrade Notice ==
+
+= 3.6.2 =
+* Important Security Update
+
+= 3.6.1 =
+* Important issue fixes update
 
 = 3.6 =
 * Must upgrade with major values added features 
