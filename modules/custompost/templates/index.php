@@ -105,7 +105,7 @@ $impCE = new WPImporter_includes_helper();
 	jQuery(function () {
 		'use strict';
 		var uploadPath = document.getElementById('uploaddir').value;
-		var url = (document.getElementById('pluginurl').value+'/plugins/<?php echo WP_CONST_ULTIMATE_CSV_IMP_SLUG;?>/templates/uploader.php')+'?uploadPath='+uploadPath+'&curr_action=<?php echo $_REQUEST['__module']; ?>';
+		var url = (document.getElementById('pluginurl').value+'/plugins/<?php echo WP_CONST_ULTIMATE_CSV_IMP_SLUG;?>/lib/jquery-plugins/uploader.php')+'?uploadPath='+uploadPath+'&curr_action=<?php echo $_REQUEST['__module']; ?>';
 		jQuery('#fileupload').fileupload({
 		url: url,
 		dataType: 'json',

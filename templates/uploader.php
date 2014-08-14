@@ -34,7 +34,3 @@
  * Notices must display the words
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
-
-error_reporting(E_ALL | E_STRICT);
-require('UploadHandler.php');
-$upload_handler = new UploadHandler();

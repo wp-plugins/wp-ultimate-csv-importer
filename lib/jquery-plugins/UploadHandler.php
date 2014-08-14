@@ -1079,6 +1079,9 @@ class UploadHandler
     protected function handle_file_upload($uploaded_file, $name, $size, $type, $error,
                                           $index = null, $content_range = null)
     {
+	$post_url = admin_url() . 'admin.php?page=' . WP_CONST_ULTIMATE_CSV_IMP_SLUG . '/index.php&__module=' . $_POST['current_module'] . '&step=uploadfile';
+	if($post_url != $_SERVER['HTTP_REFERER']) 
+		die('Your requested url were wrong! Please contact your admin.');
         $file = new stdClass();
         $file->name = $this->get_file_name($name, $type, $index, $content_range);
         $file->size = $this->fix_integer_overflow(intval($size));
