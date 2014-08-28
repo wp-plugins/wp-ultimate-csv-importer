@@ -71,6 +71,9 @@ $menuHTML .= "<li class = '{$comments}'><a href='admin.php?page=" . WP_CONST_ULT
 if($users) {
 $menuHTML .= "<li class = '{$users}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=users&step=uploadfile'>Users</a></li>";
 }
+if($eshop) {
+$menuHTML .= "<li class = '{$eshop}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=eshop&step=uploadfile'>Eshop</a></li>";
+}
 $menuHTML .= "</ul>
          </li>
          <li class='dropdown {$manager}'>

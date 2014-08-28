@@ -59,6 +59,7 @@ if ($curr_action == 'post' || $curr_action == 'page' || $curr_action == 'customp
 
 } elseif ($curr_action == 'eshop') {
 	$importObj = new EshopActions();
+         $importedAs = 'Eshop';
 } elseif ($curr_action == 'wpcommerce') {
 	$importObj = new WpcommerceActions();
 } elseif ($curr_action == 'woocommerce') {
@@ -245,6 +246,17 @@ if ($curr_action == 'users') {
                 
 	}
 	echo "</div>";
+}elseif ($curr_action == 'eshop') {
+        echo "<div style='margin-left:7px;'>";
+        if (($limit == $requested_limit) && ($limit <= $count)) {
+                echo "<div style='margin-left:3px;'>Chosen server request is " . $count . " .</div><br>";
+        }
+        echo "[" . date('h:m:s') . "] - No of products(s) Skipped - " . $importObj->dupPostCount . '.<br>';
+        echo "[" . date('h:m:s') . "] - No of products(s) Inserted - " . $importObj->insPostCount . ".<br>";
+        if ($limit == $totRecords) {
+                echo "<br><div style='margin-left:3px;'>Import successfully completed!.</div>";
+        }
+        echo "</div>";
 }
 foreach ($_SESSION['SMACK_MAPPING_SETTINGS_VALUES'] as $key => $value) {
 	for ($j = 0; $j < $csv_rec_count; $j++) {

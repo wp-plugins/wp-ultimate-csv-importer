@@ -111,7 +111,7 @@
 </td>
 <td>
 <label class="<?php echo $skinnyData['eshoptd'].' '.$skinnyData['eshop']; ?>">
-<input type='radio' name='recommerce' id='eshop' value='eshop' <?php echo $skinnyData['eshop']; ?> class='ecommerce' onclick='check_if_avail(this.id);'> Eshop
+<input type='radio' name='recommerce' id='eshop' value='eshop' <?php echo $skinnyData['eshop']; ?> class='ecommerce' > Eshop
 </label>
 </td>
 <td>			

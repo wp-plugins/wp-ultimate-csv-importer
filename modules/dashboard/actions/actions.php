@@ -80,7 +80,7 @@ class DashboardActions extends SkinnyActions {
                           }
                       
                        $j=0;
-                    $get_imptype = array('Post','Page','Comments','Custom Post','Users');
+                    $get_imptype = array('Post','Page','Comments','Custom Post','Users','Eshop');
                     foreach($get_imptype as $imp_type)
                     {
    $lid = $wpdb->get_results("select inserted from smackcsv_line_log where imported_type = '{$imp_type}' and imported_on >= DATE_SUB(NOW(),INTERVAL 1 YEAR)");
@@ -162,15 +162,14 @@ class DashboardActions extends SkinnyActions {
 			global $wpdb;
                         $blog_id = 1;
 	        $returnArray = array();
-                    $imptype = array('Post','Page','Comments','Custom Post','Users');
+                    $imptype = array('Post','Page','Comments','Custom Post','Users','Eshop');
 			$i = 0;
                    foreach($imptype as $imp) {
                          $OverviewDetails = $wpdb->get_results("select *  from smackcsv_pie_log where type = '{$imp}'  and value != 0");
              		foreach($OverviewDetails as  $overview){
 			       $returnArray[$i][0] = $overview->type; 
 				$returnArray[$i][1] = (int)$overview->value;
-                              
-				$i++;
+                              	$i++;
 			} 
                         
             }
