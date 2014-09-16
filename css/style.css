@@ -1,0 +1,308 @@
+@charset "UTF-8";
+/*
+ * jQuery File Upload Plugin CSS Example 8.8.2
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+body {
+}
+
+.container-fluid {
+/*  padding-left: 20px;  */
+  padding-right: 20px;
+  width: 100%;
+  *zoom: 1;
+}
+.container-fluid:before, .container-fluid:after {
+  display: table;
+  content: "";
+}
+.container-fluid:after {
+  clear: both;
+}
+.accordion {
+  margin-bottom: 18px;
+}
+.accordion-group {
+  margin-bottom: 2px;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.activate {
+    color:#fff;
+    background-color:#0074A2;
+ }
+.deactivate {
+
+
+  }
+
+.accordion-heading {
+  border-bottom: 0;
+}
+.accordion-heading a{
+  text-decoration: none;
+  color:#ffffff;
+}
+.accordion-heading .accordion-toggle {
+  display: block;
+  padding: 8px 15px;
+}
+.accordion-heading a:hover{
+  color:#2EA2CC;
+  text-decoration: none;
+}
+.accordion-inner {
+  padding: 9px 15px;
+  background:#ffffff;
+  border-top: 1px solid #e5e5e5;
+}
+.accordion-group {
+  margin-bottom: 2px;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.accordion-heading {
+  border-bottom: 0;
+  background:#222222;
+}
+.accordion-heading .accordion-toggle {
+  display: block;
+  padding: 8px 15px;
+  font: 12px Verdana;
+}
+.accordion-inner {
+  padding: 9px 10px;
+  border-top: 1px solid #e5e5e5;
+}
+.collapse {
+  -webkit-transition: height 0.35s ease;
+  -moz-transition: height 0.35s ease;
+  -ms-transition: height 0.35s ease;
+  -o-transition: height 0.35s ease;
+  transition: height 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  height: 0;
+}
+.collapse.in {
+  height: auto;
+}
+.nav-collapse.collapse {
+  height: auto;
+}
+.success{
+background-color:#EAF0D5;
+border:1px solid #008000;
+}
+
+.alert{
+text-align:center;
+padding:10px;
+margin:5px;
+border-radius:3px;
+}
+.alert-warning {
+background-color: #FAEBE7 !important;
+border: 1px solid #F16048 !important;
+color: #DF280A !important;
+}
+.pluginAbsent:hover{
+color:red;
+}
+.pluginPresent:hover{
+color:red;
+}
+.pluginActive:hover{
+color:green;
+}
+.container-fluid label{
+display: block;
+/*font-size: 1.2em;*/
+padding:7px 10px;
+}
+.typeofplugin{
+font-size: 1.3em;
+}
+.supportedplugins td{
+width:230px;
+}
+.typeofplugin {
+text-transform:uppercase;
+}
+td.plugintype{
+width:230px;
+}
+.box-one{
+height:350px;
+width:100%;
+}
+.top-left-box,.top-right-box{
+width:48%;
+height:350px;
+margin-right:20px;
+}
+.top-left-box{
+float:left;
+}
+.top-right-box{
+float:right;
+}
+.top-left-box h3,.top-right-box h3,.fileManager h3{
+padding:10px;
+background: #222222;
+border-color: #D2E3EB;
+/*border-top-left-radius: 5px;
+border-top-right-radius: 5px; */
+font-weight: normal;
+font-size: 1.5em;
+color:#ffffff;
+}
+.top-left-box h3:hover,.top-right-box h3:hover,.fileManager h3:hover{
+color:#ffffff;
+}
+.top-left-content,.top-right-content{
+border: 1px solid #dddddd;
+height: 275px;
+margin-top: -16px;
+background: #ffffff;
+}
+.fileManager{
+width:98%;
+}
+.manager-content{
+height:auto;
+margin-top: -12px;
+/*border: 1px solid #2e8965;*/
+border: 1px solid #dddddd;
+border-top: 1px solid #333333;
+}
+.manager-actions{
+width:200px;
+}
+.manageraction{
+margin-right:15px;
+cursor:pointer;
+}
+.file-version{
+width:100px;
+}
+.importedtime,.updatedtime{
+width:150px;
+}
+.importedtype{
+width:225px;
+}
+.importedfilename{
+width:250px;
+}
+.selectall{
+width:60px;
+}
+.center{
+text-align:center;
+}
+.header-icon{
+margin-right:15px;
+}
+.form-group label {
+/* margin-top:8px; */
+margin-top : 0px;
+-webkit-margin-start: 8px;
+-webkit-margin-end: 0px;
+}
+.mappingactions{
+width:300px;
+}
+.importstatus label {
+margin-top:12px
+}
+.importstatus span{
+/*margin-top:15px;*/
+padding: 0 5px;
+}
+.newmoduleicon {
+z-index: 1000;
+margin-top: -12px;
+margin-left: -10px;
+position: absolute;
+}
+.method-row {
+    width:100%;
+}
+
+.importfileoption .header-text {
+   font-size: 1.3em;
+   font-weight: bold;
+}
+
+.method1, .method2, .method3, .method4 {
+   padding: 15px 0;
+}
+
+#boxmethod1, #boxmethod2, #boxmethod3, #boxmethod4 {
+   padding: 10px;
+}
+
+.scheduling-config {
+   width:80%;
+}
+
+.scheduling-config td {
+   padding: 8px;
+}
+div#mappingheader select {
+    width: 170px;
+}
+
+.radio-icon {
+    float: left;
+    padding-right: 10px;
+    margin-top: -7px;
+}
+
+.header-text {
+    float: right;
+    margin: -5px 0 0 0;
+}
+
+.method-row {
+    width:100%;
+}
+
+#checkallModules, #uncheckallModules {
+ background:none!important;
+ border:none; 
+ padding:0!important;
+ color: #0099D5;
+ text-decoration:none;
+
+}
+
+.left_align {
+width:23%;
+}
+
+.exportmodule > thead > tr > th, .exportmodule > tbody > tr > th, .exportmodule > tfoot > tr > th, .exportmodule > thead > tr > td, .exportmodule > tbody > tr > td, .exportmodule > tfoot > tr > td {
+padding: 8px;
+line-height: 1.428571429;
+vertical-align: top;
+border-top: 1px solid #ffffff !important;
+}
+
+/*.mappingheader .table-condensed label {
+margin-top:13px;
+}
+.mappingheader .table-condensed span {
+margin-top:13px;
+}*/
