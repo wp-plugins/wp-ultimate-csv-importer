@@ -293,6 +293,13 @@ div#mappingheader select {
 width:23%;
 }
 
+.exportmodule > thead > tr > th, .exportmodule > tbody > tr > th, .exportmodule > tfoot > tr > th, .exportmodule > thead > tr > td, .exportmodule > tbody > tr > td, .exportmodule > tfoot > tr > td {
+padding: 8px;
+line-height: 1.428571429;
+vertical-align: top;
+border-top: 1px solid #ffffff !important;
+}
+
 /*.mappingheader .table-condensed label {
 margin-top:13px;
 }

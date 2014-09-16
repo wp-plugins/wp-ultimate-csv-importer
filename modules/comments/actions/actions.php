@@ -113,6 +113,7 @@ class CommentsActions extends SkinnyActions
 				similar_text($strippedTextPCont, $strippedText, $p);
 				if ($p == 100) {
 					$this->dupPostCount++;
+					$this->detailedLog[$currentLimit][] = "Comment - <b>skipped</b>, Comment tile - " .$commentTitle . " Duplicate found";
 					return false;
 				}
 			}
@@ -123,6 +124,7 @@ class CommentsActions extends SkinnyActions
 				return true;
 		}
 		$this->dupPostCount++;
+		$this->detailedLog[$currentLimit][] = "Comment - <b>skipped</b>, Comment tile - " .$commentTitle . " Duplicate found";
 		return false;
 	}
 
@@ -318,14 +320,19 @@ class CommentsActions extends SkinnyActions
 		{
 			$commentid=wp_insert_comment($dat_array); 
 
-			if($commentid)
+			if($commentid) {
 				$this->insPostCount+=1;
-			else
+				$this->detailedLog[$currentLimit][] = "Comment added to <b>Post_ID</b> - " . $dat_array ['comment_post_ID'] . ", <b>Author</b> - " . $dat_array['comment_author'] . ", <b>Author Email</b> - " . $dat_array['comment_author_email'] . ", <b>Author URL</b> - " . $dat_array['comment_author_url'] . ", <b>Date</b> - " . $dat_array['comment_date'] . ", <b>Verify Here</b> - <a href='" . get_permalink( $post_id ) . "' rel='permalink'>" . __( 'Web View' ) . "</a> | <a href='" . get_edit_post_link( $post_id, true ) . "' title='" . esc_attr( __( 'Edit this item' ) ) . "'>" . __( 'Admin View' ) . "</a>";
+			}
+			else {
 				$this->dupPostCount+=1;
+				$this->detailedLog[$currentLimit][] = "<b>Comment - </b>skipped, <b>Post_ID</b> - " . $dat_array ['comment_post_ID']. " not available";
+			}
 		}
 		else
 		{
 			$this->dupPostCount+=1;
+			$this->detailedLog[$currentLimit][] = "<b>Comment - </b>skipped, <b>Post_ID</b> - " . $dat_array ['comment_post_ID']. " not available";
 		}
 		return $commentid;
 	}//add comments ends

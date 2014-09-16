@@ -101,7 +101,7 @@ class UsersActions extends SkinnyActions {
 	 *
 	 * @return boolean
 	 */
-	function processDataInWP($data_rows,$ret_array,$session_arr)
+	function processDataInWP($data_rows,$ret_array,$session_arr,$currentLimit)
 	{ 	
 		$impCE = new WPImporter_includes_helper();
 		$smack_taxo = array();
@@ -165,6 +165,8 @@ class UsersActions extends SkinnyActions {
 		if(! array_key_exists($data_array['role'],$roles)){
 			$data_array['role'] = 'subscriber';
 		}
+		$UserLogin = $data_array['user_login'];
+ 		$UserEmail = $data_array['user_email'];
 		$user_table = $wpdb->users; 
 		$user_id = '';
 		$user_role= '';
@@ -174,17 +176,21 @@ class UsersActions extends SkinnyActions {
 		}
 		if($user_id){
 			$this->dupPostCount = $this->dupPostCount+1;
+			$this->detailedLog[$currentLimit][] = "<b>Username</b> - " . $UserLogin . " - already exists(skipped), <b>E-mail</b> - " . $UserEmail . " - found as duplicate.";
 		}
 		else{
 			$user_id = wp_insert_user( $data_array );
-			if($user_id){
-				$this->insPostCount++; // = $this->insPostCount+1;
-			}
 			$user = new WP_User( $user_id );
 			if ( !empty( $user->roles ) && is_array( $user->roles ) ) {
 				foreach ( $user->roles as $role )
 					$user_role = $role;
 			}
+			if($user_id){
+				$this->insPostCount++; // = $this->insPostCount+1;
+			}
+
+			$this->detailedLog[$currentLimit][] = "<b>Created User_ID: </b>" . $user_id ." - Success, <b>Username</b> - " . $UserLogin . " , <b>E-mail</b> - " . $UserEmail . " , <b>Role</b> - " . $user_role . " , <b>Verify Here</b> - <a href='" . get_edit_user_link( $user_id, true ) . "'>" . __( 'User Profile' ) . "</a>";
+
 			$getUsers1 = $wpdb->get_results("select count(ID) as users from $user_table");
 			$no_of_users = ($getUsers1[0]->users) - ($getUsers[0]->users);
 			$termcount = $userscount+$no_of_users; 

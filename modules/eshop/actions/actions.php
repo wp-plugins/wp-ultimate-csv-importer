@@ -96,7 +96,7 @@ class EshopActions extends SkinnyActions {
 	 * @param string type = (title|content), string content
 	 * @return boolean
 	 */
-	function duplicateChecks($type = 'title', $text, $gettype)
+	function duplicateChecks($type = 'title', $text, $gettype, $currentLimit, $postTitle)
 	{
 		global $wpdb;
                 $gettype = 'post';
@@ -113,6 +113,7 @@ class EshopActions extends SkinnyActions {
 				similar_text($strippedTextPCont, $strippedText, $p);
 				if ($p == 100) {
 					$this->dupPostCount++;
+					$this->detailedLog[$currentLimit]['post_id'] = "Created record no $currentLimit - failed";
 					return false;
 				}
 			}
@@ -123,6 +124,7 @@ class EshopActions extends SkinnyActions {
 				return true;
 		}
 		$this->dupPostCount++;
+		$this->detailedLog[$currentLimit]['post_id'] = "Created record no $currentLimit - failed";
 		return false;
 	}
          
@@ -162,7 +164,7 @@ class EshopActions extends SkinnyActions {
 	 * @param $post_id
 	 * @return mixed
 	 */
-	public function eshopMetaData($new_post, $post_id) {
+	public function eshopMetaData($new_post, $post_id, $currentLimit) {
 		global $wpdb;
 		$eshopoptions = get_option('eshop_plugin_settings');
 		foreach ($new_post as $ckey => $cval) {
@@ -197,7 +199,7 @@ class EshopActions extends SkinnyActions {
 						update_post_meta($post_id, '_eshop_stock', 1);
 					}
 					break;
-				case 'cart-option' :
+				case 'cart_option' :
 					$cartOption = strtolower($new_post[$ckey]);
 					if ($cartOption == 'yes' || $cartOption == 'no') {
 						$cartOption = 0;
@@ -215,6 +217,7 @@ class EshopActions extends SkinnyActions {
 					break;
 				case 'SKU' :
 					$metaDatas['sku'] = $new_post[$ckey];
+					$this->detailedLog[$currentLimit]['SKU'] = "<b>SKU - </b>" . $metaDatas['sku'];
 					break;
 				case 'products_option':
 					$productOptions = $new_post[$ckey];
@@ -276,16 +279,22 @@ class EshopActions extends SkinnyActions {
 			update_post_meta($post_id, '_eshop_product', $metaDatas);
 		}
 		if (!empty($tags)) {
+			$this->detailedLog[$currentLimit]['tags'] = "";
 			foreach ($tags as $tag_key => $tag_value) {
+				$this->detailedLog[$currentLimit]['tags'] .= $tag_value . "|";
 				$split_line = explode(',', $tag_value);
 				$term_taxonomy_id_t = wp_set_object_terms($post_id, $split_line, "post_tag");
 			}
+			$this->detailedLog[$currentLimit]['tags'] = "<b>Tags - </b>" .substr($this->detailedLog[$currentLimit]['tags'], 0, -1);
 		}
 		if (!empty($categories)) {
+			$this->detailedLog[$currentLimit]['category'] = "";
 			foreach ($categories as $cat_key => $cat_value) {
+				$this->detailedLog[$currentLimit]['category'] .= $cat_value . "|";
 				$split_line = explode('|', $cat_value);
 				$term_taxonomy_id_c = wp_set_object_terms($post_id, $split_line, "category");
 			}
+			$this->detailedLog[$currentLimit]['category'] = "<b>Category - </b>" .substr($this->detailedLog[$currentLimit]['category'], 0, -1);
 		}
 		#TODO: $term_taxonomy_id_c, $term_taxonomy_id_t not used in this function / overwritten immediately
 		return $metaDatas;
@@ -296,7 +305,7 @@ class EshopActions extends SkinnyActions {
 	 *
 	 * @return boolean
 	 */
-	function processDataInWP($data_rows,$ret_array,$session_arr)
+	function processDataInWP($data_rows,$ret_array,$session_arr,$currentLimit)
 	{
 		global $wpdb;
 		$post_id = '';
@@ -413,7 +422,7 @@ class EshopActions extends SkinnyActions {
                                                         require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY.'/includes/WPImporter_includes_helper.php');
                                                         $impCE = new WPImporter_includes_helper();
 
-							$impCE->get_fimg_from_URL($f_img,$fimg_path,$fimg_name,$post_slug_value);
+							$impCE->get_fimg_from_URL($f_img,$fimg_path,$fimg_name,$post_slug_value,$currentLimit,$this);
 							$filepath = $fimg_path."/" . $post_slug_value . "-" . $fimg_name;
 	
 							if(@getimagesize($filepath)){
@@ -452,10 +461,10 @@ class EshopActions extends SkinnyActions {
 			$data_array['post_type'] = $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['custompostlist'];
 		}
 		if ($this->titleDupCheck == 'true')
-			$this->postFlag = $this->duplicateChecks('title', $data_array ['post_title'], $data_array ['post_type']);
+			$this->postFlag = $this->duplicateChecks('title', $data_array ['post_title'], $data_array ['post_type'], $currentLimit, $data_array ['post_title']);
 
 		if ($this->conDupCheck == 'true' && $this->postFlag)
-			$this->postFlag = $this->duplicateChecks('content', $data_array ['post_content'], $data_array ['post_type']);
+			$this->postFlag = $this->duplicateChecks('content', $data_array ['post_content'], $data_array ['post_type'], $currentLimit, $data_array ['post_title']);
 
 		if ($this->postFlag) {
 			unset ($sticky);
@@ -469,23 +478,29 @@ class EshopActions extends SkinnyActions {
 			switch ($data_array ['post_status']) {
 				case 1 :
 					$data_array['post_status'] = 'publish';
+					$this->detailedLog[$currentLimit]['poststatus'] = "<b>Status - </b>publish";
 					break;
 				case 2 :
 					$data_array['post_status'] = 'publish';
 					$sticky = true;
+					$this->detailedLog[$currentLimit]['poststatus'] = "<b>Status - </b>sticky";
 					break;
 				case 3 :
 					$data_array['post_status'] = 'publish';
 					$data_array ['post_password'] = $_POST ['postsPassword'];
+					$this->detailedLog[$currentLimit]['poststatus'] = "<b>Status - </b>protected with password " . $data_array['post_password'];
 					break;
 				case 4 :
 					$data_array ['post_status'] = 'private';
+					$this->detailedLog[$currentLimit]['poststatus'] = "<b>Status - </b>private";
 					break;
 				case 5 :
 					$data_array ['post_status'] = 'draft';
+					$this->detailedLog[$currentLimit]['poststatus'] = "<b>Status - </b>draft";
 					break;
 				case 6 :
 					$data_array ['post_status'] = 'pending';
+					$this->detailedLog[$currentLimit]['poststatus'] = "<b>Status - </b>pending";
 					break;
 				default :
 					$poststatus = $data_array['post_status'] = strtolower($data_array['post_status']);
@@ -498,19 +513,25 @@ class EshopActions extends SkinnyActions {
 								$postpwd = substr($poststatus, 0, -1);
 								$data_array['post_status'] = 'publish';
 								$data_array ['post_password'] = $postpwd;
+								$this->detailedLog[$currentLimit]['poststatus'] = "<b>Status - </b>protected with password " . $data_array['post_password'];
 							} else {
 								$data_array['post_status'] = 'publish';
 								$data_array ['post_password'] = $poststatus;
+								$this->detailedLog[$currentLimit]['poststatus'] = "<b>Status - </b>protected with password " . $data_array['post_password'];
 							}
 						} else {
 							$data_array['post_status'] = 'publish';
+							$this->detailedLog[$currentLimit]['poststatus'] = "<b>Status - </b>publish";
 						}
 					}
 					if ($data_array['post_status'] == 'sticky') {
 						$data_array['post_status'] = 'publish';
 						$sticky = true;
+						$this->detailedLog[$currentLimit]['poststatus'] = "<b>Status - </b>sticky";
 					}
-
+					else {
+						$this->detailedLog[$currentLimit]['poststatus'] = "<b>Status - </b>" . $data_array['post_status'];
+					}
 			}
 
 			// Author name/id update
@@ -522,31 +543,39 @@ class EshopActions extends SkinnyActions {
 				$postauthor = array();
 
 				if ($authorLen == $postAuthorLen) {
-					$postauthor = $wpdb->get_results("select ID from $wpdb->users where ID = \"{$postuserid}\"");
+					$postauthor = $wpdb->get_results("select ID,user_login from $wpdb->users where ID = \"{$postuserid}\"");
 					if(empty($postauthor) || !$postauthor[0]->ID) { // If user name are numeric Ex: 1300001
-						$postauthor = $wpdb->get_results("select ID from $wpdb->users where user_login = \"{$postuserid}\"");
+						$postauthor = $wpdb->get_results("select ID,user_login from $wpdb->users where user_login = \"{$postuserid}\"");
 					}
 				} else {
-					$postauthor = $wpdb->get_results("select ID from $wpdb->users where user_login = \"{$postuserid}\"");
+					$postauthor = $wpdb->get_results("select ID,user_login from $wpdb->users where user_login = \"{$postuserid}\"");
 				}
 
 				if (empty($postauthor) || !$postauthor[0]->ID) {
 					$data_array ['post_author'] = 1;
+					$admindet = $wpdb->get_results("select ID,user_login from $wpdb->users where ID = 1");
+                                        $this->detailedLog[$currentLimit]['assigned_author'] = "<b>Author - not found (assigned to </b>" . $admindet[0]->user_login . ")";
 					$this->noPostAuthCount++;
 				} else {
 					$data_array ['post_author'] = $postauthor [0]->ID;
+					$this->detailedLog[$currentLimit]['assigned_author'] = "<b>Author - </b>" . $postauthor[0]->user_login;
 				}
 			}
 			else{
 				$data_array ['post_author'] = 1;
+				$admindet = $wpdb->get_results("select ID,user_login from $wpdb->users where ID = 1");
+                                $this->detailedLog[$currentLimit]['assigned_author'] = "<b>Author - not found (assigned to </b>" . $admindet[0]->user_login . ")";
 				$this->noPostAuthCount++;
 			}
 
 			// Date format post
+			$data_array ['post_date'] = str_replace('/', '-', $data_array ['post_date']);
 			if (!isset($data_array ['post_date'])){
 				$data_array ['post_date'] = date('Y-m-d H:i:s');
+				$this->detailedLog[$currentLimit]['postdate'] = "<b>Date - </b>" . $data_array ['post_date'];
 			}else{
 				$data_array ['post_date'] = date('Y-m-d H:i:s', strtotime($data_array ['post_date']));
+				$this->detailedLog[$currentLimit]['postdate'] = "<b>Date - </b>" . $data_array ['post_date'];
 			}
 			if(isset($data_array ['post_slug'])){
 				$data_array ['post_name'] = $data_array ['post_slug'];
@@ -556,15 +585,17 @@ class EshopActions extends SkinnyActions {
 			if($data_array){
 				if($ret_array['importallwithps'] == 3){
 					$data_array['post_password'] = $ret_array['globalpassword_txt'];
-
+					$this->detailedLog[$currentLimit]['poststatus'] = "<b>Status - </b>protected with password " . $ret_array['globalpassword_txt'];
 				}
 			}
-			if ($data_array)
+			if ($data_array) {
 				$post_id = wp_insert_post($data_array);
+				$this->detailedLog[$currentLimit]['post_id'] = "<b>Created Post_ID - </b>" . $post_id . " - success";
+			}
 
 			unset($postauthor);
 			if ($post_id) {
-                                $custom_array = $this->eshopMetaData($new_post, $post_id);
+                                $custom_array = $this->eshopMetaData($new_post, $post_id, $currentLimit);
 				$uploaded_file_name=$session_arr['uploadedFile'];
 				$real_file_name = $session_arr['uploaded_csv_name'];
 				//                                $version = $session_arr['currentfileversion'];
@@ -615,18 +646,30 @@ class EshopActions extends SkinnyActions {
 
 				// Create/Add tags to post
 				if (!empty ($tags)) {
+					$this->detailedLog[$currentLimit]['tags'] = "";
 					foreach ($tags as $tag_key => $tag_value) {
+						$this->detailedLog[$currentLimit]['tags'] .= $tag_value . "|";
 						wp_set_post_tags($post_id, $tag_value);
 					}
+					$this->detailedLog[$currentLimit]['tags'] = "<b>Tags - </b>" .substr($this->detailedLog[$currentLimit]['tags'], 0, -1);
 				}
 
 				// Create/Add category to post
 				if (!empty ($categories)) {
+					$this->detailedLog[$currentLimit]['category'] = "";
+                                        $assigned_categories = array();
 					$split_cate = explode('|', $categories ['post_category']);
 					foreach ($split_cate as $key => $val) {
-						if (is_numeric($val))
+						if (is_numeric($val)) {
 							$split_cate[$key] = 'uncategorized';
+							$assigned_categories['uncategorized'] = 'uncategorized';
+                                                }
+						$assigned_categories[$val] = $val;
 					}
+					foreach($assigned_categories as $cateKey => $cateVal) {
+                                                $this->detailedLog[$currentLimit]['category'] .= $cateKey . "|";
+                                        }
+                                        $this->detailedLog[$currentLimit]['category'] = "<b>Category - </b>" .substr($this->detailedLog[$currentLimit]['category'], 0, -1);
 					wp_set_object_terms($post_id, $split_cate, 'category');
 				}
 				// Add featured image
@@ -656,6 +699,8 @@ class EshopActions extends SkinnyActions {
 				$skippedRecords[] = $_SESSION['SMACK_SKIPPED_RECORDS'];
 			}
 		}
+		$this->detailedLog[$currentLimit]['verify_here'] = "<b>Verify Here -</b> <a href='" . get_permalink( $post_id ) . "' title='" . esc_attr( sprintf( __( 'View &#8220;%s&#8221;' ), $data_array['post_title'] ) ) . "' rel='permalink'>" . __( 'Web View' ) . "</a> | <a href='" . get_edit_post_link( $post_id, true ) . "' title='" . esc_attr( __( 'Edit this item' ) ) . "'>" . __( 'Admin View' ) . "</a>";
+
 		unset($data_array);
 	}
        /**

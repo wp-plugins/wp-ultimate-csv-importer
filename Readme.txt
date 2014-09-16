@@ -1,21 +1,21 @@
 === WP Ultimate CSV Importer Plugin ===
 Contributors: smackcoders
 Donate link: http://www.smackcoders.com/donate.html
-Tags: batch, csv, excel, import, spreadsheet, autoblog, Autoblogger, csvimporter, data, dataimport, importer, wpcsvimporter, wpimporter, acf, auto blog, csv import, csv to post, data import, Easy CSV Importer, eci, import plugin, admin, user, users, Advanced CSV Import, Advanced CSV Importer, affiliate, amazon, author, automatic, blog, buddypress, bulk, bulk edit, bulk editor, categories, comments, content, csv file, csv format, csv importer, custom post, e-commerce, free, images, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, video, eshop, woocommerce, wordpress, xml, youtube
+Tags: batch, csv, excel, import, spreadsheet, autoblog, Autoblogger, csvimporter, data, dataimport, importer, wpcsvimporter, wpimporter, acf, auto blog, csv import, csv to post, data import, Easy CSV Importer, eci, import plugin, admin, user, users, Advanced CSV Import, Advanced CSV Importer, affiliate, amazon, author, automatic, blog, buddypress, bulk, bulk edit, bulk editor, categories, comments, content, csv file, csv format, csv importer, custom post, e-commerce, free, images, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, video, eshop, woocommerce, wordpress, xml, youtube, export
 Requires at least: 3.8
 Tested up to: 4.0
-Stable tag: 3.6.3
-Version: 3.6.3
+Stable tag: 3.6.4
+Version: 3.6.4
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 
 License: GPLv2 or later
 
-Advanced CSV Importer plugin to import posts, pages, eshop products, custom posts with custom fields with few simple clicks 
+Advanced CSV Importer plugin to import/export posts, pages, eshop products, custom posts with custom fields with few simple clicks 
 
 == Description ==
 
-**Version 3.6.3 is now available with eshop(ecommerce) products import feature. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
+** Now version 3.6.4 available with much advanced log and advanced filtered export features. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
 
 WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer With Ultimate User Friendly Features. It is much easy now even for newbies to import any csv file as any wordpress post type and associated fields by simple mapping feature. Now import any CSV file as thousands of post, page and custom post types. This is admin side free plugin helps you in bulk edit, create and import posts type for your blog or site. 
 
@@ -151,7 +151,7 @@ Need More Help, Cool. Browse Below Links
 5. Detailed real time log to know pinpoint status.
 6. Module based environment for easy and reduced interface to enable most required modules and when ever needed.
 7. Inbuilt support form for easy feedback, support, feature request with all useful links for easy and better csv import.
-8. New export module for posts, page, users, comments and all custom posts type plugins.
+8. New export module for posts, page, eshop, users, comments and all custom posts type plugins.
 
 
 == Frequently Asked Questions ==
@@ -173,6 +173,13 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 
 == Changelog ==
+
+= 3.6.4 =
+* Added: Advanced export features with filter options.
+* Improved: Advanced log section.
+* Fixed reported jquery issues.
+* WordPress 4.0 compatibility checked.
+
 = 3.6.3 =
 * Added: Eshop import support.
 * Fixed reported conflicts with other plugins.
@@ -347,6 +354,9 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 
 == Upgrade Notice ==
+
+= 3.6.4 =
+* Upgrade Now for filtered export and improved log features. 
 
 = 3.6.3 =
 * Upgrade now for Eshop product import feature. 
