@@ -174,6 +174,8 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 == Changelog ==
 
+= 3.6.5 =
+
 = 3.6.4 =
 * Added: Advanced export features with filter options.
 * Improved: Advanced log section.
