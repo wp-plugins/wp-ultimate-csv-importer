@@ -496,7 +496,7 @@ class WPImporter_includes_helper {
 
 							$post_slug_value = strtolower($f_img_slug);
 							$this->get_fimg_from_URL($f_img, $fimg_path, $fimg_name, $post_slug_value, $currentLimit, $this);
-							$filepath = $fimg_path."/" . $post_slug_value . "-" . $fimg_name;
+							$filepath = $fimg_path ."/" . $fimg_name;
 
 							if(@getimagesize($filepath)){
 								$img = wp_get_image_editor($filepath);
@@ -801,11 +801,11 @@ class WPImporter_includes_helper {
 							'post_status' => 'inherit'
 							);
 					if($get_media_settings == 1){
-						$generate_attachment = $dirname . '/' . $post_slug_value . '-' .  $fimg_name;
+						$generate_attachment = $dirname . '/' .  $fimg_name;
 					}else{
 						$generate_attachment = $fimg_name;
 					}
-					$uploadedImage = $wp_upload_dir['path'] . '/' . $post_slug_value . '-' . $fimg_name;
+					$uploadedImage = $wp_upload_dir['path'] . '/' . $fimg_name;
 					$attach_id = wp_insert_attachment($attachment, $generate_attachment, $post_id);
 					$attach_data = wp_generate_attachment_metadata($attach_id, $uploadedImage);
 					wp_update_attachment_metadata($attach_id, $attach_data);
