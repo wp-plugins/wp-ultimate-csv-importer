@@ -470,6 +470,57 @@ function showMapMessages(alerttype, msg) {
     jQuery("#showMsg").fadeOut(10000);
 }
 
+function filezipopen()
+{
+var advancemedia = document.getElementById('advance_media_handling').checked;
+if(advancemedia == true)
+        document.getElementById('filezipup').style.display = '';
+else
+        document.getElementById('filezipup').style.display = 'none';
+
+}
+//var allowedextension ={ '.zip' : 1 };
+function checkextension(filename)
+{
+var allowedextension ={ '.zip' : 1 };
+var match = /\..+$/;
+          var ext = filename.match(match);
+          if (allowedextension[ext])
+          {
+                return true;
+          }
+          else
+          {
+                alert("File must be .zip!");
+                //will clear the file input box.
+                location.reload();
+                return false;
+          }
+
+}
+
+
+function inline_image_option(id) {
+	var selected_option = document.getElementById(id).value;
+	document.getElementById('inlineimagevalue').value = selected_option;
+	if(selected_option == 'inlineimage_location') {
+		var image_location = document.getElementById('imagelocation').value;
+		document.getElementById('inlineimagevalue').value = image_location;
+	}
+}
+
+function customimagelocation(val) {
+	document.getElementById('inlineimagevalue').value = val;
+}
+
+function enableinlineimageoption() {
+        var importinlineimage = document.getElementById('multiimage').checked;
+        if(importinlineimage == true)
+                document.getElementById('inlineimageoption').style.display = '';
+        else
+                document.getElementById('inlineimageoption').style.display = 'none';
+}
+
 function importRecordsbySettings(siteurl)
 {
         var importlimit = document.getElementById('importlimit').value; 
@@ -485,6 +536,12 @@ function importRecordsbySettings(siteurl)
 	var currentlimit = document.getElementById('currentlimit').value;
 	var tmpCnt = document.getElementById('tmpcount').value;
 	var no_of_tot_records = document.getElementById('tot_records').value;
+	var importinlineimage = document.getElementById('multiimage').checked;
+	if(importinlineimage == true) {
+	} else {
+	}
+	var imagehandling = document.getElementById('inlineimagevalue').value;
+	var inline_image_location = document.getElementById('inline_image_location').value;
         var get_log = document.getElementById('log').innerHTML;
          document.getElementById('reportLog').style.display = '';
          document.getElementById('terminatenow').style.display = '';
@@ -517,7 +574,7 @@ function importRecordsbySettings(siteurl)
 	}
 
 	var postdata = new Array();
-	postdata = {'dupContent':dupContent,'dupTitle':dupTitle,'importlimit':importlimit,'limit':currentlimit,'totRecords':tot_no_of_records,'selectedImporter':importas,'uploadedFile':uploadedFile,'tmpcount':tmpCnt,}
+	postdata = {'dupContent':dupContent,'dupTitle':dupTitle,'importlimit':importlimit,'limit':currentlimit,'totRecords':tot_no_of_records,'selectedImporter':importas,'uploadedFile':uploadedFile,'tmpcount':tmpCnt,'importinlineimage':importinlineimage,'inlineimagehandling':imagehandling,'inline_image_location':inline_image_location,}
 
         var tmpLoc = document.getElementById('tmpLoc').value;
 	jQuery.ajax({

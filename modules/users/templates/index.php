@@ -400,7 +400,8 @@ $mFieldsArr = substr($mFieldsArr, 0, -1);
 			<label><input name='duplicatecontent' id='duplicatecontent' type="checkbox" value=""> Detect duplicate post content</label> <br>
 			<label><input name='duplicatetitle' id='duplicatetitle' type="checkbox" value="" > Detect duplicate post title</label> <br>
 
-			 No. of posts/rows per server request <span class="mandatory">*</span> <input name="importlimit" id="importlimit" type="text" value="" placeholder="10" onblur="check_allnumeric(this.value);"></label> <br>			<span class='msg' id='server_request_warning' style="display:none;color:red;margin-left:-10px;">You can set upto <?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords']; ?> per request.</span>
+			 No. of posts/rows per server request <span class="mandatory">*</span> <input name="importlimit" id="importlimit" type="text" value="1" placeholder="10" onblur="check_allnumeric(this.value);"></label> <?php echo $impCE->helpnotes(); ?><br>	
+			<span class='msg' id='server_request_warning' style="display:none;color:red;margin-left:-10px;">You can set upto <?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords']; ?> per request.</span>
                         <input type="hidden" id="currentlimit" name="currentlimit" value="0"/>
 			<input type="hidden" id="tmpcount" name="tmpcount" value="0" />
 			<input type="hidden" id="terminateaction" name="terminateaction" value="continue" />

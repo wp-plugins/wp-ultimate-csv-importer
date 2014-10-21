@@ -83,6 +83,9 @@ class EshopActions extends SkinnyActions {
 	// @var array wp field keys
 	public $keys = array();
 
+        // @var Multi images
+        public $MultiImages = false;
+
 	public $detailedLog = array();
 
 	/**
@@ -305,7 +308,7 @@ class EshopActions extends SkinnyActions {
 	 *
 	 * @return boolean
 	 */
-	function processDataInWP($data_rows,$ret_array,$session_arr,$currentLimit)
+	function processDataInWP($data_rows,$ret_array,$session_arr,$currentLimit,$extractedimagelocation,$importinlineimageoption,$sample_inlineimage_url = null)
 	{
 		global $wpdb;
 		$post_id = '';
@@ -589,8 +592,13 @@ class EshopActions extends SkinnyActions {
 				}
 			}
 			if ($data_array) {
-				$post_id = wp_insert_post($data_array);
-				$this->detailedLog[$currentLimit]['post_id'] = "<b>Created Post_ID - </b>" . $post_id . " - success";
+				if($this->MultiImages == 'true') {
+                                        $inlineImagesObj = new WPImporter_inlineImages();
+                                        $post_id = $inlineImagesObj->importwithInlineImages($data_array['ID'], $currentLimit, $data_array, $this, $importinlineimageoption, $extractedimagelocation, $sample_inlineimage_url);
+                                } else {
+                                        $post_id = wp_insert_post($data_array);
+                                        $this->detailedLog[$currentLimit]['post_id'] = "<b>Created Post_ID - </b>" . $post_id . " - success";
+                                }
 			}
 
 			unset($postauthor);

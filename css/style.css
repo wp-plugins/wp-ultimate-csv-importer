@@ -300,6 +300,25 @@ vertical-align: top;
 border-top: 1px solid #ffffff !important;
 }
 
+.advancemediahandling {
+padding-right:15px;
+float:left;
+}
+
+.media_handling {
+height: 50px;
+padding-top: 15px;
+padding-left: 15px;
+}
+
+.inside input[type=radio] {
+margin-top: -2px;
+}
+
+.inside label {
+padding-right: 20px;
+}
+
 /*.mappingheader .table-condensed label {
 margin-top:13px;
 }

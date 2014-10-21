@@ -56,10 +56,11 @@ if ($curr_action == 'post' || $curr_action == 'page' || $curr_action == 'customp
 	if ($curr_action == 'custompost') {
 		$importedAs = 'Custom Post';
 	}
-
+	$importObj->MultiImages = $_POST['postdata']['importinlineimage'];
 } elseif ($curr_action == 'eshop') {
 	$importObj = new EshopActions();
-         $importedAs = 'Eshop';
+        $importedAs = 'Eshop';
+	$importObj->MultiImages = $_POST['postdata']['importinlineimage'];
 } elseif ($curr_action == 'wpcommerce') {
 	$importObj = new WpcommerceActions();
 } elseif ($curr_action == 'woocommerce') {
@@ -96,7 +97,6 @@ if ($count < $totRecords) {
 	$count = $totRecords;
 }
 $resultArr = array();
-
 $filename = $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['uploadedFile'];
 $delim = $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['select_delimeter'];
 $resultArr = $skinnyObj->csv_file_data($filename);
@@ -134,8 +134,18 @@ for ($i = $limit; $i < $count; $i++) {
 		$to_be_import_rec[] = $resultVal;
 	}  
 	$importObj->detailedLog = array();
-        
-	$importObj->processDataInWP($to_be_import_rec,$_SESSION['SMACK_MAPPING_SETTINGS_VALUES'], $_SESSION['SMACK_MAPPING_SETTINGS_VALUES'], $i);
+	$extracted_image_location = null;
+	$importinlineimageoption = null;
+	if(isset($_POST['postdata']['inline_image_location'])) {
+		$importinlineimageoption = 'imagewithextension';
+	        $extracted_image_location = $_POST['postdata']['inline_image_location'];
+	}
+	if($_POST['postdata']['inlineimagehandling'] != 'imagewithextension') {
+		$importinlineimageoption = 'imagewithurl';
+		$extracted_image_location = $_POST['postdata']['inline_image_location'];
+		$sample_inlineimage_url = $_POST['postdata']['inlineimagehandling'];
+	}
+	$importObj->processDataInWP($to_be_import_rec,$_SESSION['SMACK_MAPPING_SETTINGS_VALUES'], $_SESSION['SMACK_MAPPING_SETTINGS_VALUES'], $i, $extracted_image_location, $importinlineimageoption, $sample_inlineimage_url);
 	if ($curr_action == 'post' || $curr_action == 'page' || $curr_action == 'custompost' || $curr_action == 'eshop') {
 		foreach($importObj->detailedLog as $logKey => $logVal) {
 			echo "<p style='margin-left:10px;'> " . $logVal['post_id'] . " , " . $logVal['assigned_author'] . " , " . $logVal['category'] . " , " . $logVal['tags'] . " , " . $logVal['postdate'] . " , " . $logVal['image'] . " , " . $logVal['poststatus'];
@@ -160,6 +170,12 @@ for ($i = $limit; $i < $count; $i++) {
 
 if ($limit >= $totRecords) {
 	$dir = $skinnyObj->getUploadDirectory();
+	$get_inline_imageDir = explode('/', $extracted_image_location);
+	$explodedCount = count($get_inline_imageDir);
+	$inline_image_dirname = $get_inline_imageDir[$explodedCount - 1];
+	$uploadDir = $skinnyObj->getUploadDirectory('inlineimages');
+	$inline_images_dir = $uploadDir . '/smack_inline_images/' . $inline_image_dirname;
+	$skinnyObj->deletefileafterprocesscomplete($inline_images_dir);
 	$skinnyObj->deletefileafterprocesscomplete($dir);
 }
 if ($importObj->insPostCount != 0 || $importObj->dupPostCount != 0 || $importObj->updatedPostCount != 0) {

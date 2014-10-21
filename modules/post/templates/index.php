@@ -50,11 +50,11 @@ $impCE = new WPImporter_includes_helper();
 		<input type='hidden' id='is_uploadfound' name='is_uploadfound' value='notfound' />
 	<?php } ?>
 	<div class="warning" id="warning" name="warning" style="display:none;margin: 4% 0 4% 22%;"></div>
-	<form action='<?php echo admin_url().'admin.php?page='.WP_CONST_ULTIMATE_CSV_IMP_SLUG.'/index.php&__module='.$_REQUEST['__module'].'&step=mapping_settings'?>' id='browsefile' method='post' name='browsefile'>
+	<form action='<?php echo admin_url().'admin.php?page='.WP_CONST_ULTIMATE_CSV_IMP_SLUG.'/index.php&__module='.$_REQUEST['__module'].'&step=mapping_settings'?>' id='browsefile' enctype="multipart/form-data" method='post' name='browsefile'>
 	<div class="importfile" align='center'>
 	<div id='filenamedisplay'></div><!--<form class="add:the-list: validate" style="clear:both;" method="post" enctype="multipart/form-data" onsubmit="return file_exist();">-->
 	<div class="container">
-          <?php echo $impCE->smack_csv_import_method(); ?>
+        <?php echo $impCE->smack_csv_import_method(); ?>
 
 	<input type ='hidden' id="pluginurl"value="<?php echo WP_CONTENT_URL;?>">
 	<?php $uploadDir = wp_upload_dir(); ?>
@@ -176,6 +176,23 @@ $impCE = new WPImporter_includes_helper();
 	<div id='sec-two' <?php if($_REQUEST['step']!= 'mapping_settings'){ ?> style='display:none;' <?php } ?> >
 	<div class='mappingsection'>
 	<h2><div class="secondformheader">Import Data Configuration</div></h2>
+	<?php  
+	if(isset($_FILES['inlineimages'])) {
+		$uploaded_compressedFile = $_FILES['inlineimages']['tmp_name'];
+		$get_basename_zipfile = explode('.', $_FILES['inlineimages']['name']);
+		$basename_zipfile = $get_basename_zipfile[0];
+		$location_to_extract = $uploadDir['basedir'] . '/smack_inline_images/' . $basename_zipfile;
+		$extracted_image_location = $uploadDir['baseurl'] . '/smack_inline_images/' . $basename_zipfile;
+		$zip = new ZipArchive;
+		if ($zip->open($uploaded_compressedFile) === TRUE) {
+			$zip->extractTo($location_to_extract);
+			$zip->close();
+			$extracted_status = 1;
+		} else {
+			$extracted_status = 0;
+		}
+	}
+	?>
 	<?php if(isset($_REQUEST['__module']) && $_REQUEST['__module']=='custompost'){ ?>
 		<div class='importstatus' style='display:true;'>
 			<input type="hidden" id="customposts" name="customposts" value="">
@@ -257,6 +274,7 @@ $impCE = new WPImporter_includes_helper();
 			<input type='hidden' id='select_delimeter' name='select_delimeter' value="<?php if(isset($delimeter)) { echo  $delimeter; }  ?>" />
 			<input type='hidden' id='stepstatus' name='stepstatus' value='<?php if(isset($_REQUEST['step'])){ echo $_REQUEST['step']; }  ?>' />
 			<input type='hidden' id='mappingArr' name='mappingArr' value='' />
+			<input type='hidden' id='inline_image_location' name='inline_image_location' value='<?php echo $extracted_image_location; ?>' />
 			<input type='button' id='prev_record' name='prev_record' class="btn btn-primary" value='<<' onclick='gotoelement(this.id);' />
 			 <label style="padding-right:10px;" id='preview_of_row'>Showing preview of row # 1 </label>
                         <input type='button' id='next_record' name='next_record' class="btn btn-primary" value='>>' onclick='gotoelement(this.id);' />
@@ -415,6 +433,7 @@ $impCE = new WPImporter_includes_helper();
 		<input type='hidden' id='checkfile' name='checkfile' value='<?php echo $_POST['uploadedFile']; ?>' />
 		<input type='hidden' id='select_delim' name='select_delim' value='<?php echo $_POST['select_delimeter']; ?>' />
 		<input type='hidden' id='uploadedFile' name='uploadedFile1' value='<?php echo $_POST['uploadedFile']; ?>' />
+		<input type='hidden' id='inline_image_location' name='location_inlineimages' value='<?php echo $_POST['inline_image_location']; ?>' />
 		<input type='hidden' id='mappingArr' name='mappingArr' value='' />
              <?php } ?>
 		<!-- Import settings options -->
@@ -454,10 +473,18 @@ $impCE = new WPImporter_includes_helper();
 		<input name="filterhtmlentities" id="filterhtmlentities" type="checkbox" value="1"> Decode HTML-Entities before comparing <br>-->
 		<label><input name='duplicatecontent' id='duplicatecontent' type="checkbox" value=""> Detect duplicate post content</label> <br>
 		<label><input name='duplicatetitle' id='duplicatetitle' type="checkbox" value="" > Detect duplicate post title</label> <br>
-		 No. of posts/rows per server request <span class="mandatory">*</span> <input name="importlimit" id="importlimit" type="text" value="" placeholder="10" onblur="check_allnumeric(this.value);"></label> <br>			<span class='msg' id='server_request_warning' style="display:none;color:red;margin-left:-10px;">You can set upto <?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords']; ?> per request.</span>
+		 No. of posts/rows per server request <span class="mandatory">*</span> <input name="importlimit" id="importlimit" type="text" value="1" placeholder="10" onblur="check_allnumeric(this.value);"></label> <?php echo $impCE->helpnotes(); ?><br>
+			<span class='msg' id='server_request_warning' style="display:none;color:red;margin-left:-10px;">You can set upto <?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords']; ?> per request.</span>	
                 <input type="hidden" id="currentlimit" name="currentlimit" value="0"/>
 		<input type="hidden" id="tmpcount" name="tmpcount" value="0" />
 		<input type="hidden" id="terminateaction" name="terminateaction" value="continue" />
+		<h4>Inline image options</h4>
+		<label id='importalign'> <input type ='checkbox' id='multiimage' name='multiimage' value = '' onclick="enableinlineimageoption();"> Insert Inline Images </label><br>
+		<div id='inlineimageoption' style="display:none;" >
+		<label><input type="radio" name="inlineimage_location" id="imagewithextension" value="imagewithextension" onclick="inline_image_option(this.value);" /> Image name with extension </label>
+		<label><input type="radio" name="inlineimage_location" id="inlineimage_location" value="inlineimage_location" onclick="inline_image_option(this.value);" /> <input type="text" name="imagelocation" id="imagelocation" placeholder="Inline Image Location" value="" onblur="customimagelocation(this.value);" /></label>
+		</div>
+		<input type='hidden' id='inlineimagevalue' name='inlineimagevalue' value='none' />
 		</li>
 <!--		<li>
 		Ignore these words while comparing <input name="filterwords" id="filterwords" type="text" value="">

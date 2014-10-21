@@ -2,7 +2,7 @@
 /******************************
  * Plugin Name: WP Ultimate CSV Importer
  * Description: A plugin that helps to import the data's from a CSV file.
- * Version: 3.6.4
+ * Version: 3.6.5
  * Author: smackcoders.com
  * Plugin URI: http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html
  * Author URI: http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html
@@ -51,7 +51,7 @@ define('WP_CONST_ULTIMATE_CSV_IMP_URL', 'http://www.smackcoders.com/wp-ultimate-
 define('WP_CONST_ULTIMATE_CSV_IMP_NAME', 'WP Ultimate CSV Importer');
 define('WP_CONST_ULTIMATE_CSV_IMP_SLUG', 'wp-ultimate-csv-importer');
 define('WP_CONST_ULTIMATE_CSV_IMP_SETTINGS', 'WP Ultimate CSV Importer');
-define('WP_CONST_ULTIMATE_CSV_IMP_VERSION', '3.6.4');
+define('WP_CONST_ULTIMATE_CSV_IMP_VERSION', '3.6.5');
 define('WP_CONST_ULTIMATE_CSV_IMP_DIR', WP_PLUGIN_URL . '/' . WP_CONST_ULTIMATE_CSV_IMP_SLUG . '/');
 define('WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY', plugin_dir_path(__FILE__));
 define('WP_CSVIMP_PLUGIN_BASE', WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY);
@@ -60,6 +60,7 @@ if (!class_exists('SkinnyControllerWPCsvFree')) {
 	require_once('lib/skinnymvc/controller/SkinnyController.php');
 }
 
+require_once('plugins/class.inlineimages.php');
 require_once('includes/WPImporter_includes_helper.php');
 
 # Activation & Deactivation 

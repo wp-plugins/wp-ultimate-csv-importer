@@ -77,6 +77,9 @@ class WPImporter_includes_helper {
 	// @var array wp field keys
 	public $keys = array();
 
+	// @var Multi images
+	public $MultiImages = false;
+
 	// @var array for default columns
 	public $defCols = array(
 			'post_title' => null,
@@ -91,8 +94,8 @@ class WPImporter_includes_helper {
 			'post_parent' => 0,
 			'post_status' => 0,
 			'menu_order'  => 0,
-                        'post_format' => 0,
-                        'wp_page_template' => null,
+			'post_format' => 0,
+			'wp_page_template' => null,
 			);
 
 	// @var array CSV headers
@@ -164,7 +167,7 @@ class WPImporter_includes_helper {
 
 	public static function output_fd_page()
 	{
-              $get_pluginData = get_plugin_data(plugin_dir_path(__FILE__) . '../index.php');
+		$get_pluginData = get_plugin_data(plugin_dir_path(__FILE__) . '../index.php');
 		$plugin_version = get_option('ULTIMATE_CSV_IMPORTER_UPGRADE_FREE_VERSION');
 		if(!$plugin_version) {
 			$plugin_version = get_option('ULTIMATE_CSV_IMP_FREE_VERSION');
@@ -172,16 +175,16 @@ class WPImporter_includes_helper {
 		if ($get_pluginData['Version'] == '3.6' && $plugin_version == '') {
 			if (file_exists(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY . '/upgrade/migrationfreev3.6.php')) {
 				require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY . '/upgrade/migrationfreev3.6.php');
-                                die();  
+				die();  
 			}
 		}
 		else if (!isset($_REQUEST['__module']))
 		{
-                          if (!isset($_REQUEST['__module'])) {
-                                wp_redirect(get_admin_url() . 'admin.php?page=' . WP_CONST_ULTIMATE_CSV_IMP_SLUG . '/index.php&__module=dashboard');
+			if (!isset($_REQUEST['__module'])) {
+				wp_redirect(get_admin_url() . 'admin.php?page=' . WP_CONST_ULTIMATE_CSV_IMP_SLUG . '/index.php&__module=dashboard');
 
+			}
 		}
-                }
 		require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY.'config/settings.php');
 		require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY.'lib/skinnymvc/controller/SkinnyController.php');
 
@@ -266,13 +269,13 @@ class WPImporter_includes_helper {
 		}
 		$wpcsvfreesettings = get_option('wpcsvfreesettings');
 		if($wpcsvfreesettings)
-                if(in_array('aioseo',$wpcsvfreesettings)){
-                        if(in_array('all-in-one-seo-pack/all_in_one_seo_pack.php', $active_plugins)){
-                                $seo_custoFields =array('SEO: keywords','SEO: description','SEO: title','SEO: noindex','SEO: nofollow','SEO: titleatr','SEO: menulabel','SEO: disable','SEO: disable_analytics','SEO: noodp','SEO: noydir');
-                                foreach($seo_custoFields as $val)
-                                        $this->defCols[$val]=$val;
-                        }
-                }
+			if(in_array('aioseo',$wpcsvfreesettings)){
+				if(in_array('all-in-one-seo-pack/all_in_one_seo_pack.php', $active_plugins)){
+					$seo_custoFields =array('SEO: keywords','SEO: description','SEO: title','SEO: noindex','SEO: nofollow','SEO: titleatr','SEO: menulabel','SEO: disable','SEO: disable_analytics','SEO: noodp','SEO: noydir');
+					foreach($seo_custoFields as $val)
+						$this->defCols[$val]=$val;
+				}
+			}
 	}
 
 	/**
@@ -284,7 +287,7 @@ class WPImporter_includes_helper {
 	function csv_file_data($file)
 	{
 		$file = $this->getUploadDirectory().'/'.$file;
-                require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY.'includes/Importer.php');
+		require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY.'includes/Importer.php');
 		$csv = new ImporterLib();
 		$csv->delim($file);
 		foreach($csv->data as $hkey => $hval) {
@@ -335,17 +338,17 @@ class WPImporter_includes_helper {
 	}
 
 	/**
-         * function to fetch the featured image from remote URL
-         * @param $f_img
-         * @param $fimg_path
-         * @param $fimg_name
-         * @param $post_slug_value
-         * @param $currentLimit
-         * @param string $logObj
+	 * function to fetch the featured image from remote URL
+	 * @param $f_img
+	 * @param $fimg_path
+	 * @param $fimg_name
+	 * @param $post_slug_value
+	 * @param $currentLimit
+	 * @param string $logObj
 	 */
 	public static function get_fimg_from_URL($f_img, $fimg_path, $fimg_name, $post_slug_value, $currentLimit = null, $logObj = ""){
 		if($fimg_path!="" && $fimg_path){
-			$fimg_path = $fimg_path . "/" . $post_slug_value . "-" . $fimg_name;
+			$fimg_path = $fimg_path . "/" . $fimg_name;
 		}
 		$ch = curl_init ($f_img);
 		curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -363,14 +366,14 @@ class WPImporter_includes_helper {
 				$logObj->detailedLog[$currentLimit]['image'] = "<b>Image -</b> host not resolved";
 			}
 		} else {
-                        if (file_exists($fimg_path)) {
-                                unlink($fimg_path);
-                        }
-                        $fp = fopen($fimg_path, 'x');
-                        fwrite($fp, $rawdata);
-                        fclose($fp);
-                        $logObj->detailedLog[$currentLimit]['image'] = "<b>Image -</b>" . $fimg_name;
-                }
+			if (file_exists($fimg_path)) {
+				unlink($fimg_path);
+			}
+			$fp = fopen($fimg_path, 'x');
+			fwrite($fp, $rawdata);
+			fclose($fp);
+			$logObj->detailedLog[$currentLimit]['image'] = "<b>Image -</b>" . $fimg_name;
+		}
 		curl_close($ch);
 	}
 
@@ -379,8 +382,7 @@ class WPImporter_includes_helper {
 	 *
 	 * @return boolean
 	 */
-	function processDataInWP($data_rows,$ret_array,$session_arr,$currentLimit)
-	{
+	function processDataInWP($data_rows,$ret_array,$session_arr,$currentLimit,$extractedimagelocation,$importinlineimageoption,$sample_inlineimage_url = null) {
 		global $wpdb;
 		$post_id = '';
 		$new_post = array();
@@ -400,9 +402,9 @@ class WPImporter_includes_helper {
 							$custom_array[$custom_key] = $data_rows[$i];
 						} 
 						elseif($strip_SEO === 0){
-                                                        $seo_key = substr($ret_array['mapping'.$i], 5);
-                                                        $seo_custom_array[$seo_key] = $data_rows[$i];
-                                                }
+							$seo_key = substr($ret_array['mapping'.$i], 5);
+							$seo_custom_array[$seo_key] = $data_rows[$i];
+						}
 						else {
 							$new_post[$ret_array['mapping' . $i]] = $data_rows[$i];
 						}
@@ -437,8 +439,8 @@ class WPImporter_includes_helper {
 					$smack_taxo [$ckey] = null;
 					$taxo_check = 1;
 				}
-				  if ($ckey != 'post_category' && $ckey != 'post_tag' && $ckey != 'featured_image' && $ckey != $smack_taxo [$ckey] && $ckey != 'wp_page_template') {	
-                                     if ($taxo_check == 1) {
+				if ($ckey != 'post_category' && $ckey != 'post_tag' && $ckey != 'featured_image' && $ckey != $smack_taxo [$ckey] && $ckey != 'wp_page_template') {	
+					if ($taxo_check == 1) {
 						unset($smack_taxo[$ckey]);
 						$taxo_check = 0;
 					}
@@ -459,10 +461,10 @@ class WPImporter_includes_helper {
 						case 'post_category' :
 							$categories [$ckey] = $new_post [$ckey];
 							break;
-                                               case 'wp_page_template' :
-                                                        $custom_array['_wp_page_template'] = $new_post [$ckey];
-                                                        break;
-                                               case 'featured_image' :
+						case 'wp_page_template' :
+							$custom_array['_wp_page_template'] = $new_post [$ckey];
+							break;
+						case 'featured_image' :
 							require_once(ABSPATH . "wp-includes/pluggable.php");
 							require_once(ABSPATH . 'wp-admin/includes/image.php');
 							$dir = wp_upload_dir();
@@ -483,7 +485,7 @@ class WPImporter_includes_helper {
 							$fimg_name = preg_replace("/[^a-zA-Z0-9._\s]/", "", $fimg_name);
 							$fimg_name = preg_replace('/\s/', '-', $fimg_name);
 							$fimg_name = urlencode($fimg_name);
-							
+
 							$parseURL = parse_url($f_img);
 							$path_parts = pathinfo($f_img);
 							if(!isset($path_parts['extension']))
@@ -495,7 +497,7 @@ class WPImporter_includes_helper {
 							$post_slug_value = strtolower($f_img_slug);
 							$this->get_fimg_from_URL($f_img, $fimg_path, $fimg_name, $post_slug_value, $currentLimit, $this);
 							$filepath = $fimg_path."/" . $post_slug_value . "-" . $fimg_name;
-	
+
 							if(@getimagesize($filepath)){
 								$img = wp_get_image_editor($filepath);
 								if (!is_wp_error($img)) {
@@ -602,37 +604,37 @@ class WPImporter_includes_helper {
 						$this->detailedLog[$currentLimit]['poststatus'] = "<b>Status - </b>" . $data_array['post_status'];
 					}
 			}
-                         // Post Format Options
+			// Post Format Options
 
-	    if(isset($data_array ['post_format'])) {
-		    $post_format = 0;
-		    switch ($data_array ['post_format']) {
-			    case 1 :
-				    $post_format = 'post-format-aside';
-				    break;
-			    case 2 :
-				    $post_format = 'post-format-image';
-				    break;
-			    case 3 :
-				    $post_format = 'post-format-video';
-				    break;
-			    case 4 :
-				    $post_format = 'post-format-audio';
-				    break;
-			    case 5 :
-				    $post_format = 'post-format-quote';
-				    break;
-			    case 6 :
-				    $post_format = 'post-format-link';
-				    break;
-			    case 7 :
-				    $post_format = 'post-format-gallery';
-				    break;
-			    default :
-				    $post_format = 0;
+			if(isset($data_array ['post_format'])) {
+				$post_format = 0;
+				switch ($data_array ['post_format']) {
+					case 1 :
+						$post_format = 'post-format-aside';
+						break;
+					case 2 :
+						$post_format = 'post-format-image';
+						break;
+					case 3 :
+						$post_format = 'post-format-video';
+						break;
+					case 4 :
+						$post_format = 'post-format-audio';
+						break;
+					case 5 :
+						$post_format = 'post-format-quote';
+						break;
+					case 6 :
+						$post_format = 'post-format-link';
+						break;
+					case 7 :
+						$post_format = 'post-format-gallery';
+						break;
+					default :
+						$post_format = 0;
 
-		    }
-	    }
+				}
+			}
 
 
 			// Author name/id update
@@ -655,7 +657,7 @@ class WPImporter_includes_helper {
 				if (empty($postauthor) || !$postauthor[0]->ID) {
 					$data_array ['post_author'] = 1;
 					$admindet = $wpdb->get_results("select ID,user_login from $wpdb->users where ID = 1");
-                                        $this->detailedLog[$currentLimit]['assigned_author'] = "<b>Author - not found (assigned to </b>" . $admindet[0]->user_login . ")";
+					$this->detailedLog[$currentLimit]['assigned_author'] = "<b>Author - not found (assigned to </b>" . $admindet[0]->user_login . ")";
 					$this->noPostAuthCount++;
 				} else {
 					$data_array ['post_author'] = $postauthor [0]->ID;
@@ -665,7 +667,7 @@ class WPImporter_includes_helper {
 			else{
 				$data_array ['post_author'] = 1;
 				$admindet = $wpdb->get_results("select ID,user_login from $wpdb->users where ID = 1");
-                                $this->detailedLog[$currentLimit]['assigned_author'] = "<b>Author - not found (assigned to </b>" . $admindet[0]->user_login . ")";
+				$this->detailedLog[$currentLimit]['assigned_author'] = "<b>Author - not found (assigned to </b>" . $admindet[0]->user_login . ")";
 				$this->noPostAuthCount++;
 			}
 
@@ -690,8 +692,13 @@ class WPImporter_includes_helper {
 				}
 			}
 			if ($data_array) {
-				$post_id = wp_insert_post($data_array);
-				$this->detailedLog[$currentLimit]['post_id'] = "<b>Created Post_ID - </b>" . $post_id . " - success";
+				if($this->MultiImages == 'true') {
+					$inlineImagesObj = new WPImporter_inlineImages();
+					$post_id = $inlineImagesObj->importwithInlineImages($data_array['ID'], $currentLimit, $data_array, $this, $importinlineimageoption, $extractedimagelocation, $sample_inlineimage_url);
+				} else {
+					$post_id = wp_insert_post($data_array);
+					$this->detailedLog[$currentLimit]['post_id'] = "<b>Created Post_ID - </b>" . $post_id . " - success";
+				}
 			}
 			unset($postauthor);
 			if ($post_id) {
@@ -729,20 +736,20 @@ class WPImporter_includes_helper {
 
 				if (!empty ($custom_array)) {
 					foreach ($custom_array as $custom_key => $custom_value) {
-                                       update_post_meta($post_id, $custom_key, $custom_value);
+						update_post_meta($post_id, $custom_key, $custom_value);
 					}
 				}
-                                		
 
-                		// Import post formats added by fredrick marks
-		              if(isset($post_format)) {
-			       wp_set_object_terms($post_id, $post_format, 'post_format');
 
-		                }          
-                                //Import SEO Values     
-                                if(!empty($seo_custom_array)){
-                                        $this->importSEOfields($seo_custom_array,$post_id);
-                                }
+				// Import post formats added by fredrick marks
+				if(isset($post_format)) {
+					wp_set_object_terms($post_id, $post_format, 'post_format');
+
+				}          
+				//Import SEO Values     
+				if(!empty($seo_custom_array)){
+					$this->importSEOfields($seo_custom_array,$post_id);
+				}
 
 				// Create custom taxonomy to post
 				if (!empty ($smack_taxo)) {
@@ -773,13 +780,13 @@ class WPImporter_includes_helper {
 						if (is_numeric($val)) {
 							$split_cate[$key] = 'uncategorized';
 							$assigned_categories['uncategorized'] = 'uncategorized';
-                                                }
-                                                $assigned_categories[$val] = $val;
+						}
+						$assigned_categories[$val] = $val;
 					}
 					foreach($assigned_categories as $cateKey => $cateVal) {
-                                                $this->detailedLog[$currentLimit]['category'] .= $cateKey . "|";
-                                        }
-                                        $this->detailedLog[$currentLimit]['category'] = "<b>Category - </b>" .substr($this->detailedLog[$currentLimit]['category'], 0, -1);
+						$this->detailedLog[$currentLimit]['category'] .= $cateKey . "|";
+					}
+					$this->detailedLog[$currentLimit]['category'] = "<b>Category - </b>" .substr($this->detailedLog[$currentLimit]['category'], 0, -1);
 					wp_set_object_terms($post_id, $split_cate, 'category');
 				}
 				// Add featured image
@@ -850,33 +857,33 @@ class WPImporter_includes_helper {
 		}
 	}
 
-        //Drop Database While Deactivate plugin
-        public function deactivate() {
-                         global $wpdb;
-                            $sql1 = "DROP TABLE smackcsv_pie_log;";
-                           $wpdb->query($sql1);
- 
-                           $sql2 = "DROP TABLE smackcsv_line_log;";
-                           $wpdb->query($sql2);
+	//Drop Database While Deactivate plugin
+	public function deactivate() {
+		global $wpdb;
+		$sql1 = "DROP TABLE smackcsv_pie_log;";
+		$wpdb->query($sql1);
+
+		$sql2 = "DROP TABLE smackcsv_line_log;";
+		$wpdb->query($sql2);
 
 
-              }
-         public function addPieChartEntry($imported_as, $count) {
-                //add total counts
-          global $wpdb;
-          $getTypeID = $wpdb->get_results("select * from smackcsv_pie_log where type = '$imported_as'");
-          if(count($getTypeID) == 0)
-          $wpdb->insert('smackcsv_pie_log',array('type'=>$imported_as,'value'=>$count));       
-          else
-          $wpdb->update('smackcsv_pie_log', array('value' =>$getTypeID[0]->value+$count), array('id'=>$getTypeID[0]->id));
-        }
-         function addStatusLog($inserted,$imported_as){
-                global $wpdb;
-                $today = date('Y-m-d h:i:s');
-                $mon = date("M",strtotime($today));
-                $year = date("Y",strtotime($today));
-                $wpdb->insert('smackcsv_line_log', array('month'=>$mon,'year'=>$year,'imported_type'=>$imported_as,'imported_on'=>date('Y-m-d h:i:s'), 'inserted'=>$inserted ));
-        }
+	}
+	public function addPieChartEntry($imported_as, $count) {
+		//add total counts
+		global $wpdb;
+		$getTypeID = $wpdb->get_results("select * from smackcsv_pie_log where type = '$imported_as'");
+		if(count($getTypeID) == 0)
+			$wpdb->insert('smackcsv_pie_log',array('type'=>$imported_as,'value'=>$count));       
+		else
+			$wpdb->update('smackcsv_pie_log', array('value' =>$getTypeID[0]->value+$count), array('id'=>$getTypeID[0]->id));
+	}
+	function addStatusLog($inserted,$imported_as){
+		global $wpdb;
+		$today = date('Y-m-d h:i:s');
+		$mon = date("M",strtotime($today));
+		$year = date("Y",strtotime($today));
+		$wpdb->insert('smackcsv_line_log', array('month'=>$mon,'year'=>$year,'imported_type'=>$imported_as,'imported_on'=>date('Y-m-d h:i:s'), 'inserted'=>$inserted ));
+	}
 
 	/**
 	 * Function for importing the all in seo data 
@@ -988,32 +995,32 @@ class WPImporter_includes_helper {
 		$footer = '';
 		$footer .= '<div style="padding:10px;">';
 		$footer .= '<label class="plugintags"><a href="http://www.wpultimatecsvimporter.com" target="_blank">Home</a></label>                              <label class="plugintags"><a href="http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer" target="_blank">Wiki</a></label>
-	 <label class="plugintags"><a href="http://www.wpultimatecsvimporter.com" target="_blank">Tutorials</a></label>                  	<label class="plugintags"><a href="http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Videos" target="_blank">Videos</a></label>
+			<label class="plugintags"><a href="http://www.wpultimatecsvimporter.com" target="_blank">Tutorials</a></label>                  	<label class="plugintags"><a href="http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Videos" target="_blank">Videos</a></label>
 			<label class="plugintags"><a href="http://blog.smackcoders.com/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html" target="_blank">Sample Files</a></label>';
 		$footer .= '</div>';
 		$footer .= '<div style="padding:10px;margin-bottom:20px;">';
 		if(isset ($_REQUEST['__module']) && $_REQUEST['__module'] != 'settings')
-                       $footer .= "<div style='float:right;margin-top:-49px;'><a class='label label-info' href='".get_admin_url()."admin.php?page=".WP_CONST_ULTIMATE_CSV_IMP_SLUG."/index.php&__module=settings'>Click here to Enable any disabled module</a></div>";
+			$footer .= "<div style='float:right;margin-top:-49px;'><a class='label label-info' href='".get_admin_url()."admin.php?page=".WP_CONST_ULTIMATE_CSV_IMP_SLUG."/index.php&__module=settings'>Click here to Enable any disabled module</a></div>";
 		if(isset ($_REQUEST['__module']) && $_REQUEST['__module'] == 'settings') {
-		   $footer .= "<div style='float:right;margin-top:-48px;'><span style='margin-right:20px;'><a class='label label-info' href='http://wordpress.org/plugins/wp-ultimate-csv-importer/developers/'>Get Old Versions</a></span><a class='label label-info' href='".get_admin_url()."admin.php?page=".WP_CONST_ULTIMATE_CSV_IMP_SLUG."/index.php&__module=support'>Click here to Get some useful links</a></div>";	
-                   $footer .= "<div style='float:right;margin-right:15px;'> </span> Current Version: ".$get_pluginData['Version']." </div>";
+			$footer .= "<div style='float:right;margin-top:-48px;'><span style='margin-right:20px;'><a class='label label-info' href='http://wordpress.org/plugins/wp-ultimate-csv-importer/developers/'>Get Old Versions</a></span><a class='label label-info' href='".get_admin_url()."admin.php?page=".WP_CONST_ULTIMATE_CSV_IMP_SLUG."/index.php&__module=support'>Click here to Get some useful links</a></div>";	
+			$footer .= "<div style='float:right;margin-right:15px;'> </span> Current Version: ".$get_pluginData['Version']." </div>";
 		}
 		if(isset ($_REQUEST['__module']) && $_REQUEST['__module'] != 'support' && $_REQUEST['__module'] != 'settings') {
-		$footer .= "<div style='float:right;margin-right:225px;margin-top:-48px;'><span style='margin-right:20px;'> <a class='label label-info' href='http://wordpress.org/plugins/wp-ultimate-csv-importer/developers/'>Get Old Versions</a></span><a class='label label-info' href='".get_admin_url()."admin.php?page=".WP_CONST_ULTIMATE_CSV_IMP_SLUG."/index.php&__module=support'>Click here to Get some useful links</a></div>";	
-                    $footer .= "<div style='float:right;margin-right:15px;'> Current Version: ".$get_pluginData['Version']." </div>";
+			$footer .= "<div style='float:right;margin-right:225px;margin-top:-48px;'><span style='margin-right:20px;'> <a class='label label-info' href='http://wordpress.org/plugins/wp-ultimate-csv-importer/developers/'>Get Old Versions</a></span><a class='label label-info' href='".get_admin_url()."admin.php?page=".WP_CONST_ULTIMATE_CSV_IMP_SLUG."/index.php&__module=support'>Click here to Get some useful links</a></div>";	
+			$footer .= "<div style='float:right;margin-right:15px;'> Current Version: ".$get_pluginData['Version']." </div>";
 		}
 		if(isset ($_REQUEST['__module']) && $_REQUEST['__module'] == 'support'){
 			$footer .= "<div style='float:right;margin-right:15px;'><span style='margin-right:20px;'>Current Version: ".$get_pluginData['Version']." </span><span style='margin-right:10px;'><a class='label label-info' href='http://wordpress.org/plugins/wp-ultimate-csv-importer/developers/'>Get Old Versions</a></span></div>";
 		}
 		$footer .= '</div>';
 		$footer .= '<div style="float:right;margin-right:15px;margin-top:-10px;"> <label>Plugin By <a href="http://www.smackcoders.com"> Smackcoders</a></label> </div>';
-                echo $footer;
+		echo $footer;
 	}
 
-       function smack_csv_import_method() {
-                
+	function smack_csv_import_method() {
+
 		$smack_csv_import_method = '<div class="importfileoption">
-                         
+
 			<div align="center" style="text-align:left;margin-top:-33px;">
 			<div id="boxmethod1" class="method1">
 			<label><span class="radio-icon"><input type="radio" name="importmethod" id="uploadfilefromcomputer" onclick="choose_import_method(this.id);" checked/></span> <span class="header-text">' . __('From Computer') . '</span> </label> <br>
@@ -1022,7 +1029,7 @@ class WPImporter_includes_helper {
 			<span class="btn btn-success fileinput-button">
 			<span>' . __('Browse') . '</span>
 			<input id="fileupload" type="file" name="files[]" multiple>
-                        <a href="#" id="zip_process" style = "display:none">  Click Here To Process Zip </a>
+			<a href="#" id="zip_process" style = "display:none">  Click Here To Process Zip </a>
 			</span>';
 		// The global progress bar 
 		$smack_csv_import_method .= '<span style="padding-top:10px;">
@@ -1033,25 +1040,47 @@ class WPImporter_includes_helper {
 			</span>
 			</div>
 			</div>
-                        <div  style = "opacity: 0.3;background-color: ghostwhite;">
-                         <div id="boxmethod2" class="method2">
-                        <label><span class="radio-icon"><input type="radio" name="importmethod" id="dwnldftpfile"  /></span> <span class="header-text">' . __('From FTP') . '</span> </label> <br>
-                        </div>
-                         <div id="boxmethod3" class="method3">
-                        <label> <span class="radio-icon"><input type="radio" name="importmethod" id="dwnldextrfile"  /></span> <span class="header-text">' . __('From URL') . '</span></label> <br>
-                         </div>
-                          <div id="boxmethod4" class="method4">
-                        <label><span class="radio-icon"><input type="radio" name="importmethod" id="useuploadedfile"  /></span> <span class="header-text">' . __('From Already Uploaded') . '</span></label> <br>
-                         </div>
-                         </div>
+			<div  style = "opacity: 0.3;background-color: ghostwhite;">
+			<div id="boxmethod2" class="method2">
+			<label><span class="radio-icon"><input type="radio" name="importmethod" id="dwnldftpfile"  /></span> <span class="header-text">' . __('From FTP') . '</span> </label> <br>
+			</div>
+			<div id="boxmethod3" class="method3">
+			<label> <span class="radio-icon"><input type="radio" name="importmethod" id="dwnldextrfile"  /></span> <span class="header-text">' . __('From URL') . '</span></label> <br>
+			</div>
+			<div id="boxmethod4" class="method4">
+			<label><span class="radio-icon"><input type="radio" name="importmethod" id="useuploadedfile"  /></span> <span class="header-text">' . __('From Already Uploaded') . '</span></label> <br>
+			</div>
+			</div>
 
-                        </div>
-                        </div>';
+			</div>
+			</div>';
+			$curr_module = $_REQUEST['__module'];
+			if($curr_module == 'post' || $curr_module == 'page' || $curr_module == 'custompost' || $curr_module == 'eshop') {
+			$smack_csv_import_method .= '<div class="media_handling" align="left">
+			<span class="advancemediahandling"> <label> <input type="checkbox" name="advance_media_handling" id="advance_media_handling"   onclick = "filezipopen();" /> Advance Media Handling </label> </span>
+			<span id = "filezipup" style ="display:none;">
+			<span class="advancemediahandling" style="padding-left:30px; margin-top:-5px;"> <input type="file" name="inlineimages" id="inlineimages" onchange ="checkextension(this.value);" /> </span>
+			</span>
+			</div>';
+			}
 
 		return $smack_csv_import_method;
 	}
+	function helpnotes()
+	{
+		$smackhelpnotes = '<span style="position:absolute;">
+			<a href="" class="tooltip">
+			<img src="'. WP_CONST_ULTIMATE_CSV_IMP_DIR .'images/help.png" />
+			<span class="tooltipPostStatus">
+			<img class="callout" src="'. WP_CONST_ULTIMATE_CSV_IMP_DIR . 'images/callout.gif" />
+			Default value is 1. You can give any value based on your environment configuration.
+			<img src="'. WP_CONST_ULTIMATE_CSV_IMP_DIR .'images/help.png" style="margin-top: 6px;float:right;" />
+			</span>
+			</a>
+			</span>';
+		return $smackhelpnotes;
+	}
 }
-
 
 class CallWPImporterObj extends WPImporter_includes_helper
 {
