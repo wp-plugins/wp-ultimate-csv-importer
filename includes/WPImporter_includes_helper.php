@@ -109,8 +109,8 @@ class WPImporter_includes_helper {
 	public function getImportDataConfiguration(){
 		$importDataConfig = "<div class='importstatus'id='importallwithps_div'>
 			<table><tr><td>
-			<label>Import with post status</label><span class='mandatory'> *</span></td><td>
-			<div style='float:left;'>
+			<label id='importalign'>Import with post status</label><span class='mandatory'> *</span></td><td>
+			<div style='float:left;margin-right:10px;'>
 			<select name='importallwithps' id='importallwithps' onChange='selectpoststatus();' >
 			<option value='0'>Status as in CSV</option>
 			<option value='1'>Publish</option>
@@ -375,6 +375,7 @@ class WPImporter_includes_helper {
 			$logObj->detailedLog[$currentLimit]['image'] = "<b>Image -</b>" . $fimg_name;
 		}
 		curl_close($ch);
+		return $fimg_name;
 	}
 
 	/**
@@ -495,6 +496,7 @@ class WPImporter_includes_helper {
 							$f_img_slug = preg_replace('/\s/', '-', $f_img_slug);
 
 							$post_slug_value = strtolower($f_img_slug);
+							$fimg_name = wp_unique_filename($fimg_path, $fimg_name, $path_parts['extension']);
 							$this->get_fimg_from_URL($f_img, $fimg_path, $fimg_name, $post_slug_value, $currentLimit, $this);
 							$filepath = $fimg_path ."/" . $fimg_name;
 
@@ -1023,7 +1025,7 @@ class WPImporter_includes_helper {
 
 			<div align="center" style="text-align:left;margin-top:-33px;">
 			<div id="boxmethod1" class="method1">
-			<label><span class="radio-icon"><input type="radio" name="importmethod" id="uploadfilefromcomputer" onclick="choose_import_method(this.id);" checked/></span> <span class="header-text">' . __('From Computer') . '</span> </label> <br>
+			<label><span class="radio-icon"><input type="radio" name="importmethod" id="uploadfilefromcomputer" onclick="choose_import_method(this.id);" checked/></span> <span class="header-text" id="importopt">' . __('From Computer') . '</span> </label> <br>
 			<!-- The fileinput-button span is used to style the file input field as button -->
 			<div id="method1" style="display:block;height:40px;">
 			<span class="btn btn-success fileinput-button">
@@ -1042,13 +1044,13 @@ class WPImporter_includes_helper {
 			</div>
 			<div  style = "opacity: 0.3;background-color: ghostwhite;">
 			<div id="boxmethod2" class="method2">
-			<label><span class="radio-icon"><input type="radio" name="importmethod" id="dwnldftpfile"  /></span> <span class="header-text">' . __('From FTP') . '</span> </label> <br>
+			<label><span class="radio-icon"><input type="radio" name="importmethod" id="dwnldftpfile"  /></span> <span class="header-text" id="importopt">' . __('From FTP') . '</span> </label> <br>
 			</div>
 			<div id="boxmethod3" class="method3">
-			<label> <span class="radio-icon"><input type="radio" name="importmethod" id="dwnldextrfile"  /></span> <span class="header-text">' . __('From URL') . '</span></label> <br>
+			<label> <span class="radio-icon"><input type="radio" name="importmethod" id="dwnldextrfile"  /></span> <span class="header-text" id="importopt">' . __('From URL') . '</span></label> <br>
 			</div>
 			<div id="boxmethod4" class="method4">
-			<label><span class="radio-icon"><input type="radio" name="importmethod" id="useuploadedfile"  /></span> <span class="header-text">' . __('From Already Uploaded') . '</span></label> <br>
+			<label><span class="radio-icon"><input type="radio" name="importmethod" id="useuploadedfile"  /></span> <span class="header-text" id="importopt">' . __('From Already Uploaded') . '</span></label> <br>
 			</div>
 			</div>
 
@@ -1057,9 +1059,9 @@ class WPImporter_includes_helper {
 			$curr_module = $_REQUEST['__module'];
 			if($curr_module == 'post' || $curr_module == 'page' || $curr_module == 'custompost' || $curr_module == 'eshop') {
 			$smack_csv_import_method .= '<div class="media_handling" align="left">
-			<span class="advancemediahandling"> <label> <input type="checkbox" name="advance_media_handling" id="advance_media_handling"   onclick = "filezipopen();" /> Advance Media Handling </label> </span>
+			<span class="advancemediahandling"> <label id="importalign"> <input type="checkbox" name="advance_media_handling" id="advance_media_handling"   onclick = "filezipopen();" /> Advance Media Handling </label> </span>
 			<span id = "filezipup" style ="display:none;">
-			<span class="advancemediahandling" style="padding-left:30px; margin-top:-5px;"> <input type="file" name="inlineimages" id="inlineimages" onchange ="checkextension(this.value);" /> </span>
+			<span class="advancemediahandling" style="padding-left:30px;"> <input type="file" name="inlineimages" id="inlineimages" onchange ="checkextension(this.value);" /> </span>
 			</span>
 			</div>';
 			}
@@ -1068,7 +1070,7 @@ class WPImporter_includes_helper {
 	}
 	function helpnotes()
 	{
-		$smackhelpnotes = '<span style="position:absolute;">
+		$smackhelpnotes = '<span style="position:absolute;margin-top:6px;margin-left:15px;">
 			<a href="" class="tooltip">
 			<img src="'. WP_CONST_ULTIMATE_CSV_IMP_DIR .'images/help.png" />
 			<span class="tooltipPostStatus">

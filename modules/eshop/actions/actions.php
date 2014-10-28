@@ -424,7 +424,7 @@ class EshopActions extends SkinnyActions {
 							$post_slug_value = strtolower($f_img_slug);
                                                         require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY.'/includes/WPImporter_includes_helper.php');
                                                         $impCE = new WPImporter_includes_helper();
-
+							$fimg_name = wp_unique_filename($fimg_path, $fimg_name, $path_parts['extension']);
 							$impCE->get_fimg_from_URL($f_img,$fimg_path,$fimg_name,$post_slug_value,$currentLimit,$this);
 							$filepath = $fimg_path."/" . $post_slug_value . "-" . $fimg_name;
 	

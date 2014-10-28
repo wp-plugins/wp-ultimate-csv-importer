@@ -75,19 +75,6 @@ $impCE = new WPImporter_includes_helper();
 </form>
 </div>
 </div>
-<!-- for YouTube videos -->
-<div style = "margin-top:5px;">
-<div class="accordion-group" >
-<div class="accordion-heading">
-<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"> WP Ultimate CSV Importer Youtube Playlist </a>
-</div>
-<div class="accordion-body in collapse">
-<div class="accordion-inner">
-<iframe width="100%" height="315" src="//www.youtube.com/embed/FhTUXE5zk0o?list=PL2k3Ck1bFtbRli9VdJaqwtzTSzzkOrH4j" frameborder="0" allowfullscreen></iframe>
-</div>
-</div>
-</div>
-</div>
 
 </div>
 </div>

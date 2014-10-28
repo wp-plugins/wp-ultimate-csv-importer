@@ -4,8 +4,8 @@ Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, csv, excel, import, spreadsheet, autoblog, Autoblogger, csvimporter, data, dataimport, importer, wpcsvimporter, wpimporter, acf, auto blog, csv import, csv to post, data import, Easy CSV Importer, eci, import plugin, admin, user, users, Advanced CSV Import, Advanced CSV Importer, affiliate, amazon, author, automatic, blog, buddypress, bulk, bulk edit, bulk editor, categories, comments, content, csv file, csv format, csv importer, custom post, e-commerce, free, images, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, video, eshop, woocommerce, wordpress, xml, youtube, export
 Requires at least: 3.8
 Tested up to: 4.0
-Stable tag: 3.6.5
-Version: 3.6.5
+Stable tag: 3.6.6
+Version: 3.6.6
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 
@@ -15,13 +15,13 @@ Advanced CSV Importer plugin to import/export posts, pages, eshop products, cust
 
 == Description ==
 
-** Now version 3.6.5 available with much advanced media handling of in line images in any posts features. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
+** Now version 3.6.6 with added improvements and fixes to 3.6.5 with much advanced media handling of in line images in any posts features. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
 
 WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer With Ultimate User Friendly Features. It is much easy now even for newbies to import any csv file as any wordpress post type and associated fields by simple mapping feature. Now import any CSV file as thousands of post, page and custom post types. This is admin side free plugin helps you in bulk edit, create and import posts type for your blog or site. 
 
 = Video Walkthrough =
 
-<p>http://www.youtube.com/watch?v=OwKdt_NlT2U&list=PL2k3Ck1bFtbQqFhOK7g08kxENI4qQkmC</p>
+<p>https://www.youtube.com/watch?v=Guv5zR7fgW0&list=PL2k3Ck1bFtbQqFhOK7g08kxENI4qQkmC</p>
 
 = Highlights =
 * Import external/internal images in line to any posts
@@ -175,6 +175,11 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 
 == Changelog ==
+
+= 3.6.6 =
+* Dashboard chart issue fixed for multi site.
+* UI improvements along with easy usability.
+* Fixed Groups plugin conflicts
 
 = 3.6.5 =
 * Added in line image support with advance media handling
@@ -360,6 +365,10 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 
 == Upgrade Notice ==
+
+= 3.6.6 =
+* Upgrade now for improved experience.
+
 = 3.6.5 =
 * Upgrade Now for advanced media handling for post in line images
 

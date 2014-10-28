@@ -66,6 +66,404 @@ class SettingsActions extends SkinnyActions
 		foreach($settings as $settings_key)
 			$data[$settings_key] = 'checked';
 
+
+//Settings action
+//SEO option
+                $tableseo = get_option('wpcsvfreesettings');
+                $seooption = $tableseo['rseooption'];
+                if ( $seooption == 'aioseo' ) {
+                        $data['aioseo'] = 'checked enablesetting';
+                        $data['yoastseo'] = 'disablesetting';
+                        $data['nonerseooption'] = 'disablesetting';
+                        $data['aioseo_status'] = 'Enabled';
+                        $data['yoastseo_status'] = 'Disabled';
+                        $data['none_status']= 'Disabled';
+                }
+                else if ( $seooption == 'yoastseo' ) {
+                        $data['yoastseo'] = 'checked enablesetting';
+                        $data['aioseo'] = 'disablesetting';
+                        $data['nonerseooption'] = 'disablesetting';
+                        $data['aioseo_status'] = 'Disabled';
+                        $data['yoastseo_status'] = 'Enabled';
+                        $data['none_status'] = 'Disabled';
+                }
+                else {
+                        $data['nonerseooption'] = 'checked enablesetting';
+                        $data['aioseo'] = 'disablesetting';
+                        $data['yoastseo'] = 'disablesetting';
+                        $data['aioseo_status'] = 'Disabled';
+                        $data['yoastseo_status'] = 'Disabled';
+                        $data['none_status'] = 'Enabled';
+                }
+
+                $data['wpcustomfields'] = '';
+                if(isset($tableseo['wpcustomfields']) && $tableseo['wpcustomfields'] == 'on') {
+                        $data['wpcustomfields'] = 'checked';
+                }
+//Security and Performance
+                if(isset($tableseo['enable_plugin_access_for_author'])) {
+                        $importoption = $tableseo['enable_plugin_access_for_author'];
+                } else {
+                        $importoption = '';
+                };
+                if ( $importoption == 'enable_plugin_access_for_author' ) {
+                        $data['authorimport'] = 'checked enablesetting';
+                        $data['noauthorimport'] = 'disablesetting';
+                }
+                else {
+                        $data['noauthorimport'] = 'checked enablesetting';
+                        $data['authorimport'] = 'disablesetting';
+                }
+
+//General Settings
+                if(isset($tableseo['post'])) {
+                        $importoption = $tableseo['post'];
+                } else {
+                        $importoption = '';
+                };
+                if ( $importoption == 'post' ) {
+                        $data['post'] = 'checked enablesetting';
+                        $data['nopost'] = 'disablesetting';
+                }
+                else {
+                        $data['nopost'] = 'checked enablesetting';
+                        $data['post'] = 'disablesetting';
+                }
+
+                if(isset($tableseo['page'])) {
+                        $importoption = $tableseo['page'];
+                } else {
+                        $importoption = '';
+                };
+                if ( $importoption == 'page' ) {
+                        $data['page'] = 'checked enablesetting';
+                        $data['nopage'] = 'disablesetting';
+		}
+                else {
+                        $data['nopage'] = 'checked enablesetting';
+                        $data['page'] = 'disablesetting';
+                }
+
+                if(isset($tableseo['users'])) {
+                        $importoption = $tableseo['users'];
+                } else {
+                        $importoption = '';
+                };
+                if ( $importoption == 'users' ) {
+                        $data['users'] = 'checked enablesetting';
+                        $data['nousers'] = 'disablesetting';
+                }
+                else {
+                        $data['nousers'] = 'checked enablesetting';
+                        $data['users'] = 'disablesetting';
+                }
+
+                if(isset($tableseo['comments'])) {
+                        $importoption = $tableseo['comments'];
+                } else {
+                        $importoption = '';
+                };
+                if ( $importoption == 'comments' ) {
+                        $data['comments'] = 'checked enablesetting';
+                        $data['nocomments'] = 'disablesetting';
+                }
+                else {
+                        $data['nocomments'] = 'checked enablesetting';
+                        $data['comments'] = 'disablesetting';
+                }
+
+                if(isset($tableseo['custompost'])) {
+                        $importoption = $tableseo['custompost'];
+                } else {
+			$importoption = '';
+                };
+                if ( $importoption == 'custompost' ) {
+                        $data['custompost'] = 'checked enablesetting';
+                        $data['nocustompost'] = 'disablesetting';
+                }
+                else {
+                        $data['nocustompost'] = 'checked enablesetting';
+                        $data['custompost'] = 'disablesetting';
+                }
+
+                if(isset($tableseo['customtaxonomy'])) {
+                        $importoption = $tableseo['customtaxonomy'];
+                } else {
+                        $importoption = '';
+                };
+                if ( $importoption == 'customtaxonomy' ) {
+                        $data['customtaxonomy'] = 'checked enablesetting';
+                        $data['nocustomtaxonomy'] = 'disablesetting';
+                }
+                else {
+                        $data['nocustomtaxonomy'] = 'checked enablesetting';
+                        $data['customtaxonomy'] = 'disablesetting';
+                }
+
+                if(isset($tableseo['categories'])) {
+                        $importoption = $tableseo['categories'];
+                } else {
+                        $importoption = '';
+                };
+                if ( $importoption == 'categories' ) {
+                        $data['categories'] = 'checked enablesetting';
+                        $data['nocategories'] = 'disablesetting';
+                }
+                else {
+                        $data['nocategories'] = 'checked enablesetting';
+			$data['categories'] = 'disablesetting';
+                }
+
+                if(isset($tableseo['rcustomerreviews'])) {
+                        $importoption = $tableseo['rcustomerreviews'];
+                } else {
+                        $importoption = '';
+                };
+                if ( $importoption == 'customerreviews' ) {
+                        $data['customerreviews'] = 'checked enablesetting';
+                        $data['nocustomerreviews'] = 'disablesetting';
+                }
+                else {
+                        $data['nocustomerreviews'] = 'checked enablesetting';
+                        $data['customerreviews'] = 'disablesetting';
+                }
+
+
+
+
+
+//Custom Fields
+                #$wpmemberoption = $tableseo['rwpmembers'];
+                if (isset($tableseo['rwpmembers']) && $tableseo['rwpmembers'] == 'wpmembers' ) {
+                        $data['checkuser'] = 'checked enablesetting';
+                        $data['uncheckuser'] = 'disablesetting';
+                }
+                else {
+                        $data['uncheckuser'] = 'checked enablesetting';
+                        $data['checkuser'] = 'disablesetting';
+                }
+                #$customfieldoption = $tableseo['rcustomfield'];
+                if ( isset($tableseo['rcustomfield']) && $tableseo['rcustomfield'] == 'acf' ) {
+                        $data['acf'] = 'checked enablesetting';
+                        $data['cctmcustfields'] = 'disablesetting';
+                        $data['wptypescustfields'] = 'disablesetting';
+                        $data['podscustomfields'] = 'disablesetting';
+			$data['acf_status'] = 'Enabled';
+                        $data['cctmfield_status'] = 'Disabled';
+                        $data['typesfield_status'] = 'Disabled';
+                        $data['podsfield_status'] = 'Disabled';
+                }
+                else if ( isset($tableseo['rcustomfield']) && $tableseo['rcustomfield'] == 'cctmcustfields' ) {
+                        $data['cctmcustfields'] = 'checked enablesetting';
+                        $data['acf'] = 'disablesetting';
+                        $data['wptypescustfields'] = 'disablesetting';
+                        $data['podscustomfields'] = 'disablesetting';
+                        $data['acf_status'] = 'Disabled';
+                        $data['cctmfield_status'] = 'Enabled';
+                        $data['typesfield_status'] = 'Disabled';
+                        $data['podsfield_status'] = 'Disabled';
+                }
+                else if ( isset($tableseo['rcustomfield']) && $tableseo['rcustomfield'] == 'wptypescustfields' ) {
+                        $data['wptypescustfields'] = 'checked enablesetting';
+                        $data['acf'] = 'disablesetting';
+                        $data['cctmcustfields'] = 'disablesetting';
+                        $data['podscustomfields'] = 'disablesetting';
+                        $data['acf_status'] = 'Disabled';
+                        $data['cctmfield_status'] = 'Disabled';
+                        $data['typesfield_status'] = 'Enabled';
+                        $data['podsfield_status'] = 'Disabled';
+                }
+                else if ( isset($tableseo['rcustomfield']) && $tableseo['rcustomfield'] == 'podscustomfields' ) {
+                        $data['podscustomfields'] = 'checked enablesetting';
+                        $data['acf'] = 'disablesetting';
+                        $data['cctmcustfields'] = 'disablesetting';
+                        $data['wptypescustfields'] = 'disablesetting';
+                        $data['acf_status'] = 'Disabled';
+                        $data['cctmfield_status'] = 'Disabled';
+                        $data['typesfield_status'] = 'Disabled';
+                        $data['podsfield_status'] = 'Enabled';
+                }
+                else  {
+                        $data['podscustomfields'] = 'disablesetting';
+			$data['acf'] = 'disablesetting';
+                        $data['cctmcustfields'] = 'disablesetting';
+                        $data['wptypescustfields'] = 'disablesetting';
+                        $data['acf_status'] = 'Disabled';
+                        $data['cctmfield_status'] = 'Disabled';
+                        $data['typesfield_status'] = 'Disabled';
+                        $data['podsfield_status'] = 'Disabled';
+                }
+
+//Custom post
+                $tablecustompost = get_option('wpcsvfreesettings');
+                $customoption = $tablecustompost['rcustompost'];
+                if ( $customoption == 'custompostuitype' ) {
+                        $data['custompostuitype'] = 'checked enablesetting';
+                        $data['wptypes'] = 'disablesetting';
+                        $data['cctm'] = 'disablesetting';
+                        $data['podspost'] = 'disablesetting';
+                        $data['nonercustompost'] = 'disablesetting';
+                        $data['default_status'] = 'Disabled';
+                        $data['cptui_status'] = 'Enabled';
+                        $data['wptypes_status'] = 'Disabled';
+                        $data['cctm_status'] = 'Disabled';
+                        $data['podspost_status'] = 'Disabled';
+                }
+                else if ( $customoption == 'wptypes' ) {
+                        $data['wptypes'] = 'checked enablesetting';
+                        $data['custompostuitype'] = 'disablesetting';
+                        $data['cctm'] = 'disablesetting';
+                        $data['podspost'] = 'disablesetting';
+                        $data['nonercustompost'] = 'disablesetting';
+                        $data['default_status'] = 'Disabled';
+                        $data['cptui_status'] = 'Disabled';
+                        $data['wptypes_status'] = 'Enabled';
+                        $data['cctm_status'] = 'Disabled';
+                        $data['podspost_status'] = 'Disabled';
+                }
+                else if ( $customoption == 'cctm' ) {
+			$data['cctm'] = 'checked enablesetting';
+                        $data['wptypes'] = 'disablesetting';
+                        $data['custompostuitype'] = 'disablesetting';
+                        $data['podspost'] = 'disablesetting';
+                        $data['nonercustompost'] = 'disablesetting';
+                        $data['default_status'] = 'Disabled';
+                        $data['cptui_status'] = 'Disabled';
+                        $data['wptypes_status'] = 'Disabled';
+                        $data['cctm_status'] = 'Enabled';
+                        $data['podspost_status'] = 'Disabled';
+                }
+                else if ( $customoption == 'podspost' ) {
+                        $data['podspost'] = 'checked enablesetting';
+                        $data['cctm'] = 'disablesetting';
+                        $data['wptypes'] = 'disablesetting';
+                        $data['custompostuitype'] = 'disablesetting';
+                        $data['nonercustompost'] = 'disablesetting';
+                        $data['default_status'] = 'Disabled';
+                        $data['cctm_status'] = 'Disabled';
+                        $data['cptui_status'] = 'Disabled';
+                        $data['wptypes_status'] = 'Disabled';
+                        $data['podspost_status'] = 'Enabled';
+                }
+                else {
+                        $data['nonercustompost'] = 'checked enablesetting';
+                        $data['cctm'] = 'disablesetting';
+                        $data['wptypes'] = 'disablesetting';
+                        $data['podspost'] = 'disablesetting';
+                        $data['custompostuitype'] = 'disablesetting';
+                        $data['default_status'] = 'Enabled';
+                        $data['cptui_status'] = 'Disabled';
+                        $data['wptypes_status'] = 'Disabled';
+                        $data['cctm_status'] = 'Disabled';
+                        $data['podspost_status'] = 'Disabled';
+               }
+//Additional Settings
+                $scheduleoption = $tableseo['send_log_email'];
+                if ( $scheduleoption == 'send_log_email' ) {
+                        $data['schedulelog'] = 'checked enablesetting';
+                        $data['schedulenolog'] = 'disablesetting';
+                }
+                else {
+                        $data['schedulenolog'] = 'checked enablesetting';
+                        $data['schedulelog'] = 'disablesetting';
+                }
+
+                $categoryoption = $tableseo['rcateicons'];
+                if ( $categoryoption == 'enable' ) {
+                        $data['catyenable'] = 'checked enablesetting';
+                        $data['catydisable'] = 'disablesetting';
+                        $data['catyenablestatus'] = 'checked';
+                        $data['catydisablestatus'] = '';
+                }
+                else {
+                        $data['catydisable'] = 'checked enablesetting';
+                        $data['catyenable'] = 'disablesetting';
+                        $data['catyenablestatus'] = '';
+                        $data['catydisablestatus'] = 'checked';
+                }
+
+                $dropoption = $tableseo['drop_table'];
+                if ( $dropoption == 'on' ) {
+                        $data['drop_on'] = 'checked enablesetting';
+                        $data['drop_off'] = 'disablesetting';
+                        $data['dropon_status'] = 'checked';
+                        $data['dropoff_status'] = '';
+                }
+                else {
+                        $data['drop_off'] = 'checked enablesetting';
+                        $data['drop_on'] = 'disablesetting';
+                        $data['dropon_status'] = '';
+                        $data['dropoff_status'] = 'checked';
+                }
+//Eccommerce option
+        $ecommerceoption = $tableseo['recommerce'];
+                if ( $ecommerceoption == 'eshop' ) {
+                        $data['eshop'] = 'checked enablesetting';
+                        $data['marketpress'] = 'disablesetting';
+                        $data['woocommerce'] = 'disablesetting';
+                        $data['wpcommerce'] = 'disablesetting';
+                        $data['nonerecommerce'] = 'disablesetting';
+
+                        $data['eshop_status'] = 'Enabled';
+                        $data['marketpress_status'] = 'Disabled';
+                        $data['woocommerce_status'] = 'Disabled';
+                        $data['wpcommerce_status'] = 'Disabled';
+                        $data['ecomnone_status'] = 'Disabled';
+                }
+                else if ( $ecommerceoption == 'marketpress' ) {
+                        $data['marketpress'] = 'checked enablesetting';
+                        $data['eshop'] = 'disablesetting';
+                        $data['woocommerce'] = 'disablesetting';
+                        $data['wpcommerce'] = 'disablesetting';
+                        $data['nonerecommerce'] = 'disablesetting';
+
+                        $data['eshop_status'] = 'Disabled';
+                        $data['marketpress_status'] = 'Enabled';
+                        $data['woocommerce_status'] = 'Disabled';
+                        $data['wpcommerce_status'] = 'Disabled';
+                        $data['ecomnone_status'] = 'Disabled';
+                }
+                else if ( $ecommerceoption == 'woocommerce' ) {
+                        $data['woocommerce'] = 'checked enablesetting';
+                        $data['marketpress'] = 'disablesetting';
+                        $data['eshop'] = 'disablesetting';
+                        $data['wpcommerce'] = 'disablesetting';
+                        $data['nonerecommerce'] = 'disablesetting';
+
+                        $data['eshop_status'] = 'Disabled';
+                        $data['marketpress_status'] = 'Disabled';
+                        $data['woocommerce_status'] = 'Enabled';
+			$data['wpcommerce_status'] = 'Disabled';
+                        $data['ecomnone_status'] = 'Disabled';
+                }
+                else if ( $ecommerceoption == 'wpcommerce' ) {
+                        $data['wpcommerce'] = 'checked enablesetting';
+                        $data['marketpress'] = 'disablesetting';
+                        $data['woocommerce'] = 'disablesetting';
+                        $data['eshop'] = 'disablesetting';
+                        $data['nonerecommerce'] = 'disablesetting';
+
+                        $data['eshop_status'] = 'Disabled';
+                        $data['marketpress_status'] = 'Disabled';
+                        $data['woocommerce_status'] = 'Disabled';
+                        $data['wpcommerce_status'] = 'Enabled';
+                        $data['ecomnone_status'] = 'Disabled';
+                }
+                else {
+                        $data['nonerecommerce'] = 'checked enablesetting';
+                        $data['wpcommerce'] = 'disablesetting';
+                        $data['marketpress'] = 'disablesetting';
+                        $data['woocommerce'] = 'disablesetting';
+                        $data['eshop'] = 'disablesetting';
+
+                        $data['eshop_status'] = 'Disabled';
+                        $data['marketpress_status'] = 'Disabled';
+			$data['woocommerce_status'] = 'Disabled';
+                        $data['wpcommerce_status'] = 'Disabled';
+                        $data['ecomnone_status'] = 'Enabled';
+                }
+
+
 		$data['cctmtd'] = $this->getpluginstate('custom-content-type-manager/index.php');
 		$data['cptutd'] = $this->getpluginstate('custom-post-type-ui/custom-post-type-ui.php');
 		$data['eshoptd'] = $this->getpluginstate('eshop/eshop.php');
@@ -206,3 +604,4 @@ class SettingsActions extends SkinnyActions
 		return $pluginStatus;
 	}
 }
+

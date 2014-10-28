@@ -501,6 +501,7 @@ var match = /\..+$/;
 
 
 function inline_image_option(id) {
+	document.getElementById('startbutton').disabled = false;
 	var selected_option = document.getElementById(id).value;
 	document.getElementById('inlineimagevalue').value = selected_option;
 	if(selected_option == 'inlineimage_location') {
@@ -515,10 +516,13 @@ function customimagelocation(val) {
 
 function enableinlineimageoption() {
         var importinlineimage = document.getElementById('multiimage').checked;
-        if(importinlineimage == true)
+        if(importinlineimage == true) {
                 document.getElementById('inlineimageoption').style.display = '';
-        else
+		document.getElementById('startbutton').disabled = true;
+        } else {
                 document.getElementById('inlineimageoption').style.display = 'none';
+		document.getElementById('startbutton').disabled = false;
+	}
 }
 
 function importRecordsbySettings(siteurl)
@@ -536,12 +540,15 @@ function importRecordsbySettings(siteurl)
 	var currentlimit = document.getElementById('currentlimit').value;
 	var tmpCnt = document.getElementById('tmpcount').value;
 	var no_of_tot_records = document.getElementById('tot_records').value;
-	var importinlineimage = document.getElementById('multiimage').checked;
-	if(importinlineimage == true) {
-	} else {
+	var importinlineimage = false;
+	var imagehandling = false;
+	var inline_image_location = false;
+	var currentModule = document.getElementById('current_module').value;
+	if(currentModule != 'users' && currentModule != 'comments') {
+		importinlineimage = document.getElementById('multiimage').checked;
+		imagehandling = document.getElementById('inlineimagevalue').value;
+		inline_image_location = document.getElementById('inline_image_location').value;
 	}
-	var imagehandling = document.getElementById('inlineimagevalue').value;
-	var inline_image_location = document.getElementById('inline_image_location').value;
         var get_log = document.getElementById('log').innerHTML;
          document.getElementById('reportLog').style.display = '';
          document.getElementById('terminatenow').style.display = '';
@@ -664,8 +671,14 @@ function  check_if_avail(val){
 	proModule[15] = 'recommerce';
 	proModule[16] = 'automapping';
 	proModule[17] = 'utfsupport';
-        
-	
+        proModule[18] = 'podspost';
+	proModule[19] = 'podscustomfield';
+	proModule[20]  = 'typescustomfield';  
+	proModule[21]  = 'drop_table';
+	proModule[22]  = 'database_optimization';
+	proModule[23]  = 'scheduled';
+	proModule[24] = 'cctmcustomfields';
+
 	var warning_name = new Array();
 	warning_name['categories'] = 'Categories/Tags';
 	warning_name['customtaxonomy'] = 'Custom Taxonomy';
@@ -673,8 +686,8 @@ function  check_if_avail(val){
 	warning_name['marketpress'] = 'Market Press Lite';
 	warning_name['woocommerce'] = 'WooCommerce';
 	warning_name['wpcommerce'] = 'WP e-Commerce';
-	warning_name['cctm'] = 'CCTM';
-	warning_name['types'] = 'Types';
+	warning_name['cctm'] = 'CCTM Custom Post';
+	warning_name['types'] = 'Types Custom Post';
 	warning_name['acf'] = 'ACF';
 	warning_name['Customerreviews'] = 'Customer Reviews';
 	warning_name['WP-Members'] = 'WP-Members';
@@ -684,11 +697,18 @@ function  check_if_avail(val){
 	warning_name['custompostuitype'] = 'Custom Post Type UI';
 	warning_name['automapping'] = 'Auto Mapping';
 	warning_name['utfsupport'] = 'UTF Support';
+	warning_name['podspost'] = 'Pods Custom Post';                 
+	warning_name['podscustomfield'] = 'Pods Custom Field';
+	warning_name['typescustomfield'] = 'Types Custom Field';
+	warning_name['drop_table'] = 'Drop Table';
+	warning_name['database_optimization'] = 'Database Optimization';
+	warning_name['scheduled'] = 'Scheduled log mails';
+	warning_name['cctmcustomfields'] = 'CCTM Custom Fields';
 
 	var result = inArray(val, proModule);
 	if(result == true){
 
-		if(val == 'eshop' || val == 'wpcustomfields' || val == 'wpcommerce' || val == 'woocommerce' || val == 'marketpress'){
+		if( val == 'wpcustomfields' ){
 			if(val == 'wpcommerce' || val == 'wpcustomfields') {
 				document.getElementById('wpcustomfieldstr').style.display = '';
 			} else {
@@ -697,14 +717,41 @@ function  check_if_avail(val){
 			//			document.getElementById('wpcustomfieldstr').style.display = 'none';
 			document.getElementById('nonerecommerce').checked = true;
 		}
-		if(val == 'cctm' || val == 'acf'){
-			document.getElementById('nonercustompost').checked = true;
+		if(val == 'cctm'){
+			document.getElementById('cctm').checked = true;
 		}
-		if(val == 'aioseo' || val == 'yoastseo'){
-			document.getElementById('nonerseooption').checked = true;
+		if(val == 'types'){
+			document.getElementById('types').checked = true;
+                }
+		if(val == 'acf'){
+			document.getElementById('acf').checked = true;
+		}
+		if(val == 'cctmcustomfields'){
+			document.getElementById('cctmcustomfields').checked = true;
+		}
+		if(val == 'podscustomfield'){
+                        document.getElementById('podscustomfield').checked = true;
+		}
+		if(val == 'yoastseo'){
+			document.getElementById('yoastseo').checked = true;
 		}
 		if(val == 'caticonenable'){
 			document.getElementById('caticondisable').checked = true;
+		}
+		if(val == 'drop_table'){
+			document.getElementById('drop_table').checked = true;
+		}
+		if(val == 'scheduled'){
+			document.getElementById('scheduled').checked = true;
+		}
+		if(val == 'marketpress'){
+			document.getElementById('marketpress').checked = true;
+		}
+		if(val == 'woocommerce'){
+                        document.getElementById('woocommerce').checked = true;
+		}
+		if(val == 'wpcommerce'){
+                        document.getElementById('wpcommerce').checked = true;
 		}
 		document.getElementById(val).checked = false;
 		document.getElementById('ShowMsg').style.display = "";
@@ -821,6 +868,28 @@ function selectModules(id) {
     document.getElementById('users').checked = true;
     document.getElementById('comments').checked = true;
     document.getElementById('custompost').checked = true;
+
+    jQuery('#postlabel').removeClass("disablesetting");
+    jQuery('#postlabel').addClass("enablesetting");
+    jQuery('#nopostlabel').addClass("disablesetting");
+    jQuery('#nopostlabel').removeClass("enablesetting");
+    jQuery('#pagelabel').removeClass("disablesetting");
+    jQuery('#pagelabel').addClass("enablesetting");
+    jQuery('#nopagelabel').addClass("disablesetting");
+    jQuery('#nopagelabel').removeClass("enablesetting");
+    jQuery('#userlabel').removeClass("disablesetting");
+    jQuery('#userlabel').addClass("enablesetting");
+    jQuery('#nouserlabel').addClass("disablesetting");
+    jQuery('#nouserlabel').removeClass("enablesetting");
+    jQuery('#commentslabel').removeClass("disablesetting");
+    jQuery('#commentslabel').addClass("enablesetting");
+    jQuery('#nocommentslabel').addClass("disablesetting");
+    jQuery('#nocommentslabel').removeClass("enablesetting");
+    jQuery('#cplabel').removeClass("disablesetting");
+    jQuery('#cplabel').addClass("enablesetting");
+    jQuery('#nocplabel').addClass("disablesetting");
+    jQuery('#nocplabel').removeClass("enablesetting");
+
  }
  else if(param == 'uncheckallModules') {
 
@@ -829,6 +898,28 @@ function selectModules(id) {
     document.getElementById('users').checked = false;
     document.getElementById('comments').checked = false;
     document.getElementById('custompost').checked = false;
+
+    jQuery('#nopostlabel').removeClass("disablesetting");
+    jQuery('#nopostlabel').addClass("enablesetting");
+    jQuery('#postlabel').addClass("disablesetting");
+    jQuery('#postlabel').removeClass("enablesetting");
+    jQuery('#nopagelabel').removeClass("disablesetting");
+    jQuery('#nopagelabel').addClass("enablesetting");
+    jQuery('#pagelabel').addClass("disablesetting");
+    jQuery('#pagelabel').removeClass("enablesetting");
+    jQuery('#nouserlabel').removeClass("disablesetting");
+    jQuery('#nouserlabel').addClass("enablesetting");
+    jQuery('#userlabel').addClass("disablesetting");
+    jQuery('#userlabel').removeClass("enablesetting");
+    jQuery('#nocommentslabel').removeClass("disablesetting");
+    jQuery('#nocommentslabel').addClass("enablesetting");
+    jQuery('#commentslabel').addClass("disablesetting");
+    jQuery('#commentslabel').removeClass("enablesetting");
+    jQuery('#nocplabel').removeClass("disablesetting");
+    jQuery('#nocplabel').addClass("enablesetting");
+    jQuery('#cplabel').addClass("disablesetting");
+    jQuery('#cplabel').removeClass("enablesetting");
+    
   }
 }
 
@@ -871,3 +962,560 @@ function addwpexportfilter(id) {
                 }
 	}
 }
+
+//Settings js code
+function showsettingsoption(id) {
+        for(i=1;i<=9;i++) {
+                if(parseInt(id) == parseInt(i)) {
+                        if(parseInt(i) == 8) {
+                                document.getElementById('sidebar').style.height = '1139px';
+                                document.getElementById('contentbar').style.height = '1139px';
+                                document.getElementById('settingsholder').style.height = '1140px';
+                        } else if(parseInt(i) == 9) {
+                                document.getElementById('sidebar').style.height = '665px';
+                                document.getElementById('contentbar').style.height = '665px';
+                                document.getElementById('settingsholder').style.height = '666px';
+                       } else if(parseInt(i) == 4) {
+                                document.getElementById('sidebar').style.height = '420px';
+                                document.getElementById('contentbar').style.height = '420px';
+                                document.getElementById('settingsholder').style.height = '421px';
+                        } else if(parseInt(i) == 3) {
+                                document.getElementById('sidebar').style.height = '586px';
+                                document.getElementById('contentbar').style.height = '586px';
+                                document.getElementById('settingsholder').style.height = '587px';
+                        } else if(parseInt(i) == 2) {
+                                document.getElementById('sidebar').style.height = '522px';
+                                document.getElementById('contentbar').style.height = '522px';
+                                document.getElementById('settingsholder').style.height = '523px';
+                        } else if(parseInt(i) == 1) {
+                                document.getElementById('sidebar').style.height = '965px';
+                                document.getElementById('contentbar').style.height = '965px';
+                                document.getElementById('settingsholder').style.height = '966px';
+                        } else {
+                                document.getElementById('sidebar').style.height = 'auto';
+                                document.getElementById('contentbar').style.height = 'auto';
+                                document.getElementById('settingsholder').style.height = 'auto';
+                        }
+
+                        jQuery('#'+id).removeClass( "bg-sidebar" );
+                        jQuery('#'+id).addClass( "selected" );
+                        document.getElementById('section'+id).style.display="";
+                    //  document.getElementById('arrow'+id).style.display="";
+			document.getElementById('activemenu').innerHTML = document.getElementById('settingmenu'+id).innerHTML ;
+                } else {
+                        jQuery('#'+i).removeClass( "selected" );
+                        jQuery('#'+i).addClass( "bg-sidebar" );
+                        document.getElementById('section'+i).style.display="none";
+                    //  document.getElementById('arrow'+i).style.display="none";
+                }
+        }
+        document.getElementById('section'+id).style.display="";
+}
+
+
+//seo setting enable and disable
+function seosetting(id) {
+       if(id == 'none') {
+               jQuery('#seosetting1').removeClass("disablesetting");
+               jQuery('#seosetting1').addClass("enablesetting");
+               document.getElementById("seosetting1text").innerHTML="Enabled";
+               document.getElementById("seosetting2text").innerHTML="Disabled";
+               document.getElementById("seosetting3text").innerHTML="Disabled";
+               jQuery('#seosetting2').addClass("disablesetting");
+               jQuery('#seosetting2').removeClass("enablesetting");
+               jQuery('#seosetting3').addClass("disablesetting");
+               jQuery('#seosetting3').removeClass("enablesetting");
+       }
+        else if(id == 'aioseo') {
+              jQuery('#seosetting2').removeClass("disablesetting");
+               jQuery('#seosetting2').addClass("enablesetting");
+               document.getElementById('seosetting2text').innerHTML="Enabled";
+               document.getElementById("seosetting1text").innerHTML="Disabled";
+               document.getElementById("seosetting3text").innerHTML="Disabled";
+               jQuery('#seosetting1').addClass("disablesetting");
+               jQuery('#seosetting1').removeClass("enablesetting");
+               jQuery('#seosetting3').addClass("disablesetting");
+               jQuery('#seosetting3').removeClass("enablesetting");
+       }
+       else if(id == 'yoastseo') {
+               jQuery('#seosetting3').removeClass("disablesetting");
+	       jQuery('#seosetting3').addClass("enablesetting");
+               document.getElementById('seosetting3text').innerHTML="Enabled";
+               document.getElementById("seosetting1text").innerHTML="Disabled";
+               document.getElementById("seosetting2text").innerHTML="Disabled";
+               jQuery('#seosetting1').addClass("disablesetting");
+               jQuery('#seosetting1').removeClass("enablesetting");
+               jQuery('#seosetting2').addClass("disablesetting");
+               jQuery('#seosetting2').removeClass("enablesetting");
+       }
+}
+
+//Custom post setting
+function custompostsetting(id) {
+       if(id == 'nonercustompost') {
+               jQuery('#custompostsetting1').removeClass("disablesetting");
+               jQuery('#custompostsetting1').addClass("enablesetting");
+               document.getElementById("custompost1text").innerHTML="Enabled";
+               document.getElementById("custompost2text").innerHTML="Disabled";
+               jQuery('#custompostsetting2').addClass("disablesetting");
+               jQuery('#custompostsetting2').removeClass("enablesetting");
+       }
+       else if(id == 'custompostuitype') {
+               jQuery('#custompostsetting2').removeClass("disablesetting");
+               jQuery('#custompostsetting2').addClass("enablesetting");
+               document.getElementById("custompost2text").innerHTML="Enabled";
+               document.getElementById("custompost1text").innerHTML="Disabled";
+               jQuery('#custompostsetting1').addClass("disablesetting");
+               jQuery('#custompostsetting1').removeClass("enablesetting");
+       }
+/*     else if(id == 'wptypespost') {
+               jQuery('#custompostsetting3').removeClass("disablesetting");
+               jQuery('#custompostsetting3').addClass("enablesetting");
+               document.getElementById("custompost3text").innerHTML="Enabled";
+               document.getElementById("custompost2text").innerHTML="Disabled";
+               document.getElementById("custompost1text").innerHTML="Disabled";
+               document.getElementById("custompost4text").innerHTML="Disabled";
+               document.getElementById("custompost5text").innerHTML="Disabled";
+               jQuery('#custompostsetting2').addClass("disablesetting");
+               jQuery('#custompostsetting2').removeClass("enablesetting");
+               jQuery('#custompostsetting1').addClass("disablesetting");
+               jQuery('#custompostsetting1').removeClass("enablesetting");
+               jQuery('#custompostsetting4').addClass("disablesetting");
+               jQuery('#custompostsetting4').removeClass("enablesetting");
+               jQuery('#custompostsetting5').addClass("disablesetting");
+               jQuery('#custompostsetting5').removeClass("enablesetting");
+       }
+       else if(id == 'cctm') {
+               jQuery('#custompostsetting4').removeClass("disablesetting");
+               jQuery('#custompostsetting4').addClass("enablesetting");
+               document.getElementById("custompost4text").innerHTML="Enabled";
+               document.getElementById("custompost2text").innerHTML="Disabled";
+               document.getElementById("custompost3text").innerHTML="Disabled";
+               document.getElementById("custompost1text").innerHTML="Disabled";
+               document.getElementById("custompost5text").innerHTML="Disabled";
+               jQuery('#custompostsetting2').addClass("disablesetting");
+               jQuery('#custompostsetting2').removeClass("enablesetting");
+               jQuery('#custompostsetting3').addClass("disablesetting");
+               jQuery('#custompostsetting3').removeClass("enablesetting");
+	       jQuery('#custompostsetting1').addClass("disablesetting");
+               jQuery('#custompostsetting1').removeClass("enablesetting");
+               jQuery('#custompostsetting5').addClass("disablesetting");
+              jQuery('#custompostsetting5').removeClass("enablesetting");
+       }
+       else if(id == 'podspost') {
+               jQuery('#custompostsetting5').removeClass("disablesetting");
+               jQuery('#custompostsetting5').addClass("enablesetting");
+               document.getElementById("custompost5text").innerHTML="Enabled";
+               document.getElementById("custompost1text").innerHTML="Disabled";
+               document.getElementById("custompost2text").innerHTML="Disabled";
+               document.getElementById("custompost3text").innerHTML="Disabled";
+               document.getElementById("custompost4text").innerHTML="Disabled";
+               jQuery('#custompostsetting1').addClass("disablesetting");
+               jQuery('#custompostsetting1').removeClass("enablesetting");
+               jQuery('#custompostsetting2').addClass("disablesetting");
+               jQuery('#custompostsetting2').removeClass("enablesetting");
+               jQuery('#custompostsetting3').addClass("disablesetting");
+               jQuery('#custompostsetting3').removeClass("enablesetting");
+               jQuery('#custompostsetting4').addClass("disablesetting");
+               jQuery('#custompostsetting4').removeClass("enablesetting");
+      }*/
+}
+//Security and performance
+function authorimportsetting(id) {
+         if(id == 'enableimport') {
+                jQuery('#allowimport').removeClass("disablesetting");
+                jQuery('#allowimport').addClass("enablesetting");
+                jQuery('#donallowimport').addClass("disablesetting");
+                jQuery('#donallowimport').removeClass("enablesetting");
+         }
+        else {
+                jQuery('#donallowimport').removeClass("disablesetting");
+                jQuery('#donallowimport').addClass("enablesetting");
+                jQuery('#allowimport').addClass("disablesetting");
+                jQuery('#allowimport').removeClass("enablesetting");
+        }
+}
+//General Settings
+function postsetting(id) {
+         if(id == 'post') {
+                jQuery('#postlabel').removeClass("disablesetting");
+                jQuery('#postlabel').addClass("enablesetting");
+                jQuery('#nopostlabel').addClass("disablesetting");
+                jQuery('#nopostlabel').removeClass("enablesetting");
+         }
+        else {
+                jQuery('#nopostlabel').removeClass("disablesetting");
+                jQuery('#nopostlabel').addClass("enablesetting");
+                jQuery('#postlabel').addClass("disablesetting");
+                jQuery('#postlabel').removeClass("enablesetting");
+        }
+}
+
+function pagesetting(id) {
+         if(id == 'page') {
+                jQuery('#pagelabel').removeClass("disablesetting");
+                jQuery('#pagelabel').addClass("enablesetting");
+                jQuery('#nopagelabel').addClass("disablesetting");
+                jQuery('#nopagelabel').removeClass("enablesetting");
+         }
+        else {
+                jQuery('#nopagelabel').removeClass("disablesetting");
+                jQuery('#nopagelabel').addClass("enablesetting");
+                jQuery('#pagelabel').addClass("disablesetting");
+                jQuery('#pagelabel').removeClass("enablesetting");
+        }
+}
+
+function usersetting(id) {
+         if(id == 'users') {
+                jQuery('#userlabel').removeClass("disablesetting");
+                jQuery('#userlabel').addClass("enablesetting");
+                jQuery('#nouserlabel').addClass("disablesetting");
+                jQuery('#nouserlabel').removeClass("enablesetting");
+         }
+	 else {
+                jQuery('#nouserlabel').removeClass("disablesetting");
+                jQuery('#nouserlabel').addClass("enablesetting");
+                jQuery('#userlabel').addClass("disablesetting");
+                jQuery('#userlabel').removeClass("enablesetting");
+        }
+}
+
+function commentsetting(id) {
+         if(id == 'comments') {
+                jQuery('#commentslabel').removeClass("disablesetting");
+                jQuery('#commentslabel').addClass("enablesetting");
+                jQuery('#nocommentslabel').addClass("disablesetting");
+                jQuery('#nocommentslabel').removeClass("enablesetting");
+         }
+        else {
+                jQuery('#nocommentslabel').removeClass("disablesetting");
+                jQuery('#nocommentslabel').addClass("enablesetting");
+                jQuery('#commentslabel').addClass("disablesetting");
+                jQuery('#commentslabel').removeClass("enablesetting");
+        }
+}
+
+function cpsetting(id) {
+         if(id == 'custompost') {
+                jQuery('#cplabel').removeClass("disablesetting");
+                jQuery('#cplabel').addClass("enablesetting");
+                jQuery('#nocplabel').addClass("disablesetting");
+                jQuery('#nocplabel').removeClass("enablesetting");
+         }
+        else {
+                jQuery('#nocplabel').removeClass("disablesetting");
+                jQuery('#nocplabel').addClass("enablesetting");
+                jQuery('#cplabel').addClass("disablesetting");
+                jQuery('#cplabel').removeClass("enablesetting");
+        }
+}
+function custaxsetting(id) {
+         if(id == 'customtaxonomy') {
+                jQuery('#custaxlabel').removeClass("disablesetting");
+                jQuery('#custaxlabel').addClass("enablesetting");
+                jQuery('#nocustaxlabel').addClass("disablesetting");
+                jQuery('#nocustaxlabel').removeClass("enablesetting");
+         }
+        else {
+                jQuery('#nocustaxlabel').removeClass("disablesetting");
+                jQuery('#nocustaxlabel').addClass("enablesetting");
+                jQuery('#custaxlabel').addClass("disablesetting");
+                jQuery('#custaxlabel').removeClass("enablesetting");
+        }
+}
+
+function catsetting(id) {
+         if(id == 'categories') {
+                jQuery('#catlabel').removeClass("disablesetting");
+                jQuery('#catlabel').addClass("enablesetting");
+                jQuery('#nocatlabel').addClass("disablesetting");
+                jQuery('#nocatlabel').removeClass("enablesetting");
+         }
+        else {
+                jQuery('#nocatlabel').removeClass("disablesetting");
+                jQuery('#nocatlabel').addClass("enablesetting");
+                jQuery('#catlabel').addClass("disablesetting");
+                jQuery('#catlabel').removeClass("enablesetting");
+        }
+}
+
+function cusrevsetting(id) {
+         if(id == 'rcustomerreviews') {
+                jQuery('#custrevlabel').removeClass("disablesetting");
+                jQuery('#custrevlabel').addClass("enablesetting");
+                jQuery('#nocustrevlabel').addClass("disablesetting");
+                jQuery('#nocustrevlabel').removeClass("enablesetting");
+         }
+        else {
+		jQuery('#nocustrevlabel').removeClass("disablesetting");
+                jQuery('#nocustrevlabel').addClass("enablesetting");
+                jQuery('#custrevlabel').addClass("disablesetting");
+                jQuery('#custrevlabel').removeClass("enablesetting");
+        }
+}
+
+
+
+
+
+
+//Custom field
+function  resetOption(id) {
+        if (id == 'resetopt') {
+        document.getElementById('runcheckmember').checked = true;
+        document.getElementById('wpcustomfields').checked = false;
+        document.getElementById('cctmcustomfield').checked = false;
+        document.getElementById('acfcustomfield').checked = false;
+        document.getElementById('typescustomfield').checked = false;
+        document.getElementById('podscustomfield').checked = false;
+
+        document.getElementById('customfield1text').innerHTML = "Disabled";
+        document.getElementById('customfield2text').innerHTML = "Disabled";
+        document.getElementById('customfield3text').innerHTML = "Disabled";
+        document.getElementById('customfield4text').innerHTML = "Disabled";
+
+        jQuery('#wpuseruncheck').removeClass("disablesetting");
+        jQuery('#wpuseruncheck').addClass("enablesetting");
+        jQuery('#wpusercheck').addClass("disablesetting");
+        jQuery('#wpusercheck').removeClass("enablesetting");
+        jQuery('#customfieldsetting1').addClass("disablesetting");
+        jQuery('#customfieldsetting1').removeClass("enablesetting");
+        jQuery('#customfieldsetting2').addClass("disablesetting");
+        jQuery('#customfieldsetting2').removeClass("enablesetting");
+        jQuery('#customfieldsetting3').addClass("disablesetting");
+        jQuery('#customfieldsetting3').removeClass("enablesetting");
+        jQuery('#customfieldsetting4').addClass("disablesetting");
+ 	jQuery('#customfieldsetting4').removeClass("enablesetting");
+        }
+}
+function wpmembersetting(id) {
+        if(id == 'rwpmembers') {
+                jQuery('#wpusercheck').removeClass("disablesetting");
+                jQuery('#wpusercheck').addClass("enablesetting");
+                jQuery('#wpuseruncheck').addClass("disablesetting");
+                jQuery('#wpuseruncheck').removeClass("enablesetting");
+         }
+        else {
+                jQuery('#wpuseruncheck').removeClass("disablesetting");
+                jQuery('#wpuseruncheck').addClass("enablesetting");
+                jQuery('#wpusercheck').addClass("disablesetting");
+               jQuery('#wpusercheck').removeClass("enablesetting");
+        }
+}
+function customfieldsetting(id) {
+         if(id == 'acfcustomfield') {
+               jQuery('#customfieldsetting1').removeClass("disablesetting");
+               jQuery('#customfieldsetting1').addClass("enablesetting");
+               document.getElementById("customfield1text").innerHTML="Enabled";
+               document.getElementById("customfield2text").innerHTML="Disabled";
+               document.getElementById("customfield3text").innerHTML="Disabled";
+               document.getElementById("customfield4text").innerHTML="Disabled";
+               jQuery('#customfieldsetting2').addClass("disablesetting");
+               jQuery('#customfieldsetting2').removeClass("enablesetting");
+               jQuery('#customfieldsetting3').addClass("disablesetting");
+               jQuery('#customfieldsetting3').removeClass("enablesetting");
+               jQuery('#customfieldsetting4').addClass("disablesetting");
+               jQuery('#customfieldsetting4').removeClass("enablesetting");
+       }
+       else if(id == 'cctmcustomfield') {
+               jQuery('#customfieldsetting2').removeClass("disablesetting");
+               jQuery('#customfieldsetting2').addClass("enablesetting");
+               document.getElementById('customfield2text').innerHTML="Enabled";
+               document.getElementById("customfield1text").innerHTML="Disabled";
+               document.getElementById("customfield3text").innerHTML="Disabled";
+	       document.getElementById("customfield4text").innerHTML="Disabled";
+               jQuery('#customfieldsetting1').addClass("disablesetting");
+               jQuery('#customfieldsetting1').removeClass("enablesetting");
+              jQuery('#customfieldsetting3').addClass("disablesetting");
+               jQuery('#customfieldsetting3').removeClass("enablesetting");
+               jQuery('#customfieldsetting4').addClass("disablesetting");
+               jQuery('#customfieldsetting4').removeClass("enablesetting");
+       }
+       else if(id == 'typescustomfield') {
+               jQuery('#customfieldsetting3').removeClass("disablesetting");
+               jQuery('#customfieldsetting3').addClass("enablesetting");
+               document.getElementById('customfield3text').innerHTML="Enabled";
+               document.getElementById("customfield1text").innerHTML="Disabled";
+               document.getElementById("customfield2text").innerHTML="Disabled";
+               document.getElementById("customfield4text").innerHTML="Disabled";
+               jQuery('#customfieldsetting1').addClass("disablesetting");
+               jQuery('#customfieldsetting1').removeClass("enablesetting");
+               jQuery('#customfieldsetting2').addClass("disablesetting");
+               jQuery('#customfieldsetting2').removeClass("enablesetting");
+               jQuery('#customfieldsetting4').addClass("disablesetting");
+               jQuery('#customfieldsetting4').removeClass("enablesetting");
+       }
+       else if(id == 'podscustomfield') {
+               jQuery('#customfieldsetting4').removeClass("disablesetting");
+               jQuery('#customfieldsetting4').addClass("enablesetting");
+               document.getElementById('customfield4text').innerHTML="Enabled";
+               document.getElementById("customfield1text").innerHTML="Disabled";
+               document.getElementById("customfield2text").innerHTML="Disabled";
+               document.getElementById("customfield3text").innerHTML="Disabled";
+               jQuery('#customfieldsetting1').addClass("disablesetting");
+               jQuery('#customfieldsetting1').removeClass("enablesetting");
+               jQuery('#customfieldsetting2').addClass("disablesetting");
+               jQuery('#customfieldsetting2').removeClass("enablesetting");
+               jQuery('#customfieldsetting3').addClass("disablesetting");
+               jQuery('#customfieldsetting3').removeClass("enablesetting");
+       }
+}
+//Additional Features
+function schedulesetting(id) {
+         if(id == 'scheduled') {
+                jQuery('#schedulecheck').removeClass("disablesetting");
+                jQuery('#schedulecheck').addClass("enablesetting");
+                jQuery('#scheduleuncheck').addClass("disablesetting");
+                jQuery('#scheduleuncheck').removeClass("enablesetting");
+         }
+        else {
+                jQuery('#scheduleuncheck').removeClass("disablesetting");
+                jQuery('#scheduleuncheck').addClass("enablesetting");
+                jQuery('#schedulecheck').addClass("disablesetting");
+                jQuery('#schedulecheck').removeClass("enablesetting");
+        }
+}
+
+function categoryiconsetting(id) {
+         if(id == 'caticonenable') {
+                jQuery('#catenable').removeClass("disablesetting");
+                jQuery('#catenable').addClass("enablesetting");
+                jQuery('#catdisable').addClass("disablesetting");
+                jQuery('#catdisable').removeClass("enablesetting");
+         }
+        else {
+                jQuery('#catdisable').removeClass("disablesetting");
+                jQuery('#catdisable').addClass("enablesetting");
+                jQuery('#catenable').addClass("disablesetting");
+                jQuery('#catenable').removeClass("enablesetting");
+        }
+}
+
+
+function dropsetting(id) {
+         if(id == 'drop_table') {
+                jQuery('#dropon').removeClass("disablesetting");
+                jQuery('#dropon').addClass("enablesetting");
+                jQuery('#dropoff').addClass("disablesetting");
+                jQuery('#dropoff').removeClass("enablesetting");
+	}
+        else {
+                jQuery('#dropoff').removeClass("disablesetting");
+                jQuery('#dropoff').addClass("enablesetting");
+                jQuery('#dropon').addClass("disablesetting");
+                jQuery('#dropon').removeClass("enablesetting");
+        }
+}
+
+//Ecommerce setting
+function ecommercesetting(id) {
+       if(id == 'nonerecommerce') {
+                jQuery('#ecommercesetting1').removeClass("disablesetting");
+                jQuery('#ecommercesetting1').addClass("enablesetting");
+                document.getElementById("ecommerce1text").innerHTML="Enabled";
+                document.getElementById("ecommerce2text").innerHTML="Disabled";
+                document.getElementById("ecommerce3text").innerHTML="Disabled";
+                document.getElementById("ecommerce4text").innerHTML="Disabled";
+                document.getElementById("ecommerce5text").innerHTML="Disabled";
+
+               jQuery('#ecommercesetting2').addClass("disablesetting");
+               jQuery('#ecommercesetting2').removeClass("enablesetting");
+               jQuery('#ecommercesetting3').addClass("disablesetting");
+               jQuery('#ecommercesetting3').removeClass("enablesetting");
+               jQuery('#ecommercesetting4').addClass("disablesetting");
+               jQuery('#ecommercesetting4').removeClass("enablesetting");
+               jQuery('#ecommercesetting5').addClass("disablesetting");
+               jQuery('#ecommercesetting5').removeClass("enablesetting");
+       }
+       else if(id == 'eshop') {
+               jQuery('#ecommercesetting2').removeClass("disablesetting");
+               jQuery('#ecommercesetting2').addClass("enablesetting");
+               document.getElementById("ecommerce2text").innerHTML="Enabled";
+               document.getElementById("ecommerce1text").innerHTML="Disabled";
+               document.getElementById("ecommerce3text").innerHTML="Disabled";
+               document.getElementById("ecommerce4text").innerHTML="Disabled";
+               document.getElementById("ecommerce5text").innerHTML="Disabled";
+	       jQuery('#ecommercesetting1').addClass("disablesetting");
+               jQuery('#ecommercesetting1').removeClass("enablesetting");
+               jQuery('#ecommercesetting3').addClass("disablesetting");
+               jQuery('#ecommercesetting3').removeClass("enablesetting");
+               jQuery('#ecommercesetting4').addClass("disablesetting");
+               jQuery('#ecommercesetting4').removeClass("enablesetting");
+               jQuery('#ecommercesetting5').addClass("disablesetting");
+               jQuery('#ecommercesetting5').removeClass("enablesetting");
+       }
+       else if(id == 'marketpress') {
+               jQuery('#ecommercesetting3').removeClass("disablesetting");
+               jQuery('#ecommercesetting3').addClass("enablesetting");
+               document.getElementById("ecommerce3text").innerHTML="Enabled";
+               document.getElementById("ecommerce2text").innerHTML="Disabled";
+               document.getElementById("ecommerce1text").innerHTML="Disabled";
+               document.getElementById("ecommerce4text").innerHTML="Disabled";
+               document.getElementById("ecommerce5text").innerHTML="Disabled";
+               jQuery('#ecommercesetting1').addClass("disablesetting");
+               jQuery('#ecommercesetting1').removeClass("enablesetting");
+               jQuery('#ecommercesetting2').addClass("disablesetting");
+               jQuery('#ecommercesetting2').removeClass("enablesetting");
+               jQuery('#ecommercesetting4').addClass("disablesetting");
+               jQuery('#ecommercesetting4').removeClass("enablesetting");
+               jQuery('#ecommercesetting5').addClass("disablesetting");
+               jQuery('#ecommercesetting5').removeClass("enablesetting");
+      }
+        else if(id == 'woocommerce') {
+              jQuery('#ecommercesetting4').removeClass("disablesetting");
+               jQuery('#ecommercesetting4').addClass("enablesetting");
+               document.getElementById("ecommerce4text").innerHTML="Enabled";
+               document.getElementById("ecommerce2text").innerHTML="Disabled";
+               document.getElementById("ecommerce3text").innerHTML="Disabled";
+               document.getElementById("ecommerce1text").innerHTML="Disabled";
+               document.getElementById("ecommerce5text").innerHTML="Disabled";
+               jQuery('#ecommercesetting1').addClass("disablesetting");
+               jQuery('#ecommercesetting1').removeClass("enablesetting");
+               jQuery('#ecommercesetting2').addClass("disablesetting");
+               jQuery('#ecommercesetting2').removeClass("enablesetting");	                                                                              jQuery('#ecommercesetting3').addClass("disablesetting");
+               jQuery('#ecommercesetting3').removeClass("enablesetting");
+               jQuery('#ecommercesetting5').addClass("disablesetting");
+               jQuery('#ecommercesetting5').removeClass("enablesetting");
+       }
+        else if(id == 'wpcommerce') {
+               jQuery('#ecommercesetting5').removeClass("disablesetting");
+               jQuery('#ecommercesetting5').addClass("enablesetting");
+               document.getElementById("ecommerce5text").innerHTML="Enabled";
+               document.getElementById("ecommerce2text").innerHTML="Disabled";
+               document.getElementById("ecommerce3text").innerHTML="Disabled";
+               document.getElementById("ecommerce4text").innerHTML="Disabled";
+              document.getElementById("ecommerce1text").innerHTML="Disabled";
+               jQuery('#ecommercesetting1').addClass("disablesetting");
+               jQuery('#ecommercesetting1').removeClass("enablesetting");
+               jQuery('#ecommercesetting2').addClass("disablesetting");
+               jQuery('#ecommercesetting2').removeClass("enablesetting");
+               jQuery('#ecommercesetting4').addClass("disablesetting");
+               jQuery('#ecommercesetting4').removeClass("enablesetting");
+               jQuery('#ecommercesetting3').addClass("disablesetting");
+               jQuery('#ecommercesetting3').removeClass("enablesetting");
+       }
+         else {
+               jQuery('#ecommercesetting5').removeClass("enablesetting");
+               jQuery('#ecommercesetting5').addClass("disablesetting");
+               document.getElementById("ecommerce5text").innerHTML="Disabled";
+               document.getElementById("ecommerce2text").innerHTML="Disabled";
+               document.getElementById("ecommerce3text").innerHTML="Disabled";
+               document.getElementById("ecommerce4text").innerHTML="Disabled";
+               document.getElementById("ecommerce1text").innerHTML="Disabled";
+               jQuery('#ecommercesetting1').addClass("disablesetting");
+               jQuery('#ecommercesetting1').removeClass("enablesetting");
+               jQuery('#ecommercesetting2').addClass("disablesetting");
+               jQuery('#ecommercesetting2').removeClass("enablesetting");
+               jQuery('#ecommercesetting4').addClass("disablesetting");
+               jQuery('#ecommercesetting4').removeClass("enablesetting");
+               jQuery('#ecommercesetting3').addClass("disablesetting");
+               jQuery('#ecommercesetting3').removeClass("enablesetting");
+	 }
+
+}
+
+//End of settings js
+
+			
+

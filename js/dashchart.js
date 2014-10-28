@@ -16,13 +16,10 @@ jQuery.ajax({
           success: function(data) {
          
 	var browser = JSON.parse(data);
-        var checkmodule = document.getElementById('checkmodule').value;
-	if(checkmodule == 'dashboard') {
 		if (browser['label'] == 'No Imports Yet') {
 		document.getElementById('pieStats').innerHTML = "<h2 style='color: red;text-align: center;padding-top: 100px;' >No Imports Yet</h2>";
+		return false;
 		}
-	}
-        else {
               jQuery('#pieStats').highcharts({
         chart: {
             type: 'pie',
@@ -56,7 +53,6 @@ jQuery.ajax({
          data: browser
         }]
     });
-  }
 }
         });
 }

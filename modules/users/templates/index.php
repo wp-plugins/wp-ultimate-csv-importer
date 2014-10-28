@@ -72,7 +72,7 @@ $impCE = new WPImporter_includes_helper();
     <div class="form-group" style="padding-bottom:20px;">
                                 <table>
                                 <tr>
-                                   <div id='showmappingtemplate' style='float:left;padding-left:10px;padding-top:8px'>  
+                                   <div id='showmappingtemplate' style='float:left;padding-left:10px;'>  
                                   <select disabled/>
                                <option value ='select template' /> select template </option>
                                    </select>
@@ -81,9 +81,9 @@ $impCE = new WPImporter_includes_helper();
                                 </div>
                                 <div style="float:right;">
                                 <input type='button' name='clearform' id='clearform' value='<?php echo __("Clear"); ?>' onclick="Reload();"
-                                class='btn btn-warning'/>
+                                class='btn btn-warning' style="margin-right:15px"/>
                                 <input type='submit' name='importfile' id='importfile' value='<?php echo __("Next >>");?>' disabled
-                                class='btn btn-primary'/>
+                                class='btn btn-primary' style="margin-right:15px"/>
                                 </div>
                                 </tr>
                                 </table>
@@ -231,8 +231,8 @@ $allcustomposts.=$value.',';
    <input type='button' id='prev_record' name='prev_record' value='<<' class="btn btn-primary" onclick='gotoelement(this.id);' />
     <label style="padding-right:10px;" id='preview_of_row'>Showing preview of row #  1</label>
    <input type='button' id='next_record' name='next_record' value='>>' class="btn btn-primary" onclick='gotoelement(this.id);' />
-   Go To Row #<input type='text' id='goto_element' name='goto_element' />
-   <input type='button' id='apply_element' name='apply_element' value='Show' class="btn btn-success" onclick='gotoelement(this.id);' />
+   <label id="importalign" style="margin-right:8px;"> Go To Row # </label><input type='text' id='goto_element' name='goto_element' />
+   <input type='button' id='apply_element' name='apply_element' value='Show' class="btn btn-success" onclick='gotoelement(this.id);' style="margin-right:10px;margin-left:5px"/>
    </div>
    </td>
    </tr> 
@@ -240,12 +240,12 @@ $allcustomposts.=$value.',';
    $count = 0;
 $usersObj = new UsersActions();
    ?>
-   <tr><td class="left_align"> <b>CSV HEADER</b> </td><td> <b>WP FIELDS</b> </td><td> <b>CSV ROW</b> </td><td></td></tr>
+   <tr><td class="left_align columnheader"> <b>CSV HEADER</b> </td><td class="columnheader"> <b>WP FIELDS</b> </td><td class="columnheader"> <b>CSV ROW</b> </td><td></td></tr>
    <?php 
    foreach ($impCE->headers as $key => $value) {
 	   ?>
 		   <tr>
-		   <td class="left_align"><label><?php print($value);?></label></td>
+		   <td class="left_align csvheader"><label><?php print($value);?></label></td>
 		   <td class="left_align"><select name="mapping<?php print($count); ?>" id="mapping<?php print($count); ?>" class="uiButton" onchange="addcustomfield(this.value,<?php echo $count; ?>);">
 		   <option id="select">-- Select --</option>
 		   <?php
@@ -282,7 +282,7 @@ $usersObj = new UsersActions();
                                         </script>
 
 		   </td>
-		   <td class="left_align">
+		   <td class="left_align csvcolumnvalue">
 			<?php 
 			if(strlen($getrecords[0][$value])>32) {
 				 $getrecords[0][$value] = substr($getrecords[0][$value], 0, 28).'...';
@@ -317,7 +317,7 @@ $mFieldsArr = substr($mFieldsArr, 0, -1);
 <input type="hidden" id="mapping_fields_array" name="mapping_fields_array" value="<?php if(isset($mFieldsArr)) { print_r($mFieldsArr);  }  ?>"/>
 <div>
                 <div class="goto_import_options" align=center>
-                <div class="mappingactions" >
+                <div class="mappingactions" style="margin-top:26px;" >
                 <input type='button' id='clear_mapping' class='clear_mapping btn btn-warning' name='clear_mapping' value='Clear Mapping' onclick='clearMapping();' style = 'float:left'/>
                 <span style = ''>
                 <a href="#" class="tooltip tooltip_smack"  style = ''>
@@ -365,8 +365,8 @@ $mFieldsArr = substr($mFieldsArr, 0, -1);
 <div class="postbox" id="options" style=" margin-bottom:0px;">
 <!--        <h4 class="hndle">Search settings</h4>-->
         <div class="inside">
-            <label><input type ='radio' id='importNow' name='importMode' value='' onclick='choose_import_mode(this.id);' checked/> <?php echo __("Import right away"); ?> </label> 
-                                        <label><input type ='radio' id='scheduleNow' name='importMode' value='' onclick='choose_import_mode(this.id);' disabled/> <?php echo __("Schedule now"); ?> </label>
+            <label id='importalign'><input type ='radio' id='importNow' name='importMode' value='' onclick='choose_import_mode(this.id);' checked/> <?php echo __("Import right away"); ?> </label> 
+                                        <label id='importalign'><input type ='radio' id='scheduleNow' name='importMode' value='' onclick='choose_import_mode(this.id);' disabled/> <?php echo __("Schedule now"); ?> </label>
                   <div id='schedule' style='display:none'>
                                  <input type ='hidden' id='select_templatename' name='#select_templatename' value = '<?php if(isset($_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['templateid'])) { echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['templateid'] ; } ?>'>
                                 <?php //echo WPImporter_includes_schedulehelper::generatescheduleHTML(); ?>
@@ -397,10 +397,10 @@ $mFieldsArr = substr($mFieldsArr, 0, -1);
                         </select><br>
                         <input name="filterhtml" id="filterhtml" type="checkbox" value="1"> Filter out HTML-Tags while comparing                        <br>
                         <input name="filterhtmlentities" id="filterhtmlentities" type="checkbox" value="1"> Decode HTML-Entities before comparing                        <br>-->
-			<label><input name='duplicatecontent' id='duplicatecontent' type="checkbox" value=""> Detect duplicate post content</label> <br>
-			<label><input name='duplicatetitle' id='duplicatetitle' type="checkbox" value="" > Detect duplicate post title</label> <br>
+			<label id='importalign'><input name='duplicatecontent' id='duplicatecontent' type="checkbox" value=""> Detect duplicate post content</label> <br>
+			<label id='importalign'><input name='duplicatetitle' id='duplicatetitle' type="checkbox" value="" > Detect duplicate post title</label> <br>
 
-			 No. of posts/rows per server request <span class="mandatory">*</span> <input name="importlimit" id="importlimit" type="text" value="1" placeholder="10" onblur="check_allnumeric(this.value);"></label> <?php echo $impCE->helpnotes(); ?><br>	
+			 <label id='importalign'>No. of posts/rows per server request</label> <span class="mandatory" style="margin-left:-13px;margin-right:10px">*</span> <input name="importlimit" id="importlimit" type="text" value="1" placeholder="10" onblur="check_allnumeric(this.value);"></label> <?php echo $impCE->helpnotes(); ?><br>	
 			<span class='msg' id='server_request_warning' style="display:none;color:red;margin-left:-10px;">You can set upto <?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords']; ?> per request.</span>
                         <input type="hidden" id="currentlimit" name="currentlimit" value="0"/>
 			<input type="hidden" id="tmpcount" name="tmpcount" value="0" />

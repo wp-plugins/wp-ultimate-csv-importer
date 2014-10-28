@@ -43,36 +43,38 @@ $ret_arr=array();
 if(isset($_REQUEST['msg']) && $_REQUEST['msg'] == 'filenotfound'){
 ?>
 <script>
-showMapMessages('error','The files does not exist');
+	showMapMessages('error','The files does not exist');
 </script>
 <?php
 } ?>
 <div class="box-one">
 	<div class="top-right-box">
-	<h3><span class="header-icon glyphicon glyphicon-list"></span>Importers Activity</h3>
-	<div class="top-right-content">
-	<div id='dispLabel'></div>
-	<div class='lineStats' id='lineStats' style='height: 250px;width:100%;margin-top:15px; margin-bottom:15px;'></div>
+		<h3><span style="margin: -5px 5px 5px 5px;"><img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR;?>images/chart_bar.png" /></span>Importers Activity</h3>
+		<div class="top-right-content">
+			<div id='dispLabel'></div>
+			<div class='lineStats' id='lineStats' style='height: 250px;width:100%;margin-top:15px; margin-bottom:15px;'></div>
+		</div>
 	</div>
-	</div>
-	<div class="top-left-box">
-	<h3><span class="header-icon glyphicon glyphicon-dashboard"></span>Overall Statistics</h3>
-	<div class="top-left-content">
-	<div id='dispLabel'></div>
-	<div class='pieStats' id='pieStats' style='height: 250px;width:100%;margin-top:15px; margin-bottom:15px;'></div>
-	</div>
+	<div class="top-right-box">
+		<h3><span style="margin: -5px 5px 5px 5px;"><img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR;?>images/stat_icon.png"></span>Import Statistics</h3>
+		<div class="top-right-content">
+			<div id='dispLabel'></div>
+			<div class='pieStats' id='pieStats' style='float:left;height:250px;width:100%;margin-top:15px;margin-bottom:15px;'></div>
+		</div>
 	</div>
 </div>
-<div class= "promobox" id="pluginpromo" style="width:98%;">
+
+
+<!--<div class= "promobox" id="pluginpromo" style="width:98%;">
         <div class="accordion-group" >
                 <div class="accordion-body in collapse">
-                <div>
-                        <?php // $impCE->common_footer_for_other_plugin_promotions(); ?>
-                        <?php $impCE->common_footer(); ?>
-                </div>
+	                <div>
+        	                <?php // $impCE->common_footer_for_other_plugin_promotions(); ?>
+                	        <?php $impCE->common_footer(); ?>
+	                </div>
                 </div>
         </div>
-</div>
+</div>-->
 
 <?php if(isset($_REQUEST['errormsg'])){
 ?>

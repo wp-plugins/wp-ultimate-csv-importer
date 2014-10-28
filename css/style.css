@@ -156,7 +156,8 @@ margin-right:20px;
 float:left;
 }
 .top-right-box{
-float:right;
+float: left;
+width: 98%;
 }
 .top-left-box h3,.top-right-box h3,.fileManager h3{
 padding:10px;
@@ -325,3 +326,326 @@ margin-top:13px;
 .mappingheader .table-condensed span {
 margin-top:13px;
 }*/
+/*settings css*/
+.selected {
+background-color:#fcfcfc !important;
+color:#222222;
+border:0 none !important;
+}
+.selected:hover {
+background-color:#E5E5E5 !important;
+opacity:1;
+color:#222 !important;
+}
+.not-selected {
+background-color:#F2F2F2 !important;
+color:#777;
+opacity:0.7;
+}
+.bg-sidebar {
+background-color:#F2F2F2;
+}
+#sidebar ul
+{
+margin-top: -1px;
+margin-top: 0px;
+width:100%;
+float:left;
+cursor:pointer;
+position: relative;
+list-style-type: none;
+padding-left:5px;
+}
+#sidebar ul > li
+{
+border-right: 1px solid #e7e7e7;
+border-bottom: 1px solid #e7e7e7;
+margin-left:-5px;
+margin-bottom: -0px;
+padding:10px 23px;
+font-weight:700;
+font-size:13px;
+}
+#sidebar li:hover {
+background-color:#E5E5E5;
+color:#555;
+}
+#contentbar {
+color: #444444;
+display:inline-block;
+font-family: "Open Sans",sans-serif;
+font-size: 13px;
+line-height: 1.4em;
+background: none repeat scroll 0 0 #FCFCFC;
+width: 73.5%;
+height:965px;
+border-right:1px solid #D1D1D1;
+position: absolute;
+margin-left:0%;
+float:right;
+min-height:499px;
+}
+#sidebar {
+float:left;
+height:965px;
+border-left:1px solid #D1D1D1;
+color:#777;
+background:#F2F2F2;
+width:25%;
+min-height:499px;
+}
+#settingmodule
+{
+width:100%;
+}
+.title {
+border-bottom: 1px solid #E7E7E7;
+margin-left:25px;
+margin-right:25px;
+}
+.title > h3 {
+color: #222;
+font-family: "Open Sans",sans-serif;
+font-size: 1.3em;
+font-weight: 600;
+line-height: 2em;
+margin-top:10px;
+}
+#innertitle {
+color: #333 !important;
+font-family: "Open Sans",sans-serif !important;
+font-size: 14px !important;
+font-weight: 700 !important;
+}
+#data
+{
+font-size:13px;
+color:#666;
+font-weight:400;
+margin-left:25px;
+margin-right:25px;
+padding-left:30px;
+padding-top:10px;
+padding-bottom: 10px;
+}
+#resetcustfield {
+    float: right;
+    margin-top: -33px;
+    margin-right: 8px;
+}
+#wpusercheck,#allowimport,#schedulecheck,#dropon,#catenable,#postlabel,
+#pagelabel,#userlabel,#commentslabel,#custaxlabel,#cplabel,#catlabel,#custrevlabel {
+border-radius:5px 0 0 5px;
+}
+#wpuseruncheck,#donallowimport,#scheduleuncheck,#dropoff,#catdisable,#nopostlabel,
+#nopagelabel,#nouserlabel,#nocommentslabel,#nocustaxlabel,#nocplabel,#nocatlabel,#nocustrevlabel {
+border-radius:0 5px 5px 0;
+}
+#activemenu {
+    margin-left: 3px;
+    margin-top: 15px;
+    font-family: "Open Sans",sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1.7em;
+}
+.tabase table {
+width:80%;
+}
+#align {
+padding-top:5px;
+padding-left:5px;
+color:#666;
+font-size:16px;
+font-family: "open sans";
+}
+#data table {
+width:88%;
+}
+.security-perfoemance {
+-webkit-padding-after: 26px !important;
+}
+.custom-fields {
+-webkit-padding-after: 14px !important;
+}
+.databorder tr {
+border-bottom:1px solid #E7E7E7;
+}
+.databorder tr:last-child {
+border-bottom: 0 none !important;
+}
+#data td {
+padding: 8px 0;
+}
+#settingheader {
+border:1px solid #D1D1D1;
+height:52px;
+margin-right:23px;
+margin-top: -17px;
+width:98%;
+}
+#bottomsave {
+border-bottom:1px solid #D1D1D1;
+border-left:1px solid #D1D1D1;
+border-right:1px solid #D1D1D1;
+height:52px;
+margin-right:23px;
+margin-top: -4px;
+width:98%;
+}
+#settingsholder {
+display:inline-block;
+height:966px;
+width:98%;
+border-bottom:1px solid #D1D1D1;
+min-height:500px;
+}
+#resetopt {
+color: #0099d5;
+}
+.settings-icon {
+padding-right: 7px;
+}
+.uifree-settings {
+padding-top: 10px;
+}
+#data input[type="radio"],input[type="checkbox"] {
+margin-top: -3px !important;
+}
+.corner-icon > img {
+margin-left: 11px;
+margin-top: 13px;
+}
+.enablesetting {
+background-color:#0074a2;
+color:#fff;
+border-color: #004f6f;
+box-shadow: 0 1px 0 #00abef inset, 0 1px 0 rgba(0, 0, 0, 0.15);
+border-style: solid;
+border-width: 1px;
+cursor: pointer;
+line-height: normal;
+margin-right: -4px;
+padding: 5px;
+border-radius:5px;
+text-align:center;
+}
+.disablesetting {
+background-color: #e6e6e6;
+background-image: linear-gradient(#fff, #fff 25%, #e6e6e6);
+background-repeat: no-repeat;
+border-color: #ccc #ccc #bbb;
+border-image: none;
+border-style: solid;
+border-width: 1px;
+box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+cursor: pointer;
+line-height: normal;
+margin-right: -4px;
+padding: 5px;
+text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+border-radius:5px;
+text-align:center;
+}
+.debug-info-name {
+width:40%;
+}
+.ini-configured-values, .min-requirement-values {
+text-align: center;
+}
+.moduleavail {
+    float: left;
+    margin: 6px 0 0 20px !important;
+    position: absolute;
+}
+#pluginavail {
+width: 8px;
+height: 9px;
+border-radius: 15px;
+float:right;
+margin-top: 11px;
+}
+#repavail {
+width: 8px;
+height: 9px;
+border-radius: 15px;
+}
+#repplugin {
+    padding-left: 5px;
+    padding-top: 5px;
+}
+#replabel{
+    padding-left:5px;
+    margin-top:-7px;
+}
+/*End of settings css*/
+
+/*Export Settings*/
+#exporttable input[type="radio"],input[type="checkbox"] {
+        margin-top: -3px !important;
+        vertical-align: middle;
+        min-width: 16px;
+}
+/*End of export section*/
+.inside input[type="radio"],input[type="checkbox"] {
+        margin-top: -3px !important;
+        vertical-align: middle;
+        min-width: 16px;
+}
+#renameradio input[type="radio"] {
+        margin-top: -3px !important;
+        vertical-align: middle;
+        min-width: 16px;
+}
+#updatediv input[type="checkbox"] {
+        margin-top: -3px !important;
+        vertical-align: middle;
+        min-width: 16px;
+}
+#savetemp input[type="radio"] {
+        margin-top: -3px !important;
+        vertical-align: middle;
+        min-width: 16px;
+}
+#importopt  {
+color: #222;
+font-family: "Open Sans",sans-serif;
+font-size: 1.3em !important;
+font-weight: 600 !important;
+}
+
+#importalign,#preview_of_row {
+padding-top:5px !important;
+padding-left:5px !important;
+color:#666 !important;
+font-size:14px !important;
+font-family: "open sans" !important;
+}
+#importalign > input[type="radio"], input[type="checkbox"] {
+margin: 0px 6px !important;
+}
+.importstatus, #importalign {
+margin-top:0px;
+}
+.csvheader, .csvcolumnvalue {
+font-size: 13px;
+font-style: normal;
+font-weight: 400;
+color:#666;
+}
+div#log {
+color: #666;
+}
+.columnheader {
+font-size: 1.25em;
+}
+
+.form-group {
+margin-top: 10px;
+}
+/*Summary log*/
+#logtabs {
+height:315px !important;
+}
+/*End off summary*/
+

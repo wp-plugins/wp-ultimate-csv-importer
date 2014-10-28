@@ -47,32 +47,46 @@ class WPImporter_inlineImages {
 					$baseurl = $dir ['baseurl'];
 				}
 				$inline_img_path = $full_path;
-				$img_real_name = wp_unique_filename($inline_img_path, $img_real_name, $unique_filename_callback = null);
+				#$img_real_name = wp_unique_filename($inline_img_path, $img_real_name, $unique_filename_callback = null);
 				if($import_image_method == 'imagewithextension' && $count == 1 ) {
 					$new_img_path = $imgLoc . '/' . $img_real_name;
-					$helperObj->get_fimg_from_URL($new_img_path, $inline_img_path, $img_real_name, $post_slug_value, $currentLimit, $impObj);
+					$inline = $helperObj->get_fimg_from_URL($new_img_path, $inline_img_path, $img_real_name, $post_slug_value, $currentLimit, $impObj);
 				} else {
 					if($sampleURL == null) {
-						$helperObj->get_fimg_from_URL($img_path, $inline_img_path, $img_real_name, $post_slug_value, $currentLimit, $impObj);
+						$inline = $helperObj->get_fimg_from_URL($img_path, $inline_img_path, $img_real_name, $post_slug_value, $currentLimit, $impObj);
 					} else {
 						$new_img_path = $sampleURL . '/' . $img_real_name;
-						$helperObj->get_fimg_from_URL($new_img_path, $inline_img_path, $img_real_name, $post_slug_value, $currentLimit, $impObj);
+						$inline = $helperObj->get_fimg_from_URL($new_img_path, $inline_img_path, $img_real_name, $post_slug_value, $currentLimit, $impObj);
 					}
 				}
-				$inline_filepath = $inline_img_path . "/" . $img_real_name;
+				$inline_filepath = $inline_img_path . "/" . $inline;
 				if (@getimagesize($inline_filepath)) {
-					$inline_file ['guid'] = $baseurl . "/" . $img_real_name;
-					$inline_file ['post_title'] = $img_real_name;
+					$img = wp_get_image_editor($inline_filepath);
+                                        if (!is_wp_error($img)) {
+                                                $sizes_array = array(
+                                                                // #1 - resizes to 1024x768 pixel, square-cropped image
+                                                                array('width' => 1024, 'height' => 768, 'crop' => true),
+                                                                // #2 - resizes to 100px max width/height, non-cropped image
+                                                                array('width' => 100, 'height' => 100, 'crop' => false),
+                                                                // #3 - resizes to 100 pixel max height, non-cropped image
+                                                                array('width' => 300, 'height' => 100, 'crop' => false),
+                                                                // #3 - resizes to 624x468 pixel max width, non-cropped image
+                                                                array('width' => 624, 'height' => 468, 'crop' => false)
+                                                                );
+                                                $resize = $img->multi_resize($sizes_array);
+                                        }
+					$inline_file ['guid'] = $baseurl . "/" . $inline;
+					$inline_file ['post_title'] = $inline;
 					$inline_file ['post_content'] = '';
 					$inline_file ['post_status'] = 'attachment';
 					$wp_upload_dir = wp_upload_dir();
 					$attachment = array('guid' => $inline_file ['guid'], 'post_mime_type' => 'image/jpg', 'post_title' => preg_replace('/\.[^.]+$/', '', @basename($inline_file ['guid'])), 'post_content' => '', 'post_status' => 'inherit');
 					if ($get_media_settings == 1) {
-						$generate_attachment = $dirname . '/' . $img_real_name;
+						$generate_attachment = $dirname . '/' . $inline;
 					} else {
-						$generate_attachment = $img_real_name;
+						$generate_attachment = $inline;
 					}
-					$uploadedImage = $wp_upload_dir['path'] . '/' . $img_real_name;
+					$uploadedImage = $wp_upload_dir['path'] . '/' . $inline;
 					$attach_id = wp_insert_attachment($attachment, $generate_attachment, $post_id);
 					$attach_data = wp_generate_attachment_metadata($attach_id, $uploadedImage);
 					wp_update_attachment_metadata($attach_id, $attach_data);
