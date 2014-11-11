@@ -923,7 +923,7 @@ function selectModules(id) {
   }
 }
 
-function addwpexportfilter(id) {
+function addexportfilter(id) {
 	if(document.getElementById(id).checked == true) {
 		if(id == 'getdataforspecificperiod') {
 			document.getElementById('specificperiodexport').style.display = '';
@@ -968,9 +968,9 @@ function showsettingsoption(id) {
         for(i=1;i<=9;i++) {
                 if(parseInt(id) == parseInt(i)) {
                         if(parseInt(i) == 8) {
-                                document.getElementById('sidebar').style.height = '1139px';
-                                document.getElementById('contentbar').style.height = '1139px';
-                                document.getElementById('settingsholder').style.height = '1140px';
+                                document.getElementById('sidebar').style.height = '1149px';
+                                document.getElementById('contentbar').style.height = '1149px';
+                                document.getElementById('settingsholder').style.height = '1150px';
                         } else if(parseInt(i) == 9) {
                                 document.getElementById('sidebar').style.height = '665px';
                                 document.getElementById('contentbar').style.height = '665px';

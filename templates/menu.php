@@ -11,9 +11,6 @@ $impCEM = CallWPImporterObj::getInstance();
 $get_settings = array();
 $get_settings = $impCEM->getSettings();
 $mod = isset($_REQUEST['__module']) ? $_REQUEST['__module'] : '';
-foreach ($get_settings as $key) {
-	$$key = true;
-}
 if (isset($_POST['post_csv']) && $_POST['post_csv'] == 'Import') {
 	$dashboard = 'activate';
 } else {
@@ -96,7 +93,6 @@ $menuHTML .= "</div>";
 $menuHTML .= "<div class='msg' id = 'showMsg' style = 'display:none;'></div>";
 $menuHTML .= "<input type='hidden' id='current_url' name='current_url' value='" . get_admin_url() . "admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=" . $_REQUEST['__module'] . "&step=uploadfile'/>";
 $menuHTML .= "<input type='hidden' name='checkmodule' id='checkmodule' value='" . $_REQUEST['__module'] . "' />";
-$menuHTML .= "<input type='hidden' name='checkstep' id='checkstep' value='".$_REQUEST['step']."'/>";
 
 $menuHTML .=  "
 </nav>";

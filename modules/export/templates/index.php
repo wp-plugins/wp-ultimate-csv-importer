@@ -6,24 +6,31 @@
  * You can contact Smackcoders at email address info@smackcoders.com.
  *******************************************************************************************/
 ?>
+<?php 
+$siteurl = get_option('siteurl');
+
+?>
+
  <div class="accordion" id="accordion2" style = 'width:98%;'>
                         <div class="accordion-group">
-                           <div id="collapseTwo" class="accordion-body in collapse">
-                                        <div class="accordion-inner">
-<div class="title">
-        <span class="settings-icon"> <img src="<?php echo WP_CONTENT_URL;?>/plugins/<?php echo WP_CONST_ULTIMATE_CSV_IMP_SLUG;?>/images/export.png" width="24" height="24" /> </span>
-        <label><h3>Export Data With Advanced Filters</h3></label>
-</div>
 
-<div style="margin-top:20px;">
-<div style="display:none;" id="ShowMsg"><p class="alert alert-warning" id="warning-msg"></p></div>
+                           <div id="collapseTwo" class="accordion-body in collapse">
+				<span style="margin: 4% 0px 4% 22%; color: red; font-weight: bold;" name="warning" id="warning" ><p><marquee onmouseover="this.stop();" onmouseout="this.start();"><span>Check your system configuration before proceeding the export. It may help to prevent from facing server configuration issues</span><span style='position:relative;left:4px;'><a href='<?php echo $siteurl?>/wp-admin/admin.php?page=wp-ultimate-csv-importer/index.php&__module=settings'>Click here</a> to refer your server configuration.</span></marquee></p></span>
+
+                           <div class="accordion-inner">
+<div>
+        <span class="settings-icon"> <img src="<?php echo WP_CONTENT_URL;?>/plugins/<?php echo WP_CONST_ULTIMATE_CSV_IMP_SLUG;?>/images/export.png" width="24" height="24" /> </span>
+     
+   <label> <h3 id="exporttitle">Export Data With Advanced Filters</h3></label>
+</div>
+<div style="margin-left:20px;">
 	<form class="form-horizontal" method="post" name="exportmodule" action="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR; ?>modules/export/templates/export.php" onsubmit="return export_module();"> 	
 <!--	<form class="form-horizontal" method="post" name="exportmodule" action="" onsubmit="return export_module();"> -->
 	<div class="table-responsive">
 	<table style='width:100%;' class='table exportmodule'>
-	<th colspan='2'><label class='h-exportmodule'><h3 id="innertitle"> To export data based on the filters</h3> </label></th>
+	<th colspan='2'><label class='h-exportmodule'><h3 id="innertitle"> To export data based on the filters</h3></label></th>
 	<tr>
-	<td><label><input type='checkbox' name='getdataforspecificperiod' id='getdataforspecificperiod' value='getdataforspecificperiod' onclick='addwpexportfilter(this.id);' /><span id="align"> Export data for the specific period</span></label>
+	<td><label><input type='checkbox' name='getdataforspecificperiod' id='getdataforspecificperiod' value='getdataforspecificperiod' onclick='addexportfilter(this.id);' /><span id="align"> Export data for the specific period</span></label>
 	<div id='specificperiodexport' style='padding:10px;display:none;'> 
 	<label id='periodstartfrom'><b> Start From </b></label>
 	<input type='text' class='form-control' name='postdatefrom' style='cursor:default;width:25%;' readonly id='postdatefrom' value='' />
@@ -33,7 +40,7 @@
 	</td>
         </tr>
 	<tr>
-	<td><label><input type='checkbox' name='getdatawithspecificstatus' id='getdatawithspecificstatus' value='getdatawithspecificstatus' onclick='addwpexportfilter(this.id);' /> <span id="align">Export data with the specific status</span></label>
+	<td><label><input type='checkbox' name='getdatawithspecificstatus' id='getdatawithspecificstatus' value='getdatawithspecificstatus' onclick='addexportfilter(this.id);' /><span id="align"> Export data with the specific status</span></label>
 	<div id='specificstatusexport' style='padding:10px;display:none;'>
 	<label id='status'><b> Status </b></label>
 	<select name='postwithstatus' id='postwithstatus'>
@@ -49,7 +56,7 @@
 	</td>
 	</tr>
 	<tr>
-	<td><label><input type='checkbox' name='getdatabyspecificauthors' id='getdatabyspecificauthors' value='getdatabyspecificauthors' onclick='addwpexportfilter(this.id);' /><span id="align"> Export data by specific authors</span></label>
+	<td><label><input type='checkbox' name='getdatabyspecificauthors' id='getdatabyspecificauthors' value='getdatabyspecificauthors' onclick='addexportfilter(this.id);' /><span id="align"> Export data by specific authors</span></label>
 	<div id='specificauthorexport' style='padding:10px;display:none;'>
 	<label id='authors'><b> Authors </b></label>
 	<?php $blogusers = get_users( 'blog_id=1&orderby=nicename' ); ?>
@@ -76,19 +83,19 @@
 	</div>
 	<div class="table-responsive" id="exporttable">
 	<table class='table exportmodule'>
-	<th colspan='2'><label class='h-exportmodule'><h3 id="innertitle"> Select your module to export the data</h3> </label></th>
+	<th colspan='2'><label class='h-exportmodule'><h3 id="innertitle">Select your module to export the data </h3></label></th>
 	<tr>
-	<td class='exportdatatype'><label> <input type="radio" name="export" value="post" id="post"><span id="align"> Post</span> </label></td>
-        <td class='exportdatatype'><label> <input type="radio" name="export" value="eshop" id="eshop"><span id="align"> Eshop</span> </label></td>
+		<td class='exportdatatype'><label> <input type="radio" name="export" value="post"><span id="align"> Post</span> </label></td>
+	        <td class='exportdatatype'><label> <input type="radio" name="export" value="eshop"><span id="align"> Eshop</span> </label></td>
 	</tr>
 	<tr>
-	<td class='exportdatatype'><label> <input type="radio" name="export" value="page" id="page"><span id="align"> Page</span> </label></td>
-        <td class='exportdatatype'><label> <input type="radio" name="export" value="wpcommerce" id="wpcommerce" onclick="export_check(this.value);"><span id="align"> Wp-Commerce</span> <span class="mandatory">*</span></label></td>
+		<td class='exportdatatype'><label> <input type="radio" name="export" value="page"><span id="align"> Page</span> </label></td>
+	        <td class='exportdatatype'><label> <input type="radio" name="export" value="wpcommerce"><span id="align"> Wp-Commerce</span></label></td>
 	</tr>
 	<tr>
 	<td class='exportdatatype'>
-	<label> <input type="radio" name="export" value="custompost" id="custompost" ><span id="align"> Custom Post</span> </label>
-	<select name="export_post_type" style="margin-left:10px">
+	<label> <input type="radio" name="export" value="custompost"><span id="align"> Custom Post</span></label>
+		<select name="export_post_type" style="margin-left:10px">
 		<option>--Select--</option>
 		<?php
 			foreach (get_post_types() as $key => $value) {
@@ -101,20 +108,20 @@
 		?>
 	</select>
 	</td>
-        <td class='exportdatatype'><label> <input type="radio" name="export" value="woocommerce" id="woocommerce" onclick="export_check(this.value);"><span id="align"> Woo-Commerce</span> <span class="mandatory">*</span></label></td>
+	<td class='exportdatatype'><label> <input type="radio" name="export" value="woocommerce"><span id="align"> Woo-Commerce</span></label></td>
 	</tr>
 	<tr>
-	<td class='exportdatatype'><label> <input type="radio" name="export" value="category" id="category" onclick="export_check(this.value);"><span id="align"> Category</span><span class="mandatory">*</span></label></td>
-        <td class='exportdatatype'><label> <input type="radio" name="export" value="marketpress" id="marketpress" onclick="export_check(this.value);"><span id="align"> Marketpress</span> <span class="mandatory">*</span></label></td>
+	<td class='exportdatatype'><label> <input type="radio" name="export" value="category"><span id="align"> Category</span></label></td>
+        <td class='exportdatatype'><label> <input type="radio" name="export" value="marketpress"><span id="align"> Marketpress</span></label></td>
 	</tr>
 	<tr>
-	<td class='exportdatatype'><label> <input type="radio" name="export" value="tags" id="tags" onclick="export_check(this.value);"><span id="align"> Tags</span> <span class="mandatory">*</span></label></td>
-        <td class='exportdatatype'><label> <input type="radio" name="export" value="customerreviews" id="customerreviews" onclick="export_check(this.value);"><span id="align"> Customer Reviews</span><span class="mandatory">*</span></label></td>
+	<td class='exportdatatype'><label> <input type="radio" name="export" value="tags"><span id="align"> Tags </label></span></td>
+        <td class='exportdatatype'><label> <input type="radio" name="export" value="customerreviews"><span id="align"> Customer Reviews</span></label></td>
 	</tr>
 	<tr>
 	<td class='exportdatatype'>
-	<label> <input type="radio" name="export" value="customtaxonomy" id="customtaxonomy" onclick="export_check(this.value);"><span id="align"> Custom Taxonomy</span> <span class="mandatory">*</span></label>
-	<select name="export_taxo_type" style="margin-left:10px;">
+	<label> <input type="radio" name="export" value="customtaxonomy"><span id="align"> Custom Taxonomy</span></label>
+		<select name="export_taxo_type" style="margin-left:10px;">
 		<option>--Select--</option>
 		<?php
 			foreach (get_taxonomies() as $key => $value) {
@@ -126,10 +133,10 @@
 			}
 		?>
 	</select></td>
-	<td class='exportdatatype'><label> <input type="radio" name="export" value="comments" id="comments"><span id="align"> Comments</span> </label></td>
+	<td class='exportdatatype'><label> <input type="radio" name="export" value="comments"><span id="align"> Comments</span></label></td>
 	</tr>
 	<tr>
-        <td class='exportdatatype'><label> <input type="radio" name="export" value="users" id="users"><span id="align"> Users</span> </label></td>
+	<td class='exportdatatype'><label> <input type="radio" name="export" value="users"><span id="align"> Users</span></label></td>
 	<td class='exportdatatype'></td>
 	</tr>
 	</table>

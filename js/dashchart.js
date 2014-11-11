@@ -14,12 +14,12 @@ jQuery.ajax({
           dataType: 'json',
           cache: false,
           success: function(data) {
-         
 	var browser = JSON.parse(data);
 		if (browser['label'] == 'No Imports Yet') {
 		document.getElementById('pieStats').innerHTML = "<h2 style='color: red;text-align: center;padding-top: 100px;' >No Imports Yet</h2>";
 		return false;
 		}
+           
               jQuery('#pieStats').highcharts({
         chart: {
             type: 'pie',

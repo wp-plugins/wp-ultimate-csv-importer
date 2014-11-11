@@ -35,7 +35,7 @@
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
 ?>
-
+<div style ='text-align:center;margin:0;color:red;font-size:smaller;'> Your Required Settings Configuration Please Select Security and Performance tab </div></br>
 <div id="ShowMsg" style="display:none;"><p id="warning-msg" class="alert alert-warning"><?php echo $skinnyData['plugStatus'];?></p></div>
 <?php if(isset($skinnyData['savesettings']) && $skinnyData['savesettings'] == 'done'){ ?>
 	<div id="deletesuccess"><p class="alert alert-success">Settings Saved</p></div>
@@ -498,16 +498,16 @@ global $wpdb; ?>
                         </th><th class='min-requirement-values'>
                         <label>Minimum Requirements</label>
                         </th></tr>
-                        <tr><td>post_max_size </td><td class='ini-configured-values'><?php echo ini_get('post_max_size') ?></td><td class='min-requirement-values'></td></tr>
-                        <tr><td>auto_append_file</td><td class='ini-configured-values'><?php echo ini_get('auto_append_file') ?></td><td class='min-requirement-values'></td></tr>
-                        <tr><td>auto_prepend_file </td><td class='ini-configured-values'><?php echo ini_get('auto_prepend_file') ?></td><td class='min-requirement-values'></td></tr>
-                        <tr><td>upload_max_filesize </td><td class='ini-configured-values'><?php echo ini_get('upload_max_filesize') ?></td><td class='min-requirement-values'></td></tr>
-                        <tr><td>file_uploads </td><td class='ini-configured-values'><?php echo ini_get('file_uploads') ?></td><td class='min-requirement-values'></td></tr>
-                        <tr><td>allow_url_fopen </td><td class='ini-configured-values'><?php echo ini_get('allow_url_fopen') ?></td><td class='min-requirement-values'></td></tr>
-                        <tr><td>max_execution_time </td><td class='ini-configured-values'><?php echo ini_get('max_execution_time') ?></td><td class='min-requirement-values'></td></tr>
-                        <tr><td>max_input_time </td><td class='ini-configured-values'><?php echo ini_get('max_input_time') ?></td><td class='min-requirement-values'></td></tr>
-                        <tr><td>max_input_vars </td><td class='ini-configured-values'><?php echo ini_get('max_input_vars') ?></td><td class='min-requirement-values'></td></tr>
-                        <tr><td>memory_limit </td><td class='ini-configured-values'><?php echo ini_get('memory_limit') ?></td><td class='min-requirement-values'></td></tr>
+                        <tr><td>post_max_size </td><td class='ini-configured-values'><?php echo ini_get('post_max_size') ?></td><td class='min-requirement-values'>10M</td></tr>
+                        <tr><td>auto_append_file</td><td class='ini-configured-values'>-<?php echo ini_get('auto_append_file') ?></td><td class='min-requirement-values'>-</td></tr>
+                        <tr><td>auto_prepend_file </td><td class='ini-configured-values'>-<?php echo ini_get('auto_prepend_file') ?></td><td class='min-requirement-values'>-</td></tr>
+                        <tr><td>upload_max_filesize </td><td class='ini-configured-values'><?php echo ini_get('upload_max_filesize') ?></td><td class='min-requirement-values'>2M</td></tr>
+                        <tr><td>file_uploads </td><td class='ini-configured-values'><?php echo ini_get('file_uploads') ?></td><td class='min-requirement-values'>1</td></tr>
+                        <tr><td>allow_url_fopen </td><td class='ini-configured-values'><?php echo ini_get('allow_url_fopen') ?></td><td class='min-requirement-values'>1</td></tr>
+                        <tr><td>max_execution_time </td><td class='ini-configured-values'><?php echo ini_get('max_execution_time') ?></td><td class='min-requirement-values'>3000</td></tr>
+                        <tr><td>max_input_time </td><td class='ini-configured-values'><?php echo ini_get('max_input_time') ?></td><td class='min-requirement-values'>3000</td></tr>
+                        <tr><td>max_input_vars </td><td class='ini-configured-values'><?php echo ini_get('max_input_vars') ?></td><td class='min-requirement-values'>3000</td></tr>
+                        <tr><td>memory_limit </td><td class='ini-configured-values'><?php echo ini_get('memory_limit') ?></td><td class='min-requirement-values'>99M</td></tr>
                         </table>
                         <h3 id="innertitle" colspan="2" >Required Loaders and Extentions:</h3>
                         <table class="table table-striped">
