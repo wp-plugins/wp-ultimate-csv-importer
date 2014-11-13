@@ -932,6 +932,11 @@ class WPImporter_includes_helper {
 		return $file_name;
 	}
 
+	// Function to show common notice for PRO Feature
+	public function common_notice_for_pro_feature() {
+		return "<p align='center'> <label style='color:red;'> This feature is only available in Pro! </label> <a href='http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html' target='_blank'>Go Pro Now</a> </p>";
+	}
+
 	// Function for common footer
 	public function common_footer_for_other_plugin_promotions(){
 		$content = '<div class="accordion-inner">

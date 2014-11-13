@@ -36,5 +36,4 @@
  ********************************************************************************/
  ?>
  
-<div align='center' style='width:100%;'><img src='<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR ?>images/schedule.png' width=100%>
-    </div>
+<div align='center' style='width:100%;'><?php echo $skinnyData['common_notice']; ?><img src='<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR ?>images/schedule.png' width=100%></div>

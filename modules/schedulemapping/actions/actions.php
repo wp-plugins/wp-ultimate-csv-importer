@@ -50,6 +50,8 @@ class SchedulemappingActions extends SkinnyActions {
     {
         // return an array of name value pairs to send data to the template
         $data = array();
+        $helperObj = new WPImporter_includes_helper();
+        $data['common_notice'] = $helperObj->common_notice_for_pro_feature();
         return $data;
     }
 

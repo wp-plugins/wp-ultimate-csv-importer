@@ -35,4 +35,4 @@
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
 ?>
- <div align='center' style='width:100%;'> <img src='<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR ?>images/templates.png' style='width:90%;'></div>
+<div align='center' style='width:100%;'> <?php echo $skinnyData['common_notice']; ?> <img src='<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR ?>images/templates.png' style='width:90%;'></div>

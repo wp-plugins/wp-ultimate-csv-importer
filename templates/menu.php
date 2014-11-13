@@ -11,6 +11,11 @@ $impCEM = CallWPImporterObj::getInstance();
 $get_settings = array();
 $get_settings = $impCEM->getSettings();
 $mod = isset($_REQUEST['__module']) ? $_REQUEST['__module'] : '';
+if( is_array($get_settings) && !empty($get_settings) ) {
+        foreach ($get_settings as $key) {
+                $$key = true;
+        }
+}
 if (isset($_POST['post_csv']) && $_POST['post_csv'] == 'Import') {
 	$dashboard = 'activate';
 } else {
