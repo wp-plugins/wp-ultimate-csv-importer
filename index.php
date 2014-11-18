@@ -45,7 +45,7 @@
  ********************************************************************************/
 
 $get_debug_mode = get_option('wpcsvfreesettings');
-if($get_debug_mode['debug_mode'] == 'disable_debug') {
+if(isset($get_debug_mode['debug_mode']) && $get_debug_mode['debug_mode'] != 'enable_debug') {
 	error_reporting(0);
 	ini_set('display_errors', 'Off');
 }

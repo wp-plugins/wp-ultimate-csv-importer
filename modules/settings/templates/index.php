@@ -393,8 +393,8 @@ global $wpdb; ?>
                                 <tr class="databorder"><td>
                                         <h3 id="innertitle">Debug Mode</h3>
                                         <label>You can enable/disable the debug mode.</label> </td><td>
-                                        <label id="debugmode_enable" class="<?php echo $skinnyData['debugmode_enable']; ?>"><input type='radio' name='debug_mode' value='enable_debug' <?php echo $skinnyData['enable_debug']; ?> id="enabled" style="display:none" onclick="debugmode_check(this.id);" > On </label>
-                                <label id="debugmode_disable" class="<?php echo $skinnyData['debugmode_disable']; ?>"><input type='radio' name='debug_mode' value='disable_debug' id="disabled" style="display:none" onclick="debugmode_check(this.id);" > Off </label>
+                                        <label id="debugmode_enable" class="<?php echo $skinnyData['debugmode_enable']; ?>"><input type='radio' name='debug_mode' value='enable_debug' <?php echo $skinnyData['debugmode_enable']; ?> id="enabled" style="display:none" onclick="debugmode_check(this.id);" > On </label>
+                                <label id="debugmode_disable" class="<?php echo $skinnyData['debugmode_disable']; ?>"><input type='radio' name='debug_mode' value='disable_debug' <?php echo $skinnyData['debugmode_disable']; ?> id="disabled" style="display:none" onclick="debugmode_check(this.id);" > Off </label>
                                 </td></tr>
                                 <tr class="databorder"><td>
                                 	<h3 id="innertitle">Scheduled log mails</h3>
