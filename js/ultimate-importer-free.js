@@ -7,8 +7,8 @@ jQuery( document ).ready(function() {
                   document.getElementById('log').innerHTML = '<p style="margin:15px;color:red;">NO LOGS YET NOW.</p>';
                 }
        
-pieStats();
-lineStats();
+//pieStats();
+//lineStats();
 
 
  }
@@ -991,6 +991,10 @@ function showsettingsoption(id) {
                                 document.getElementById('sidebar').style.height = '965px';
                                 document.getElementById('contentbar').style.height = '965px';
                                 document.getElementById('settingsholder').style.height = '966px';
+                        } else if(parseInt(i) == 6) {
+                                document.getElementById('sidebar').style.height = '565px';
+                                document.getElementById('contentbar').style.height = '565px';
+                                document.getElementById('settingsholder').style.height = '566px';
                         } else {
                                 document.getElementById('sidebar').style.height = 'auto';
                                 document.getElementById('contentbar').style.height = 'auto';
@@ -1015,7 +1019,7 @@ function showsettingsoption(id) {
 
 //seo setting enable and disable
 function seosetting(id) {
-       if(id == 'none') {
+       if(id == 'nonerseooption') {
                jQuery('#seosetting1').removeClass("disablesetting");
                jQuery('#seosetting1').addClass("enablesetting");
                document.getElementById("seosetting1text").innerHTML="Enabled";
@@ -1406,6 +1410,21 @@ function dropsetting(id) {
                 jQuery('#dropon').addClass("disablesetting");
                 jQuery('#dropon').removeClass("enablesetting");
         }
+}
+
+// Enable / Disable the debug mode 
+function debugmode_check (id) {
+	if(id == 'enabled') {
+                jQuery('#debugmode_enable').removeClass("disablesetting");
+                jQuery('#debugmode_enable').addClass("enablesetting");
+                jQuery('#debugmode_disable').removeClass("enablesetting");
+                jQuery('#debugmode_disable').addClass("disablesetting");
+	} else {
+                jQuery('#debugmode_disable').removeClass("disablesetting");
+                jQuery('#debugmode_disable').addClass("enablesetting");
+                jQuery('#debugmode_enable').removeClass("enablesetting");
+		jQuery('#debugmode_enable').addClass("disablesetting");
+	} 
 }
 
 //Ecommerce setting

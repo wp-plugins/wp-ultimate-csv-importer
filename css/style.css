@@ -251,6 +251,10 @@ position: absolute;
    padding: 15px 0;
 }
 
+.method1 img, .method2 img, .method3 img, .method4 img, #showmappingtemplate img, .databaseoptimization img {
+   margin-top:-25px;
+}
+
 #boxmethod1, #boxmethod2, #boxmethod3, #boxmethod4 {
    padding: 10px;
 }
@@ -433,11 +437,11 @@ padding-bottom: 10px;
     margin-top: -33px;
     margin-right: 8px;
 }
-#wpusercheck,#allowimport,#schedulecheck,#dropon,#catenable,#postlabel,
+#wpusercheck,#allowimport,#schedulecheck,#dropon,#catenable,#postlabel,#debugmode_enable,
 #pagelabel,#userlabel,#commentslabel,#custaxlabel,#cplabel,#catlabel,#custrevlabel {
 border-radius:5px 0 0 5px;
 }
-#wpuseruncheck,#donallowimport,#scheduleuncheck,#dropoff,#catdisable,#nopostlabel,
+#wpuseruncheck,#donallowimport,#scheduleuncheck,#dropoff,#catdisable,#nopostlabel, #debugmode_disable,
 #nopagelabel,#nouserlabel,#nocommentslabel,#nocustaxlabel,#nocplabel,#nocatlabel,#nocustrevlabel {
 border-radius:0 5px 5px 0;
 }

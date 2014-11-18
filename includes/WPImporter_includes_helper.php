@@ -857,6 +857,8 @@ class WPImporter_includes_helper {
 				$wpdb->query($sql4);
 			}
 		}
+		$saveSettings = array('savesettings' => 'Save', 'post' => 'post', 'page' => 'page', 'custompost' => 'custompost', 'drop_table' => 'off', 'debug_mode' => 'disable_debug', 'export_delimiter' => ';',);
+		update_option('wpcsvfreesettings', $saveSettings);
 	}
 
 	//Drop Database While Deactivate plugin
@@ -868,7 +870,7 @@ class WPImporter_includes_helper {
 		$sql2 = "DROP TABLE smackcsv_line_log;";
 		$wpdb->query($sql2);
 
-
+		update_option('wpcsvfreesettings','');
 	}
 	public function addPieChartEntry($imported_as, $count) {
 		//add total counts
@@ -1049,13 +1051,13 @@ class WPImporter_includes_helper {
 			</div>
 			<div  style = "opacity: 0.3;background-color: ghostwhite;">
 			<div id="boxmethod2" class="method2">
-			<label><span class="radio-icon"><input type="radio" name="importmethod" id="dwnldftpfile"  /></span> <span class="header-text" id="importopt">' . __('From FTP') . '</span> </label> <br>
+			<label><span class="radio-icon"><input type="radio" name="importmethod" id="dwnldftpfile"  /></span> <span class="header-text" id="importopt">' . __('From FTP') . '</span> </label> <img src="' . WP_CONTENT_URL . '/plugins/' . WP_CONST_ULTIMATE_CSV_IMP_SLUG . '/images/pro_icon.gif" title="PRO Feature" /> <br>
 			</div>
 			<div id="boxmethod3" class="method3">
-			<label> <span class="radio-icon"><input type="radio" name="importmethod" id="dwnldextrfile"  /></span> <span class="header-text" id="importopt">' . __('From URL') . '</span></label> <br>
+			<label> <span class="radio-icon"><input type="radio" name="importmethod" id="dwnldextrfile"  /></span> <span class="header-text" id="importopt">' . __('From URL') . '</span></label> <img src="' . WP_CONTENT_URL . '/plugins/' . WP_CONST_ULTIMATE_CSV_IMP_SLUG . '/images/pro_icon.gif" title="PRO Feature" /> <br>
 			</div>
 			<div id="boxmethod4" class="method4">
-			<label><span class="radio-icon"><input type="radio" name="importmethod" id="useuploadedfile"  /></span> <span class="header-text" id="importopt">' . __('From Already Uploaded') . '</span></label> <br>
+			<label><span class="radio-icon"><input type="radio" name="importmethod" id="useuploadedfile"  /></span> <span class="header-text" id="importopt">' . __('From Already Uploaded') . '</span></label> <img src="' . WP_CONTENT_URL . '/plugins/' . WP_CONST_ULTIMATE_CSV_IMP_SLUG . '/images/pro_icon.gif" title="PRO Feature" /> <br>
 			</div>
 			</div>
 

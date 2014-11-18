@@ -57,7 +57,7 @@ class SettingsActions extends SkinnyActions
 			update_option('wpcsvfreesettings',$_POST);
 			$data['savesettings'] = 'done';
 		}
-		$setingsArr = array('post', 'page', 'custompost', 'comments', 'categories', 'customtaxonomy', 'users', 'eshop', 'wpcommerce', 'woocommerce', 'custompostuitype', 'cctm', 'acf', 'aioseo', 'yoastseo', 'enable', 'disable', 'nonerseooption', 'nonercustompost', 'nonerecommerce', 'recommerce','enable_plugin_access_for_author');
+		$setingsArr = array('post', 'page', 'custompost', 'comments', 'categories', 'customtaxonomy', 'users', 'eshop', 'wpcommerce', 'woocommerce', 'custompostuitype', 'cctm', 'acf', 'aioseo', 'yoastseo', 'enable', 'disable', 'nonerseooption', 'nonercustompost', 'nonerecommerce', 'recommerce','enable_plugin_access_for_author', 'send_log_email', 'enable_debug', 'disable_debug');
 		foreach($setingsArr as $option)
 			$data[$option] = "";
 
@@ -65,7 +65,6 @@ class SettingsActions extends SkinnyActions
 		$settings = $skinnycontroller->getSettings(); 
 		foreach($settings as $settings_key)
 			$data[$settings_key] = 'checked';
-
 
 //Settings action
 //SEO option
@@ -228,9 +227,19 @@ class SettingsActions extends SkinnyActions
                         $data['customerreviews'] = 'disablesetting';
                 }
 
-
-
-
+		// Debug mode enable / disable
+		if(isset($tableseo['debug_mode'])) {
+			$debug_mode = $tableseo['debug_mode'];
+		} else {
+			$debug_mode = '';
+		}
+		if($debug_mode == 'enable_debug') {
+			$data['debugmode_enable'] = 'checked enablesetting';
+			$data['debugmode_disable'] = 'disablesetting';
+		} else if($debug_mode == 'disable_debug') {
+                        $data['debugmode_enable'] = 'disablesetting'; 
+                        $data['debugmode_disable'] = 'checked enablesetting';
+		}
 
 //Custom Fields
                 #$wpmemberoption = $tableseo['rwpmembers'];

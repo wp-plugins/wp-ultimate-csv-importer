@@ -348,12 +348,12 @@ global $wpdb; ?>
                                 <tr><td>
                                 <h3 id="innertitle">None</h3>
                                 <label>SEO Meta import is disabled.</label> </td><td>
-					<label id="seosetting1" class="<?php echo $skinnyData['nonerseooption'];?>" ><input type = 'radio' name ='rseooption' id='nonerseooption' value='nonerseooption' <?php echo $skinnyData['nonerseooption']; ?> class='ecommerce' onclick="check_if_avail(this.id);" style="display:none"><span id="seosetting1text"> <?php echo $skinnyData['none_status']; ?> </span> </label>
+					<label id="seosetting1" class="<?php echo $skinnyData['nonerseooption'];?>" ><input type = 'radio' name ='rseooption' id='nonerseooption' value='nonerseooption' <?php #echo $skinnyData['nonerseooption']; ?> class='ecommerce' onclick="seosetting(this.id);" style="display:none"><span id="seosetting1text"> <?php echo $skinnyData['none_status']; ?> </span> </label>
 				</td></tr>
                                 <tr><td>
                                 <h3 id="innertitle">All-in-one SEO </h3>
                                 <label>Enable All-in-one SEO import.</label> </td><td>
-					<label id="seosetting2" class="<?php echo $skinnyData['aioseo']; ?>" ><input type ='radio' name = 'rseooption' id='aioseo' value='aioseo' <?php echo $skinnyData['aioseo']; ?> style="display:none"><span id="seosetting2text"> <?php echo $skinnyData['aioseo_status']; ?> </span></label>
+					<label id="seosetting2" class="<?php echo $skinnyData['aioseo']; ?>" ><input type ='radio' name = 'rseooption' id='aioseo' value='aioseo' <?php echo $skinnyData['aioseo']; ?> onclick="seosetting(this.id);" style="display:none"><span id="seosetting2text"> <?php echo $skinnyData['aioseo_status']; ?> </span></label>
 					<div id="pluginavail" class="<?php echo $skinnyData['aioseotd'] ?>"> </div>
                                 </td></tr>
                                 <tr><td>
@@ -391,6 +391,12 @@ global $wpdb; ?>
 					</label>
 				</td></tr>
                                 <tr class="databorder"><td>
+                                        <h3 id="innertitle">Debug Mode</h3>
+                                        <label>You can enable/disable the debug mode.</label> </td><td>
+                                        <label id="debugmode_enable" class="<?php echo $skinnyData['debugmode_enable']; ?>"><input type='radio' name='debug_mode' value='enable_debug' <?php echo $skinnyData['enable_debug']; ?> id="enabled" style="display:none" onclick="debugmode_check(this.id);" > On </label>
+                                <label id="debugmode_disable" class="<?php echo $skinnyData['debugmode_disable']; ?>"><input type='radio' name='debug_mode' value='disable_debug' id="disabled" style="display:none" onclick="debugmode_check(this.id);" > Off </label>
+                                </td></tr>
+                                <tr class="databorder"><td>
                                 	<h3 id="innertitle">Scheduled log mails</h3>
 					<label>Enable to get scheduled log mails.</label> </td><td>
 	                                <label id="schedulecheck" class="<?php echo $skinnyData['schedulelog']; ?>"><input type='radio' name='send_log_email' value='send_log_email' <?php echo $skinnyData['send_log_email']; ?> id="scheduled" style="display:none" onclick="check_if_avail(this.id);" > Yes </label>
@@ -417,7 +423,7 @@ global $wpdb; ?>
                 <!--div-7-->
 		<div id="section7" class="databaseoptimization" style="display:none;">
                         <div class="title">
-                                <h3>Database Optimization </h3>
+                                <h3>Database Optimization <img src="<?php echo WP_CONTENT_URL;?>/plugins/<?php echo WP_CONST_ULTIMATE_CSV_IMP_SLUG;?>/images/pro_icon.gif" title='PRO Feature' /></h3>
                                 <span style="float:right;margin-right:168px;margin-top:-35px;">
                                         <a id="checkOpt" onclick="check_if_avail(this.id);" href="#"> Check All </a>
                                 </span>
@@ -476,8 +482,8 @@ global $wpdb; ?>
                         <div id="data" class="databorder security-perfoemance" >
                         <table class="securityfeatures">
                         <tr><td>
-                        <h3 id="innertitle">Allow authors to import</h3>
-                        <label><div>This enables authors to import.</div>
+                        <h3 id="innertitle">Allow authors/editors to import</h3>
+                        <label><div>It helps authors/editors can import using importer.</div>
 			<div>It does not support users.</div></label></td><td>
 
 <!--<label><input type='checkbox' name='enable_plugin_access_for_author' value='enable_plugin_access_for_author' <?php echo $skinnyData['enable_plugin_access_for_author']; ?> /> Allow authors to import </label>-->

@@ -71,8 +71,9 @@ $impCE = new WPImporter_includes_helper();
                                 <tr>
                                  <div id='showmappingtemplate' style='float:left;padding-left:10px;'> 
                                   <select disabled/>
-                               <option value ='select template' > select template </option>
+	                               <option value ='select template' > select template </option>
                                    </select>
+				 <img src="<?php echo WP_CONTENT_URL; ?>/plugins/<?php echo WP_CONST_ULTIMATE_CSV_IMP_SLUG; ?>/images/pro_icon.gif" title="PRO Feature" />
                                    </div>
                                 <!-- code ends here -->
                                 </div>

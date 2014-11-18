@@ -109,6 +109,7 @@ if ($_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['isplugin_avail'] != 'not_avail' 
                                   <select disabled/>
                                <option value ='select template' > select template </option>
                                    </select>
+				<img src="<?php echo WP_CONTENT_URL; ?>/plugins/<?php echo WP_CONST_ULTIMATE_CSV_IMP_SLUG; ?>/images/pro_icon.gif" title="PRO Feature" />
                                    </div>
                                 <!-- code ends here -->
                                 </div>

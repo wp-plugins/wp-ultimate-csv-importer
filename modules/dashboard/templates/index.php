@@ -79,8 +79,8 @@ if(isset($_REQUEST['msg']) && $_REQUEST['msg'] == 'filenotfound'){
 <?php if(isset($_REQUEST['errormsg'])){
 ?>
 <script type="text/javascript">
-        showMapMessages('error' , "<?php echo $_REQUEST['errormsg']; ?>")
+        showMapMessages('error' , "<?php echo $_REQUEST['errormsg']; ?>");
 </script>
-<?
+<?php
         }
 ?>

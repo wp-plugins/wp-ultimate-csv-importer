@@ -1,9 +1,6 @@
 jQuery( document ).ready(function() {
-var get_module = document.getElementById('checkmodule').value;
-if(get_module == 'dashboard') {
-	pieStats();
-	lineStats();
-}
+pieStats();
+lineStats();
 });
 function pieStats()
 {
