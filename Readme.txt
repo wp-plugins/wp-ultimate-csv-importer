@@ -1,6 +1,6 @@
 === WP Ultimate CSV Importer Plugin ===
 Contributors: smackcoders
-Donate link: http://www.smackcoders.com/donate.html
+Donate link: http://www.smackcoders.com/store/donate.html
 Tags: batch, csv, excel, import, spreadsheet, autoblog, Autoblogger, csvimporter, data, dataimport, importer, wpcsvimporter, wpimporter, acf, auto blog, csv import, csv to post, data import, Easy CSV Importer, eci, import plugin, admin, user, users, Advanced CSV Import, Advanced CSV Importer, affiliate, amazon, author, automatic, blog, buddypress, bulk, bulk edit, bulk editor, categories, comments, content, csv file, csv format, csv importer, custom post, e-commerce, free, images, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, video, eshop, woocommerce, wordpress, xml, youtube, export
 Requires at least: 3.9
 Tested up to: 4.0
@@ -110,10 +110,9 @@ This will solve your issue or get support from hosting if you dint have sufficie
 * wp ecommerce Products CSV Importer with WP e-Commerce Custom Fields 
 * Categories & tags Import with Category icons plugin support
 * Custom Taxonomy import
-* [Get Complete List of supported 3rd party plugins here](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
 
-
-[Read More about Pro>>](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html) or [Test Drive Our Live Demo](http://demo.smackcoders.com/demowpthree/wp-admin/admin.php?page=wp-ultimate-csv-importer-pro/index.php&__module=dashboard)
+[Get Complete List of supported 3rd party plugins here](https://www.smackcoders.com/store/wp-ultimate-csv-importer-pro.html) or 
+[Test Drive Our Live Demo](http://demo.smackcoders.com/demowpthree/wp-admin/admin.php?page=wp-ultimate-csv-importer-pro/index.php&__module=dashboard)
 
 = Imp. Notes =
 * All CSV files should be should be strictly UTF-8 CSV format. Now this can be handled by plugin.
@@ -137,12 +136,12 @@ Need More Help, Cool. Browse Below Links
 * [Wiki and Documentation](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer)
 * [Tutorials, Guides, Blog News and Updates](http://blog.smackcoders.com/category/free-wordpress-plugins/wordpress-ultimate-csv-importer-plugin/)
 * [Video Walkthrough](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Videos)
-* [Get the Sample CSV Files Here](http://blog.smackcoders.com/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html)
-* [Download CSV Format Cheat Sheets Here](http://blog.smackcoders.com/how-to-make-one-click-easy-csv-import-in-wordpress-free-cheat-sheet-downloads.html)
+* [Get the Sample CSV Files Here](https://www.smackcoders.com/blog/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html)
+* [Download CSV Format Cheat Sheets Here](https://www.smackcoders.com/blog/csv-import-cheat-sheets-2014.html)
 
 == Installation ==
 
-* [Step By Step Installation Wiki with Snaps](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Free_Version_1.1.1_Installation_and_Configuration)
+* [Step By Step Installation Wiki with Snaps](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Free_Installation_and_Configuration)
 
 
 == Screenshots ==
