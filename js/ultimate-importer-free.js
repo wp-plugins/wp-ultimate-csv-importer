@@ -374,26 +374,26 @@ function import_csv()
             if (array[j] == 'post_title') {
                 val1 = 'On';
             }
-            if (array[j] == 'post_content') {
+         /*   if (array[j] == 'post_content') {
                 val2 = 'On';
-            }
+            } */
             if (post_status_msg == 'Off') {
                 if (array[j] == 'post_status')
                     post_status_msg = 'On';
             }
         }
-        if (importer != 'custompost' && val1 == 'On' && val2 == 'On' && post_status_msg == 'On') {
+        if (importer != 'custompost' && val1 == 'On' && post_status_msg == 'On') {
 		return true;
         }
-	else if (importer == 'custompost' && val1 == 'On' && val2 == 'On' && post_status_msg == 'On' && post_type=='On') {
+	else if (importer == 'custompost' && val1 == 'On'  && post_status_msg == 'On' && post_type=='On') {
                 return true;
         }
         else {
             error_msg = '';
             if (val1 == 'Off')
-                error_msg += " post_title,";
-            if (val2 == 'Off')
-                error_msg += " post_content,";
+                error_msg += " post_title";
+          /*  if (val2 == 'Off')
+                error_msg += " post_content,"; */
 	    if(importer == 'custompost') {
 	            if (SelectedIndex == 'select')
         	        error_msg += " post_type,";
@@ -968,9 +968,9 @@ function showsettingsoption(id) {
         for(i=1;i<=9;i++) {
                 if(parseInt(id) == parseInt(i)) {
                         if(parseInt(i) == 8) {
-                                document.getElementById('sidebar').style.height = '1149px';
-                                document.getElementById('contentbar').style.height = '1149px';
-                                document.getElementById('settingsholder').style.height = '1150px';
+                                document.getElementById('sidebar').style.height = '1189px';
+                                document.getElementById('contentbar').style.height = '1189px';
+                                document.getElementById('settingsholder').style.height = '1190px';
                         } else if(parseInt(i) == 9) {
                                 document.getElementById('sidebar').style.height = '665px';
                                 document.getElementById('contentbar').style.height = '665px';

@@ -46,17 +46,23 @@ $eshopObj->isplugin();
 	<td>
 	<h3>CSV Import Options</h3>
 	<div id='sec-one' <?php if($_REQUEST['step']!= 'uploadfile') {?> style='display:none;' <?php } ?>>
-	<?php if(is_dir($impCE->getUploadDirectory('default'))){ ?>
-		<input type='hidden' id='is_uploadfound' name='is_uploadfound' value='found' />
+	<?php if(is_dir($impCE->getUploadDirectory('default'))){ 
+                if (!is_writable($impCE->getUploadDirectory('default'))) {
+                        if (!chmod($impCE->getUploadDirectory('default'), 0777)) { ?>
+                                <input type='hidden' id='is_uploadfound' name='is_uploadfound' value='notfound' /> <?php
+                        }
+                } else { ?>
+                        <input type='hidden' id='is_uploadfound' name='is_uploadfound' value='found' />
+                <?php }?>
 	<?php } else { ?>
 		<input type='hidden' id='is_uploadfound' name='is_uploadfound' value='notfound' />
 	<?php } ?>
 	<div class="warning" id="warning" name="warning" style="display:none;margin: 4% 0 4% 22%;"></div>
+	<div align=center>
+	<div id="noPlugin" class="warnings" style="display:none"></div>
+	</div>
 	<form action='<?php echo admin_url().'admin.php?page='.WP_CONST_ULTIMATE_CSV_IMP_SLUG.'/index.php&__module='.$_REQUEST['__module'].'&step=mapping_settings'?>' id='browsefile' method='post' name='browsefile' enctype="multipart/form-data">
 	<div class="importfile" align='center'>
-           <div align=center>
-        <div id="noPlugin" class="warnings" style="display:none"></div>
-        </div>
         <?php
         if ($_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['isplugin_avail'] == 'not_avail') {
         ?>

@@ -44,8 +44,14 @@ $impCE = new WPImporter_includes_helper();
 	<td>
 	<h3>CSV Import Options</h3>
 	<div id='sec-one' <?php if($_REQUEST['step']!= 'uploadfile') {?> style='display:none;' <?php } ?>>
-	<?php if(is_dir($impCE->getUploadDirectory('default'))){ ?>
-		<input type='hidden' id='is_uploadfound' name='is_uploadfound' value='found' />
+	<?php if(is_dir($impCE->getUploadDirectory('default'))) { 
+		if (!is_writable($impCE->getUploadDirectory('default'))) {
+			if (!chmod($impCE->getUploadDirectory('default'), 0777)) { ?>
+				<input type='hidden' id='is_uploadfound' name='is_uploadfound' value='notfound' /> <?php
+			}
+		} else { ?>
+			<input type='hidden' id='is_uploadfound' name='is_uploadfound' value='found' />
+		<?php }?>
 	<?php } else { ?>
 		<input type='hidden' id='is_uploadfound' name='is_uploadfound' value='notfound' />
 	<?php } ?>

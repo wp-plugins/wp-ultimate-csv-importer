@@ -1,11 +1,11 @@
 === WP Ultimate CSV Importer Plugin ===
 Contributors: smackcoders
-Donate link: http://www.smackcoders.com/store/donate.html
-Tags: batch, csv, excel, import, spreadsheet, autoblog, Autoblogger, csvimporter, data, dataimport, importer, wpcsvimporter, wpimporter, acf, auto blog, csv import, csv to post, data import, Easy CSV Importer, eci, import plugin, admin, user, users, Advanced CSV Import, Advanced CSV Importer, affiliate, amazon, author, automatic, blog, buddypress, bulk, bulk edit, bulk editor, categories, comments, content, csv file, csv format, csv importer, custom post, e-commerce, free, images, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, video, eshop, woocommerce, wordpress, xml, youtube, export
+Donate link: http://www.smackcoders.com/donate.html
+Tags: batch, csv, excel, import, spreadsheet, autoblog, Autoblogger, csvimporter, data, dataimport, importer, wpcsvimporter, wpimporter, acf, auto blog, csv import, csv to post, data import, Easy CSV Importer, eci, import plugin, admin, user, users, Advanced CSV Import, Advanced CSV Importer, affiliate, amazon, author, automatic, blog, bulk, bulk edit, bulk editor, categories, comments, content, csv file, csv format, csv importer, custom post, e-commerce, free, images, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, video, eshop, woocommerce, wordpress, xml, youtube, export
 Requires at least: 3.9
-Tested up to: 4.0
-Stable tag: 3.6.72
-Version: 3.6.72
+Tested up to: 4.1
+Stable tag: 3.6.73
+Version: 3.6.73
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 
@@ -15,7 +15,7 @@ Advanced CSV Importer plugin to import/export posts, pages, eshop products, cust
 
 == Description ==
 
-** Now version 3.6.7 (3.6.72 Debug enable/disable options in settings) with complete export features with advanced filters was only available in pro edition. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
+** Now version 3.6.73 available with more features. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
 
 WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer With Ultimate User Friendly Features. It is much easy now even for newbies to import any csv file as any wordpress post type and associated fields by simple mapping feature. Now import any CSV file as thousands of post, page and custom post types. This is admin side free plugin helps you in bulk edit, create and import posts type for your blog or site. 
 
@@ -38,12 +38,12 @@ WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer
 * Scheduled Publishing
 * Duplicate Title and content handling
 * Multi Lingual import (CSV format must be UTF-8 without BOM)
-* Mutisite and Buddypress also supported now
+* Mutisite also supported now
 * Compatible to wordpress themes
 * Better alternative for xml
 * Post Format option added
 * Page template attribute feature
-* EShop Proucts import (included from V3.6.3)
+* EShop Products import (included from V3.6.3)
 = Power Import Features to Control your csv import =
 * Post title, content and even excerpt 
 * Text, WYSIWYG/HTML, in line CSS in post content
@@ -110,9 +110,10 @@ This will solve your issue or get support from hosting if you dint have sufficie
 * wp ecommerce Products CSV Importer with WP e-Commerce Custom Fields 
 * Categories & tags Import with Category icons plugin support
 * Custom Taxonomy import
+* [Get Complete List of supported 3rd party plugins here](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
 
-[Get Complete List of supported 3rd party plugins here](https://www.smackcoders.com/store/wp-ultimate-csv-importer-pro.html) or 
-[Test Drive Our Live Demo](http://demo.smackcoders.com/demowpthree/wp-admin/admin.php?page=wp-ultimate-csv-importer-pro/index.php&__module=dashboard)
+
+[Read More about Pro>>](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html) or [Test Drive Our Live Demo](http://demo.smackcoders.com/demowpthree/wp-admin/admin.php?page=wp-ultimate-csv-importer-pro/index.php&__module=dashboard)
 
 = Imp. Notes =
 * All CSV files should be should be strictly UTF-8 CSV format. Now this can be handled by plugin.
@@ -136,12 +137,12 @@ Need More Help, Cool. Browse Below Links
 * [Wiki and Documentation](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer)
 * [Tutorials, Guides, Blog News and Updates](http://blog.smackcoders.com/category/free-wordpress-plugins/wordpress-ultimate-csv-importer-plugin/)
 * [Video Walkthrough](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Videos)
-* [Get the Sample CSV Files Here](https://www.smackcoders.com/blog/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html)
-* [Download CSV Format Cheat Sheets Here](https://www.smackcoders.com/blog/csv-import-cheat-sheets-2014.html)
+* [Get the Sample CSV Files Here](http://blog.smackcoders.com/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html)
+* [Download CSV Format Cheat Sheets Here](http://blog.smackcoders.com/how-to-make-one-click-easy-csv-import-in-wordpress-free-cheat-sheet-downloads.html)
 
 == Installation ==
 
-* [Step By Step Installation Wiki with Snaps](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Free_Installation_and_Configuration)
+* [Step By Step Installation Wiki with Snaps](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Free_Version_1.1.1_Installation_and_Configuration)
 
 
 == Screenshots ==
@@ -175,6 +176,16 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 
 == Changelog ==
+
+= 3.6.73 =
+* Added: WordPress 4.0 compatibility checked.
+* Added: https format support for all wp instances.
+* Added: Warning to guide user to create uploads directory with writeable permissions.
+* Fixed: Image handling issues in featured image.
+* Fixed: Multisite compatible issue.
+* Removed: Post Content field mandatory option.
+* Removed: All console warnings.
+* Improved: Details added in security and performance tab under settings module. 
 
 = 3.6.72 =
 * Added: Debug mode enable/disable options.
@@ -376,6 +387,9 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 
 == Upgrade Notice ==
+
+= 3.6.73 =
+* Upgrade now for WordPress 4.0 compatibility and minor bug fixes.
 
 = 3.6.72 =
 * Upgrade to enable/disable debug mode in settings. 

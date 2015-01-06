@@ -517,7 +517,9 @@ global $wpdb; ?>
                         </table>
                         <h3 id="innertitle" colspan="2" >Required Loaders and Extentions:</h3>
                         <table class="table table-striped">
-                        <?php $loaders_extensions = get_loaded_extensions();?>
+                        <?php $loaders_extensions = get_loaded_extensions();
+                              $mod_security = apache_get_modules();
+                       ?>
                         <tr><td>IonCube Loader </td><td><?php if(in_array('ionCube Loader', $loaders_extensions)) {
                                         echo '<label style="color:green;">Yes</label>';
                                 } else {
@@ -533,6 +535,25 @@ global $wpdb; ?>
                                 } else {
                                         echo '<label style="color:red;">No</label>';
                                 } ?></td><td></td></tr>
+                         <tr><td>Mod Security </td><td><?php if(in_array('mod_security.c', $mod_security)) {
+                                        echo '<label style="color:green;">Yes</label>';
+                                } else {
+                                        echo '<label style="color:red;">No</label>';
+                                } ?></td><td>
+                                        <div style='float:left'>
+                                                <a href="#" class="tooltip">
+                                                        <img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR; ?>images/help.png" style="margin-left:-74px;"/>
+                                                        <span style="margin-left:20px;margin-top:-10px;width:150px;">
+                                                                <img class="callout" src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR; ?>images/callout.gif"/>
+                                                                <strong>htaccess settings:</strong>
+                                                                <p>Locate the .htaccess file in Apache web root,if not create a new file named .htaccess and add the following:</p>
+<b><?php echo '<IfModule mod_security.c>';?> SecFilterEngine Off SecFilterScanPOST Off <?php echo ' </IfModule>';?></b>
+
+                                                        </span>
+                                                </a>
+                                        </div>
+                                    </td></tr>
+
                         </table>
                         <h3 id="innertitle" colspan="2" >Debug Information:</h3>
                         <table class="table table-striped">

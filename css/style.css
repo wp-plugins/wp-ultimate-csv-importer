@@ -652,4 +652,6 @@ margin-top: 10px;
 height:315px !important;
 }
 /*End off summary*/
-
+#noPlugin {
+margin: 5% 12%;
+}
