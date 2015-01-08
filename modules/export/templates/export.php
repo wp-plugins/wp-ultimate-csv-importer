@@ -6,6 +6,9 @@
  * You can contact Smackcoders at email address info@smackcoders.com.
  *******************************************************************************************/
 
+if(!isset($_SERVER['HTTP_REFERER'])) {
+        die('Your requested url were wrong! Please contact your admin.');
+}
 require_once('../../../../../../wp-load.php');
 $ExportObj = new WPCSVProExportData();
 #print('<pre>'); print_r($_POST); //die;

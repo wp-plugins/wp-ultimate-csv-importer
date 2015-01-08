@@ -34,7 +34,8 @@
  * Notices must display the words
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
-
+if(!defined('ABSPATH'))
+        die('Your requested url were wrong! Please contact your admin.');
 global $wpdb;
 $all_arr = array();
 $all_arr = $_REQUEST['postdata'];
