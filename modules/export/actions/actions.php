@@ -27,6 +27,9 @@ class ExportActions extends SkinnyActions {
 				$helper->generateanddownloadcsv($type, $filename);
 			}
 		}
+                $nonce = '';
+                $nonce = wp_create_nonce('my-nonce');
+                $data['wp_nonce'] = $nonce;
 		return $data;
 	}
 

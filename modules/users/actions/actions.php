@@ -174,12 +174,14 @@ class UsersActions extends SkinnyActions {
 		if(!empty($getUserId)){
 			$user_id = $getUserId[0]->ID;
 		}
-		if($user_id){
+		if(is_array($getUserId) && !empty($getUserId)){
 			$this->dupPostCount = $this->dupPostCount+1;
 			$this->detailedLog[$currentLimit][] = "<b>Username</b> - " . $UserLogin . " - already exists(skipped), <b>E-mail</b> - " . $UserEmail . " - found as duplicate.";
 		}
 		else{
 			$user_id = wp_insert_user( $data_array );
+			if(is_wp_error($user_id))
+				return false;
 			$user = new WP_User( $user_id );
 			if ( !empty( $user->roles ) && is_array( $user->roles ) ) {
 				foreach ( $user->roles as $role )

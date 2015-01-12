@@ -8,7 +8,7 @@
 ?>
 <?php 
 $siteurl = get_option('siteurl');
-
+$noncedata = $skinnyData['wp_nonce'];
 ?>
 
  <div class="accordion" id="accordion2" style = 'width:98%;'>
@@ -36,6 +36,7 @@ $siteurl = get_option('siteurl');
 	<input type='text' class='form-control' name='postdatefrom' style='cursor:default;width:25%;' readonly id='postdatefrom' value='' />
         <label id='periodendto'><b> End To </b></label>
         <input type='text' class='form-control' name='postdateto' style='cursor:default;width:25%;' readonly id='postdateto' value='' />
+	<input type='hidden' name='nonce' id='nonce' value='<?php if(isset($noncedata)) { echo $noncedata; }?>'>
 	</div>
 	</td>
         </tr>

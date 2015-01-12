@@ -566,13 +566,13 @@ function importRecordsbySettings(siteurl)
                 return false;
         }
 	if(get_log == '<p style="margin:15px;color:red;">NO LOGS YET NOW.</p>'){
-		document.getElementById('log').innerHTML = '<p style="margin:15px;color:red;">Your Import Is In Progress...</p>';
+		document.getElementById('log').innerHTML = '<p style="margin-left:10px;color:red;">Your Import Is In Progress...</p>';
 		document.getElementById('startbutton').disabled = true;
 	}
 	document.getElementById('ajaxloader').style.display="";
         var tempCount = parseInt(tmpCnt);
         var totalCount = parseInt(tot_no_of_records);
-        if(tempCount>totalCount){
+        if(tempCount >= totalCount){
 		document.getElementById('ajaxloader').style.display="none";
 		document.getElementById('startbutton').style.display="none";
 		document.getElementById('importagain').style.display="";
@@ -605,7 +605,11 @@ function importRecordsbySettings(siteurl)
 					document.getElementById('tmpcount').value = parseInt(tmpCnt)+parseInt(importlimit);
 					setTimeout(function(){importRecordsbySettings()},0);
 				} else {
-					document.getElementById('log').innerHTML += "Import process has been terminated.</br>";
+					document.getElementById('log').innerHTML += "<p style='margin-left:10px;color:red;'>Import process has been terminated.</p>";
+                                        document.getElementById('ajaxloader').style.display="none";
+                                        document.getElementById('startbutton').style.display = "none";
+                                        document.getElementById('terminatenow').style.display = "none";
+                                        document.getElementById('continuebutton').style.display = "";
 					return false;
 				}
 	                }else{
@@ -628,6 +632,34 @@ function terminateProcess(){
 	document.getElementById('terminateaction').value = 'terminate';
 }
 
+function continueprocess() {
+    var tot_no_of_records = document.getElementById('checktotal').value;
+    var tmpCnt = document.getElementById('tmpcount').value;
+    var currentlimit = document.getElementById('currentlimit').value;
+            var importlimit = document.getElementById('importlimit').value;
+      //  var get_requested_count = importlimit;
+        var tot_no_of_records = document.getElementById('checktotal').value;
+
+    if (parseInt(tmpCnt) > parseInt(tot_no_of_records)) {
+        document.getElementById('terminatenow').style.display = "none";
+    } else {
+        document.getElementById('terminatenow').style.display = "";
+    }
+    document.getElementById('log').innerHTML += "<div style='margin-left:10px;color:green;'> Import process has been continued.</div></br>";
+    document.getElementById('ajaxloader').style.display = "";
+    document.getElementById('startbutton').style.display = "";
+    document.getElementById('continuebutton').style.display = "none";
+    //document.getElementById('dwnld_log_link').style.display = "none";
+    document.getElementById('terminateaction').value = 'continue';
+                              //          document.getElementById('currentlimit').value = currentlimit;
+     //currentlimit = parseInt(currentlimit)+parseInt(importlimit);
+       //                                 console.log('impLmt: '+importlimit+'totRecds: '+tot_no_of_records);
+         //                               document.getElementById('tmpcount').value = parseInt(tmpCnt)+parseInt(importlimit);
+
+    setTimeout(function () {
+        importRecordsbySettings()
+    }, 0);
+}
 
 // Enable/Disable WP-e-Commerce Custom Fields
 function enablewpcustomfield(val){

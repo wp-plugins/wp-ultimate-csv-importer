@@ -221,7 +221,7 @@ if ($totRecords <= ($_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['insPostCount'] +
 	unset($_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['captureId']);
 }
 if ($limit == $totRecords) {
-	echo "<br><div style='margin-left:3px;'>Import successfully completed!.</div>";
+	echo "<br><div style='margin-left:10px; color:green;'>Import successfully completed!.</div>";
 }
 /*if ($curr_action == 'users') {
 	echo "<div style='margin-left:7px;'>";

@@ -10,6 +10,17 @@ if(!isset($_SERVER['HTTP_REFERER'])) {
         die('Your requested url were wrong! Please contact your admin.');
 }
 require_once('../../../../../../wp-load.php');
+
+$nonce = $_POST['nonce'];
+//echo '<pre>'; print_r($sitedomain); echo '</pre>';
+if ( ! wp_verify_nonce( $nonce, 'my-nonce' ) ) {
+    // This nonce is not valid.
+    die( 'Security check: Your requested URL is wrong! Please, Contact your administrator.' );
+} else {
+    // The nonce was valid.
+    // Do stuff here.
+}
+
 $ExportObj = new WPCSVProExportData();
 #print('<pre>'); print_r($_POST); //die;
 $ExportObj->executeIndex($_POST);

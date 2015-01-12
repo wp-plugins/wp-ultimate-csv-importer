@@ -4,8 +4,8 @@ Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, csv, excel, import, spreadsheet, autoblog, Autoblogger, csvimporter, data, dataimport, importer, wpcsvimporter, wpimporter, acf, auto blog, csv import, csv to post, data import, Easy CSV Importer, eci, import plugin, admin, user, users, Advanced CSV Import, Advanced CSV Importer, affiliate, amazon, author, automatic, blog, bulk, bulk edit, bulk editor, categories, comments, content, csv file, csv format, csv importer, custom post, e-commerce, free, images, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, video, eshop, woocommerce, wordpress, xml, youtube, export
 Requires at least: 3.9
 Tested up to: 4.1
-Stable tag: 3.6.74
-Version: 3.6.74
+Stable tag: 3.6.75
+Version: 3.6.75
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 
@@ -15,7 +15,7 @@ Advanced CSV Importer plugin to import/export posts, pages, eshop products, cust
 
 == Description ==
 
-** Now version 3.6.74 available with more features. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
+** Now version 3.6.75 available with hot security fix. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
 
 WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer With Ultimate User Friendly Features. It is much easy now even for newbies to import any csv file as any wordpress post type and associated fields by simple mapping feature. Now import any CSV file as thousands of post, page and custom post types. This is admin side free plugin helps you in bulk edit, create and import posts type for your blog or site. 
 
@@ -24,6 +24,7 @@ WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer
 <p>https://www.youtube.com/watch?v=Guv5zR7fgW0&list=PL2k3Ck1bFtbQqFhOK7g08kxENI4qQkmC</p>
 
 = Highlights =
+* New Terminate & Continue feature is added.
 * Complete export feature with improved filters
 * Import external/internal images in line to any posts
 * Upload images related to each csv 
@@ -176,6 +177,11 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 
 == Changelog ==
+
+= 3.6.75 =
+* Added: Terminate & Continue option in import section.
+* Improved: Log section. Issue fixed in Web View & Admin View.
+* Fixed: Secrity fix for export module.
 
 = 3.6.74 =
 * Added: Secrity fix.
@@ -390,6 +396,9 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 
 == Upgrade Notice ==
+
+= 3.6.75 =
+* Upgrade now for improved experience.
 
 = 3.6.74 =
 * Upgrade now for secrity fix.

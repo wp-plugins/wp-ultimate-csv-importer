@@ -539,6 +539,7 @@ if ($_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['isplugin_avail'] != 'not_avail' 
 		<input id="startbutton" class="btn btn-primary" type="button" value="Import Now" style="color: #ffffff;background:#2E9AFE;" onclick="importRecordsbySettings('<?php echo site_url(); ?>');" >
 		<input id="terminatenow" class="btn btn-danger btn-sm" type="button" value="Terminate Now" style="display:none;" onclick="terminateProcess();" />
 		<input class="btn btn-warning" type="button" value="Reload" id="importagain" style="display:none" onclick="import_again();" />
+                <input id="continuebutton" class="btn btn-lg btn-success" type="button" value="Continue" style="display:none;color: #ffffff;" onclick="continueprocess();">
 		<!--<input id="continuebutton" class="button" type="button" value="Continue old search" style="color: #ffffff;background:#2E9AFE;">-->
 		<div id="ajaxloader" style="display:none"><img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR; ?>images/ajax-loader.gif"> Processing...</div>
            
