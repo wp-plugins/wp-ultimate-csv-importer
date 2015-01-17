@@ -14,6 +14,9 @@ License: GPLv2 or later
 Advanced CSV Importer plugin to import/export posts, pages, eshop products, custom posts with custom fields with few simple clicks 
 
 == Description ==
+
+Wordpress Ultimate CSV Importer Pro V4.0 Beta is available as live demo for users to test drive all new features, improvements and changes from http://demo.smackcoders.com/csv4beta. Users can get product manual and sample csv files etc., from - https://www.smackcoders.com/blog/wordpress-ultimate-csv-importer-pro-v4-0-beta-demo-is-available.html
+
 ** Now stable version 3.6.75 available to download with hot security fix. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
 
 WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer With Ultimate User Friendly Features. It is much easy now even for newbies to import any csv file as any wordpress post type and associated fields by simple mapping feature. Now import any CSV file as thousands of post, page and custom post types. This is admin side free plugin helps you in bulk edit, create and import posts type for your blog or site. 
