@@ -633,6 +633,34 @@ class WPImporter_includes_helper {
 						$post_format = 'post-format-gallery';
 						break;
 					default :
+						if($data_array['post_format']=='post-format-aside'){
+					  		$post_format='post-format-aside';
+					  		break;   
+						 }	
+					 	if($data_array['post_format']=='post-format-image'){
+					  		$post_format='post-format-image'; 
+					  		break;
+					 	}
+					 	if($data_array['post_format']=='post-format-video'){
+					 		$post_format='post-format-video'; 
+					 		break;
+					 	}
+					 	if($data_array['post_format']=='post-format-audio'){
+					 		$post_format='post-format-audio'; 
+					 		break;
+					 	}
+					 	if($data_array['post_format']=='post-format-quote'){
+					 		$post_format='post-format-quote'; 
+					 		break;
+					 	}
+					 	if($data_array['post_format']=='post-format-link'){
+					 		$post_format='post-format-link'; 
+					 		break;
+					 	}
+					 	if($data_array['post_format']=='post-format-gallery'){
+					 		$post_format='post-format-gallery'; 
+					 		break;
+					 	}
 						$post_format = 0;
 
 				}

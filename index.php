@@ -2,7 +2,7 @@
 /******************************
  * Plugin Name: WP Ultimate CSV Importer
  * Description: A plugin that helps to import the data's from a CSV file.
- * Version: 3.6.75
+ * Version: 3.6.76
  * Author: smackcoders.com
  * Plugin URI: http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html
  * Author URI: http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html
@@ -75,7 +75,7 @@ define('WP_CONST_ULTIMATE_CSV_IMP_URL', 'http://www.smackcoders.com/wp-ultimate-
 define('WP_CONST_ULTIMATE_CSV_IMP_NAME', 'WP Ultimate CSV Importer');
 define('WP_CONST_ULTIMATE_CSV_IMP_SLUG', 'wp-ultimate-csv-importer');
 define('WP_CONST_ULTIMATE_CSV_IMP_SETTINGS', 'WP Ultimate CSV Importer');
-define('WP_CONST_ULTIMATE_CSV_IMP_VERSION', '3.6.75');
+define('WP_CONST_ULTIMATE_CSV_IMP_VERSION', '3.6.76');
 define('WP_CONST_ULTIMATE_CSV_IMP_DIR', WP_PLUGIN_URL . '/' . WP_CONST_ULTIMATE_CSV_IMP_SLUG . '/');
 define('WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY', plugin_dir_path(__FILE__));
 define('WP_CSVIMP_PLUGIN_BASE', WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY);
@@ -108,15 +108,18 @@ function action_csv_imp_admin_menu() {
 		}
 	}
 	else {
-		if ( current_user_can( 'author' ) || current_user_can( 'editor' ) ) {
+		if ( current_user_can( 'administrator' ) ) {
+                        add_menu_page(WP_CONST_ULTIMATE_CSV_IMP_SETTINGS, WP_CONST_ULTIMATE_CSV_IMP_NAME, 'manage_options', __FILE__, array('WPImporter_includes_helper', 'output_fd_page'), WP_CONST_ULTIMATE_CSV_IMP_DIR . "images/icon.png");
+                }
+		else if ( current_user_can( 'author' ) || current_user_can( 'editor' ) ) {
 			$HelperObj = new WPImporter_includes_helper();
 			$settings = $HelperObj->getSettings();
 			if(isset($settings['enable_plugin_access_for_author']) && $settings['enable_plugin_access_for_author'] == 'enable_plugin_access_for_author') {
 				add_menu_page(WP_CONST_ULTIMATE_CSV_IMP_SETTINGS, WP_CONST_ULTIMATE_CSV_IMP_NAME, '2', __FILE__, array('WPImporter_includes_helper', 'output_fd_page'), WP_CONST_ULTIMATE_CSV_IMP_DIR . "images/icon.png");
 			}
-		} else if ( current_user_can( 'administrator' ) ) {
+		} /*else if ( current_user_can( 'administrator' ) ) {
 			add_menu_page(WP_CONST_ULTIMATE_CSV_IMP_SETTINGS, WP_CONST_ULTIMATE_CSV_IMP_NAME, 'manage_options', __FILE__, array('WPImporter_includes_helper', 'output_fd_page'), WP_CONST_ULTIMATE_CSV_IMP_DIR . "images/icon.png");
-		}
+		}*/
 	}
 }
 add_action("admin_menu" , "action_csv_imp_admin_menu"); 

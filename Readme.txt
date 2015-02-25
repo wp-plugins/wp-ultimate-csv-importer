@@ -4,8 +4,8 @@ Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, csv, excel, import, spreadsheet, autoblog, Autoblogger, csvimporter, data, dataimport, importer, wpcsvimporter, wpimporter, acf, auto blog, csv import, csv to post, data import, Easy CSV Importer, eci, import plugin, admin, user, users, Advanced CSV Import, Advanced CSV Importer, affiliate, amazon, author, automatic, blog, bulk, bulk edit, bulk editor, categories, comments, content, csv file, csv format, csv importer, custom post, e-commerce, free, images, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, video, eshop, woocommerce, wordpress, xml, youtube, export
 Requires at least: 3.9
 Tested up to: 4.1
-Stable tag: 3.6.75
-Version: 3.6.75
+Stable tag: 3.6.76	
+Version: 3.6.76
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 
@@ -15,9 +15,24 @@ Advanced CSV Importer plugin to import/export posts, pages, eshop products, cust
 
 == Description ==
 
-Wordpress Ultimate CSV Importer Pro V4.0 Beta is available as live demo for users to test drive all new features, improvements and changes from http://demo.smackcoders.com/csv4beta. Users can get product manual and sample csv files etc., from - https://www.smackcoders.com/blog/wordpress-ultimate-csv-importer-pro-v4-0-beta-demo-is-available.html
+Wordpress Ultimate CSV Importer Pro V4.0 is available as live demo for users to test drive all new features, improvements and changes from http://www.wpultimatecsvimporter.com/. Users can get product manual and sample csv files etc., from - http://www.wpultimatecsvimporter.com/
 
-** Now stable version 3.6.75 available to download with hot security fix. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
+** New Features of Wordpress Ultimate CSV Importer Pro V4.0 **
+
+* Added common module for all features.
+* Static/Dynamic/Formula content feature.
+* Advanced image handling with content and featured image short codes.
+* Added update feature from File Manager.
+* Managing logs with anytime downloadable logs.
+* Auto delimiter detection.
+* Nested category & Nested Taxonomies with Yoast SEO support.
+* Added Ajax save in Setting module.
+* Summarize view,Security fix and Migrations are added.
+* ACF Pro support for all available fields.
+* Mapping template feature with edit option.
+* Auto mapping and specific column update in Update feature.
+
+** Now stable version 3.6.76 available to download with hot security fix. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
 
 WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer With Ultimate User Friendly Features. It is much easy now even for newbies to import any csv file as any wordpress post type and associated fields by simple mapping feature. Now import any CSV file as thousands of post, page and custom post types. This is admin side free plugin helps you in bulk edit, create and import posts type for your blog or site. 
 
@@ -180,13 +195,19 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 == Changelog ==
 
+= 3.6.76 =
+* Improved: Post Format.
+* Fixed: Export eshop data issue.
+* Fixed: Import with image name issue.
+* Fixed: Groups plugin conflict.
+
 = 3.6.75 =
 * Added: Terminate & Continue option in import section.
 * Improved: Log section. Issue fixed in Web View & Admin View.
-* Fixed: Secrity fix for export module.
+* Fixed: Security fix for export module.
 
 = 3.6.74 =
-* Added: Secrity fix.
+* Added: Security fix.
 
 = 3.6.73 =
 * Added: WordPress 4.0 compatibility checked.
@@ -399,11 +420,14 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 == Upgrade Notice ==
 
+= 3.6.76 =
+* Upgrade now for more bug fixes.
+
 = 3.6.75 =
 * Upgrade now for improved experience.
 
 = 3.6.74 =
-* Upgrade now for secrity fix.
+* Upgrade now for security fix.
 
 = 3.6.73 =
 * Upgrade now for WordPress 4.0 compatibility and minor bug fixes.

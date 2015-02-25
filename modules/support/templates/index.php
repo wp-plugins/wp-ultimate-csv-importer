@@ -38,93 +38,35 @@
 $impCE = new WPImporter_includes_helper();
 ?>
 
+<div id="support_con">
 <div style="width:99%;">
-<div class= "contactus" id="contactus">
-<div class="accordion-group" >
-<div class="accordion-heading">
-<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"> Contact Us </a>
-</div>
-<div class="accordion-body in collapse" style="height=292px;">
-<div class="accordion-inner">
-<form action='<?php echo admin_url().'admin.php?page='.WP_CONST_ULTIMATE_CSV_IMP_SLUG.'/index.php&__module='.$_REQUEST['__module'].'&step=sendmail2smackers'?>' id='send_mail' method='post' name='send_mail' onsubmit="return sendemail2smackers();" >
-<table class="table table-condensed">
-<tr>
-<td>First name <span class="mandatory">*</span></td><td><input type="text" id="firstname" placeholder="First name" name="firstname" /></td>
-<td>Last name <span class="mandatory">*</span></td><td><input type="text" id="lastname" placeholder="Last name" name="lastname" />
-<input type="hidden" id="smackmailid" name="smackmailid" value="csv-support@smackcoders.com" />
-</td>
-</tr>
-<tr>
-<td>Related To</td>
-<td colspan=3>
-<select name="subject">
-<option>Support</option>
-<option>Feature Request</option>
-<option>Customization</option>
-</select>
-</td>
-</tr>
-<tr>
-<td>Message <span class="mandatory">*</span></td>
-<td colspan=3>
-<textarea class="form-control" rows="3" name="message" id="message"></textarea>
-</td>
-</tr>
-</table>
-<div style="float:right;padding:10px;"><input class="btn btn-primary" type="submit" name="send_mail" /></div>
-</form>
-</div>
+
+  <div class= "contactus" id="contactus" style="height:480px">
+                        <div class="title">
+                                <h3>Video Walk Through</h3>
+                        </div>
+                           <div id="data" >
+                                <div id="video">
+                                        <iframe width="560" height="315" src="//www.youtube.com/embed/FhTUXE5zk0o?list=PL2k3Ck1bFtbRli9VdJaqwtzTSzzkOrH4j" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                            
+                                <div id="relatedpages" style='position:relative;left:630px;bottom:345px;'>
+                                        <h2 id="doctitle">Smackcoders Support </h2 >
+                                        <p style="line-height:20px;padding-top:20px">Click <a href="https://www.smackcoders.com/blog/category/web-development-news/" target="_blank"> here </a> for Development News </p>
+                                        <p style="line-height:20px">View <a href="http://www.wpultimatecsvimporter.com/" target="_blank">Recent News </a> </p>
+                                        <p style="line-height:20px">Refer <a href="http://www.wpultimatecsvimporter.com/documentation" target="_blank"> Detailed Document </a> </p>
+                                        <p style="line-height:20px">For<a href="https://www.smackcoders.com/blog/csv-importer-a-simple-and-easy-csv-importer-tutorial.html" target="_blank"> Tutorials </a> </p>
+                                        <p style="line-height:20px">For <a href="http://www.youtube.com/user/smackcoders/channels" target="_blank"> Youtube Channel </a> </p>
+                                        <p style="line-height:20px">To <a href="http://www.wpultimatecsvimporter.com/contact-us" target="_blank">Get Support</a></p>
+                                        <p style="line-height:20px">To Know the detail of <a href="https://www.smackcoders.com/store/products-46/wordpress.html" target="_blank"> Other Plugins </a> </p>
+                                        
+                               </div>
+                      </div>
+
+
+      </div>
 </div>
 
-</div>
-</div>
-<div style="float:right;" id="promobox">
-<div class= "promobox">
-<div class="accordion-group" >
-<div class="accordion-heading">
-<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"> Share Your Love </a>
-</div>
-<div class="accordion-body in collapse">
-<div class="accordion-inner">
-<table class="table table-condensed">
-<tr>
-<td>Rate Our Plugin</td>
-<td>
-<a href="http://wordpress.org/support/view/plugin-reviews/wp-ultimate-csv-importer" target="_blank">
-<ul class="stars">
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-</a>
-</ul>
-</td>
-</tr>
-<tr>
-<td>Social Share</td>
-<td>
-<?php $impCE->importer_social_profile_share(); ?>
-</td>
-</tr>
-<tr>
-<td colspan=2><div align="center"><a href="http://www.smackcoders.com/donate.html" target="_blank"><img src="<?php echo WP_CONTENT_URL; ?>/plugins/<?php echo WP_CONST_ULTIMATE_CSV_IMP_SLUG; ?>/images/donatenow.png" width=75 /></a></div></td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="accordion-group" >
-<div class="accordion-body in collapse">
-<div class="accordion-inner" align="center">
-<a href = "http://wordpress.org/plugins/wp-zoho-crm/"  style= "" ><img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR ?>images/zohocrm.jpg" width=110px; height=110px; /> </a> 
-<a href = "http://wordpress.org/plugins/wp-sugar-free/" style= ""><img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR ?>images/sugarcrm.png" width=110px; height=110px;/> </a> 
-<a href = "http://wordpress.org/plugins/wp-tiger/" style= ""><img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR ?>images/tigercrm.png" width=110px;height=110px;/> </a>
-</div>
-</div>
-</div>
-</div>
-</div>
 <!-- Promotion footer for other useful plugins -->
 <div class= "promobox" id="pluginpromo" style="width:99%;">
 <div class="accordion-group" >
@@ -134,9 +76,5 @@ $impCE = new WPImporter_includes_helper();
 </div>
 </div>
 </div>
+-</div>
 </div>
-
-<?php
- /* Put your code here */ 
-
-?>

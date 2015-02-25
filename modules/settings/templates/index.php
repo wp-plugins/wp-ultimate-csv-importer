@@ -102,11 +102,11 @@ global $wpdb; ?>
                         <span id="settingmenu8" >Security and Performance</span>
                         <span id="arrow8" class="list-arrow" style="display:none;" ></span>
                 </li>
-                <li id="9" class="bg-sidebar" onclick="showsettingsoption(this.id);">
-                        <span class="settings-icon"> <img src="<?php echo WP_CONTENT_URL;?>/plugins/<?php echo WP_CONST_ULTIMATE_CSV_IMP_SLUG;?>/images/ldocs24.png" width="24" height="24" /> </span>
+                <!--<li id="9" class="bg-sidebar" onclick="showsettingsoption(this.id);">
+                        <span class="settings-icon"> <img src="/images/ldocs24.png" width="24" height="24" /> </span>
                         <span id="settingmenu9" >Documentation</span>
                         <span id="arrow9" class="list-arrow" style="display:none;" ></span>
-                </li>
+                </li> -->
          </ul>
         </div>
 <div id="contentbar">
