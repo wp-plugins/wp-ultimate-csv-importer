@@ -170,13 +170,16 @@ for ($i = $limit; $i < $count; $i++) {
 }
 
 if ($limit >= $totRecords) {
+	$advancemedia = $_POST['postdata']['advance_media'];
 	$dir = $skinnyObj->getUploadDirectory();
 	$get_inline_imageDir = explode('/', $extracted_image_location);
 	$explodedCount = count($get_inline_imageDir);
 	$inline_image_dirname = $get_inline_imageDir[$explodedCount - 1];
 	$uploadDir = $skinnyObj->getUploadDirectory('inlineimages');
 	$inline_images_dir = $uploadDir . '/smack_inline_images/' . $inline_image_dirname;
-	$skinnyObj->deletefileafterprocesscomplete($inline_images_dir);
+	if($advancemedia == 'true'){
+		$skinnyObj->deletefileafterprocesscomplete($inline_images_dir);
+	}
 	$skinnyObj->deletefileafterprocesscomplete($dir);
 }
 if ($importObj->insPostCount != 0 || $importObj->dupPostCount != 0 || $importObj->updatedPostCount != 0) {

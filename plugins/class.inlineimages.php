@@ -9,7 +9,7 @@ class WPImporter_inlineImages {
 	function importwithInlineImages ($recordID, $currentLimit, $data_array, $impObj, $import_image_method, $imgLoc, $sampleURL) {
 		$helperObj = new WPImporter_includes_helper();
 		$res_array = $this->process_multi_images($data_array, $helperObj, $currentLimit, $impObj, $import_image_method, $imgLoc, $sampleURL);
-		#print_r($res_array); die('am from importwithInlineImages function');
+#		print_r($res_array); die('am from importwithInlineImages function');
 		$data_array['post_content'] = $res_array;
 		$post_id = wp_insert_post($data_array);
 		$impObj->insPostCount++;
@@ -32,10 +32,12 @@ class WPImporter_inlineImages {
 				$get_name=explode('/',$img_path);
 				$count=count($get_name);
 				$img_real_name = $get_name[$count - 1];
-				$inline_img_slug = preg_replace("/[^a-zA-Z0-9._\s]/", "", $data_array['post_title']);
-				$inline_img_slug = preg_replace('/\s/', '-', $inline_img_slug);
+				$inline_img_slug = preg_replace("/\.[^.]*$/", "", $data_array['post_title']);
+				$inline_img_slug = preg_replace(' ', '-', $inline_img_slug);
 				$post_slug_value = strtolower($inline_img_slug);
 				$dir = wp_upload_dir();
+				$inlineimageDir = $dir['basedir'] . '/smack_inline_images';
+				$inlineimageURL = $dir['baseurl'] . '/smack_inline_images';
 				$media_location = $dir ['baseurl'];
 				$get_media_settings = get_option('uploads_use_yearmonth_folders');
 				if ($get_media_settings == 1) {
@@ -46,20 +48,38 @@ class WPImporter_inlineImages {
 					$full_path = $dir ['basedir'];
 					$baseurl = $dir ['baseurl'];
 				}
+				$eventKey = $_POST['postdata']['uploadedFile'];
+
+				$inlineimageDirpath = $inlineimageDir . '/' . $eventKey;
+				$imagelist = scanDirectories($inlineimageDirpath);
+				if(!$imagelist) {
+					echo 'Images not available!'; die;
+				}
+				foreach($imagelist as $imgwithloc) {
+					if(strpos($imgwithloc, $img_real_name))
+						$currentLoc = $imgwithloc;
+				}
+
+				$exploded_currentLoc = explode("$eventKey", $currentLoc);
+				if(!empty($exploded_currentLoc))
+					$inlimg_curr_loc = $exploded_currentLoc[1];
+
+				$inlineimageURL = $inlineimageURL . '/' . $eventKey . $inlimg_curr_loc;
+
 				$inline_img_path = $full_path;
 				#$img_real_name = wp_unique_filename($inline_img_path, $img_real_name, $unique_filename_callback = null);
 				if($import_image_method == 'imagewithextension' && $count == 1 ) {
-					$new_img_path = $imgLoc . '/' . $img_real_name;
-					$inline = $helperObj->get_fimg_from_URL($new_img_path, $inline_img_path, $img_real_name, $post_slug_value, $currentLimit, $impObj);
+#					$new_img_path = $imgLoc . '/' . $img_real_name;
+					$inline = $helperObj->get_fimg_from_URL($inlineimageURL, $inline_img_path, $img_real_name, $post_slug_value, $currentLimit, $impObj);
 				} else {
 					if($sampleURL == null) {
 						$inline = $helperObj->get_fimg_from_URL($img_path, $inline_img_path, $img_real_name, $post_slug_value, $currentLimit, $impObj);
 					} else {
-						$new_img_path = $sampleURL . '/' . $img_real_name;
-						$inline = $helperObj->get_fimg_from_URL($new_img_path, $inline_img_path, $img_real_name, $post_slug_value, $currentLimit, $impObj);
+#						$new_img_path = $sampleURL . '/' . $img_real_name;
+						$inline = $helperObj->get_fimg_from_URL($inlineimageURL, $inline_img_path, $img_real_name, $post_slug_value, $currentLimit, $impObj);
 					}
 				}
-				$inline_filepath = $inline_img_path . "/" . $inline;
+				$inline_filepath = $inline_img_path . "/" . $img_real_name;
 				if (@getimagesize($inline_filepath)) {
 					$img = wp_get_image_editor($inline_filepath);
                                         if (!is_wp_error($img)) {
@@ -75,12 +95,12 @@ class WPImporter_inlineImages {
                                                                 );
                                                 $resize = $img->multi_resize($sizes_array);
                                         }
-					$inline_file ['guid'] = $baseurl . "/" . $inline;
+					$inline_file ['guid'] = $baseurl . "/" . $img_real_name;
 					$inline_file ['post_title'] = $inline;
 					$inline_file ['post_content'] = '';
 					$inline_file ['post_status'] = 'attachment';
 					$wp_upload_dir = wp_upload_dir();
-					$attachment = array('guid' => $inline_file ['guid'], 'post_mime_type' => 'image/jpg', 'post_title' => preg_replace('/\.[^.]+$/', '', @basename($inline_file ['guid'])), 'post_content' => '', 'post_status' => 'inherit');
+					$attachment = array('guid' => $inline_file ['guid'], 'post_mime_type' => 'image/jpg', 'post_title' => preg_replace('/\.[^.]*$/', '', @basename($inline_file ['guid'])), 'post_content' => '', 'post_status' => 'inherit');
 					if ($get_media_settings == 1) {
 						$generate_attachment = $dirname . '/' . $inline;
 					} else {
@@ -144,4 +164,29 @@ class WPImporter_inlineImages {
 			return $tagcontent;
 		}
 	}
+}
+
+function scanDirectories($rootDir, $allData=array()) {
+        // set filenames invisible if you want
+        $invisibleFileNames = array(".", "..", ".htaccess", ".htpasswd");
+        // run through content of root directory
+        if(!is_dir($rootDir))
+                 return false;
+               $dirContent = scandir($rootDir);
+         foreach($dirContent as $key => $content) {
+                // filter all files not accessible
+                $path = $rootDir.'/'.$content;
+                if(!in_array($content, $invisibleFileNames)) {
+                        // if content is file & readable, add to array
+                        if(is_file($path) && is_readable($path)) {
+                                // save file name with path
+                                $allData[] = $path;
+                                // if content is a directory and readable, add path and name
+                        }elseif(is_dir($path) && is_readable($path)) {
+                                // recursive callback to open new directory
+                                $allData = scanDirectories($path, $allData);
+                        }
+                }
+        }
+        return $allData;
 }

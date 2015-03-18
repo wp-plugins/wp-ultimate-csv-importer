@@ -579,9 +579,9 @@ function importRecordsbySettings(siteurl)
                 document.getElementById('terminatenow').style.display = "none";
 		return false;
 	}
-
+	var advancemedia = document.getElementById('advance_media_handling').checked;
 	var postdata = new Array();
-	postdata = {'dupContent':dupContent,'dupTitle':dupTitle,'importlimit':importlimit,'limit':currentlimit,'totRecords':tot_no_of_records,'selectedImporter':importas,'uploadedFile':uploadedFile,'tmpcount':tmpCnt,'importinlineimage':importinlineimage,'inlineimagehandling':imagehandling,'inline_image_location':inline_image_location,}
+	postdata = {'dupContent':dupContent,'dupTitle':dupTitle,'importlimit':importlimit,'limit':currentlimit,'totRecords':tot_no_of_records,'selectedImporter':importas,'uploadedFile':uploadedFile,'tmpcount':tmpCnt,'importinlineimage':importinlineimage,'inlineimagehandling':imagehandling,'inline_image_location':inline_image_location,'advance_media':advancemedia,}
 
         var tmpLoc = document.getElementById('tmpLoc').value;
 	jQuery.ajax({

@@ -222,11 +222,15 @@ if ($_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['isplugin_avail'] != 'not_avail' 
 	<h2><div class="secondformheader">Import Data Configuration</div></h2>
 	<?php
         if(isset($_FILES['inlineimages'])) {
+                if(isset($_POST['uploadfilename']) && $_POST['uploadfilename'] != ''){
+                        $get_file_name = $_POST['uploadfilename'];
+                        $filehashkey = $impCE->convert_string2hash_key($get_file_name);
+                }
                 $uploaded_compressedFile = $_FILES['inlineimages']['tmp_name'];
                 $get_basename_zipfile = explode('.', $_FILES['inlineimages']['name']);
                 $basename_zipfile = $get_basename_zipfile[0];
-                $location_to_extract = $uploadDir['basedir'] . '/smack_inline_images/' . $basename_zipfile;
-                $extracted_image_location = $uploadDir['baseurl'] . '/smack_inline_images/' . $basename_zipfile;
+                $location_to_extract = $uploadDir['basedir'] . '/smack_inline_images/' . $filehashkey;
+                $extracted_image_location = $uploadDir['baseurl'] . '/smack_inline_images/' . $filehashkey;
                 $zip = new ZipArchive;
                 if ($zip->open($uploaded_compressedFile) === TRUE) {
                         $zip->extractTo($location_to_extract);
