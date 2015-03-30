@@ -26,19 +26,20 @@ jQuery( document ).ready(function() {
 	 var select_delimeter = jQuery('#select_delim').val();
 	 var select_delim = jQuery('#select_delim').val();
 	 var get_log = jQuery('#log').val();
+	 var checkmodule = jQuery('#checkmodule').val();
 	 if (!jQuery.trim(jQuery('#log').html()).length) {
 		 if(checkmodule != 'dashboard') 
 			 document.getElementById('log').innerHTML = '<p style="margin:15px;color:red;">NO LOGS YET NOW.</p>';
 	 }
 
-	 if (checkfile != '') {
+/*	 if (checkfile != '') {
 		 uploadedFile = checkfile;
-	 }
+	 } */
 	 if (select_delimeter != '') {
 		 select_delim = select_delimeter;
 	 }
 	 if(uploadedFile != '' && select_delim != '') { 
-		 var doaction = 'record_no=1&file_name=' + uploadedFile + '&selected_delimeter=' + select_delim;
+		 var doaction = 'record_no=1&file_name=' + uploadedFile + '&selected_delimeter=' + select_delim + '&checkmodule=' + checkmodule;
 		 var tmpLoc = jQuery('#tmpLoc').val();
 		 if(tmpLoc != '' && tmpLoc != null) {
 			jQuery.ajax({
@@ -72,16 +73,17 @@ function gotoelement(id) {
     var no_of_records = document.getElementById('totRecords').value;
     var uploadedFile = document.getElementById('uploadedFile').value;
     var delim = document.getElementById('select_delimeter').value;
+    var checkmodule = jQuery('#checkmodule').val();
     if (id == 'prev_record') {
         gotoElement = parseInt(gotoElement) - 1;
     }
     if (id == 'next_record') {
         gotoElement = parseInt(gotoElement) + 1;
     }
-    if (gotoElement <= 0) {
+    if (parseInt(gotoElement) <= 0) {
         gotoElement = 0;
     }
-    if (gotoElement >= no_of_records) {
+    if (parseInt(gotoElement) >= parseInt(no_of_records)) {
         gotoElement = parseInt(no_of_records) - 1;
     }
     if (id == 'apply_element') {
@@ -101,7 +103,7 @@ function gotoelement(id) {
             return false;
         }
     }
-    var doaction = 'record_no=' + gotoElement + '&file_name=' + uploadedFile + '&delim='+ delim;
+    var doaction = 'record_no=' + gotoElement + '&file_name=' + uploadedFile + '&delim='+ delim + '&checkmodule=' + checkmodule;
     var tmpLoc = document.getElementById('tmpLoc').value;
     jQuery.ajax({
         url: tmpLoc + 'templates/readfile.php',
@@ -111,10 +113,12 @@ function gotoelement(id) {
         success: function (response) {
             var totalLength = response.length;
             for (var i = 0; i < totalLength; i++) {
-                if ((response[i].length) > 32) {
-                    document.getElementById('elementVal_' + i).innerHTML = response[i].substring(0, 28) + '...';
-                } else {
-                    document.getElementById('elementVal_' + i).innerHTML = response[i];
+                if (response[i] == null) {
+			document.getElementById('elementVal_' + i).innerHTML = response[i];
+                } else if ((response[i].length) >= 32) {
+			document.getElementById('elementVal_' + i).innerHTML = response[i].substring(0, 28) + '...';
+		} else {
+			document.getElementById('elementVal_' + i).innerHTML = response[i];
                 }
             }
         var displayRecCount = gotoElement + 1;

@@ -299,6 +299,20 @@ class WPImporter_includes_helper {
 		return $csv->data; 
 	}
 
+        function csv_file_readdata($file, $obj)
+        {
+                $file = $obj->getUploadDirectory().'/'.$file;
+                require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY.'includes/Importer.php');
+                $csv = new ImporterLib();
+                $csv->delim($file);
+                foreach($csv->data as $hkey => $hval) {
+                        foreach($hval as $hk => $hv) {
+                                $this->headers[] = $hk;
+                        }
+                        break;
+                }
+                return $csv->data;
+        }
 
 	/**
 	 * Manage duplicates

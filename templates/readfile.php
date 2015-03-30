@@ -37,11 +37,16 @@
 
 require_once('../includes/WPImporter_includes_helper.php');
 require_once('../../../../wp-load.php');
+$requested_module = $_REQUEST['checkmodule'];
+$post_url = admin_url() . 'admin.php?page=' . WP_CONST_ULTIMATE_CSV_IMP_SLUG . '/index.php&__module=' . $requested_module . '&step=mapping_settings';
+if($post_url != $_SERVER['HTTP_REFERER'])
+	die('Your requested url were wrong! Please contact your admin.');
 $impObj = CallWPImporterObj::getInstance(); 
-$filename=$_POST['file_name'];
+$filename = $_POST['file_name'];
 $delimeter = '';
-$result = $impObj->csv_file_data($filename);
+$result = $impObj->csv_file_readdata($filename, $impObj);
+#$result = $impObj->csv_file_data($filename);
 foreach($result[$_REQUEST['record_no']] as $key => $value) {
-	$data[] = $value;
+	$data[] = html_entity_decode($value);
 }
 print_r(json_encode($data));
