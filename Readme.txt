@@ -4,8 +4,8 @@ Donate link: http://www.smackcoders.com/donate.html
 Tags: batch, csv, excel, import, spreadsheet, autoblog, Autoblogger, csvimporter, data, dataimport, importer, wpcsvimporter, wpimporter, acf, auto blog, csv import, csv to post, data import, Easy CSV Importer, eci, import plugin, admin, user, users, Advanced CSV Import, Advanced CSV Importer, affiliate, amazon, author, automatic, blog, bulk, bulk edit, bulk editor, categories, comments, content, csv file, csv format, csv importer, custom post, e-commerce, free, images, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, video, eshop, woocommerce, wordpress, xml, youtube, export
 Requires at least: 3.9
 Tested up to: 4.1.1
-Stable tag: 3.6.78
-Version: 3.6.78
+Stable tag: 3.7
+Version: 3.7
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 
@@ -15,7 +15,7 @@ Advanced CSV Importer plugin to import/export posts, pages, eshop products, cust
 
 == Description ==
 
-Wordpress Ultimate CSV Importer Pro V4.0 is available as live demo for users to test drive all new features, improvements and changes from http://www.wpultimatecsvimporter.com/. Users can get product manual and sample csv files etc., from - http://www.wpultimatecsvimporter.com/
+Wordpress Ultimate CSV Importer V3.7 is available as live demo for users to test drive all new features, improvements and changes from http://www.wpultimatecsvimporter.com/. Users can get product manual and sample csv files etc., from - http://www.wpultimatecsvimporter.com/
 
 ** New Features of Wordpress Ultimate CSV Importer Pro V4.0 **
 
@@ -32,7 +32,7 @@ Wordpress Ultimate CSV Importer Pro V4.0 is available as live demo for users to 
 * Mapping template feature with edit option.
 * Auto mapping and specific column update in Update feature.
 
-** Now stable version 3.6.78 available to download with hot security fix. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
+** Now stable version 3.7 available to download with hotlinked featured image fix. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
 
 WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer With Ultimate User Friendly Features. It is much easy now even for newbies to import any csv file as any wordpress post type and associated fields by simple mapping feature. Now import any CSV file as thousands of post, page and custom post types. This is admin side free plugin helps you in bulk edit, create and import posts type for your blog or site. 
 
@@ -158,6 +158,8 @@ Need More Help, Cool. Browse Below Links
 * [Get the Sample CSV Files Here](http://blog.smackcoders.com/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html)
 * [Download CSV Format Cheat Sheets Here](http://blog.smackcoders.com/how-to-make-one-click-easy-csv-import-in-wordpress-free-cheat-sheet-downloads.html)
 
+= And we thank @respectyoda, @alantygel and @James Golovich for their wonderful support to us. =
+
 == Installation ==
 
 * [Step By Step Installation Wiki with Snaps](http://wiki.smackcoders.com/WP_Ultimate_CSV_Importer_Free_Version_1.1.1_Installation_and_Configuration)
@@ -195,8 +197,11 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 == Changelog ==
 
+= 3.7 =
+* Fixed: Featured image hotlink issue.
+
 = 3.6.78 =
-* Added: Hot security fix in readfile.php. ( Thanks - James Golovich )
+* Added: Hot security fix in readfile.php. ( Thanks - @James Golovich )
 
 = 3.6.77 = 
 * Added: WordPress 4.1.1 compatibility checked.
@@ -428,6 +433,9 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 
 == Upgrade Notice ==
+
+= 3.7 =
+* Upgrage now for minor bug fixes.
 
 = 3.6.78 =
 * Upgrade now for security fix.

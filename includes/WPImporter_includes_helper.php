@@ -507,13 +507,13 @@ class WPImporter_includes_helper {
 							if(!isset($path_parts['extension']))
 								$fimg_name = $fimg_name . '.jpg';
 
-							$f_img_slug =  preg_replace('/\.[^.]*$/', '', $f_img_slug);
-							$f_img_slug = strtolower(str_replace(' ','-',$f_img_slug));
+							$f_img_slug =  preg_replace('/\.[^.]*$/', '',$f_img_slug);
+							$f_img_slug = strtolower(str_replace('','-',$f_img_slug));
 
 							$post_slug_value = strtolower($f_img_slug);
-							$fimg_name = wp_unique_filename($fimg_path, $featured_image, $path_parts['extension']);
-							$this->get_fimg_from_URL($f_img, $fimg_path, $featured_image, $post_slug_value, $currentLimit, $this);
-							$filepath = $fimg_path ."/" . $featured_image;
+							$fimg_name = wp_unique_filename($fimg_path, $fimg_name, $path_parts['extension']);
+							$this->get_fimg_from_URL($f_img, $fimg_path, $fimg_name, $post_slug_value, $currentLimit, $this);
+							$filepath = $fimg_path ."/" . $fimg_name;
 
 							if(@getimagesize($filepath)){
 								$img = wp_get_image_editor($filepath);
