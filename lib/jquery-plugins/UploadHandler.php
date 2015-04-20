@@ -13,6 +13,10 @@
 require_once("../../../../../wp-load.php");
 require_once("../../includes/WPImporter_includes_helper.php");
 
+$impCheckobj = CallWPImporterObj::checkSecurity();
+if($impCheckobj != 'true')
+die($impCheckobj);
+
 class UploadHandler
 {
 
@@ -1080,6 +1084,10 @@ class UploadHandler
                                           $index = null, $content_range = null)
     {
 	$post_url = admin_url() . 'admin.php?page=' . WP_CONST_ULTIMATE_CSV_IMP_SLUG . '/index.php&__module=' . $_POST['current_module'] . '&step=uploadfile';
+	$impCheckobj = CallWPImporterObj::checkSecurity();
+		if($impCheckobj != 'true')
+		die($impCheckobj);
+
 	if($post_url != $_SERVER['HTTP_REFERER']) 
 		die('Your requested url were wrong! Please contact your admin.');
         $file = new stdClass();

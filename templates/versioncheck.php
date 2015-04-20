@@ -34,8 +34,11 @@
  * Notices must display the words
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
-if(!defined('ABSPATH'))
-        die('Your requested url were wrong! Please contact your admin.');
+include '../includes/WPImporter_includes_helper.php';
+$impCheckobj = CallWPImporterObj::checkSecurity();
+if($impCheckobj != 'true')
+die($impCheckobj);
+
 global $wpdb;
 $all_arr = array();
 $all_arr = $_REQUEST['postdata'];

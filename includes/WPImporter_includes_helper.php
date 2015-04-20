@@ -1143,6 +1143,21 @@ class CallWPImporterObj extends WPImporter_includes_helper
 			self::$_instance = new WPImporter_includes_helper();
 		return self::$_instance;
 	}
+	public static function checkSecurity(){
+                $msg = 'You are not allowed to do this operation! Please contact your admin';
+                if(!function_exists('session_status')){
+                        if(session_id() == '')
+                                return $msg;
+                }
+                else if(session_status() != PHP_SESSION_ACTIVE)
+                        return $msg;
+                else if(!defined('ABSPATH'))
+                        return $msg;
+                else if (php_sapi_name() == "cli") 
+                        return $msg;
+                else
+                        return 'true';
+        }
 }
 
 class WPImpCSVParserLib {

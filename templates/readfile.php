@@ -36,7 +36,13 @@
  ********************************************************************************/
 
 require_once('../includes/WPImporter_includes_helper.php');
+$impCheckobj = CallWPImporterObj::checkSecurity();
+if($impCheckobj != 'true')
+die($impCheckobj);
+
 require_once('../../../../wp-load.php');
+$requested_module = "";
+if(isset($requested_module))
 $requested_module = $_REQUEST['checkmodule'];
 $post_url = admin_url() . 'admin.php?page=' . WP_CONST_ULTIMATE_CSV_IMP_SLUG . '/index.php&__module=' . $requested_module . '&step=mapping_settings';
 if($post_url != $_SERVER['HTTP_REFERER'])

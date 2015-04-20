@@ -10,7 +10,6 @@ if(!isset($_SERVER['HTTP_REFERER'])) {
         die('Your requested url were wrong! Please contact your admin.');
 }
 require_once('../../../../../../wp-load.php');
-
 $nonce = $_POST['nonce'];
 //echo '<pre>'; print_r($sitedomain); echo '</pre>';
 if ( ! wp_verify_nonce( $nonce, 'my-nonce' ) ) {
