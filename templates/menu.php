@@ -5,7 +5,7 @@
  * Proprietary and confidential
  * You can contact Smackcoders at email address info@smackcoders.com.
  *******************************************************************************************/
-include '../includes/WPImporter_includes_helper.php';
+include WP_CONST_ULTIMATE_CSV_IMP_DIR.'/includes/WPImporter_includes_helper.php';
 $impCheckobj = CallWPImporterObj::checkSecurity();
 if($impCheckobj != 'true')
 die($impCheckobj);

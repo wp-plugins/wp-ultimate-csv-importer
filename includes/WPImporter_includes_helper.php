@@ -1148,6 +1148,8 @@ class CallWPImporterObj extends WPImporter_includes_helper
                 if(!function_exists('session_status')){
                         if(session_id() == '')
                                 return $msg;
+			else
+				return 'true';
                 }
                 else if(session_status() != PHP_SESSION_ACTIVE)
                         return $msg;
