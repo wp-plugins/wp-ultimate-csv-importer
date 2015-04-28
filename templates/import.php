@@ -34,7 +34,7 @@
  * Notices must display the words
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
-include WP_CONST_ULTIMATE_CSV_IMP_DIR.'/includes/WPImporter_includes_helper.php';
+//require_once(WP_CONST_ULTIMATE_CSV_IMP_DIR.'includes/WPImporter_includes_helper.php');
 $impCheckobj = CallWPImporterObj::checkSecurity();
 if($impCheckobj != 'true')
 die($impCheckobj);

@@ -41,12 +41,20 @@ if($impCheckobj != 'true')
 die($impCheckobj);
 
 require_once('../../../../wp-load.php');
+
 $requested_module = "";
 if(isset($requested_module))
 $requested_module = $_REQUEST['checkmodule'];
 $post_url = admin_url() . 'admin.php?page=' . WP_CONST_ULTIMATE_CSV_IMP_SLUG . '/index.php&__module=' . $requested_module . '&step=mapping_settings';
-if($post_url != $_SERVER['HTTP_REFERER'])
-	die('Your requested url were wrong! Please contact your admin.');
+ if($_SERVER['HTTP_REFERER'] != urldecode($_SERVER['HTTP_REFERER'])){
+                if($post_url != urldecode($_SERVER['HTTP_REFERER']))
+                die('Your requested url were wrong! Please contact your admin.');
+        }
+        else {
+                if($post_url != $_SERVER['HTTP_REFERER'] )
+                die('Your requested url were wrong! Please contact your admin.');
+        }
+
 $impObj = CallWPImporterObj::getInstance(); 
 $filename = $_POST['file_name'];
 $delimeter = '';

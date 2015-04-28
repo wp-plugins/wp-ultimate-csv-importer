@@ -1087,9 +1087,15 @@ class UploadHandler
 	$impCheckobj = CallWPImporterObj::checkSecurity();
 		if($impCheckobj != 'true')
 		die($impCheckobj);
+        if($_SERVER['HTTP_REFERER'] != urldecode($_SERVER['HTTP_REFERER'])){
+                if($post_url != urldecode($_SERVER['HTTP_REFERER']))
+                die('Your requested url were wrong! Please contact your admin.');
+        }
+        else {
+                if($post_url != $_SERVER['HTTP_REFERER'] )
+                die('Your requested url were wrong! Please contact your admin.');
+        }
 
-	if($post_url != $_SERVER['HTTP_REFERER']) 
-		die('Your requested url were wrong! Please contact your admin.');
         $file = new stdClass();
         $file->name = $this->get_file_name($name, $type, $index, $content_range);
         $file->size = $this->fix_integer_overflow(intval($size));
