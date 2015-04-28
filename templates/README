@@ -1,0 +1,5 @@
+
+This directory contains the main project template (layout.php). This template contains the HTML wrapper for all pages.
+
+The line with <?php echo $skinny_content ?> outputs the processed model-action templates. 
+    
