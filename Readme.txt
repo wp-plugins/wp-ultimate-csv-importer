@@ -197,7 +197,7 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 == Changelog ==
 
-=3.7.2 =
+= 3.7.2 =
 * Added: wordpress 4.2 and 4.2.1 compatibility.
 * Fixed: Blank page conflict issue 
 
