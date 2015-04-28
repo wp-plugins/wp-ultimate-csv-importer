@@ -1,4 +1,4 @@
-=== Import CSV made simple with Ultimate CSV Importer ===
+=== Import a CSV with Ultimate CSV Importer ===
 Contributors: smackcoders
 Donate link: http://www.smackcoders.com/donate.html
 Tags: wp all import, batch, csv, excel, import, spreadsheet, autoblog, Autoblogger, csvimporter, data, dataimport, importer, wpcsvimporter, wpimporter, acf, auto blog, csv import, csv to post, data import, Easy CSV Importer, eci, import plugin, admin, user, users, Advanced CSV Import, Advanced CSV Importer, affiliate, amazon, author, automatic, blog, bulk, bulk edit, bulk editor, categories, comments, content, csv file, csv format, csv importer, custom post, e-commerce, free, images, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, video, eshop, woocommerce, wordpress, xml, youtube, export
@@ -11,10 +11,10 @@ Author URI: http://profiles.wordpress.org/smackcoders/
 
 License: GPLv2 or later
 
-Import CSV made simple with Ultimate CSV Importer to import/export posts, pages, eshop products, custom posts with custom fields in few simple clicks 
+Import a CSV with Ultimate CSV Importer as posts, pages, eshop products, custom posts with custom fields in few simple clicks 
 
 == Description ==
-Import CSV data to wordpress is made very easy even for novice users as in few clicks and 3 simple steps with Ultimate CSV Importer plugin. Wordpress Ultimate CSV Importer V3.7.2 is updated with major issue fix and 4.2.1 compatibility.  Users can get product manual and sample csv files etc., from - http://www.wpultimatecsvimporter.com/
+Import a CSV as wordpress posts made very simple and easy even for novice users as in few clicks and 3 simple steps with Ultimate CSV Importer plugin. Wordpress Ultimate CSV Importer V3.7.2 is updated with major issue fix and 4.2.1 compatibility.  Users can get product manual and sample csv files etc., from - http://www.wpultimatecsvimporter.com/
 
 ** New Features of Wordpress Ultimate CSV Importer Pro V4.0 **
 
