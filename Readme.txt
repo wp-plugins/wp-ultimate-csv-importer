@@ -11,7 +11,7 @@ Author URI: http://profiles.wordpress.org/smackcoders/
 
 License: GPLv2 or later
 
-Import CSV made simple with Ultimate CSV Importer to import/export posts, pages, eshop products, custom posts with custom fields in few simple clicks 
+Import a CSV with Ultimate CSV Importer made simple to import/export posts, pages, eshop products, custom posts with custom fields in few simple clicks 
 
 == Description ==
 Import CSV data to wordpress is made very easy even for novice users as in few clicks and 3 simple steps with Ultimate CSV Importer plugin. Wordpress Ultimate CSV Importer V3.7.3 is updated with major issue fix and 4.2.1 compatibility.  Users can get product manual and sample csv files etc., from - http://www.wpultimatecsvimporter.com/
