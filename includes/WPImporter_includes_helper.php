@@ -1132,6 +1132,10 @@ class WPImporter_includes_helper {
 			</span>';
 		return $smackhelpnotes;
 	}
+	function create_nonce_key(){
+		return wp_create_nonce('smack_nonce');
+	}
+        
 }
 
 class CallWPImporterObj extends WPImporter_includes_helper

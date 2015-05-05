@@ -34,13 +34,14 @@
  * Notices must display the words
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
-
-require_once('../includes/WPImporter_includes_helper.php');
+$parse_uri = explode( 'wp-content', $_SERVER['SCRIPT_FILENAME'] );
++require_once($parse_uri[0]."wp-load.php");
 $impCheckobj = CallWPImporterObj::checkSecurity();
 if($impCheckobj != 'true')
 die($impCheckobj);
-
-require_once('../../../../wp-load.php');
+$noncevar = isset($_REQUEST['wpnonce']) ? $_REQUEST['wpnonce'] : '';
+if(! wp_verify_nonce($noncevar, 'smack_nonce'))
+die('You are not allowed to do this operation.Please contact your admin.');
 
 $requested_module = "";
 if(isset($requested_module))

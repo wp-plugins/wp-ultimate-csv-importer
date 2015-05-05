@@ -7,10 +7,6 @@ jQuery( document ).ready(function() {
                   document.getElementById('log').innerHTML = '<p style="margin:15px;color:red;">NO LOGS YET NOW.</p>';
                 }
        
-//pieStats();
-//lineStats();
-
-
  }
  if (checkmodule == 'custompost') {
 		    var step = jQuery('#stepstatus').val();
@@ -22,7 +18,9 @@ jQuery( document ).ready(function() {
 	    }
  if (checkmodule != 'filemanager' && checkmodule != 'settings' && checkmodule !='support' && checkmodule !='export') {
 	 var checkfile = jQuery('#checkfile').val();
+	 var dir_path = jQuery('#dirpathval').val();
 	 var uploadedFile = jQuery('#uploadedFile').val();
+	 var noncekey = jQuery('#nonceKey').val();
 	 var select_delimeter = jQuery('#select_delim').val();
 	 var select_delim = jQuery('#select_delim').val();
 	 var get_log = jQuery('#log').val();
@@ -39,8 +37,8 @@ jQuery( document ).ready(function() {
 		 select_delim = select_delimeter;
 	 }
 	 if(uploadedFile != '' && select_delim != '') { 
-		 var doaction = 'record_no=1&file_name=' + uploadedFile + '&selected_delimeter=' + select_delim + '&checkmodule=' + checkmodule;
 		 var tmpLoc = jQuery('#tmpLoc').val();
+		 var doaction = 'record_no=1&file_name=' + uploadedFile + '&selected_delimeter=' + select_delim + '&checkmodule=' + checkmodule+'&temloc=' + tmpLoc+'&dir_path=' + dir_path + '&wpnonce=' + noncekey;
 		 if(tmpLoc != '' && tmpLoc != null) {
 			jQuery.ajax({
 				url: tmpLoc + 'templates/readfile.php',
@@ -70,6 +68,8 @@ document.getElementById('sec-two').style.display='';
 
 function gotoelement(id) {
     var gotoElement = document.getElementById('current_record').value;
+    var dir_path = jQuery('#dirpathval').val();
+    var noncekey = document.getElementById('nonceKey').value;
     var no_of_records = document.getElementById('totRecords').value;
     var uploadedFile = document.getElementById('uploadedFile').value;
     var delim = document.getElementById('select_delimeter').value;
@@ -103,7 +103,7 @@ function gotoelement(id) {
             return false;
         }
     }
-    var doaction = 'record_no=' + gotoElement + '&file_name=' + uploadedFile + '&delim='+ delim + '&checkmodule=' + checkmodule;
+    var doaction = 'record_no=' + gotoElement + '&file_name=' + uploadedFile + '&delim='+ delim + '&checkmodule=' + checkmodule+ '&dir_path=' + dir_path + '&wpnonce=' + noncekey;
     var tmpLoc = document.getElementById('tmpLoc').value;
     jQuery.ajax({
         url: tmpLoc + 'templates/readfile.php',
@@ -531,7 +531,8 @@ function enableinlineimageoption() {
 
 function importRecordsbySettings(siteurl)
 {
-        var importlimit = document.getElementById('importlimit').value; 
+        var importlimit = document.getElementById('importlimit').value;
+	var noncekey = document.getElementById('wpnoncekey').value; 
         var get_requested_count = importlimit; 
         var tot_no_of_records = document.getElementById('checktotal').value;
         var importas = document.getElementById('selectedImporter').value;
@@ -587,7 +588,7 @@ function importRecordsbySettings(siteurl)
 	if(importas == 'post' || importas == 'page' || importas == 'custompost' || importas == 'eshop')
 	advancemedia = document.getElementById('advance_media_handling').checked;
 	var postdata = new Array();
-	postdata = {'dupContent':dupContent,'dupTitle':dupTitle,'importlimit':importlimit,'limit':currentlimit,'totRecords':tot_no_of_records,'selectedImporter':importas,'uploadedFile':uploadedFile,'tmpcount':tmpCnt,'importinlineimage':importinlineimage,'inlineimagehandling':imagehandling,'inline_image_location':inline_image_location,'advance_media':advancemedia,}
+	postdata = {'dupContent':dupContent,'dupTitle':dupTitle,'importlimit':importlimit,'limit':currentlimit,'totRecords':tot_no_of_records,'selectedImporter':importas,'uploadedFile':uploadedFile,'tmpcount':tmpCnt,'importinlineimage':importinlineimage,'inlineimagehandling':imagehandling,'inline_image_location':inline_image_location,'advance_media':advancemedia,'wpnonce':noncekey}
 
         var tmpLoc = document.getElementById('tmpLoc').value;
 	jQuery.ajax({
@@ -980,6 +981,9 @@ function addexportfilter(id) {
 			document.getElementById('authors').style.display = '';
 			document.getElementById('postauthor').style.display = '';
 		}
+		else if(id == 'getdatawithdelimeter'){
+			document.getElementById('delimeter').style.display = '';			
+		}
 	} else if (document.getElementById(id).checked == false) {
                 if(id == 'getdataforspecificperiod') {
 			document.getElementById('specificperiodexport').style.display = 'none';
@@ -997,6 +1001,9 @@ function addexportfilter(id) {
 			document.getElementById('specificauthorexport').style.display = 'none';
                         document.getElementById('authors').style.display = 'none';
                         document.getElementById('postauthor').style.display = 'none';
+                }
+		else if(id == 'getdatawithdelimeter'){
+                        document.getElementById('delimeter').style.display = 'none';
                 }
 	}
 }

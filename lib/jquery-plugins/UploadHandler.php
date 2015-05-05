@@ -9,10 +9,8 @@
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
  */
-
-require_once("../../../../../wp-load.php");
-require_once("../../includes/WPImporter_includes_helper.php");
-
+$parse_uri = explode( 'wp-content', $_SERVER['SCRIPT_FILENAME'] );
+require_once($parse_uri[0]."wp-load.php");
 $impCheckobj = CallWPImporterObj::checkSecurity();
 if($impCheckobj != 'true')
 die($impCheckobj);

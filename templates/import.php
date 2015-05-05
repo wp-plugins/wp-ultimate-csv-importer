@@ -34,7 +34,10 @@
  * Notices must display the words
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
-//require_once(WP_CONST_ULTIMATE_CSV_IMP_DIR.'includes/WPImporter_includes_helper.php');
+$noncevar = isset($_POST['postdata']['wpnonce']) ? $_POST['postdata']['wpnonce'] : '';
+if(!wp_verify_nonce($noncevar, 'smack_nonce'))
+die('You are not allowed to do this operation.Please contact your admin.');
+
 $impCheckobj = CallWPImporterObj::checkSecurity();
 if($impCheckobj != 'true')
 die($impCheckobj);
@@ -46,7 +49,7 @@ $importedAs = Null;
 $inserted_post_count = 0;
 $noofrecords = '';
 if ($curr_action != 'post' && $curr_action != 'page' && $curr_action != 'custompost') {
-	require_once(plugin_dir_path(__FILE__) . '../modules/' . $curr_action . '/actions/actions.php');
+	require_once(WP_CSVIMP_PLUGIN_BASE . '/modules/' . $curr_action . '/actions/actions.php');
 }
 if ($curr_action == 'post' || $curr_action == 'page' || $curr_action == 'custompost') {
 	$importObj = new WPImporter_includes_helper();

@@ -34,6 +34,10 @@
  * Notices must display the words
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
+$impCE = new WPImporter_includes_helper();
+$nonce_Key = $impCE->create_nonce_key();
+if(! wp_verify_nonce($nonce_Key, 'smack_nonce'))
+die('You are not allowed to do this operation.Please contact your admin.');
 ?>
 <div style ='text-align:center;margin:0;color:red;font-size:smaller;'> Your Required Settings Configuration Please Select Security and Performance tab </div></br>
 <div id="ShowMsg" style="display:none;"><p id="warning-msg" class="alert alert-warning"><?php echo $skinnyData['plugStatus'];?></p></div>
@@ -382,14 +386,14 @@ global $wpdb; ?>
                                 <tr><td>
 					<label class=$utfsupport><input type='checkbox' name='rutfsupport' id='utfsupport' value='utfsupport' checked disabled onclick="check_if_avail(this.id);" ><span id="align">Enable UTF Support</span></label>
 				</td></tr>
-                                <tr class="databorder"><td>
+                                <!--<tr class="databorder"><td>
 					<label id="align">Export Delimiter
 					<select name="export_delimiter">
-						<option>;</option>
-						<option>,</option>
+						<option value = ";">;</option>
+						<option value = ",">,</option>
 					</select>
 					</label>
-				</td></tr>
+				</td></tr>-->
                                 <tr class="databorder"><td>
                                         <h3 id="innertitle">Debug Mode</h3>
                                         <label>You can enable/disable the debug mode.</label> </td><td>
@@ -518,7 +522,8 @@ global $wpdb; ?>
                         <h3 id="innertitle" colspan="2" >Required Loaders and Extentions:</h3>
                         <table class="table table-striped">
                         <?php $loaders_extensions = get_loaded_extensions();
-                              $mod_security = apache_get_modules();
+				if(function_exists('apache_get_modules'))
+                                   $mod_security = apache_get_modules();
                        ?>
                         <tr><td>IonCube Loader </td><td><?php if(in_array('ionCube Loader', $loaders_extensions)) {
                                         echo '<label style="color:green;">Yes</label>';
@@ -535,7 +540,7 @@ global $wpdb; ?>
                                 } else {
                                         echo '<label style="color:red;">No</label>';
                                 } ?></td><td></td></tr>
-                         <tr><td>Mod Security </td><td><?php if(in_array('mod_security.c', $mod_security)) {
+                         <tr><td>Mod Security </td><td><?php if(isset($mod_security) && in_array('mod_security.c', $mod_security)) {
                                         echo '<label style="color:green;">Yes</label>';
                                 } else {
                                         echo '<label style="color:red;">No</label>';

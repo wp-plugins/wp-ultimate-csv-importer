@@ -34,6 +34,10 @@
  * Notices must display the words
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
+$impObj = new WPImporter_includes_helper();
+$nonceKey = $impObj->create_nonce_key();
+if(! wp_verify_nonce($nonceKey, 'smack_nonce'))
+die('You are not allowed to do this operation.Please contact your admin.');
 ?>
 
 <style> #ui-datepicker-div { display:none } </style>

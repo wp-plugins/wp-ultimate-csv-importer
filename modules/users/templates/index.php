@@ -42,6 +42,7 @@ require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY.'/includes/WPImporter_includes_
 <div id="accordion">
 <?php 
 $impCE = new WPImporter_includes_helper(); 
+$nonce_Key = $impCE->create_nonce_key();
 ?>
 <table class="table-importer">
 <tr>
@@ -66,6 +67,7 @@ $impCE = new WPImporter_includes_helper();
 <div class="container">
    <?php echo $impCE->smack_csv_import_method(); ?>
 <input type ='hidden' id="pluginurl"value="<?php echo WP_CONTENT_URL;?>">
+<input type='hidden' id='dirpathval' name='dirpathval' value='<?php echo ABSPATH; ?>' />
 <?php $uploadDir = wp_upload_dir(); ?>
 <input type="hidden" id="uploaddir" value="<?php if(isset($uploadDir['basedir'])) { echo $uploadDir['basedir']; }  ?>">
 <input type="hidden" id="uploadFileName" name="uploadfilename" value="">
@@ -229,6 +231,7 @@ $allcustomposts.=$value.',';
    <input type='hidden' id='current_record' name='current_record' value='0' />
    <input type='hidden' id='totRecords' name='totRecords' value='<?php if(isset($records)) { echo $records; }  ?>' />
    <input type='hidden' id='tmpLoc' name='tmpLoc' value='<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR; ?>' />
+   <input type='hidden' id='nonceKey' name='wpnonce' value='<?php echo $nonce_Key; ?>' />
    <input type='hidden' id='uploadedFile' name='uploadedFile' value="<?php if(isset($filename)) { echo  $filename; }  ?>" />
    <!-- real uploaded filename -->
    <input type='hidden' id='uploaded_csv_name' name='uploaded_csv_name' value="<?php if(isset($uploaded_csv_name)) { echo $uploaded_csv_name; }  ?>" />
@@ -405,6 +408,7 @@ $mFieldsArr = substr($mFieldsArr, 0, -1);
                         <input name="filterhtml" id="filterhtml" type="checkbox" value="1"> Filter out HTML-Tags while comparing                        <br>
                         <input name="filterhtmlentities" id="filterhtmlentities" type="checkbox" value="1"> Decode HTML-Entities before comparing                        <br>-->
 			<label id='importalign'><input name='duplicatecontent' id='duplicatecontent' type="checkbox" value=""> Detect duplicate post content</label> <br>
+			<input type='hidden' name='wpnoncekey' id='wpnoncekey' value='<?php echo $nonce_Key; ?>' />
 			<label id='importalign'><input name='duplicatetitle' id='duplicatetitle' type="checkbox" value="" > Detect duplicate post title</label> <br>
 
 			 <label id='importalign'>No. of posts/rows per server request</label> <span class="mandatory" style="margin-left:-13px;margin-right:10px">*</span> <input name="importlimit" id="importlimit" type="text" value="1" placeholder="10" onblur="check_allnumeric(this.value);"></label> <?php echo $impCE->helpnotes(); ?><br>	
