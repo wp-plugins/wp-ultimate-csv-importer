@@ -56,6 +56,7 @@ class SettingsActions extends SkinnyActions
 		if(isset($_POST['savesettings'])){ 
 			update_option('wpcsvfreesettings',$_POST);
 			$data['savesettings'] = 'done';
+			echo "<script> location.reload(); </script>";
 		}
 		$setingsArr = array('post', 'page', 'custompost', 'comments', 'categories', 'customtaxonomy', 'users', 'eshop', 'wpcommerce', 'woocommerce', 'custompostuitype', 'cctm', 'acf', 'aioseo', 'yoastseo', 'enable', 'disable', 'nonerseooption', 'nonercustompost', 'nonerecommerce', 'recommerce','enable_plugin_access_for_author', 'send_log_email', 'enable_debug', 'disable_debug', 'debug_mode');
 		foreach($setingsArr as $option)
