@@ -1,7 +1,7 @@
-=== Import CSV made simple with Ultimate CSV Importer ===
+=== Import CSV with Ultimate CSV Importer ===
 Contributors: smackcoders
 Donate link: http://www.smackcoders.com/donate.html
-Tags: wp all import, batch, csv, excel, import, spreadsheet, autoblog, Autoblogger, csvimporter, data, dataimport, importer, wpcsvimporter, wpimporter, acf, auto blog, csv import, csv to post, data import, Easy CSV Importer, eci, import plugin, admin, user, users, Advanced CSV Import, Advanced CSV Importer, affiliate, amazon, author, automatic, blog, bulk, bulk edit, bulk editor, categories, comments, content, csv file, csv format, csv importer, custom post, e-commerce, free, images, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, video, eshop, woocommerce, WordPress, xml, youtube, export
+Tags: wp all import, batch, csv, excel, import, spreadsheet, autoblog, Autoblogger, csvimporter, data, dataimport, importer, wpcsvimporter, wpimporter, acf, auto blog, csv import, csv to post, data import, Easy CSV Importer, eci, import plugin, admin, user, users, Advanced CSV Import, Advanced CSV Importer, affiliate, amazon, author, automatic, blog, bulk, bulk edit, bulk editor, categories, comments, content, csv file, csv format, csv importer, custom post, e-commerce, free, images, language, manage, media, meta, multisite, News, page, photos, pictures, plugin, Post, seo, shop, shortcode, tags, Taxonomy, text, title, video, eshop, woocommerce, wordpress, xml, youtube, export
 Requires at least: 4.1
 Tested up to: 4.2.1
 Stable tag: 3.7.4
@@ -11,18 +11,19 @@ Author URI: http://profiles.wordpress.org/smackcoders/
 
 License: GPLv2 or later
 
-Import a CSV with Ultimate CSV Importer made simple to import/export posts, pages, eshop products, custom posts with custom fields in few simple clicks 
+Import CSV with Ultimate CSV Importer made simple to import & export posts, pages, custom posts and custom fields in few simple clicks 
 
 == Description ==
-Import CSV data to WordPress is made very easy even for novice users as in few clicks and 3 simple steps with Ultimate CSV Importer plugin. Wordpress Ultimate CSV Importer V3.7.4 is updated with allow author/editor to import option and WordPress 4.2.2 compatibility.  Users can get product manual and sample csv files etc., from - http://www.wpultimatecsvimporter.com/
 
-** New Features of Wordpress Ultimate CSV Importer Pro V4.0 **
+Import CSV data to WordPress is made very easy even for novice users as in few clicks and 3 simple steps with Ultimate CSV Importer plugin. WordPress Ultimate CSV Importer V3.7.4 is updated with allow author/editor to import option and 4.2.2 compatibility.  Users can get product manual and sample csv files etc., from http://www.wpultimatecsvimporter.com/
+
+** New Features of WordPress Ultimate CSV Importer Pro V4.0 **
 
 * Added common module for all features.
 * Static/Dynamic/Formula content feature.
 * Advanced image handling with content and featured image short codes.
 * Added update feature from File Manager.
-* Managing logs with anytime downloadable logs.
+* Managing logs with any time downloadable logs.
 * Auto delimiter detection.
 * Nested category & Nested Taxonomies with Yoast SEO support.
 * Added Ajax save in Setting module.
@@ -31,7 +32,7 @@ Import CSV data to WordPress is made very easy even for novice users as in few c
 * Mapping template feature with edit option.
 * Auto mapping and specific column update in Update feature.
 
-** Now stable version 3.7.3 available to download with security issue fix. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
+** Now stable version 3.7.4 available to download with allow author/editor users to import fix. Visit [www.wpultimatecsvimporter.com](http://www.wpultimatecsvimporter.com) for more news and future plans.
 
 WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer With Ultimate User Friendly Features. It is much easy now even for newbies to import csv file exported from any tool, app or software. Import as any WordPress post type and associated fields by simple mapping feature. Now import any CSV file as thousands of post, page and custom post types. This is admin side free plugin helps you in bulk edit, create and import posts type for your blog or site. 
 
@@ -56,7 +57,7 @@ WP Ultimate CSV Importer Plugin proven much effective advanced CSV File Importer
 * Scheduled Publishing
 * Duplicate Title and content handling
 * Multi Lingual import (CSV format must be UTF-8 without BOM)
-* Multisite also supported now
+* Multi-site also supported now
 * Compatible to WordPress themes
 * Better alternative for xml
 * Post Format option added
@@ -83,7 +84,7 @@ The csv importer supports almost every WordPress modules and plugin fields as fo
 * Post
 * Page
 * Standard WP Custom Post types
-* Wordpress themes custom posts
+* WordPress themes custom posts
 * Custom post type UI plugin Post types
 * Users with roles
 * Comments
@@ -109,7 +110,7 @@ php_value auto_append_file none
 
 This will solve your issue or get support from hosting if you dint have sufficient permission.
 
-= Extended Pro Power Features in Wp Ultimate CSV Importer = 
+= Extended Pro Power Features in WP Ultimate CSV Importer = 
 * Types Plugin support
 * Woocommerce CSV importer with product variation
 * Marketpress Lite Importer
@@ -120,12 +121,12 @@ This will solve your issue or get support from hosting if you dint have sufficie
 * Auto Mapping Feature
 * Strict UTF-8 auto conversion
 * All In One SEO Fields Import 
-* Wordpress SEO by Yoast Fields Import
+* WordPress SEO by Yoast Fields Import
 * Custom Post Type UI plugin import
 * Advanced Custom Fields Import 
 * CCTM Posts and Fields Import
 * Woocommerce CSV Importer, 
-* wp ecommerce Products CSV Importer with WP e-Commerce Custom Fields 
+* WP ecommerce Products CSV Importer with WP e-Commerce Custom Fields 
 * Categories & tags Import with Category icons plugin support
 * Custom Taxonomy import
 * [Get Complete List of supported 3rd party plugins here](http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html)
@@ -240,7 +241,7 @@ This will solve your issue or get support from hosting if you dint have sufficie
 
 = 3.6.73 =
 * Added: WordPress 4.0 compatibility checked.
-* Added: https format support for all wp instances.
+* Added: https format support for all WP instances.
 * Added: Warning to guide user to create uploads directory with writeable permissions.
 * Fixed: Image handling issues in featured image.
 * Fixed: Multisite compatible issue.
@@ -450,49 +451,49 @@ This will solve your issue or get support from hosting if you dint have sufficie
 == Upgrade Notice ==
 
 = 3.7.4 =
-* Upgrade for allow author/editor to import fix.
+* Upgrade now for allow author/editor to import fix.
 
 = 3.7.3 =
-* Upgrade for Vulnerablility fix.
+* Upgrade now for Vulnerability fix.
 
 = 3.7.2 =
-* Important Upgrade for WordPress 4.2 and above
+* Important Upgrade for wordpress 4.2 and above
 
 = 3.7.1 = 
-* Upgrade for security fix.
+* Upgrade now for security fix.
 
 = 3.7 =
-* Upgrade for minor bug fixes.
+* Upgrade now for minor bug fixes.
 
 = 3.6.78 =
-* Upgrade for security fix.
+* Upgrade now for security fix.
 
 = 3.6.77 =
-* Upgrade for WordPress 4.1.1 compatibility and minor bug fixes.
+* Upgrade now for WordPress 4.1.1 compatibility and minor bug fixes.
 
 = 3.6.76 =
-* Upgrade for more bug fixes.
+* Upgrade now for more bug fixes.
 
 = 3.6.75 =
-* Upgrade for improved experience.
+* Upgrade now for improved experience.
 
 = 3.6.74 =
-* Upgrade for security fix.
+* Upgrade now for security fix.
 
 = 3.6.73 =
-* Upgrade for WordPress 4.0 compatibility and minor bug fixes.
+* Upgrade now for WordPress 4.0 compatibility and minor bug fixes.
 
 = 3.6.72 =
 * Upgrade to enable/disable debug mode in settings. 
 
 = 3.6.71 =
-* Upgrade for complete export features as in Pro with bug fix.
+* Upgrade now for complete export features as in Pro with bug fix.
 
 = 3.6.7 =
-* Upgrade for complete export features as in Pro.
+* Upgrade now for complete export features as in Pro.
 
 = 3.6.6 =
-* Upgrade for improved experience.
+* Upgrade now for improved experience.
 
 = 3.6.5 =
 * Upgrade Now for advanced media handling for post in line images
@@ -501,7 +502,7 @@ This will solve your issue or get support from hosting if you dint have sufficie
 * Upgrade Now for filtered export and improved log features. 
 
 = 3.6.3 =
-* Upgrade for Eshop product import feature. 
+* Upgrade now for Eshop product import feature. 
 
 = 3.6.2 =
 * Important Security Update
@@ -516,7 +517,7 @@ This will solve your issue or get support from hosting if you dint have sufficie
 * Upgrade for minor bug fix, conflicts and new attribute support.
 
 = 3.5.4 = 
-* Upgrade for All-in-SEO import support.
+* Upgrade now for All-in-SEO import support.
 
 = 3.5.3 =
 * Upgrade for added export feature and bug fixes
@@ -528,13 +529,13 @@ This will solve your issue or get support from hosting if you dint have sufficie
 * Must upgrade now for 3.5 bug fixes
 
 = 3.5.0 =
-* Upgrade for major release 3.5. Note - Old version files need to be deleted.
+* Upgrade now for major release 3.5. Note - Old version files need to be deleted.
 
 = 3.3.1 = 
-* Upgrade for multi site compatibility.
+* Upgrade now for multi site compatibility.
 
 = 3.3.0 =
-* Upgrade for WP 3.8 compatibility and added bulk user,comments feature.
+* Upgrade now for WP 3.8 compatibility and added bulk user,comments feature.
 
 = 3.2.3 = 
 * Upgrade for WordPress 3.7.1 compatibility and minor bug fixes
