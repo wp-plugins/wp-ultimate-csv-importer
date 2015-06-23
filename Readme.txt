@@ -207,6 +207,7 @@ This will solve your issue or get support from hosting if you dint have sufficie
 * Multilanguage support (fr_FR,es_ES,nl_NL)
 * Inline image handling shortcode with image attributes
 * Warnings and bugs Fixes
+* Any delimiter support for csv export
 
 = 3.7.4 =
 * Fixed : Allow Editor/Author to import.(Multisite also).
