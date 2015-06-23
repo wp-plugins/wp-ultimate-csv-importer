@@ -47,7 +47,7 @@ $nonce_Key = $impCE->create_nonce_key();
 <table class="table-importer">
 <tr>
 <td>
-  <h3>CSV Import Options</h3>
+  <h3><?php echo __('CSV Import Options',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></h3>
   <div id='sec-one' <?php if($_REQUEST['step']!= 'uploadfile') {?> style='display:none;' <?php } ?>>
   <?php if(is_dir($impCE->getUploadDirectory('default'))){ 
                 if (!is_writable($impCE->getUploadDirectory('default'))) {
@@ -82,16 +82,16 @@ $nonce_Key = $impCE->create_nonce_key();
                                 <tr>
                                    <div id='showmappingtemplate' style='float:left;padding-left:10px;'>  
                                   <select disabled/>
-                               <option value ='select template' /> select template </option>
+                               <option value ='select template' /> <?php echo __('select template',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?> </option>
                                    </select>
 				<img src="<?php echo WP_CONTENT_URL; ?>/plugins/<?php echo WP_CONST_ULTIMATE_CSV_IMP_SLUG; ?>/images/pro_icon.gif" title="PRO Feature" />
                                    </div>
 
                                 </div>
                                 <div style="float:right;">
-                                <input type='button' name='clearform' id='clearform' value='<?php echo __("Clear"); ?>' onclick="Reload();"
+                                <input type='button' name='clearform' id='clearform' value='<?php echo __("Clear",WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?>' onclick="Reload();"
                                 class='btn btn-warning' style="margin-right:15px"/>
-                                <input type='submit' name='importfile' id='importfile' value='<?php echo __("Next >>");?>' disabled
+                                <input type='submit' name='importfile' id='importfile' title = '<?php echo __('Next',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?>' value='<?php echo $impCE->reduceStringLength(__("Next",WP_CONST_ULTIMATE_CSV_IMP_SLUG),'Next');echo (" >>");?>' disabled
                                 class='btn btn-primary' style="margin-right:15px"/>
                                 </div>
                                 </tr>
@@ -185,11 +185,11 @@ $custom_key=array();
 $mappingFields_arr = array();
 $wpcsvsettings=get_option('wpcsvfreesettings');
 ?>
-  <h3>Map CSV to WP fields/attributes</h3>
+  <h3><?php echo __('Map CSV to WP fields/attributes',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></h3>
    <?php if(isset($_REQUEST['step']) && $_REQUEST['step'] == 'mapping_settings' ) { ?> 
   <div id='sec-two' <?php if($_REQUEST['step']!= 'mapping_settings'){ ?> style='display:none;' <?php } ?> >
   <div class='mappingsection'>
-  <h2><div class="secondformheader">Import Data Configuration</div></h2>
+  <h2><div class="secondformheader"><?php echo __('Import Data Configuration',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></div></h2>
   <div class='importstatus'>
   </div>
   <div id='mappingheader' class='mappingheader' >
@@ -239,9 +239,9 @@ $allcustomposts.=$value.',';
    <input type='hidden' id='stepstatus' name='stepstatus' value='<?php if(isset($_REQUEST['step'])) {  echo $_REQUEST['step']; }  ?>' />
    <input type='hidden' id='mappingArr' name='mappingArr' value='' />
    <input type='button' id='prev_record' name='prev_record' value='<<' class="btn btn-primary" onclick='gotoelement(this.id);' />
-    <label style="padding-right:10px;" id='preview_of_row'>Showing preview of row #  1</label>
+    <label style="padding-right:10px;" id='preview_of_row'><?php echo __('Showing preview of row #  1',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></label>
    <input type='button' id='next_record' name='next_record' value='>>' class="btn btn-primary" onclick='gotoelement(this.id);' />
-   <label id="importalign" style="margin-right:8px;"> Go To Row # </label><input type='text' id='goto_element' name='goto_element' />
+   <label id="importalign" style="margin-right:8px;"> <?php echo __('Go To Row #',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?> </label><input type='text' id='goto_element' name='goto_element' />
    <input type='button' id='apply_element' name='apply_element' value='Show' class="btn btn-success" onclick='gotoelement(this.id);' style="margin-right:10px;margin-left:5px"/>
    </div>
    </td>
@@ -250,14 +250,14 @@ $allcustomposts.=$value.',';
    $count = 0;
 $usersObj = new UsersActions();
    ?>
-   <tr><td class="left_align columnheader"> <b>CSV HEADER</b> </td><td class="columnheader"> <b>WP FIELDS</b> </td><td class="columnheader"> <b>CSV ROW</b> </td><td></td></tr>
+   <tr><td class="left_align columnheader"> <b><?php echo __('CSV HEADER',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></b> </td><td class="columnheader"> <b><?php echo __('WP FIELDS',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></b> </td><td class="columnheader"> <b><?php echo __('CSV ROW',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></b> </td><td></td></tr>
    <?php 
    foreach ($impCE->headers as $key => $value) {
 	   ?>
 		   <tr>
 		   <td class="left_align csvheader"><label><?php print($value);?></label></td>
 		   <td class="left_align"><select name="mapping<?php print($count); ?>" id="mapping<?php print($count); ?>" class="uiButton" onchange="addcustomfield(this.value,<?php echo $count; ?>);">
-		   <option id="select">-- Select --</option>
+		   <option id="select"><?php echo __('-- Select --',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></option>
 		   <?php
 			 foreach ($usersObj->defCols as $key1 => $value1) {
                            if ($key1 == 'post_name')
@@ -300,18 +300,18 @@ $usersObj = new UsersActions();
 		   <span id='elementVal_<?php echo $key; ?>' > <?php echo $getrecords[0][$value]; ?> </span>
 		   </td>
 			<td width = "180px;">
-<input class="customfieldtext" type="text" id="textbox<?php print($count); ?>" name="textbox<?php print($count); ?>" TITLE="Replace the default value" style="display: none;" value="<?php echo $value ?>"/>
+<input class="customfieldtext" type="text" id="textbox<?php print($count); ?>" name="textbox<?php print($count); ?>" TITLE="<?php echo __('Replace the default value',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?>" style="display: none;" value="<?php echo $value ?>"/>
                    <span style="display: none;" id="customspan<?php echo $count ?>">
                    <a href="#" class="tooltip">
                    <img src="../wp-content/plugins/<?php echo WP_CONST_ULTIMATE_CSV_IMP_SLUG;?>/images/help.png" />
                    <span class="tooltipFour">
                    <img class="callout" src="../wp-content/plugins/<?php echo WP_CONST_ULTIMATE_CSV_IMP_SLUG;?>/images/callout.gif" />
-                   <strong>Give a name for your new custom field</strong>
+                   <strong><?php echo __('Give a name for your new custom field',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></strong>
                    <img src="../wp-content/plugins/<?php echo WP_CONST_ULTIMATE_CSV_IMP_SLUG;?>/images/help.png" style="margin-top: 6px;float:right;" />
                    </span>
                    </a> 
                    </span>
-                   <span style="display: none; color: red; margin-left: 5px;" id="customspan<?php echo $count ?>">Replace the custom value</span>
+                   <span style="display: none; color: red; margin-left: 5px;" id="customspan<?php echo $count ?>"><?php echo __('Replace the custom value',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></span>
 </td>
 		   </tr>
 		   <?php
@@ -328,20 +328,20 @@ $mFieldsArr = substr($mFieldsArr, 0, -1);
 <div>
                 <div class="goto_import_options" align=center>
                 <div class="mappingactions" style="margin-top:26px;" >
-                <input type='button' id='clear_mapping' class='clear_mapping btn btn-warning' name='clear_mapping' value='Clear Mapping' onclick='clearMapping();' style = 'float:left'/>
+                <input type='button' id='clear_mapping' title = '<?php echo __('clear Mapping',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?>' class='clear_mapping btn btn-warning' name='clear_mapping' value='<?php echo __("Clear",WP_CONST_ULTIMATE_CSV_IMP_SLUG);echo ' ';echo $impCE->reduceStringLength(__(" Mapping",WP_CONST_ULTIMATE_CSV_IMP_SLUG),'Mapping'); ?>' onclick='clearMapping();' style = 'float:left'/>
                 <span style = ''>
                 <a href="#" class="tooltip tooltip_smack"  style = ''>
                 <img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR; ?>images/help.png" />
                 <span class="tooltipClearMapping">
                 <img class="callout" src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR; ?>images/callout.gif" />
-                <strong>Refresh to re-map fields</strong>
+                <strong><?php echo __('Refresh to re-map fields',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></strong>
                 <img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR; ?>images/help.png" style="margin-top: 6px;float:right;" />
                 </span>
                 </a>
                 </span>
                 </div>
 <div class="mappingactions" >
-<input type='submit' id='goto_importer_setting' class='goto_importer_setting btn btn-info' name='goto_importer_setting' value='Next >>' />
+<input type='submit' id='goto_importer_setting' title ='<?php echo __("Next",WP_CONST_ULTIMATE_CSV_IMP_SLUG);?>' class='goto_importer_setting btn btn-info' name='goto_importer_setting' value='<?php echo $impCE->reduceStringLength(__("Next",WP_CONST_ULTIMATE_CSV_IMP_SLUG),'Next'); ?> >>' />
 </div>
 </div>
 </div>
@@ -352,7 +352,7 @@ $mFieldsArr = substr($mFieldsArr, 0, -1);
 </tr>
 <tr>
 <td>
-  <h3>Settings and Performance</h3>
+  <h3><?php echo __('Settings and Performance',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></h3>
  <?php if(isset($_REQUEST['step']) && $_REQUEST['step'] == 'importoptions') { ?>
   <div id='sec-three' <?php if($_REQUEST['step']!= 'importoptions'){ ?> style='display:none;' <?php } ?> >
    <?php   if(isset($_SESSION['SMACK_MAPPING_SETTINGS_VALUES'])) { ?>
@@ -375,8 +375,8 @@ $mFieldsArr = substr($mFieldsArr, 0, -1);
 <div class="postbox" id="options" style=" margin-bottom:0px;">
 <!--        <h4 class="hndle">Search settings</h4>-->
         <div class="inside">
-            <label id='importalign'><input type ='radio' id='importNow' name='importMode' value='' onclick='choose_import_mode(this.id);' checked/> <?php echo __("Import right away"); ?> </label> 
-                                        <label id='importalign'><input type ='radio' id='scheduleNow' name='importMode' value='' onclick='choose_import_mode(this.id);' disabled/> <?php echo __("Schedule now"); ?> </label>
+            <label id='importalign'><input type ='radio' id='importNow' name='importMode' value='' onclick='choose_import_mode(this.id);' checked/> <?php echo __("Import right away",WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?> </label> 
+                                        <label id='importalign'><input type ='radio' id='scheduleNow' name='importMode' value='' onclick='choose_import_mode(this.id);' disabled/> <?php echo __("Schedule now",WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?> </label>
                   <div id='schedule' style='display:none'>
                                  <input type ='hidden' id='select_templatename' name='#select_templatename' value = '<?php if(isset($_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['templateid'])) { echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['templateid'] ; } ?>'>
                                 <?php //echo WPImporter_includes_schedulehelper::generatescheduleHTML(); ?>
@@ -407,12 +407,12 @@ $mFieldsArr = substr($mFieldsArr, 0, -1);
                         </select><br>
                         <input name="filterhtml" id="filterhtml" type="checkbox" value="1"> Filter out HTML-Tags while comparing                        <br>
                         <input name="filterhtmlentities" id="filterhtmlentities" type="checkbox" value="1"> Decode HTML-Entities before comparing                        <br>-->
-			<label id='importalign'><input name='duplicatecontent' id='duplicatecontent' type="checkbox" value=""> Detect duplicate post content</label> <br>
+			<label id='importalign'><input name='duplicatecontent' id='duplicatecontent' type="checkbox" value=""> <?php echo __('Detect duplicate post content',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></label> <br>
 			<input type='hidden' name='wpnoncekey' id='wpnoncekey' value='<?php echo $nonce_Key; ?>' />
-			<label id='importalign'><input name='duplicatetitle' id='duplicatetitle' type="checkbox" value="" > Detect duplicate post title</label> <br>
+			<label id='importalign'><input name='duplicatetitle' id='duplicatetitle' type="checkbox" value="" > <?php echo __('Detect duplicate post title',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></label> <br>
 
-			 <label id='importalign'>No. of posts/rows per server request</label> <span class="mandatory" style="margin-left:-13px;margin-right:10px">*</span> <input name="importlimit" id="importlimit" type="text" value="1" placeholder="10" onblur="check_allnumeric(this.value);"></label> <?php echo $impCE->helpnotes(); ?><br>	
-			<span class='msg' id='server_request_warning' style="display:none;color:red;margin-left:-10px;">You can set upto <?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords']; ?> per request.</span>
+			 <label id='importalign'><?php echo __('No. of posts/rows per server request',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></label> <span class="mandatory" style="margin-left:-13px;margin-right:10px">*</span> <input name="importlimit" id="importlimit" type="text" value="1" placeholder="10" onblur="check_allnumeric(this.value);"></label> <?php echo $impCE->helpnotes(); ?><br>	
+			<span class='msg' id='server_request_warning' style="display:none;color:red;margin-left:-10px;"><?php echo __('You can set upto',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?> <?php echo $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['totRecords']; ?> <?php echo __('per request.',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></span>
                         <input type="hidden" id="currentlimit" name="currentlimit" value="0"/>
 			<input type="hidden" id="tmpcount" name="tmpcount" value="0" />
 			<input type="hidden" id="terminateaction" name="terminateaction" value="continue" />
@@ -421,12 +421,12 @@ $mFieldsArr = substr($mFieldsArr, 0, -1);
                         Ignore these words while comparing <input name="filterwords" id="filterwords" type="text" value="">
                     </li>-->
                 </ul>
-                <input id="startbutton" class="btn btn-primary" type="button" value="Import Now" style="color: #ffffff;background:#2E9AFE;" onclick="importRecordsbySettings();" />
-		<input id="terminatenow" class="btn btn-danger btn-sm" type="button" value="Terminate Now" style="display:none;" onclick="terminateProcess();" />
-		<input class="btn btn-warning" type="button" value="Reload" id="importagain" style="display:none;" onclick="import_again();" />
-                <input id="continuebutton" class="btn btn-lg btn-success" type="button" value="Continue" style="display:none;color: #ffffff;" onclick="continueprocess();">
+                <input id="startbutton" class="btn btn-primary" type="button" value="<?php echo __('Import Now',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?>" style="color: #ffffff;background:#2E9AFE;" onclick="importRecordsbySettings();" />
+		<input id="terminatenow" class="btn btn-danger btn-sm" type="button" value="<?php echo __('Terminate Now',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?>" style="display:none;" onclick="terminateProcess();" />
+		<input class="btn btn-warning" type="button" value="<?php echo __('Reload',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?>" id="importagain" style="display:none;" onclick="import_again();" />
+                <input id="continuebutton" class="btn btn-lg btn-success" type="button" value="<?php echo __('Continue',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?>" style="display:none;color: #ffffff;" onclick="continueprocess();">
                 <!--<input id="continuebutton" class="button" type="button" value="Continue old search" style="color: #ffffff;background:#2E9AFE;">-->
-		<div id="ajaxloader" style="display:none"><img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR; ?>images/ajax-loader.gif"> Processing...</div>
+		<div id="ajaxloader" style="display:none"><img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR; ?>images/ajax-loader.gif"> <?php echo __('Processing...',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></div>
                 <div class="clear"></div>
             </form>
             </div>
@@ -447,7 +447,7 @@ $mFieldsArr = substr($mFieldsArr, 0, -1);
                                                <table class="table-importer">
                                                <tr>
                                                <td>
-                                               <h3><?php echo __("Summary"); ?></h3>
+                                               <h3><?php echo __("Summary",WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></h3>
                                                 <div id='reportLog' class='postbox'  style='display:none;'>
                                                 <input type='hidden' name = 'csv_version' id = 'csv_version' value = "<?php if(isset($_POST['uploaded_csv_name'])) { echo $_POST['uploaded_csv_name']; } ?>">
                                                 <div id="logtabs" class="logcontainer">

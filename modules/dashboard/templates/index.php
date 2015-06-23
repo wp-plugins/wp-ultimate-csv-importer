@@ -43,20 +43,20 @@ $ret_arr=array();
 if(isset($_REQUEST['msg']) && $_REQUEST['msg'] == 'filenotfound'){
 ?>
 <script>
-	showMapMessages('error','The files does not exist');
+	showMapMessages('error',translateAlertString('The files does not exist'));
 </script>
 <?php
 } ?>
 <div class="box-one">
 	<div class="top-right-box">
-		<h3><span style="margin: -5px 5px 5px 5px;"><img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR;?>images/chart_bar.png" /></span>Importers Activity</h3>
+		<h3><span style="margin: -5px 5px 5px 5px;"><img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR;?>images/chart_bar.png" /></span><?php echo __('Importers Activity',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></h3>
 		<div class="top-right-content">
 			<div id='dispLabel'></div>
 			<div class='lineStats' id='lineStats' style='height: 250px;width:100%;margin-top:15px; margin-bottom:15px;'></div>
 		</div>
 	</div>
 	<div class="top-right-box">
-		<h3><span style="margin: -5px 5px 5px 5px;"><img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR;?>images/stat_icon.png"></span>Import Statistics</h3>
+		<h3><span style="margin: -5px 5px 5px 5px;"><img src="<?php echo WP_CONST_ULTIMATE_CSV_IMP_DIR;?>images/stat_icon.png"></span><?php echo __('Import Statistics',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></h3>
 		<div class="top-right-content">
 			<div id='dispLabel'></div>
 			<div class='pieStats' id='pieStats' style='float:left;height:250px;width:100%;margin-top:15px;margin-bottom:15px;'></div>

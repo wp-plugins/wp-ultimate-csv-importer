@@ -2,7 +2,7 @@
 /******************************
  * Plugin Name: WP Ultimate CSV Importer
  * Description: A plugin that helps to import the data's from a CSV file.
- * Version: 3.7.4
+ * Version: 3.8
  * Author: smackcoders.com
  * Plugin URI: http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html
  * Author URI: http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html
@@ -75,7 +75,7 @@ define('WP_CONST_ULTIMATE_CSV_IMP_URL', 'http://www.smackcoders.com/wp-ultimate-
 define('WP_CONST_ULTIMATE_CSV_IMP_NAME', 'WP Ultimate CSV Importer');
 define('WP_CONST_ULTIMATE_CSV_IMP_SLUG', 'wp-ultimate-csv-importer');
 define('WP_CONST_ULTIMATE_CSV_IMP_SETTINGS', 'WP Ultimate CSV Importer');
-define('WP_CONST_ULTIMATE_CSV_IMP_VERSION', '3.7.4');
+define('WP_CONST_ULTIMATE_CSV_IMP_VERSION', '3.8');
 define('WP_CONST_ULTIMATE_CSV_IMP_DIR', WP_PLUGIN_URL . '/' . WP_CONST_ULTIMATE_CSV_IMP_SLUG . '/');
 define('WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY', plugin_dir_path(__FILE__));
 define('WP_CSVIMP_PLUGIN_BASE', WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY);
@@ -84,6 +84,12 @@ if (!class_exists('SkinnyControllerWPCsvFree')) {
 	require_once('lib/skinnymvc/controller/SkinnyController.php');
 }
 
+add_action('plugins_loaded','load_lang_files');
+
+function load_lang_files(){
+$csv_importer_dir = dirname( plugin_basename( __FILE__ ) ) . '/languages/';
+load_plugin_textdomain( 'wp-ultimate-csv-importer', false, $csv_importer_dir);
+}
 
 require_once('plugins/class.inlineimages.php');
 require_once('includes/WPImporter_includes_helper.php');
@@ -248,4 +254,16 @@ function importByRequest() {
 	die;
 }
 add_action('wp_ajax_importByRequest', 'importByRequest');
+
+/**
+ *To translate the alert strings
+ */
+function trans_alert_str(){
+if(isset($_POST['alertmsg']))
+echo __($_POST['alertmsg'],WP_CONST_ULTIMATE_CSV_IMP_SLUG);
+die();
+
+}
+add_action('wp_ajax_trans_alert_str' , 'trans_alert_str');
+
 

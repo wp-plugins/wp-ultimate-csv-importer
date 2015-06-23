@@ -103,6 +103,8 @@ if ($count < $totRecords) {
 	$count = $totRecords;
 }
 $resultArr = array();
+$res2 = array();
+$res1 = array();
 $filename = $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['uploadedFile'];
 $delim = $_SESSION['SMACK_MAPPING_SETTINGS_VALUES']['select_delimeter'];
 $resultArr = $skinnyObj->csv_file_data($filename);

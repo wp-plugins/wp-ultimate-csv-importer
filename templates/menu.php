@@ -65,41 +65,41 @@ $tab_inc = 1;
 $menuHTML = "<nav class='navbar navbar-default' role='navigation'>
    <div>
       <ul class='nav navbar-nav'>
-         <li  class = '{$dashboard}' ><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=dashboard'  >Dashboard</a></li>
+         <li  class = '{$dashboard}' ><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=dashboard'  >".__('Dashboard',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>
          <li class='dropdown {$module} '>
             <a href='#'  data-toggle='dropdown'>
-               Imports
+               ". __('Imports',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."
                <b class='caret'></b>
             </a>
             <ul class='dropdown-menu'>
-               <li class= '{$post}'><a href= 'admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=post&step=uploadfile'>Post</a></li>
-               <li class = '{$page}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=page&step=uploadfile'>Page</a></li>
-               <li class = '{$custompost}'><a href= 'admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=custompost&step=uploadfile'>Custom Post</a></li>";
+               <li class= '{$post}'><a href= 'admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=post&step=uploadfile'>".__('Post',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>
+               <li class = '{$page}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=page&step=uploadfile'>". __('Page',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>
+               <li class = '{$custompost}'><a href= 'admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=custompost&step=uploadfile'>". __('Custom Post',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>";
 if($comments) {
-$menuHTML .= "<li class = '{$comments}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=comments&step=uploadfile'>Comments</a></li>";
+$menuHTML .= "<li class = '{$comments}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=comments&step=uploadfile'>". __('Comments',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>";
 } 
 if($users) {
-$menuHTML .= "<li class = '{$users}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=users&step=uploadfile'>Users</a></li>";
+$menuHTML .= "<li class = '{$users}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=users&step=uploadfile'>". __('Users',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>";
 }
 if($eshop) {
-$menuHTML .= "<li class = '{$eshop}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=eshop&step=uploadfile'>Eshop</a></li>";
+$menuHTML .= "<li class = '{$eshop}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=eshop&step=uploadfile'>". __('Eshop',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>";
 }
 $menuHTML .= "</ul>
          </li>
          <li class='dropdown {$manager}'>
             <a href='#'  data-toggle='dropdown'> Managers <b class='caret'></b>  </a>
             <ul class='dropdown-menu'>
-               <li class = '{$filemanager}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=filemanager'>File Manager</a></li>
-               <li class = '{$schedulemapping}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=schedulemapping'>Smart Scheduler</a></li>
-               <li class = '{$mappingtemplate}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=mappingtemplate'>Templates</a></li>
+               <li class = '{$filemanager}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=filemanager'>". __('File Manager',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>
+               <li class = '{$schedulemapping}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=schedulemapping'>". __('Smart Scheduler',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>
+               <li class = '{$mappingtemplate}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=mappingtemplate'>". __('Templates',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>
             </ul>
          </li>";
-         $menuHTML .= "<li class = '{$export}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=export'>Export</a></li>";
-         $menuHTML .= "<li class=  '{$settings}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=settings'  />Settings</a></li>
-         <li class = '{$support}'><a href= 'admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=support'>Support</a></li>
+         $menuHTML .= "<li class = '{$export}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=export'>". __('Export',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>";
+         $menuHTML .= "<li class=  '{$settings}'><a href='admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=settings'  />". __('Settings',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>
+         <li class = '{$support}'><a href= 'admin.php?page=" . WP_CONST_ULTIMATE_CSV_IMP_SLUG . "/index.php&__module=support'>". __('Support',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>
          
-         <li ><a href='http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html' target='_blank'>Go Pro Now</a></li>
-         <li ><a href='http://demo.smackcoders.com/demowpthree/wp-admin/admin.php?page=wp-ultimate-csv-importer-pro/index.php&__module=dashboard' target='_blank'>Try Live Demo Now</a></li>
+         <li ><a href='http://www.smackcoders.com/wp-ultimate-csv-importer-pro.html?utm_source=WpPlugin&utm_medium=Free&utm_campaign=SupportTraffic' target='_blank'>". __('Go Pro Now',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>
+         <li ><a href='http://demo.smackcoders.com/demowpthree/wp-admin/admin.php?page=wp-ultimate-csv-importer-pro/index.php&__module=dashboard' target='_blank'>" . __('Try Live Demo Now',WP_CONST_ULTIMATE_CSV_IMP_SLUG)."</a></li>
       </ul>";
     $plugin_version = get_option('ULTIMATE_CSV_IMP_VERSION');
 $menuHTML .= "</div>";

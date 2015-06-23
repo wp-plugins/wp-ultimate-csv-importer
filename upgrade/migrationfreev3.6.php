@@ -1,13 +1,13 @@
 <div align=center style="padding-top:220px;">
 	<form name="upgrade_to_latest" method="post">
-		<label style="font-size:2em;" id="step1">Upgrade to Latest Version 3.6</label>
-		<input type="submit" class="btn btn-primary btn-sm" name="upgrade" id="upgrade" value="Click Here"/>
+		<label style="font-size:2em;" id="step1"><?php echo __('Upgrade to Latest Version 3.6',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?></label>
+		<input type="submit" class="btn btn-primary btn-sm" name="upgrade" id="upgrade" value="<?php echo __('Click Here',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?>"/>
 	</form>
 	<form name="goto_plugin_page" method="post"
 		  action="admin.php?page=<?php echo WP_CONST_ULTIMATE_CSV_IMP_SLUG; ?>/index.php&__module=settings">
 		<label style="font-size:2em;display:none;" id='upgrade_state'>Upgrade is inprogress...</label>
 		<input type="submit" style="display:none;" class="btn btn-success" name="gotopluginpage" id="gotopluginpage"
-			   value="Goto Plugin Settings"/>
+			   value="<?php echo __('Goto Plugin Settings',WP_CONST_ULTIMATE_CSV_IMP_SLUG); ?>"/>
 	</form>
 </div>
 <?php

@@ -30,6 +30,23 @@ $noncedata = $skinnyData['wp_nonce'];
 	<table style='width:100%;' class='table exportmodule'>
 	<th colspan='2'><label class='h-exportmodule'><h3 id="innertitle"> To export data based on the filters</h3></label></th>
 	<tr>
+	<td><label><input type='checkbox' name='getdatawithdelimiter' id='getdatawithdelimiter' value='getdatawithdelimeter' onclick='addexportfilter(this.id);' /><span id="align"> Export data with auto delimiter</span></label>
+	<div id='delimeter' style='padding:10px;display:none;'>
+	<label id='delistatus'><b> Delimiters </b></label>
+	<select name='postwithdelimiter' id='postwithdelimiter'>
+	<option>Select</option>
+	<option>,</option>
+        <option>:</option>
+        <option>;</option>
+        <option>{Tab}</option>
+        <option>{Space}</option>
+        </select>
+	<label><b>Other Delimiters</b> </label><input type = 'text' name='others_delimiter' id ='others_delimiter' size=6>
+        </select>
+	</div>
+	</td>
+	</tr>
+	<tr>
 	<td><label><input type='checkbox' name='getdataforspecificperiod' id='getdataforspecificperiod' value='getdataforspecificperiod' onclick='addexportfilter(this.id);' /><span id="align"> Export data for the specific period</span></label>
 	<div id='specificperiodexport' style='padding:10px;display:none;'> 
 	<label id='periodstartfrom'><b> Start From </b></label>

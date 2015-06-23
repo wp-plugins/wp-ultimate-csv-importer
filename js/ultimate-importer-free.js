@@ -4,9 +4,13 @@ jQuery( document ).ready(function() {
         if(checkmodule != 'dashboard' && checkmodule != 'filemanager' && checkmodule !='support' && checkmodule !='export') {
                 var get_log = document.getElementById('log').innerHTML;
                    if (!jQuery.trim(jQuery('#log').html()).length) {      
-                  document.getElementById('log').innerHTML = '<p style="margin:15px;color:red;">NO LOGS YET NOW.</p>';
+                  document.getElementById('log').innerHTML = '<p style="margin:15px;color:red;">'+ translateAlertString("NO LOGS YET NOW.")+'</p>';
                 }
        
+//pieStats();
+//lineStats();
+
+
  }
  if (checkmodule == 'custompost') {
 		    var step = jQuery('#stepstatus').val();
@@ -27,7 +31,7 @@ jQuery( document ).ready(function() {
 	 var checkmodule = jQuery('#checkmodule').val();
 	 if (!jQuery.trim(jQuery('#log').html()).length) {
 		 if(checkmodule != 'dashboard') 
-			 document.getElementById('log').innerHTML = '<p style="margin:15px;color:red;">NO LOGS YET NOW.</p>';
+			 document.getElementById('log').innerHTML = '<p style="margin:15px;color:red;">'+ translateAlertString("NO LOGS YET NOW.")+'</p>';
 	 }
 
 /*	 if (checkfile != '') {
@@ -89,17 +93,17 @@ function gotoelement(id) {
     if (id == 'apply_element') {
         gotoElement = parseInt(document.getElementById('goto_element').value);
         if (isNaN(gotoElement)) {
-            showMapMessages('error', ' Please provide valid record number.');
+            showMapMessages('error', translateAlertString('Please provide valid record number.'));
         }
         if (gotoElement <= 0) {
             gotoElement = 0;
-            showMapMessages('error', ' Please provide valid record number.');
+            showMapMessages('error', translateAlertString('Please provide valid record number.'));
         } else {
             gotoElement = gotoElement - 1;
         }
         if (gotoElement >= no_of_records) {
             gotoElement = parseInt(no_of_records) - 1;
-            showMapMessages('error', 'CSV file have only ' + no_of_records + ' records.');
+            showMapMessages('error', translateAlertString('CSV file have only ') + no_of_records + translateAlertString(' records.'));
             return false;
         }
     }
@@ -122,7 +126,7 @@ function gotoelement(id) {
                 }
             }
         var displayRecCount = gotoElement + 1;
-            document.getElementById('preview_of_row').innerHTML = "Showing preview of row #" + displayRecCount;
+            document.getElementById('preview_of_row').innerHTML = translateAlertString("Showing preview of row #") + displayRecCount;
             document.getElementById('current_record').value = gotoElement;
         }
     });
@@ -299,6 +303,27 @@ function shownotification(msg, alerts)
         'slow'); 
 }
 
+function translateAlertString(alertstring){
+var convertedStr = "";
+jQuery.ajax({
+        type:'POST',
+        url: ajaxurl,
+        async: false,
+        data: {
+          'action'      : 'trans_alert_str',
+          'alertmsg': alertstring,
+        },
+        success:function(response)
+        {
+                convertedStr = response;
+        },
+        error: function(errorThrown){
+                console.log(errorThrown);
+        }
+        });
+return convertedStr;
+}
+
 function import_csv() 
 {
 	// code added by goku to check whether templatename
@@ -312,7 +337,7 @@ function import_csv()
 
 		if(jQuery.trim(mapping_tempname) == '')	
 		{
-			alert('Template name is empty');
+			alert(translateAlertString('Template name is empty'));
 			return false;
 		}
 		else
@@ -345,7 +370,7 @@ function import_csv()
 
 	if(mapping_tempname == '' && (mapping_checked || mapping_templatename_edit == 'saveas'))
 	{
-		alert('Template Name already exists');return false;
+		alert(translateAlertString('Template Name already exists'));return false;
 	}
 	// code ends here on checking templatename
 
@@ -404,7 +429,7 @@ function import_csv()
 	    }
             if (post_status_msg == 'Off')
                 error_msg += " post_status";
-            showMapMessages('error', 'Error: ' + error_msg + ' - Mandatory fields. Please map the fields to proceed.');
+            showMapMessages('error', 'Error: ' + error_msg + translateAlertString(' - Mandatory fields. Please map the fields to proceed.'));
             return false;
         }
     }
@@ -433,7 +458,7 @@ else if(importer == 'comments'){
                  return true;
                 }
                 else{
-                 showMapMessages('error',' "Post Id", "Comment Author", "Comment Author Email" and "Comment Content" should be mapped.');
+                 showMapMessages('error',' "Post Id", "Comment Author", "Comment Author Email" and "Comment Content"'+translateAlertString(' should be mapped.'));
                  return false;
                 }
 
@@ -458,7 +483,7 @@ else if(importer == 'comments'){
 	   	 return true;
 		}
 		else{
-		 showMapMessages('error','"role", "user_login" and "user_email" should be mapped.');
+		 showMapMessages('error','"role", "user_login" and "user_email"'+translateAlertString(' should be mapped.'));
 		 return false;
 		}
 	}
@@ -467,6 +492,21 @@ else if(importer == 'comments'){
 
 
 function showMapMessages(alerttype, msg) {
+    jQuery.ajax({
+                type : 'POST',
+                url : ajaxurl,
+                data : {
+                        'action' : 'trans_alert_str',
+                        'type' : alerttype,
+                        'message' : msg,
+                        },
+                success : function(response){
+                //      alert(response);
+                },
+                error : function(errorThrown){
+                        console.log(errorThrown);
+                },
+        });
     jQuery("#showMsg").addClass("maperror");
     document.getElementById('showMsg').innerHTML = msg;
     document.getElementById('showMsg').className += ' ' + alerttype;
@@ -495,7 +535,7 @@ var match = /\..+$/;
           }
           else
           {
-                alert("File must be .zip!");
+                alert(translateAlertString("File must be .zip!"));
                 //will clear the file input box.
                 location.reload();
                 return false;
@@ -561,7 +601,7 @@ function importRecordsbySettings(siteurl)
                 //return true;
         } else {
                  document.getElementById('showMsg').style.display = "";
-                 document.getElementById('showMsg').innerHTML = '<p id="warning-msg" class="alert alert-warning">Fill all mandatory fields.</p>';			jQuery("#showMsg").fadeOut(10000);
+                 document.getElementById('showMsg').innerHTML = '<p id="warning-msg" class="alert alert-warning">'+translateAlertString("Fill all mandatory fields.")+'</p>';			jQuery("#showMsg").fadeOut(10000);
                  return false;
         }
 	if(parseInt(get_requested_count) <= parseInt(no_of_tot_records)) {
@@ -571,7 +611,7 @@ function importRecordsbySettings(siteurl)
                 return false;
         }
 	if(get_log == '<p style="margin:15px;color:red;">NO LOGS YET NOW.</p>'){
-		document.getElementById('log').innerHTML = '<p style="margin-left:10px;color:red;">Your Import Is In Progress...</p>';
+		document.getElementById('log').innerHTML = '<p style="margin-left:10px;color:red;">'+translateAlertString("Your Import Is In Progress...")+'</p>';
 		document.getElementById('startbutton').disabled = true;
 	}
 	document.getElementById('ajaxloader').style.display="";
@@ -612,7 +652,7 @@ function importRecordsbySettings(siteurl)
 					document.getElementById('tmpcount').value = parseInt(tmpCnt)+parseInt(importlimit);
 					setTimeout(function(){importRecordsbySettings()},0);
 				} else {
-					document.getElementById('log').innerHTML += "<p style='margin-left:10px;color:red;'>Import process has been terminated.</p>";
+					document.getElementById('log').innerHTML += "<p style='margin-left:10px;color:red;'>"+translateAlertString('Import process has been terminated.')+"</p>";
                                         document.getElementById('ajaxloader').style.display="none";
                                         document.getElementById('startbutton').style.display = "none";
                                         document.getElementById('terminatenow').style.display = "none";
@@ -652,7 +692,7 @@ function continueprocess() {
     } else {
         document.getElementById('terminatenow').style.display = "";
     }
-    document.getElementById('log').innerHTML += "<div style='margin-left:10px;color:green;'> Import process has been continued.</div></br>";
+    document.getElementById('log').innerHTML += "<div style='margin-left:10px;color:green;'>"+translateAlertString('Import process has been continued.')+"</div></br>";
     document.getElementById('ajaxloader').style.display = "";
     document.getElementById('startbutton').style.display = "";
     document.getElementById('continuebutton').style.display = "none";
@@ -794,7 +834,7 @@ function  check_if_avail(val){
 		}
 		document.getElementById(val).checked = false;
 		document.getElementById('ShowMsg').style.display = "";
-		document.getElementById('warning-msg').innerHTML = warning_name[val]+' feature is available only for PRO!.';
+		document.getElementById('warning-msg').innerHTML = warning_name[val]+translateAlertString(' feature is available only for PRO!.');
 		jQuery('#ShowMsg').delay(7000).fadeOut();
 	}
 }
@@ -828,7 +868,7 @@ function sendemail2smackers(){
 		return true;
 	else
 		document.getElementById('showMsg').style.display = '';
-		document.getElementById('showMsg').innerHTML = '<p id="warning-msg" class="alert alert-warning">Fill all mandatory fields.</p>';
+		document.getElementById('showMsg').innerHTML = '<p id="warning-msg" class="alert alert-warning">'+translateAlertString('Fill all mandatory fields.')+'</p>';
 		jQuery("#showMsg").fadeOut(10000);
 		return false;
 }
@@ -844,9 +884,9 @@ function check_allnumeric(inputtxt)
 	else  
 	{  
 		if(inputtxt == '')
-			alert('Fill all mandatory fields.');
+			alert(translateAlertString('Fill all mandatory fields.'));
 		else
-			alert('Please enter numeric characters only');  
+			alert(translateAlertString('Please enter numeric characters only'));  
 		return false;  
 	}  
 }
@@ -868,7 +908,7 @@ function export_module(){
                         return true;
                 }
         }
-        showMapMessages('error', 'Please choose one module to export the records!');
+        showMapMessages('error', translateAlertString('Please choose one module to export the records!'));
         return false;
 }
 function export_check(value) {
@@ -876,7 +916,7 @@ function export_check(value) {
 		document.getElementById(value).checked = false;
 		document.getElementById('ShowMsg').style.display = "";
 		value = value.toUpperCase();
-		document.getElementById('warning-msg').innerHTML = value+' Feature is available only for PRO!.';
+		document.getElementById('warning-msg').innerHTML = value+translateAlertString(' Feature is available only for PRO!.');
 		jQuery('#ShowMsg').delay(7000).fadeOut();
 	}
 }
@@ -981,7 +1021,7 @@ function addexportfilter(id) {
 			document.getElementById('authors').style.display = '';
 			document.getElementById('postauthor').style.display = '';
 		}
-		else if(id == 'getdatawithdelimeter'){
+		else if(id == 'getdatawithdelimiter'){
 			document.getElementById('delimeter').style.display = '';			
 		}
 	} else if (document.getElementById(id).checked == false) {
@@ -1002,7 +1042,7 @@ function addexportfilter(id) {
                         document.getElementById('authors').style.display = 'none';
                         document.getElementById('postauthor').style.display = 'none';
                 }
-		else if(id == 'getdatawithdelimeter'){
+		else if(id == 'getdatawithdelimiter'){
                         document.getElementById('delimeter').style.display = 'none';
                 }
 	}

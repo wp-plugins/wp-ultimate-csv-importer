@@ -14,29 +14,29 @@ error_reporting(E_ALL | E_STRICT);
 require('UploadHandler.php');
 $current_user = wp_get_current_user();
 if(is_multisite()) {
-	$HelperObj = new WPImporter_includes_helper();
-	$settings = $HelperObj->getSettings();
-	if ( current_user_can( 'administrator' ) ) {
-		if($current_user->ID != 0)
-			$upload_handler = new UploadHandler();
-	}
-	if(isset($settings['enable_plugin_access_for_author']) && $settings['enable_plugin_access_for_author'] == 'enable_plugin_access_for_author') {
+         $HelperObj = new WPImporter_includes_helper();
+                $settings = $HelperObj->getSettings();
+        if ( current_user_can( 'administrator' ) ) {
+                if($current_user->ID != 0)
+                        $upload_handler = new UploadHandler();
+        }
+         if(isset($settings['enable_plugin_access_for_author']) && $settings['enable_plugin_access_for_author'] == 'enable_plugin_access_for_author') {
 		if(current_user_can('author') || current_user_can('editor')){                     
 			if($current_user->ID != 0)
-				$upload_handler = new UploadHandler();
+                                $upload_handler = new UploadHandler();
+	                }
 		}
-	}
 }
 else {
-	if ( current_user_can( 'author' )  || current_user_can('editor')) {
-		$HelperObj = new WPImporter_includes_helper();
-		$settings = $HelperObj->getSettings();
-		if(isset($settings['enable_plugin_access_for_author']) && $settings['enable_plugin_access_for_author'] == 'enable_plugin_access_for_author') {
-			if($current_user->ID != 0)
-				$upload_handler = new UploadHandler();
-		}
-	} else if ( current_user_can( 'administrator' ) ) {
-		if($current_user->ID != 0)
-			$upload_handler = new UploadHandler();
-	}
+        if ( current_user_can( 'author' ) || current_user_can('editor')) {
+                $HelperObj = new WPImporter_includes_helper();
+                $settings = $HelperObj->getSettings();
+                if(isset($settings['enable_plugin_access_for_author']) && $settings['enable_plugin_access_for_author'] == 'enable_plugin_access_for_author') {
+                        if($current_user->ID != 0)
+                                $upload_handler = new UploadHandler();
+                }
+        } else if ( current_user_can( 'administrator' ) ) {
+                if($current_user->ID != 0)
+                        $upload_handler = new UploadHandler();
+        }
 }

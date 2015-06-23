@@ -409,8 +409,9 @@ class EshopActions extends SkinnyActions {
 							$fimg_path = $full_path;
 
 							$fimg_name = @basename($f_img);
-							$fimg_name = preg_replace("/[^a-zA-Z0-9._\s]/", "", $fimg_name);
-							$fimg_name = preg_replace('/\s/', '-', $fimg_name);
+                                                        $fimg_name =  preg_replace('/\.[^.]*$/', '', $fimg_name);
+                                                        $fimg_name = strtolower(str_replace(' ','-',$fimg_name));
+
 							$fimg_name = urlencode($fimg_name);
 							
 							$parseURL = parse_url($f_img);
@@ -418,15 +419,18 @@ class EshopActions extends SkinnyActions {
 							if(!isset($path_parts['extension']))
 								$fimg_name = $fimg_name . '.jpg';
 
-							$f_img_slug = preg_replace("/[^a-zA-Z0-9._\s]/", "", $new_post['post_title']);
-							$f_img_slug = preg_replace('/\s/', '-', $f_img_slug);
+							$f_img_slug = '';
+							$f_img_slug =  preg_replace('/\.[^.]*$/', '',$f_img_slug);
+                                                        $f_img_slug = strtolower(str_replace('','-',$f_img_slug));
+
 
 							$post_slug_value = strtolower($f_img_slug);
                                                         require_once(WP_CONST_ULTIMATE_CSV_IMP_DIRECTORY.'/includes/WPImporter_includes_helper.php');
                                                         $impCE = new WPImporter_includes_helper();
 							$fimg_name = wp_unique_filename($fimg_path, $fimg_name, $path_parts['extension']);
+							$fimg_name = $fimg_name.'.'.$path_parts['extension'];
 							$impCE->get_fimg_from_URL($f_img,$fimg_path,$fimg_name,$post_slug_value,$currentLimit,$this);
-							$filepath = $fimg_path."/" . $post_slug_value . "-" . $fimg_name;
+							$filepath = $fimg_path."/" . $fimg_name;
 	
 							if(@getimagesize($filepath)){
 								$img = wp_get_image_editor($filepath);
@@ -594,7 +598,8 @@ class EshopActions extends SkinnyActions {
 			if ($data_array) {
 				if($this->MultiImages == 'true') {
                                         $inlineImagesObj = new WPImporter_inlineImages();
-                                        $post_id = $inlineImagesObj->importwithInlineImages($data_array['ID'], $currentLimit, $data_array, $this, $importinlineimageoption, $extractedimagelocation, $sample_inlineimage_url);
+					$postid = wp_insert_post($data_array);
+                                        $post_id = $inlineImagesObj->importwithInlineImages($postid, $currentLimit, $data_array, $this, $importinlineimageoption, $extractedimagelocation, $sample_inlineimage_url);
                                 } else {
                                         $post_id = wp_insert_post($data_array);
                                         $this->detailedLog[$currentLimit]['post_id'] = "<b>Created Post_ID - </b>" . $post_id . " - success";
@@ -687,16 +692,16 @@ class EshopActions extends SkinnyActions {
 					$attachment = array(
 							'guid' => $file ['guid'],
 							'post_mime_type' => 'image/jpeg',
-							'post_title' => preg_replace('/\.[^.]+$/', '', @basename($file ['guid'])),
+							'post_title' => preg_replace('/\.[^.]*$/', '', @basename($file ['guid'])),
 							'post_content' => '',
 							'post_status' => 'inherit'
 							);
 					if($get_media_settings == 1){
-						$generate_attachment = $dirname . '/' . $post_slug_value . '-' .  $fimg_name;
+						$generate_attachment = $dirname . '/' .  $fimg_name;
 					}else{
 						$generate_attachment = $fimg_name;
 					}
-					$uploadedImage = $wp_upload_dir['path'] . '/' . $post_slug_value . '-' . $fimg_name;
+					$uploadedImage = $wp_upload_dir['path'] . '/' . $fimg_name;
 					$attach_id = wp_insert_attachment($attachment, $generate_attachment, $post_id);
 					$attach_data = wp_generate_attachment_metadata($attach_id, $uploadedImage);
 					wp_update_attachment_metadata($attach_id, $attach_data);

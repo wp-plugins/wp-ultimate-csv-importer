@@ -35,7 +35,6 @@
  * "Copyright Smackcoders. 2014. All rights reserved".
  ********************************************************************************/
 $parse_uri = explode( 'wp-content', $_SERVER['SCRIPT_FILENAME'] );
-
 require_once($parse_uri[0]."wp-load.php");
 $impCheckobj = CallWPImporterObj::checkSecurity();
 if($impCheckobj != 'true')

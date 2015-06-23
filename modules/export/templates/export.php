@@ -488,12 +488,26 @@ class WPCSVProExportData {
 	public function WPImpPROExportData($request) {
 		#print('<pre>'); print_r($this->getACFvalues()); die;
 		global $wpdb;
-		$export_delimiter = ',';
 		$exporttype = $_POST['export'];
-		$wpcsvsettings=get_option('wpcsvprosettings');
-		if(isset($wpcsvsettings['export_delimiter'])){
-			$export_delimiter = $wpcsvsettings['export_delimiter'];
-		}
+		if(isset($_POST['getdatawithdelimiter']) && isset($_POST['postwithdelimiter']) && $_POST['postwithdelimiter'] != 'Select'){
+                        if($_POST['postwithdelimiter'] == "{Space}")
+                                $export_delimiter = " ";
+                        elseif($_POST['postwithdelimiter'] == "{Tab}")
+                                $export_delimiter = "\t";
+                        else
+                                $export_delimiter = $_POST['postwithdelimiter'];
+                }elseif(isset($_POST['getdatawithdelimiter']) && !empty($_POST['others_delimiter'])){
+
+                         $export_delimiter = $_POST['others_delimiter'];
+                }else{
+
+                        $export_delimiter = ',';
+                }
+		/*if(isset($_POST['getdatawithdelimeter']) && isset($_POST['delimeterstatus'])){
+			$export_delimiter = $_POST['delimeterstatus'];
+		}else{
+			$export_delimiter = ',';
+		}*/
 		if($_POST['export_filename'])
 			$csv_file_name =$_POST['export_filename'].'.csv';
 		else
@@ -1059,12 +1073,26 @@ class WPCSVProExportData {
 	 */
 	public function WPImpExportCategories($request) {
                 global $wpdb;
-                $export_delimiter = ',';
                 $exporttype = $request['export'];
-                $wpcsvsettings=get_option('wpcsvprosettings');
-                if(isset($wpcsvsettings['export_delimiter'])){
-                        $export_delimiter = $wpcsvsettings['export_delimiter'];
+		if(isset($_POST['getdatawithdelimiter']) && isset($_POST['postwithdelimiter']) && $_POST['postwithdelimiter'] != 'Select'){
+                        if($_POST['postwithdelimiter'] == "{Space}")
+                                $export_delimiter = " ";
+                        elseif($_POST['postwithdelimiter'] == "{Tab}")
+                                $export_delimiter = "\t";
+                        else
+                                $export_delimiter = $_POST['postwithdelimiter'];
+                }elseif(isset($_POST['getdatawithdelimiter']) && !empty($_POST['others_delimiter'])){
+
+                         $export_delimiter = $_POST['others_delimiter'];
+                }else{
+
+                        $export_delimiter = ',';
                 }
+               	/*if(isset($_POST['getdatawithdelimeter']) && isset($_POST['delimeterstatus'])){
+                        $export_delimiter = $_POST['delimeterstatus'];
+                }else{
+                        $export_delimiter = ',';
+                }*/
                 if($_POST['export_filename'])
                         $csv_file_name =$_POST['export_filename'].'.csv';
                 else
@@ -1125,12 +1153,26 @@ class WPCSVProExportData {
 	 */
 	public function WPImpExportTags($request) {
 		global $wpdb;
-		$export_delimiter = ',';
 		$exporttype = $request['export'];
-		$wpcsvsettings=get_option('wpcsvprosettings');
-		if(isset($wpcsvsettings['export_delimiter'])){
-			$export_delimiter = $wpcsvsettings['export_delimiter'];
-		}
+		/*if(isset($_POST['getdatawithdelimeter']) && isset($_POST['delimeterstatus'])){
+                        $export_delimiter = $_POST['delimeterstatus'];
+                }else{
+                        $export_delimiter = ',';
+                }*/
+		if(isset($_POST['getdatawithdelimiter']) && isset($_POST['postwithdelimiter']) && $_POST['postwithdelimiter'] != 'Select'){
+                        if($_POST['postwithdelimiter'] == "{Space}")
+                                $export_delimiter = " ";
+                        elseif($_POST['postwithdelimiter'] == "{Tab}")
+                                $export_delimiter = "\t";
+                        else
+                                $export_delimiter = $_POST['postwithdelimiter'];
+                }elseif(isset($_POST['getdatawithdelimiter']) && !empty($_POST['others_delimiter'])){
+
+                         $export_delimiter = $_POST['others_delimiter'];
+                }else{
+
+                        $export_delimiter = ',';
+                }
 		if($_POST['export_filename'])
 			$csv_file_name =$_POST['export_filename'].'.csv';
 		else
@@ -1186,11 +1228,25 @@ class WPCSVProExportData {
 	 */
 	public function WPImpExportTaxonomies($request) {
                 global $wpdb;
-                $export_delimiter = ',';
                 $exporttype = $request['export'];
-                $wpcsvsettings=get_option('wpcsvprosettings');
-                if(isset($wpcsvsettings['export_delimiter'])){
-                        $export_delimiter = $wpcsvsettings['export_delimiter'];
+               /* if(isset($_POST['getdatawithdelimeter']) && isset($_POST['delimeterstatus'])){
+                        $export_delimiter = $_POST['delimeterstatus'];
+                }else{
+                        $export_delimiter = ',';
+                }*/
+		if(isset($_POST['getdatawithdelimiter']) && isset($_POST['postwithdelimiter']) && $_POST['postwithdelimiter'] != 'Select'){
+                        if($_POST['postwithdelimiter'] == "{Space}")
+                                $export_delimiter = " ";
+                        elseif($_POST['postwithdelimiter'] == "{Tab}")
+                                $export_delimiter = "\t";
+                        else
+                                $export_delimiter = $_POST['postwithdelimiter'];
+                }elseif(isset($_POST['getdatawithdelimiter']) && !empty($_POST['others_delimiter'])){
+
+                         $export_delimiter = $_POST['others_delimiter'];
+                }else{
+
+                        $export_delimiter = ',';
                 }
                 if($_POST['export_filename'])
                         $csv_file_name =$_POST['export_filename'].'.csv';
@@ -1253,12 +1309,26 @@ class WPCSVProExportData {
 	 */
 	public function WPImpExportCustomerReviews($request) {
 		global $wpdb;
-		$export_delimiter = ',';
 		$exporttype = $request['export'];
-		$wpcsvsettings=get_option('wpcsvprosettings');
-		if(isset($wpcsvsettings['export_delimiter'])){
-			$export_delimiter = $wpcsvsettings['export_delimiter'];
-		}
+		/*if(isset($_POST['getdatawithdelimeter']) && isset($_POST['delimeterstatus'])){
+                        $export_delimiter = $_POST['delimeterstatus'];
+                }else{
+                        $export_delimiter = ',';
+                }*/
+		if(isset($_POST['getdatawithdelimiter']) && isset($_POST['postwithdelimiter']) && $_POST['postwithdelimiter'] != 'Select'){
+                        if($_POST['postwithdelimiter'] == "{Space}")
+                                $export_delimiter = " ";
+                        elseif($_POST['postwithdelimiter'] == "{Tab}")
+                                $export_delimiter = "\t";
+                        else
+                                $export_delimiter = $_POST['postwithdelimiter'];
+                }elseif(isset($_POST['getdatawithdelimiter']) && !empty($_POST['others_delimiter'])){
+
+                         $export_delimiter = $_POST['others_delimiter'];
+                }else{
+
+                        $export_delimiter = ',';
+                }
 		if($_POST['export_filename'])
 			$csv_file_name =$_POST['export_filename'].'.csv';
 		else
@@ -1307,11 +1377,25 @@ class WPCSVProExportData {
          */
         public function WPImpExportComments($request) {
                 global $wpdb;
-                $export_delimiter = ',';
                 $exporttype = $request['export'];
-                $wpcsvsettings=get_option('wpcsvprosettings');
-                if(isset($wpcsvsettings['export_delimiter'])){
-                        $export_delimiter = $wpcsvsettings['export_delimiter'];
+      		/*if( isset($_POST['getdatawithdelimeter']) && isset($_POST['delimeterstatus'])){
+                        $export_delimiter = $_POST['delimeterstatus'];
+                }else{
+                        $export_delimiter = ',';
+                }*/
+		if(isset($_POST['getdatawithdelimiter']) && isset($_POST['postwithdelimiter']) && $_POST['postwithdelimiter'] != 'Select'){
+                        if($_POST['postwithdelimiter'] == "{Space}")
+                                $export_delimiter = " ";
+                        elseif($_POST['postwithdelimiter'] == "{Tab}")
+                                $export_delimiter = "\t";
+                        else
+                                $export_delimiter = $_POST['postwithdelimiter'];
+                }elseif(isset($_POST['getdatawithdelimiter']) && !empty($_POST['others_delimiter'])){
+
+                         $export_delimiter = $_POST['others_delimiter'];
+                }else{
+
+                        $export_delimiter = ',';
                 }
                 if($_POST['export_filename'])
                         $csv_file_name =$_POST['export_filename'].'.csv';
@@ -1342,11 +1426,25 @@ class WPCSVProExportData {
 	 */
 	public function WPImpExportUsers($request) {
                 global $wpdb;
-                $export_delimiter = ',';
                 $exporttype = $request['export'];
-                $wpcsvsettings=get_option('wpcsvprosettings');
-                if(isset($wpcsvsettings['export_delimiter'])){
-                        $export_delimiter = $wpcsvsettings['export_delimiter'];
+            	/*if( isset($_POST['getdatawithdelimeter']) && isset($_POST['delimeterstatus'])){
+                        $export_delimiter = $_POST['delimeterstatus'];
+                }else{
+                        $export_delimiter = ',';
+                }*/
+		if(isset($_POST['getdatawithdelimiter']) && isset($_POST['postwithdelimiter']) && $_POST['postwithdelimiter'] != 'Select'){
+                        if($_POST['postwithdelimiter'] == "{Space}")
+                                $export_delimiter = " ";
+                        elseif($_POST['postwithdelimiter'] == "{Tab}")
+                                $export_delimiter = "\t";
+                        else
+                                $export_delimiter = $_POST['postwithdelimiter'];
+                }elseif(isset($_POST['getdatawithdelimiter']) && !empty($_POST['others_delimiter'])){
+
+                         $export_delimiter = $_POST['others_delimiter'];
+                }else{
+
+                        $export_delimiter = ',';
                 }
                 if($_POST['export_filename'])
                         $csv_file_name =$_POST['export_filename'].'.csv';
