@@ -60,10 +60,10 @@ Much improved User interface with most flexible jquery plugin features and boots
 [Test Drive Our Live Demo](http://demo.smackcoders.com/demowpthree/wp-admin/admin.php?page=wp-ultimate-csv-importer-pro/index.php&__module=dashboard?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic)
 
 
-Get Started [Sample CSV Files] (https://www.smackcoders.com/blog/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic)
+Get Started [Sample CSV Files](https://www.smackcoders.com/blog/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic)
 
 
-Documentation and Tutorial for [CSV Importer ] (http://www.wpultimatecsvimporter.com/documentation?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic)
+Documentation and Tutorial for [CSV Importer ](http://www.wpultimatecsvimporter.com/documentation?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic)
 
 
 = Video Walkthrough =
