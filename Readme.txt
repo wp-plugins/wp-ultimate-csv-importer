@@ -53,9 +53,13 @@ It is more easy to import csv database maintained in Excel xls or spread sheets 
 Much improved User interface with most flexible jquery plugin features and bootstrap UI design makes csv import more simple, easy, fast and even more flexible for better user experience. With improved Multi site, buddy press compatibility (except user import module) works well for most of the best WordPress themes available online. Now manage multi site & buddy press, Amazon data import, affiliates blog, product inventory, ecommerce store, multi author blog, automatic news import, photo blog etc periodically with simple click import. 
 
 = Helpful Links =
+
 [Read More Here>>](http://www.wpultimatecsvimporter.com?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic) 
+
 [Test Drive Our Live Demo](http://demo.smackcoders.com/demowpthree/wp-admin/admin.php?page=wp-ultimate-csv-importer-pro/index.php&__module=dashboard?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic)
+
 Get Started [Sample CSV Files] (https://www.smackcoders.com/blog/wordpress-ultimate-csv-importer-csv-sample-files-and-updates.html?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic)
+
 Documentation and Tutorial for [CSV Importer ] (http://www.wpultimatecsvimporter.com/documentation?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic)
 
 
@@ -123,7 +127,7 @@ Your WordPress theme should support featured image. If not, please add the follo
 * Dashboard, CSV Manager and Custom Mapping Templates
 * DB Optimizer, System status etc.
 
-Compare Free Vs Pro[Features](https://www.wpultimatecsvimporter.com/wp-ultimate-csv-importer-plugin?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic)>>
+Compare Free Vs Pro [Features](https://www.wpultimatecsvimporter.com/wp-ultimate-csv-importer-plugin?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic)>>
 Learn More from [User Manual](https://www.wpultimatecsvimporter.com/documentation?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic)>>
 
 
